@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { _GetCards } from "../../redux/modules/MainSlice";
-import PostCards from "../detailcomponents/PostCards";
+import PostCards from "../detail/PostCards";
 
 const MyPostCard = () => {
   const navigate = useNavigate();
