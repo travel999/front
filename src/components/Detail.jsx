@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import MyLikePage from "./detailcomponents/MyLikePage";
-import MyPostPage from "./detailcomponents/MyPostPage";
+import MyLikePage from "./detail/MyLikePage";
+import MyPostPage from "./detail/MyPostPage";
 
 const Detail = () => {
   const { word } = useParams();

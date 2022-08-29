@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import PostCards from "../detailcomponents/PostCards";
+import PostCards from "../detail/PostCards";
 
 const MyLikeCard = () => {
   const navigate = useNavigate();
