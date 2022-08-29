@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainPage from "../pages/MainPage";
-import ScedulePage from "../pages/SceduleWritePage";
+import SchedulePage from "../pages/ScheduleWritePage";
 import StartPage from "../pages/StartPage";
 import LoginPage from "../pages/LoginPage";
 import JoinPage from "../pages/JoinPage";
@@ -18,7 +18,7 @@ const Router = () => {
         <Route path="/join" element={<JoinPage />} />
         <Route path="/myprofile" element={<MyProfilePage />} />
         <Route path="/detail/:word" element={<DetailPage />} />
-        <Route path="/write" element={<ScedulePage />} />
+        <Route path="/write" element={<SchedulePage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import {
   TitleWrap,
   Title,
-} from "./ScheduleWrite/LoginStyle"
+} from "./StyledModule/LoginStyle"
 
 const Login = () => {
   return (
