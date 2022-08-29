@@ -1,19 +1,19 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
 
-const initialState = {};
+const initialState = { cards: [] };
 
-//청크
-// export const ?? = createAsyncThunk(
-//   "??",
-//   async (payload, thunkAPI) => {
-//     try {
-
-//     } catch () {
-
-//     }
-//   }
-// );
+export const _GetCards = createAsyncThunk(
+  "main/get",
+  async (value, thunkAPI) => {
+    try {
+      console.log(value);
+      return thunkAPI.fulfillWithValue.apply("result.data");
+    } catch (error) {
+      return error;
+    }
+  }
+);
 
 //슬라이스
 export const mainSlice = createSlice({
@@ -21,13 +21,12 @@ export const mainSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    // [__getMovie.pending]: (state) => {
-    //   state.isLoading = true;
-    // },
-    // [__getMovie.fulfilled]: (state, action) => {
-    //   state.lists = [...state.lists].concat(action.payload.pageData);
-    //   state.isLoading = false;
-    // },
+    [_GetCards.fulfilled]: (state, action) => {
+      console.log(current(state.cards), action);
+    },
+    [_GetCards.rejected]: (state, action) => {
+      console.log(state, action);
+    },
   },
 });
 
