@@ -8,7 +8,7 @@ const NavBarBtn = ({ name }) => {
 const NavBtn = styled.div`
   background-color: #a1a1db;
   margin-top: 7vh;
-  margin-left: 1vw;
+  margin-left: 10px;
 `;
 
 export default NavBarBtn;
