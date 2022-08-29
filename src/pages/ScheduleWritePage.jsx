@@ -1,11 +1,11 @@
 import React from "react";
 import Layout from "../components/common/Layout";
-import SceduleDay from "../components/SceduleDay";
+import SheduleDay from "../components/ScheduleWrite/ScheduleDay";
 
 const SceduleWritePage = () => {
   return (
     <Layout>
-      <SceduleDay />
+      <SheduleDay />
     </Layout>
   );
 };

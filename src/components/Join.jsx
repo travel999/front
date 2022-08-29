@@ -3,7 +3,7 @@ import {
   Profile,
   Inputwrap,
   Input,
-} from "./ScheduleWrite/JoinStyle"
+} from "./StyledModule/JoinStyle"
 
 
 const Join = () => {

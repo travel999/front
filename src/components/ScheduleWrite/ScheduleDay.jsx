@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import SceduleWork from "./SceduleWork";
+import SceduleWork from "./ScheduleWork";
 
-const SceduleList = () => {
+const ScheduleList = () => {
   //state
   const [numDay, setNumDay] = useState([1]);
   const [checkDiv, setCheckDiv] = useState(false);
@@ -36,4 +36,4 @@ const SceduleList = () => {
   );
 };
 
-export default SceduleList;
+export default ScheduleList;

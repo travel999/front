@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SceduleWrite = ({ day }) => {
+const ScheduleWrite = ({ day }) => {
   //state
   const [cardNum, setCardNum] = useState([1]);
 
@@ -24,4 +24,4 @@ const SceduleWrite = ({ day }) => {
   );
 };
 
-export default SceduleWrite;
+export default ScheduleWrite;

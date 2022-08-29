@@ -8,7 +8,7 @@ import {
   Btn1,
   Btn2,
   Btn3
-} from "./ScheduleWrite/StartStyle"
+} from "./StyledModule/StartStyle"
 
 const Start = () => {
   const navigate = useNavigate()
