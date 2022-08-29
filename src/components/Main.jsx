@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import LeftNavBar from "./maincomponents/LeftNavBar";
-import MyLikeCard from "./maincomponents/MyLikeCard";
-import MyPostCard from "./maincomponents/MyPostCard";
-import RecommendCard from "./maincomponents/RecommendCard";
+import LeftNavBar from "./main/LeftNavBar";
+import MyLikeCard from "./main/MyLikeCard";
+import MyPostCard from "./main/MyPostCard";
+import RecommendCard from "./main/RecommendCard";
 
 const Main = () => {
   return (
