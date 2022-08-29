@@ -12,6 +12,8 @@ const MyPostCard = () => {
     dispatch(_GetCards());
   }, []);
 
+  //테스트
+
   return (
     <>
       <MyPostBox>
