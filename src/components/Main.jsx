@@ -1,9 +1,25 @@
 import React from "react";
+import styled from "styled-components";
+import LeftNavBar from "./maincomponents/LeftNavBar";
+import MyLikeCard from "./maincomponents/MyLikeCard";
+import MyPostCard from "./maincomponents/MyPostCard";
+import RecommendCard from "./maincomponents/RecommendCard";
 
 const Main = () => {
   return (
-  <div>내가등록한 리스트 / 내가 좋아요한 리스트 / 추천리스트</div>
+    <>
+      <LeftNavBar />
+      <MainContentBox>
+        <MyPostCard />
+        <MyLikeCard />
+        <RecommendCard />
+      </MainContentBox>
+    </>
   );
 };
+
+const MainContentBox = styled.div`
+  margin-left: 140px;
+`;
 
 export default Main;
