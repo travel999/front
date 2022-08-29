@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import mainSlice from "../modules/MainSlice";
+import main from "../modules/MainSlice";
 
 const store = configureStore({
   reducer: {
-    main: mainSlice,
+    main,
   },
   // 배포 환경일때, devTools가 false가 됩니다.
   devTools: process.env.NODE_ENV !== "production",
