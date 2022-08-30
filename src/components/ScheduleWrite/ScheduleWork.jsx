@@ -12,9 +12,10 @@ const ScheduleWrite = ({ day }) => {
 
   return (
     <div className="worksWrap">
+      <h2>{day}일차 우리가 갈 곳..!</h2>
       {cardNum.map((num) => (
         <div className="work" cardNum={num}>
-          <h2>{num}</h2>
+          <h3>{num}.</h3>
           <input type="text" name="work_title" />
           <textarea name="work_cont"></textarea>
         </div>
