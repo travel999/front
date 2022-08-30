@@ -16,14 +16,14 @@ const LeftNavBar = () => {
 };
 
 const NavBarBox = styled.div`
-  background-color: yellow;
+  background-color: #f0f08b;
   position: fixed;
   width: 140px;
   height: 100vh;
 `;
 
 const FourBtnBox = styled.div`
-  margin-top: 25vh;
+  margin-top: 150px;
 `;
 
 export default LeftNavBar;
