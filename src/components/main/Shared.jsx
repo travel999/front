@@ -1,10 +1,16 @@
 import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import PostCards from "../detail/PostCards";
 
 const Shared = () => {
   const [search, setSearch] = useState(false);
   const Search_ref = useRef();
+  const dispatch = useDispatch();
+
+  const tosearch = () => {
+    dispatch();
+  };
 
   return (
     <>
