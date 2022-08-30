@@ -1,38 +1,53 @@
-import React, { useState } from "react";
-import SceduleWork from "./ScheduleWork";
+import React, { useState, useRef } from "react";
+import ScheduleWork from "../ScheduleWrite/ScheduleWork";
 
 const ScheduleList = () => {
   //state
-  const [numDay, setNumDay] = useState([1]);
-  const [checkDiv, setCheckDiv] = useState(false);
+  const numVal = useRef(0);
+  const [index, setIndex] = useState(0);
+  const [dayNum, setDayNum] = useState([]);
 
-  //일자추가
+  //일차추가 버튼
   const addDay = () => {
-    const newDay = Number(numDay.slice(-1)[0]) + 1;
-    setNumDay([...numDay, newDay]);
+    const newDay = numVal;
+    console.log(newDay);
+    // const newDay = Number(dayNum.slice(-1)[0]) + 1;
+    setDayNum([...dayNum, newDay]);
   };
-  //선택한 일자의 일정만 보일 수 있도록 함
-  const checkWork = (day) => {
-    setCheckDiv(true);
-    showWork(day);
-  };
-  const showWork = (day) => {
-    console.log(day);
-    return day;
+  //일차삭제 버튼
+  const removeDay = (targetDay) => {
+    if (targetDay === 1) {
+      alert("1일차 일정은 삭제할 수 없습니다.");
+    }
+    setDayNum(dayNum.filter((day) => day !== targetDay));
   };
 
   return (
-    <div className="wrap">
-      {numDay.map((day) => (
-        <div className="dayWrap">
-          <div className="days" onClick={() => checkWork(day)}>
-            {day}일 차
-          </div>
-          {showWork === day ? <SceduleWork day={day} key={day} /> : null}
-        </div>
-      ))}
+    <section className="dayWrap">
+      <ul className="dayContent">
+        {dayNum.map((item) => (
+          <li
+            key={item}
+            className={index === item ? "active" : null}
+            onClick={() => setIndex(item)}
+          >
+            {item} 일차
+            {item === 1 ? null : (
+              <button id="removeBtn" onClick={() => removeDay(item)}>
+                X
+              </button>
+            )}
+          </li>
+        ))}
+      </ul>
+      {dayNum
+        .filter((item) => index === item)
+        .map((item) => (
+          <ScheduleWork key={item} day={item} />
+        ))}
+      <input type="number" name="dayText" placeholder="일차지정" ref={numVal} />
       <button onClick={addDay}>일자 추가</button>
-    </div>
+    </section>
   );
 };
 
