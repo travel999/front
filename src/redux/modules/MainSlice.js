@@ -15,6 +15,17 @@ export const _GetCards = createAsyncThunk(
   }
 );
 
+export const _SearchText = createAsyncThunk(
+  "main/search",
+  async (value, thunkAPI) => {
+    try {
+      console.log(value);
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
 //슬라이스
 export const mainSlice = createSlice({
   name: "mainSlice",
@@ -25,6 +36,13 @@ export const mainSlice = createSlice({
       console.log(current(state.cards), action);
     },
     [_GetCards.rejected]: (state, action) => {
+      console.log(state, action);
+    },
+
+    [_SearchText.fulfilled]: (state, action) => {
+      console.log(current(state.cards), action);
+    },
+    [_SearchText.rejected]: (state, action) => {
       console.log(state, action);
     },
   },

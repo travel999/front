@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import LeftNavBar from "./main/LeftNavBar";
-import MyLikeCard from "./main/MyLikeCard";
-import MyPostCard from "./main/MyPostCard";
-import RecommendCard from "./main/RecommendCard";
+import MyLike from "./main/MyLike";
+import MyPost from "./main/MyPost";
+import Shared from "./main/Shared";
 
 const Main = () => {
   return (
     <>
       <LeftNavBar />
       <MainContentBox>
-        <MyPostCard />
-        <MyLikeCard />
-        <RecommendCard />
+        <MyPost />
+        <MyLike />
+        <Shared />
       </MainContentBox>
     </>
   );

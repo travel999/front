@@ -8,14 +8,25 @@ const MyPostPage = () => {
 
   return (
     <PostBox>
-      <MyPostBtn>내가 등록한 일정</MyPostBtn>
-      <MyLikeBtn
-        onClick={() => {
-          navigate("/detail/mylike");
-        }}
-      >
-        내가 좋아요한 일정
-      </MyLikeBtn>
+      <TextBox>
+        <div>
+          <MyPostBtn>내가 등록한 일정</MyPostBtn>
+          <MyLikeBtn
+            onClick={() => {
+              navigate("/detail/mylike");
+            }}
+          >
+            내가 좋아요한 일정
+          </MyLikeBtn>
+        </div>
+        <div
+          onClick={() => {
+            navigate("/main");
+          }}
+        >
+          뒤로가기
+        </div>
+      </TextBox>
       <MyPostBox>
         <PostCards />
         <PostCards />
@@ -27,15 +38,25 @@ const MyPostPage = () => {
   );
 };
 
+const TextBox = styled.div`
+  display: flex;
+`;
+
 const PostBox = styled.div`
-  margin: 30px;
+  width: 85vw;
+  margin: 20px auto;
 `;
 
 const MyPostBtn = styled.button`
   background-color: #c97b7b;
+  padding: 5px;
+  border-radius: 5px;
 `;
 
-const MyLikeBtn = styled.button``;
+const MyLikeBtn = styled.button`
+  padding: 5px;
+  border-radius: 5px;
+`;
 
 const MyPostBox = styled.div`
   display: flex;

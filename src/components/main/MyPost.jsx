@@ -5,19 +5,24 @@ import styled from "styled-components";
 import { _GetCards } from "../../redux/modules/MainSlice";
 import PostCards from "../detail/PostCards";
 
-const MyPostCard = () => {
+const MyPost = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(_GetCards());
-  }, []);
 
-  //테스트
+  const token = true;
+
+  useEffect(() => {
+    if (token == undefined) {
+      navigate("/");
+    } else {
+      dispatch(_GetCards());
+    }
+  }, []);
 
   return (
     <>
       <MyPostBox>
-        포스트들
+        내 일정
         <PlusBtn
           onClick={() => {
             navigate("/detail/mypost");
@@ -37,8 +42,7 @@ const MyPostCard = () => {
 };
 
 const MyPostBox = styled.div`
-  background-color: lightcyan;
-  height: 25vh;
+  margin: 10px 0px 0px 10px;
 `;
 
 const PlusBtn = styled.span`
@@ -49,7 +53,6 @@ const PlusBtn = styled.span`
 const PostBox = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-left: 10px;
 `;
 
 const ToPostCard = styled.div`
@@ -62,4 +65,4 @@ const ToPostCard = styled.div`
   margin: 20px 20px 20px 0px;
 `;
 
-export default MyPostCard;
+export default MyPost;

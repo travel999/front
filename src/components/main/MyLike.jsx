@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PostCards from "../detail/PostCards";
 
-const MyLikeCard = () => {
+const MyLike = () => {
   const navigate = useNavigate();
 
   return (
     <>
       <MyLikeBox>
-        내가 좋아요 누른 카드들
+        좋아요한 일정
         <PlusBtn
           onClick={() => {
             navigate("/detail/mylike");
@@ -19,6 +19,9 @@ const MyLikeCard = () => {
         </PlusBtn>
         <LikeBox>
           <PostCards />
+          <PostCards />
+          <PostCards />
+          <PostCards />
         </LikeBox>
       </MyLikeBox>
     </>
@@ -26,8 +29,7 @@ const MyLikeCard = () => {
 };
 
 const MyLikeBox = styled.div`
-  background-color: lightgreen;
-  height: 25vh;
+  margin: 10px 0px 0px 10px;
 `;
 
 const PlusBtn = styled.span`
@@ -38,7 +40,6 @@ const PlusBtn = styled.span`
 const LikeBox = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-left: 10px;
 `;
 
-export default MyLikeCard;
+export default MyLike;
