@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addJoin, doubleCheckId } from "../redux/modules/JoinSlice";
+import { addJoin, doubleCheckEmail, doubleCheckNickName } from "../redux/modules/JoinSlice";
 import {
   Profile,
   Inputwrap,
@@ -20,7 +20,9 @@ const Join = () => {
   const inputRef = useRef();
   const navigate = useNavigate();
 
-  const [checkId, setCheckId] = useState(false);
+  const [checkEmail, setCheckEmail] = useState(false);
+  const [checkNickName, setCheckNickName] = useState(false)
+
   const [signUp, setSignUp] = useState(initialState);
   const [emailData, setEmailData] = useState("");
   const [nicknNameData, setNickNameData] = useState("")
@@ -30,45 +32,51 @@ const Join = () => {
   const [preImg, setPreImg] = useState([]);
 
   //유효성 확인 메세지
-  const [idMsg, setIdMsg] = useState("");
+  const [emailMsg, setEmailMsg] = useState("");
   const [pwMsg, setPwMsg] = useState("");
   const [nickNameMsg, setNickNameMsg] = useState("")
   const [confirmMsg, setConfirmMsg] = useState("");
 
   // 정규식 리스트
-  const idRule = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]{3}$/;
+  const idRule = /^[a-zA-Z0-9+\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]{3}$/;
   const pwRule = /^[a-zA-Z0-9]{5,12}$/;
   const nickNameRule = /^[ㄱ-ㅎ가-힣ㅏ-ㅣa-zA-Z0-9]{1,10}$/;
 
   // ID 중복 확인
   const dispatch = useDispatch();
   useEffect(() => {
-    if (checkId) {
-      dispatch(doubleCheckId({ email: emailData, setIdMsg }));
+    if (checkEmail) {
+      dispatch(doubleCheckEmail({ email: emailData, setEmailMsg }));
     }
-  }, [checkId]);
+  }, [checkEmail]);
 
-  //----이벤트 함수----
+  // 닉네임 중복 확인
+  useEffect(() => {
+    if (checkNickName) {
+      dispatch(doubleCheckNickName({ nickName: nicknNameData, setNickNameMsg }));
+    }
+  }, [checkNickName]);
 
-  // 입력값 바뀔때 유효성 검사 하는 체인지핸들러
+  // 유효성 검사
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
 
-    // 아이디 유효성(메일형식이 맞는지 확인하기))
+    // 아이디 유효성
     if (name === "email") {
       if (idRule.test(value) && value !== "") {
         setEmailData(value);
-        setCheckId(true);
+        setCheckEmail(true);
       } else if (!idRule.test(value)) {
-        setIdMsg("이메일 형식에 맞게 입력해주세요.");
+        setEmailMsg("이메일 형식에 맞게 입력해주세요.");
       }
     }
     // 닉네임 유효성
-    else if (name === "nickname") {
-      if (!nickNameRule.test(value)) {
-        setNickNameMsg(
-          "닉네임은 특수문자를 포함할 수 없으며, 1~10글자로 입력할 수 있습니다."
-        );
+    if (name === "nickName") {
+      if (nickNameRule.test(value) && value !== "") {
+        setNickNameData(value);
+        setCheckNickName(true);
+      } else if (!nickNameRule.test(value)) {
+        setNickNameMsg("닉네임은 특수문자 제외 1~10 글자로 입력할 수 있습니다.");
       } else if (nickNameRule.test(value)) {
         setNickNameMsg("사용가능한 닉네임입니다.");
         setNickNameData(value);
@@ -76,7 +84,7 @@ const Join = () => {
     }
 
     // 비밀번호 유효성
-    else if (name === "password") {
+    else if (name === "passWord") {
       if (!pwRule.test(value) && value !== "") {
         setPwMsg("비밀번호는 5자 이상 ~ 12자 이하여야 합니다.");
       } else if (pwRule.test(value)) {
@@ -85,17 +93,17 @@ const Join = () => {
       }
 
       //2차 비밀번호 작성 후 비밀번호 작성 시 유효성 체크 로직
-      if (value !== "" && signUp.confirm !== value) {
+      if (value !== "" && signUp.confirmPass !== value) {
         setConfirmMsg("비밀번호가 다릅니다.");
-      } else if (signUp.confirm === value) {
+      } else if (signUp.confirmPass === value) {
         setConfirmMsg("비밀번호가 일치합니다.");
       }
     }
     // 비밀번호 확인 유효성
-    else if (name === "confirmPassword") {
-      if (signUp.password !== "" && signUp.password !== value) {
+    else if (name === "confirmPass") {
+      if (signUp.passWord !== "" && signUp.passWord !== value) {
         setConfirmMsg("비밀번호가 다릅니다.");
-      } else if (signUp.password == value) {
+      } else if (signUp.passWord == value) {
         setConfirmMsg("비밀번호가 일치합니다");
         setConfirmPass(value);
       }
@@ -103,22 +111,29 @@ const Join = () => {
     setSignUp({ ...signUp, [name]: value });
   };
 
-
+  // 버튼 클릭시 빈칸 확인, 올바르게 입력시 값 전송
   const onClickJoin = (e) => {
-    // if (
-    //   email == "" ||
-    //   nickName === "" ||
-    //   passWord === "" ||
-    //   confirm === ""
-    // ) {
-    //   alert("내용을 모두 입력해주세요");
-    // } else {
-    //   dispatch(addJoin({ navigate, }));
-    // }
-    dispatch(addJoin({ navigate }));
+    const data = {};
+    data.email = emailData;
+    data.nickName = nicknNameData;
+    data.passWord = passData;
+    data.confirm = confirmPass;
+    console.log(data)
+
+    if (
+      emailData == "" ||
+      nicknNameData === "" ||
+      passData === "" ||
+      confirmPass === ""
+    ) {
+      alert("내용을 확인해 주세요!");
+    } else {
+      dispatch(addJoin({ navigate, data }));
+    } // dispatch에 값도 같이 넣어서 보내줘유
+    dispatch(addJoin({ navigate, data }));
   }
 
-  //이미지 파일 체인지 핸들러
+  //이미지 체인지 핸들러
   const onLoadImg = (event) => {
     //현재 이미지 파일
     const imaData = event.target.files[0];
@@ -151,7 +166,7 @@ const Join = () => {
             name="email"
             required
           />
-          <span>{idMsg}</span>
+          <span>{emailMsg}</span>
         </div>
         <div >
           <div>Password</div>
@@ -172,7 +187,7 @@ const Join = () => {
           <Input
             onChange={onChangeHandler}
             type="password"
-            name="confirm"
+            name="confirmPass"
             minLength="5"
             maxLength="12"
             required
@@ -206,3 +221,5 @@ const Join = () => {
 };
 
 export default Join;
+
+// 보완해야 할 점 : 값 다 확인하면 올바른 형식이라고 띄워주기
