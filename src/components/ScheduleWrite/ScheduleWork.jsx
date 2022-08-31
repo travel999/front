@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const ScheduleWrite = ({ day }) => {
+  console.log(day);
   //state
   const [cardNum, setCardNum] = useState([1]);
 
@@ -12,10 +13,10 @@ const ScheduleWrite = ({ day }) => {
 
   return (
     <div className="worksWrap">
-      <h2>{day}일차 우리가 갈 곳..!</h2>
+      <h2>{day + 1}일차 우리가 갈 곳..!</h2>
       {cardNum.map((num) => (
-        <div className="work" cardNum={num}>
-          <h3>{num}.</h3>
+        <div className="work" key={num}>
+          <h3>{num}번째 일정</h3>
           <input type="text" name="work_title" />
           <textarea name="work_cont"></textarea>
         </div>
