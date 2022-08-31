@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import axios from "axios";
 import instance from "../../res/instance";
 
 const initialState = { likeCards: [], MyPostCards: [] };
@@ -7,8 +8,8 @@ export const getCards = createAsyncThunk(
   "main/get",
   async (value, thunkAPI) => {
     try {
-      console.log(value);
-      return thunkAPI.fulfillWithValue.apply("result.data");
+      const res = await axios.get(instance + `/main`);
+      return thunkAPI.fulfillWithValue.apply(res.data);
     } catch (error) {
       return error;
     }
@@ -19,8 +20,8 @@ export const searchText = createAsyncThunk(
   "main/search",
   async (value, thunkAPI) => {
     try {
-      // /post/search/:keyword=검색어
-      console.log(value);
+      const res = await axios.get(instance + `/post/search/${value}`);
+      return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return error;
     }
@@ -31,7 +32,8 @@ export const GetShared = createAsyncThunk(
   "main/get/shared",
   async (value, thunkAPI) => {
     try {
-      console.log(value);
+      const res = await axios.get(instance + `/post/good`);
+      return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return error;
     }

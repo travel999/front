@@ -35,7 +35,13 @@ const MyPost = () => {
           <PostCards />
           <PostCards />
           <PostCards />
-          <ToPostCard>추가하기카드</ToPostCard>
+          <ToPostCard
+            onClick={() => {
+              navigate("/write");
+            }}
+          >
+            추가하기카드<div>+</div>
+          </ToPostCard>
         </PostBox>
       </MyPostBox>
     </>
@@ -65,6 +71,7 @@ const ToPostCard = styled.div`
   padding: 10px;
   border-radius: 10px;
   margin: 20px auto 20px auto;
+  cursor: pointer;
 `;
 
 export default MyPost;
