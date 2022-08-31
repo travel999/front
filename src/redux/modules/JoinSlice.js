@@ -15,9 +15,9 @@ export const addJoin = createAsyncThunk(
         console.log(payload);
         try {
             const response = await instance.post("user/signup", payload);
-            if (response.data.result) {
-                alert("회원이 되신걸 축하드립니다!");
-                payload.navigation("/login");
+            if (response.data) {
+                alert("회원가입을 축하드립니다!");
+                payload.navigation("user/login");
             }
             return response.data;
         } catch (error) {
@@ -26,20 +26,40 @@ export const addJoin = createAsyncThunk(
     }
 )
 
-export const doubleCheckId = createAsyncThunk(
-    "signUpSlice/checkDoubleId",
+export const doubleCheckEmail = createAsyncThunk(
+    "signUpSlice/checkDoubleEmail",
     async (payload, thunkAPI) => {
         try {
-            const responseData = await instance.post("user/signup", {
+            const response = await instance.post("user/checkEmail", {
                 email: payload.email,
             });
-            if (responseData.data.result) {
-                payload.setIdMsg("사용가능한 아이디 입니다.");
+            if (response.data) {
+                payload.setIdMsg("사용가능한 이메일 입니다.");
             }
-            return thunkAPI.fulfillWithValue(responseData.data);
+            return thunkAPI.fulfillWithValue(response.data);
         } catch (error) {
-            if (error.response.data.result == false) {
-                payload.setIdMsg("중복된 아이디입니다");
+            if (error.response.data == false) {
+                payload.setIdMsg("중복된 이메일입니다.");
+            }
+            return thunkAPI.rejectWithValue(error);
+        }
+    }
+);
+
+export const doubleCheckNickName = createAsyncThunk(
+    "signUpSlice/doubleCheckIdNickName",
+    async (payload, thunkAPI) => {
+        try {
+            const response = await instance.post("user/checkEmail", {
+                nickName: payload.nickName,
+            });
+            if (response.data) {
+                payload.setNickNameMsg("사용가능한 닉네임입니다.");
+            }
+            return thunkAPI.fulfillWithValue(response.data);
+        } catch (error) {
+            if (error.response.data == false) {
+                payload.setNickNameMsg("중복된 닉네임입니다");
             }
             return thunkAPI.rejectWithValue(error);
         }
@@ -52,8 +72,36 @@ export const JoinSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-    },
+        [addJoin.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [addJoin.fulfilled]: (state, action) => {
+            state.result = action.payload;
+            state.isLoading = false;
+        },
+        [addJoin.rejected]: (state) => {
+            state.isLoading = false;
+        },
+        [doubleCheckEmail.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [doubleCheckEmail.fulfilled]: (state, action) => {
+            state.isLoading = false;
+        },
+        [doubleCheckEmail.rejected]: (state, action) => {
+            state.isLoading = false;
+        },
+        [doubleCheckNickName.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [doubleCheckNickName.fulfilled]: (state, action) => {
+            state.isLoading = false;
+        },
+        [doubleCheckNickName.rejected]: (state, action) => {
+            state.isLoading = false;
+        },
+    }
 });
 
-export const {} = JoinSlice.actions;
+export const { } = JoinSlice.actions;
 export default JoinSlice.reducer;
