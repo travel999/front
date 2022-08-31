@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { _GetCards } from "../../redux/modules/MainSlice";
+import { getCards } from "../../redux/modules/MainSlice";
 import PostCards from "../detail/PostCards";
 
 const MyPost = () => {
@@ -11,11 +11,12 @@ const MyPost = () => {
 
   const token = true;
 
+  // 내가 등록한 게시글 가져오기 토큰확인은 여기서만 함.
   useEffect(() => {
     if (token == undefined) {
       navigate("/");
     } else {
-      dispatch(_GetCards());
+      dispatch(getCards());
     }
   }, []);
 
@@ -42,7 +43,8 @@ const MyPost = () => {
 };
 
 const MyPostBox = styled.div`
-  margin: 10px 0px 0px 10px;
+  width: 90%;
+  margin: 20px auto;
 `;
 
 const PlusBtn = styled.span`
@@ -56,13 +58,13 @@ const PostBox = styled.div`
 `;
 
 const ToPostCard = styled.div`
-  width: 250px;
-  height: 100px;
+  width: 17vw;
+  height: 14vh;
   background-color: lightpink;
   border: 1px solid black;
   padding: 10px;
   border-radius: 10px;
-  margin: 20px 20px 20px 0px;
+  margin: 20px auto 20px auto;
 `;
 
 export default MyPost;

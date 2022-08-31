@@ -6,12 +6,12 @@ const PostCards = () => {
 };
 
 const MyPostBox = styled.div`
-  width: 250px;
-  height: 100px;
+  width: 17vw;
+  height: 14vh;
   border: 1px solid black;
   border-radius: 10px;
   padding: 10px;
-  margin: 20px 20px 20px 0px;
+  margin: 20px auto 20px auto;
 `;
 
 export default PostCards;

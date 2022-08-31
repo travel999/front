@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PostCards from "../detail/PostCards";
 
 const MyLike = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // 좋아요하는 게시글 불러오기
+  // useEffect(() => {
+  //   dispatch();
+  // }, []);
 
   return (
     <>
@@ -29,7 +36,8 @@ const MyLike = () => {
 };
 
 const MyLikeBox = styled.div`
-  margin: 10px 0px 0px 10px;
+  margin: 20px auto;
+  width: 90%;
 `;
 
 const PlusBtn = styled.span`

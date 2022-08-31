@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
 
-const initialState = { cards: [] };
+const initialState = { likeCards: [], MyPostCards: [] };
 
-export const _GetCards = createAsyncThunk(
+export const getCards = createAsyncThunk(
   "main/get",
   async (value, thunkAPI) => {
     try {
@@ -15,8 +15,20 @@ export const _GetCards = createAsyncThunk(
   }
 );
 
-export const _SearchText = createAsyncThunk(
+export const searchText = createAsyncThunk(
   "main/search",
+  async (value, thunkAPI) => {
+    try {
+      // /post/search/:keyword=검색어
+      console.log(value);
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export const GetShared = createAsyncThunk(
+  "main/get/shared",
   async (value, thunkAPI) => {
     try {
       console.log(value);
@@ -32,17 +44,24 @@ export const mainSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [_GetCards.fulfilled]: (state, action) => {
-      console.log(current(state.cards), action);
+    [getCards.fulfilled]: (state, action) => {
+      console.log(current(state), action);
     },
-    [_GetCards.rejected]: (state, action) => {
+    [getCards.rejected]: (state, action) => {
       console.log(state, action);
     },
 
-    [_SearchText.fulfilled]: (state, action) => {
-      console.log(current(state.cards), action);
+    [searchText.fulfilled]: (state, action) => {
+      console.log(current(state), action);
     },
-    [_SearchText.rejected]: (state, action) => {
+    [searchText.rejected]: (state, action) => {
+      console.log(state, action);
+    },
+
+    [GetShared.fulfilled]: (state, action) => {
+      console.log(current(state), action);
+    },
+    [GetShared.rejected]: (state, action) => {
       console.log(state, action);
     },
   },
