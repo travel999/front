@@ -27,7 +27,6 @@ const StyledGlobalButton = styled.button`
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   cursor: pointer;
-
   margin-left: ${(props) => props.marginLeft};
 `;
 
