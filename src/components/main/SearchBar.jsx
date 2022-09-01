@@ -1,24 +1,35 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { searchText } from "../../redux/modules/MainSlice";
+import { searchText, refreshSearch } from "../../redux/modules/MainSlice";
+import styles from "./SearchBar.module.css";
 
-const SearchBar = () => {
+const SearchBar = ({ input_ref }) => {
   const dispatch = useDispatch();
-  const input_ref = useRef();
+
+  const refresh = () => {
+    dispatch(refreshSearch());
+  };
 
   const tosearch = (value) => {
     dispatch(searchText(value));
   };
 
   return (
-    <div>
-      <input ref={input_ref} />
+    <div className={styles.box}>
+      <input className={styles.inputbox} ref={input_ref} />
       <button
         onClick={() => {
           tosearch(input_ref.current.value);
         }}
       >
         입력
+      </button>
+      <button
+        onClick={() => {
+          refresh();
+        }}
+      >
+        ♻︎
       </button>
     </div>
   );

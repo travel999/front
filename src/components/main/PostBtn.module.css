@@ -4,4 +4,9 @@
   height: 6vh;
   margin: 20px 20px;
   border-radius: 20px;
+  cursor: pointer;
+}
+
+.postbtn:hover {
+  background-color: rgb(161, 167, 112);
 }

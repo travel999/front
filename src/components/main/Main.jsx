@@ -9,12 +9,10 @@ import { getCards, getgood } from "../../redux/modules/MainSlice";
 
 const Main = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.main.MyPostCards);
-  console.log(state);
 
   useEffect(() => {
     dispatch(getCards());
-    dispatch(getgood());
+    // dispatch(getgood());
   }, []);
 
   return (

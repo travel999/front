@@ -4,9 +4,32 @@
   height: 80vh;
   margin: 50px 20px;
   border-radius: 20px;
+  overflow: auto;
 }
 
 .toptext {
   text-align: center;
+  margin-top: 10px;
+}
+
+.card {
+  background-color: white;
+  margin: 10px 10px;
+  border-radius: 20px;
+  display: flex;
+  height: 60px;
+}
+
+.img {
+  width: 45px;
+  height: 45px;
+  border-radius: 45px;
+  margin: 7.5px 10px 7.5px 10px;
+  background-color: rgb(207, 239, 207);
+}
+
+.content {
+  margin-left: 10px;
+  margin-right: 40px;
   margin-top: 10px;
 }
