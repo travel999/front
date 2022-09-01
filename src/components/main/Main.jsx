@@ -4,8 +4,8 @@ import FirstBox from "./FirstBox";
 import SecondBox from "./SecondBox";
 import ThirdBox from "./ThirdBox";
 import ProfileBox from "./ProfileBox";
-import { useDispatch, useSelector } from "react-redux";
-import { getCards, getgood } from "../../redux/modules/MainSlice";
+import { useDispatch } from "react-redux";
+import { getCards } from "../../redux/modules/MainSlice";
 
 const Main = () => {
   const dispatch = useDispatch();

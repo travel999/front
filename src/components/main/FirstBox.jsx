@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./FirstBox.module.css";
+import styles from "./Main.module.css";
 import { useSelector } from "react-redux";
 
 const FirstBox = () => {

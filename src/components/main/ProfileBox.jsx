@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ProfileBox.module.css";
+import styles from "./Main.module.css";
 import PostBtn from "./PostBtn";
 import { useSelector } from "react-redux";
 

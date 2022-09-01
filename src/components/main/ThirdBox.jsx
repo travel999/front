@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import styles from "./ThirdBox.module.css";
+import styles from "./Main.module.css";
 import SearchBar from "./SearchBar";
 import { infinitiscroll } from "../../redux/modules/MainSlice";
 
@@ -67,7 +66,7 @@ const ThirdBox = () => {
           recommendData?.map((value) => {
             return (
               <div className={styles.contentbox} key={value._id}>
-                <div className={styles.img}></div>
+                <div className={styles.bicimg}></div>
                 <div>
                   <div>이름: {value.title}</div>
                   <div>
@@ -81,7 +80,7 @@ const ThirdBox = () => {
         {searchdata?.map((value) => {
           return (
             <div className={styles.contentbox} key={value._id}>
-              <div className={styles.img}></div>
+              <div className={styles.bicimg}></div>
               <div>
                 <div>이름: {value.title}</div>
                 <div>
