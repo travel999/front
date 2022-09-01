@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/common/Layout";
-import Detail from "../components/Detail";
+import Detail from "../components/detail/Detail";
 
 const MainPage = () => {
   return (
