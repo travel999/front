@@ -5,7 +5,7 @@ import SecondMiniBox from "./SecondMiniBox";
 const SecondBox = () => {
   return (
     <div>
-      <div className={styles.bicbox}>
+      <div className={`${styles.bicbox}`}>
         <div className={styles.toptext}>좋아요한 일정</div>
       </div>
       <SecondMiniBox />

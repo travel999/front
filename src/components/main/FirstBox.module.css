@@ -1,6 +1,6 @@
 .bicbox {
   background-color: rgb(227, 236, 161);
-  width: 270px;
+  width: 260px;
   height: 80vh;
   margin: 50px 20px;
   border-radius: 20px;
@@ -9,8 +9,4 @@
 .toptext {
   text-align: center;
   margin-top: 10px;
-}
-
-.boxsize {
-  width: 21%;
 }
