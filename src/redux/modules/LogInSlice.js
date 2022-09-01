@@ -4,21 +4,22 @@ import { setCookie } from "../../res/cookie";
 
 const initialState = {
     email: "",
-    passWord: ""
+    password: ""
 }
 
 export const addLogin = createAsyncThunk(
     "LoginSlice/addLogin",
     async (payload, thunkAPI) => {
+        console.log(payload.login)
         try {
             const data = await instance.post('user/login', payload.login);
-            const token = data.token;
-
-            setCookie("jwtToken", `${token}`)
-
+            console.log(data)
+            // const token = data.token;
+            // setCookie("jwtToken", `${token}`)
             if (data) {
                 alert("반갑습니다!");
                 payload.navigate("/main");
+
             }
             return thunkAPI.fulfillWithValue(data);
         } catch (error) {
@@ -30,7 +31,7 @@ export const addLogin = createAsyncThunk(
 )
 
 export const LogInSlice = createSlice({
-    name: "userlogin",
+    name: "addLogin",
     initialState,
     reducers: {},
     extraReducers: {
