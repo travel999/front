@@ -2,14 +2,12 @@ import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import axios from "axios";
 import instance from "../../res/instance";
 
-const initialState = { likeCards: [], MyPostCards: [] };
-
 export const getCards = createAsyncThunk(
   "main/get",
   async (value, thunkAPI) => {
     try {
-      const res = await instance.get(`main`);
-      return thunkAPI.fulfillWithValue.apply(res.data);
+      const res = await instance.get(`post/main`);
+      return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return error;
     }
@@ -23,51 +21,57 @@ export const searchText = createAsyncThunk(
       const res = await instance.get(`post/search/${value}`);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
-      return error;
+      return thunkAPI.rejectWithValue("애러");
     }
   }
 );
 
-export const GetShared = createAsyncThunk(
-  "main/get/shared",
+export const infinitiscroll = createAsyncThunk(
+  "main/infiniti",
   async (value, thunkAPI) => {
     try {
-      const res = await instance.get(`post/good`);
-      return thunkAPI.fulfillWithValue(res.data);
+      console.log("무한스크롤");
     } catch (error) {
-      return error;
+      console.log(error);
     }
   }
 );
 
-//슬라이스
+const initialState = {
+  likeCards: [],
+  MyPostCards: [],
+  otherPeopleCards: [],
+  existdata: false,
+};
+
 export const mainSlice = createSlice({
   name: "mainSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    refreshSearch(state, action) {
+      console.log("리듀서");
+      state.existdata = false;
+      state.otherPeopleCards = [];
+    },
+  },
   extraReducers: {
     [getCards.fulfilled]: (state, action) => {
-      console.log(current(state), action);
+      state.MyPostCards = action.payload;
     },
     [getCards.rejected]: (state, action) => {
       console.log(state, action);
     },
 
     [searchText.fulfilled]: (state, action) => {
-      console.log(current(state), action);
+      state.existdata = false;
+      state.otherPeopleCards = action.payload;
     },
     [searchText.rejected]: (state, action) => {
-      console.log(state, action);
-    },
-
-    [GetShared.fulfilled]: (state, action) => {
-      console.log(current(state), action);
-    },
-    [GetShared.rejected]: (state, action) => {
-      console.log(state, action);
+      state.existdata = true;
+      state.otherPeopleCards = [];
     },
   },
 });
 
-export const {} = mainSlice.actions;
+export const { refreshSearch } = mainSlice.actions;
 export default mainSlice.reducer;

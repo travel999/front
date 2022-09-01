@@ -1,8 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./PostBtn.module.css";
 
 const PostBtn = () => {
-  return <div className={styles.postbtn}>새로운 일정 작성하기</div>;
+  const navigate = useNavigate();
+  return (
+    <div
+      onClick={() => {
+        navigate("/write");
+      }}
+      className={styles.postbtn}
+    >
+      새로운 일정 등록하기
+    </div>
+  );
 };
 
 export default PostBtn;
