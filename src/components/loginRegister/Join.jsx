@@ -10,6 +10,7 @@ import {
 
 
 const Join = () => {
+  const dispatch = useDispatch();
   const initialState = {
     email: "",
     nickname: "",
@@ -22,12 +23,13 @@ const Join = () => {
 
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNickName, setCheckNickName] = useState(false)
+  const [data, setData] = useState("")
 
   const [signUp, setSignUp] = useState(initialState);
   const [emailData, setEmailData] = useState("");
   const [nicknNameData, setNickNameData] = useState("")
   const [passData, setPassData] = useState("");
-  const [confirmPass, setConfirmPass] = useState("");
+  const [confirm, setConfirm] = useState("");
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
 
@@ -40,10 +42,9 @@ const Join = () => {
   // 정규식 리스트
   const emailRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwRule = /^[a-zA-Z0-9]{5,12}$/;
-  const nickNameRule = /^[ㄱ-ㅎ가-힣ㅏ-ㅣa-zA-Z0-9]{1,10}$/;
+  const nickNameRule = /^[ㄱ-ㅎ가-힣ㅏ-ㅣa-zA-Z0-9]{2,10}$/;
 
-  // ID 중복 확인
-  const dispatch = useDispatch();
+  // Email 중복 확인
   useEffect(() => {
     if (checkEmail) {
       dispatch(doubleCheckEmail({ email: emailData, setEmailMsg }));
@@ -61,7 +62,7 @@ const Join = () => {
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
 
-    // 아이디 유효성
+    // 이메일 유효성
     if (name === "email") {
       if (emailRule.test(value) && value !== "") {
         setEmailData(value);
@@ -70,13 +71,15 @@ const Join = () => {
         setEmailMsg("이메일 형식에 맞게 입력해주세요.");
       }
     }
+
     // 닉네임 유효성
-    if (name === "nickname") {
-      if (nickNameRule.test(value) && value !== "") {
+    else if (name === "nickname") {
+      if (!nickNameRule.test(value)) {
         setNickNameData(value);
         setCheckNickName(true);
-      } else if (!nickNameRule.test(value)) {
-        setNickNameMsg("닉네임은 특수문자 제외 1~10 글자로 입력할 수 있습니다.");
+        setNickNameMsg(
+          "닉네임은 특수문자 제외 2~10 글자로 입력할 수 있습니다."
+        );
       } else if (nickNameRule.test(value)) {
         setNickNameMsg("사용가능한 닉네임입니다.");
         setNickNameData(value);
@@ -93,19 +96,19 @@ const Join = () => {
       }
 
       //2차 비밀번호 작성 후 비밀번호 작성 시 유효성 체크 로직
-      if (value !== "" && signUp.confirmPass !== value) {
+      if (value !== "" && signUp.confirm !== value) {
         setConfirmMsg("비밀번호가 다릅니다.");
-      } else if (signUp.confirmPass === value) {
+      } else if (signUp.confirm === value) {
         setConfirmMsg("비밀번호가 일치합니다.");
       }
     }
     // 비밀번호 확인 유효성
-    else if (name === "confirmPass") {
+    else if (name === "confirm") {
       if (signUp.password !== "" && signUp.password !== value) {
         setConfirmMsg("비밀번호가 다릅니다.");
       } else if (signUp.password == value) {
         setConfirmMsg("비밀번호가 일치합니다");
-        setConfirmPass(value);
+        setConfirm(value);
       }
     }
     setSignUp({ ...signUp, [name]: value });
@@ -113,24 +116,17 @@ const Join = () => {
 
   // 버튼 클릭시 빈칸 확인, 올바르게 입력시 값 전송
   const onClickJoin = (e) => {
-    const data = {};
-    data.email = emailData;
-    data.nickname = nicknNameData;
-    data.password = passData;
-    data.confirm = confirmPass;
-    console.log(data)
-
     if (
       emailData == "" ||
       nicknNameData === "" ||
       passData === "" ||
-      confirmPass === ""
+      confirm === ""
     ) {
       alert("내용을 확인해 주세요!");
     } else {
-      dispatch(addJoin({ navigate, data }));
+      dispatch(addJoin({ navigate, signUp }));
     } // dispatch에 값도 같이 넣어서 보내줘유
-    dispatch(addJoin({ navigate, data }));
+    dispatch(addJoin({ navigate, signUp }));
   }
 
   //이미지 체인지 핸들러
@@ -147,7 +143,9 @@ const Join = () => {
   return (
     <Profile>
       <Inputwrap>
+      <form>
         <div>
+         
           <div>Nickname</div>
         <Input
             onChange={onChangeHandler}
@@ -187,13 +185,14 @@ const Join = () => {
           <Input
             onChange={onChangeHandler}
             type="password"
-            name="confirmPass"
+            name="confirm"
             minLength="5"
             maxLength="12"
             required
           />
           <span>{confirmMsg}</span>
         </div>
+        </form>
       </Inputwrap>
       <div>
           <div>프로필</div>

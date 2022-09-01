@@ -5,7 +5,7 @@ position: absolute;
 width: 160px;
 height: 216px;
 left: 160px;
-top: 203px;
+top: 100px;
 
 `
 
