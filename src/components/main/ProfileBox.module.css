@@ -1,7 +1,16 @@
 .profile {
   background-color: rgb(227, 236, 161);
-  width: 270px;
-  height: 40vh;
+  width: 260px;
+  height: 35vh;
   margin: 50px 20px 3vh 20px;
   border-radius: 20px;
+  padding: 30px 0px;
+}
+
+.profileimg {
+  width: 150px;
+  height: 150px;
+  background-color: lightpink;
+  margin: 0px auto;
+  border-radius: 150px;
 }

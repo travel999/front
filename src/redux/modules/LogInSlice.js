@@ -4,9 +4,9 @@ import { setCookie } from "../../res/cookie";
 import { Cookies } from "react-cookie";
 
 const initialState = {
-    email: "",
-    password: ""
-}
+  email: "",
+  password: "",
+};
 
 export const addLogin = createAsyncThunk(
     "LoginSlice/addLogin",
@@ -28,22 +28,25 @@ export const addLogin = createAsyncThunk(
             console.log(error)
             return thunkAPI.rejectWithValue(error);
         }
+
     }
-)
+  }
+);
 
 export const LogInSlice = createSlice({
-    name: "addLogin",
-    initialState,
-    reducers: {},
-    extraReducers: {
-        [addLogin.pending]: (state) => { },
-        [addLogin.fulfilled]: (state, action) => {
-            state.isLoading = false;
-        },
-        [addLogin.rejected]: (state, action) => {
-            state.isLoading = false;
-        },
+  name: "addLogin",
+  initialState,
+  reducers: {},
+  extraReducers: {
+    [addLogin.pending]: (state) => {},
+    [addLogin.fulfilled]: (state, action) => {
+      state.isLoading = false;
     },
-})
+    [addLogin.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+  },
+});
+
 
 export default LogInSlice.reducer;
