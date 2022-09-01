@@ -11,7 +11,7 @@ const PostBtn = () => {
       }}
       className={styles.postbtn}
     >
-      새로운 일정 등록하기
+      <div className={styles.posttext}>새로운 일정 등록하기</div>
     </div>
   );
 };

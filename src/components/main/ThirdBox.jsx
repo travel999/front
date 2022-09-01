@@ -67,9 +67,9 @@ const ThirdBox = () => {
             return (
               <div className={styles.contentbox} key={value._id}>
                 <div className={styles.bicimg}></div>
-                <div>
-                  <div>이름: {value.title}</div>
-                  <div>
+                <div className={styles.thirdtext}>
+                  <div>{value.title}</div>
+                  <div className={styles.day}>
                     {value.day.length - 1}박 {value.day.length}일
                   </div>
                 </div>

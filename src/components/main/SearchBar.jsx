@@ -18,6 +18,7 @@ const SearchBar = ({ input_ref }) => {
     <div className={styles.searchbox}>
       <input className={styles.searchinputbox} ref={input_ref} />
       <button
+        className={styles.searchbtn}
         onClick={() => {
           tosearch(input_ref.current.value);
         }}
@@ -26,6 +27,7 @@ const SearchBar = ({ input_ref }) => {
       </button>
 
       <button
+        className={styles.refreshbtn}
         onClick={() => {
           refresh();
         }}

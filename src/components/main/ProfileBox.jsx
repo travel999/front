@@ -12,8 +12,14 @@ const ProfileBox = () => {
     <div>
       <div className={`${styles?.profile}`}>
         <div className={styles?.profileimg}></div>
-        <div>여행일정: {mypostNum}</div>
-        <div>좋아하는 일정: {likepostNum}</div>
+        <div className={styles.profiltext}>
+          <div className={styles.profileNum}>{mypostNum}</div>
+          <div className={styles.profileNum}>{likepostNum}</div>
+        </div>
+        <div className={styles.profiltext}>
+          <div className={styles.profilefont}>내 일정</div>
+          <div className={styles.profilefont}>좋아요</div>
+        </div>
       </div>
       <PostBtn />
     </div>
