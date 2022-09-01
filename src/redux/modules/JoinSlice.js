@@ -4,58 +4,62 @@ import instance from "../../res/instance";
 const initialState = {
     email: "",
     nickname: "",
-    // userImage: "",
     password: "",
     confirm: ""
 }
-
+// 회원가입 청크
 export const addJoin = createAsyncThunk(
     "signUpSlice/addJoin",
     async (payload, thunkAPI) => {
         console.log(payload);
         try {
+            // 처음에 내가 원하는 대로 보내고 싶었으면 payload.data 해서 벗겨내고 줬으면.. 됐는데... 이 바보
             const response = await instance.post("user/signup", payload);
             if (response) {
                 alert("회원가입을 축하드립니다!");
-                payload.navigate("user/login");
+                payload.navigate("/login");
             }
-            console.log(payload)
-            return response.data;
+            console.log(response)
+            return response;
             
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
         }
     }
 )
-
+// 이메일 중복확인 청크
 export const doubleCheckEmail = createAsyncThunk(
-    "signUpSlice/checkDoubleEmail",
+    "signUpSlice/doubleCheckEmail",
     async (payload, thunkAPI) => {
         try {
+            console.log(payload.email)
             const response = await instance.post("user/checkEmail", {
                 email: payload.email,
             });
-            if (response.data) {
-                payload.setIdMsg("사용가능한 이메일 입니다.");
+            console.log(response.data)
+            if (response.data == true) {
+                payload.setEmailMsg("사용가능한 이메일 입니다.");
             }
             return thunkAPI.fulfillWithValue(response.data);
         } catch (error) {
             if (error.response.data == false) {
-                payload.setIdMsg("중복된 이메일입니다.");
+                payload.setEmailMsg("중복된 이메일입니다.");
+                console.log(error)
             }
             return thunkAPI.rejectWithValue(error);
         }
     }
 );
-
+// 닉네임 중복확인 청크
 export const doubleCheckNickName = createAsyncThunk(
-    "signUpSlice/doubleCheckIdNickName",
+    "signUpSlice/doubleCheckNickName",
     async (payload, thunkAPI) => {
         try {
-            const response = await instance.post("user/checkEmail", {
+            console.log(payload.nickname)
+            const response = await instance.post("user/checkNickname", {
                 nickname: payload.nickname,
             });
-            if (response.data) {
+            if (response.data == true) {
                 payload.setNickNameMsg("사용가능한 닉네임입니다.");
             }
             return thunkAPI.fulfillWithValue(response.data);

@@ -6,7 +6,7 @@ const token =
 
 const instance = axios.create({
   baseURL: "http://43.200.173.40:3000/",
-  headers: { token },
+  headers: { token: getCookie("jwtToken") },
   withCredentials: true,
 });
 

@@ -26,11 +26,11 @@ const Login = () => {
     if (login.email.trim() === "" || login.password.trim() === "") {
       return alert("모든 항목을 입력해주세요.");
     }
-    dispatch(addLogin({ login, navigate }));
     setLogin({
       email: "",
       password: "",
     });
+    dispatch(addLogin({ login, navigate }));
   };
   return (
     <TitleWrap>
