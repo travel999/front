@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addLogin } from "../../redux/modules/LogInSlice";
 import {
   TitleWrap,
   Title,
-} from "./StyledModule/LoginStyle"
+} from "./LoginStyle"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Login = () => {
   
   const [login, setLogin] = useState({
     email: "",
-    passWord: ""
+    password: ""
   })
 
   const onChange = (e) => {
@@ -25,7 +26,7 @@ const Login = () => {
     if (login.email.trim() === "" || login.password.trim() === "") {
       return alert("모든 항목을 입력해주세요.");
     }
-    // dispatch(__postLogin({ login, navigation }));
+    dispatch(addLogin({ login, navigate }));
     setLogin({
       email: "",
       password: "",
@@ -36,11 +37,11 @@ const Login = () => {
       <Title>Service Name</Title>
       <form>
         <div>
-          Email:
-          <input name="email" onChange={onChange}></input>
+        email:
+          <input name="email" value={login.email} onChange={onChange}></input>
           <br />
           Password:
-          <input name="password" type="password" onChange={onChange}></input>
+          <input name="password" type="password" defaultChecked="" value={login.password} onChange={onChange}></input>
         </div>
         <button onClick={onClick}>LogIn</button>
       </form>

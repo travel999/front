@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import background from "../res/img/background.png";
-import { Img, Title, Des, Btn1, Btn2, Btn3 } from "./StyledModule/StartStyle";
+import background from "../../res/img/background.png"
+import { Img, Title, Des, Btn1, Btn2, Btn3 } from "./StartStyle";
 
 const Start = () => {
   const navigate = useNavigate();

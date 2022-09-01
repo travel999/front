@@ -3,7 +3,7 @@ import { getCookie } from "./cookie";
 
 const instance = axios.create({
   baseURL: "http://43.200.173.40:3000/",
-  headers: { token: getCookie("jwtToken") },
+  // headers: { token: getCookie("jwtToken") },
   withCredentials: true,
 });
 

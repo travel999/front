@@ -1,19 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addJoin, doubleCheckEmail, doubleCheckNickName } from "../redux/modules/JoinSlice";
+import { addJoin, doubleCheckEmail, doubleCheckNickName } from "../../redux/modules/JoinSlice";
 import {
   Profile,
   Inputwrap,
   Input,
-} from "./StyledModule/JoinStyle"
+} from "./JoinStyle"
 
 
 const Join = () => {
   const initialState = {
     email: "",
-    nickName: "",
-    passWord: "",
+    nickname: "",
+    password: "",
     confirm: "",
   };
 
@@ -38,7 +38,7 @@ const Join = () => {
   const [confirmMsg, setConfirmMsg] = useState("");
 
   // 정규식 리스트
-  const idRule = /^[a-zA-Z0-9+\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]{3}$/;
+  const emailRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwRule = /^[a-zA-Z0-9]{5,12}$/;
   const nickNameRule = /^[ㄱ-ㅎ가-힣ㅏ-ㅣa-zA-Z0-9]{1,10}$/;
 
@@ -53,7 +53,7 @@ const Join = () => {
   // 닉네임 중복 확인
   useEffect(() => {
     if (checkNickName) {
-      dispatch(doubleCheckNickName({ nickName: nicknNameData, setNickNameMsg }));
+      dispatch(doubleCheckNickName({ nickname: nicknNameData, setNickNameMsg }));
     }
   }, [checkNickName]);
 
@@ -63,15 +63,15 @@ const Join = () => {
 
     // 아이디 유효성
     if (name === "email") {
-      if (idRule.test(value) && value !== "") {
+      if (emailRule.test(value) && value !== "") {
         setEmailData(value);
         setCheckEmail(true);
-      } else if (!idRule.test(value)) {
+      } else if (!emailRule.test(value)) {
         setEmailMsg("이메일 형식에 맞게 입력해주세요.");
       }
     }
     // 닉네임 유효성
-    if (name === "nickName") {
+    if (name === "nickname") {
       if (nickNameRule.test(value) && value !== "") {
         setNickNameData(value);
         setCheckNickName(true);
@@ -84,7 +84,7 @@ const Join = () => {
     }
 
     // 비밀번호 유효성
-    else if (name === "passWord") {
+    else if (name === "password") {
       if (!pwRule.test(value) && value !== "") {
         setPwMsg("비밀번호는 5자 이상 ~ 12자 이하여야 합니다.");
       } else if (pwRule.test(value)) {
@@ -101,9 +101,9 @@ const Join = () => {
     }
     // 비밀번호 확인 유효성
     else if (name === "confirmPass") {
-      if (signUp.passWord !== "" && signUp.passWord !== value) {
+      if (signUp.password !== "" && signUp.password !== value) {
         setConfirmMsg("비밀번호가 다릅니다.");
-      } else if (signUp.passWord == value) {
+      } else if (signUp.password == value) {
         setConfirmMsg("비밀번호가 일치합니다");
         setConfirmPass(value);
       }
@@ -115,8 +115,8 @@ const Join = () => {
   const onClickJoin = (e) => {
     const data = {};
     data.email = emailData;
-    data.nickName = nicknNameData;
-    data.passWord = passData;
+    data.nickname = nicknNameData;
+    data.password = passData;
     data.confirm = confirmPass;
     console.log(data)
 
@@ -152,8 +152,8 @@ const Join = () => {
         <Input
             onChange={onChangeHandler}
             type="text"
-            id="nickName"
-            name="nickName"
+            id="nickname"
+            name="nickname"
             maxLength="10"
           />
           <span>{nickNameMsg}</span>
@@ -173,8 +173,8 @@ const Join = () => {
           <Input
             onChange={onChangeHandler}
             type="password"
-            name="passWord"
-            id="passWord"
+            name="password"
+            id="password"
             minLength="5"
             maxLength="12"
             required

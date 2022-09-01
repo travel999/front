@@ -3,23 +3,25 @@ import instance from "../../res/instance";
 
 const initialState = {
     email: "",
-    nickName: "",
+    nickname: "",
     // userImage: "",
-    passWord: "",
+    password: "",
     confirm: ""
 }
 
 export const addJoin = createAsyncThunk(
-    "signUpSlice/addUser",
+    "signUpSlice/addJoin",
     async (payload, thunkAPI) => {
         console.log(payload);
         try {
             const response = await instance.post("user/signup", payload);
-            if (response.data) {
+            if (response) {
                 alert("회원가입을 축하드립니다!");
-                payload.navigation("user/login");
+                payload.navigate("user/login");
             }
+            console.log(payload)
             return response.data;
+            
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
         }
@@ -51,7 +53,7 @@ export const doubleCheckNickName = createAsyncThunk(
     async (payload, thunkAPI) => {
         try {
             const response = await instance.post("user/checkEmail", {
-                nickName: payload.nickName,
+                nickname: payload.nickname,
             });
             if (response.data) {
                 payload.setNickNameMsg("사용가능한 닉네임입니다.");
