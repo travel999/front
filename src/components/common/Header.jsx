@@ -1,9 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { removeCookie } from "../../res/cookie";
 
 const Header = () => {
   const navigate = useNavigate();
+
+  const removeToken = async () => {
+    removeCookie("jwtToken");
+    alert("로그아웃이 완료되었습니다.");
+    await navigate("/");
+  };
 
   return (
     <HeaderBox>
@@ -12,18 +19,57 @@ const Header = () => {
           navigate("/");
         }}
       >
-        홈버튼
+        HOME
       </HomBtn>
-      <LogOutBtn>로그아웃</LogOutBtn>
+      <Topcontent>
+        <ContentBtn
+          onClick={() => {
+            navigate("/main");
+          }}
+        >
+          MAIN
+        </ContentBtn>
+        <ContentBtn
+          onClick={() => {
+            navigate("/wirte");
+          }}
+        >
+          WRITE
+        </ContentBtn>
+        <ContentBtn
+          onClick={() => {
+            navigate("/detail");
+          }}
+        >
+          LIKE
+        </ContentBtn>
+        <ContentBtn
+          onClick={() => {
+            navigate("/myprofile");
+          }}
+        >
+          PROFILE
+        </ContentBtn>
+      </Topcontent>
+      {
+        <LogOutBtn
+          onClick={() => {
+            removeToken();
+          }}
+        >
+          LOGOUT
+        </LogOutBtn>
+      }
     </HeaderBox>
   );
 };
 
 const HeaderBox = styled.div`
-  background-color: lightblue;
+  background-color: transparent;
   height: 8vh;
   display: flex;
   justify-content: space-between;
+  background-color: #d8f3fc;
 `;
 
 const HomBtn = styled.div`
@@ -36,4 +82,16 @@ const LogOutBtn = styled.div`
   cursor: pointer;
 `;
 
+const Topcontent = styled.div`
+  display: flex;
+  margin-left: 700px;
+  div {
+    margin-left: 30px;
+    margin-top: 18px;
+  }
+`;
+
+const ContentBtn = styled.div`
+  cursor: pointer;
+`;
 export default Header;

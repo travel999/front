@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../components/common/Layout";
 import Detail from "../components/detail/Detail";
 
-const MainPage = () => {
+const DetailPage = () => {
   return (
     <Layout>
       <Detail />
@@ -10,4 +10,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default DetailPage;

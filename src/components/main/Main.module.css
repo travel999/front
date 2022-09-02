@@ -1,7 +1,202 @@
 .mainbox {
-  background-color: rgb(88, 88, 81);
+  background-color: rgb(255, 255, 255);
   width: 1200px;
   margin: 0px auto;
   display: flex;
   justify-content: space-between;
+}
+
+/* 프로필 사진부분 */
+.profile {
+  background-color: rgb(247, 255, 183);
+  width: 260px;
+  height: 35vh;
+  margin: 20px 20px 3vh 20px;
+  border-radius: 20px;
+  padding: 20px 0px;
+}
+
+.profileimg {
+  width: 150px;
+  height: 150px;
+  background-color: rgb(255, 209, 216);
+  margin: 0px auto;
+  border-radius: 150px;
+}
+
+.profileNum {
+  margin: 30px auto 0px auto;
+  font-size: 1.7em;
+  font-weight: 600;
+  color: rgb(250, 101, 101);
+}
+
+.profilefont {
+  margin: 20px auto;
+  font-size: 1.2em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.936);
+}
+
+.profiltext {
+  display: flex;
+  margin: auto;
+}
+
+/* 게시글 등록하기 부분 */
+.postbtn {
+  background-color: rgb(247, 255, 183);
+  width: 260px;
+  height: 6vh;
+  margin: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.posttext {
+  margin-top: 10px;
+  padding: 12.5px;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.postbtn:hover {
+  background-color: rgb(220, 245, 216);
+}
+
+/* 첫번째 박스부분 */
+.bicbox {
+  background-color: rgb(247, 255, 183);
+  width: 260px;
+  height: 80vh;
+  margin: 20px 20px;
+  border-radius: 20px;
+  overflow: auto;
+}
+
+.toptext {
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.card {
+  background-color: white;
+  margin: 10px 10px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.img {
+  width: 45px;
+  height: 45px;
+  border-radius: 45px;
+  margin: 7.5px 10px 7.5px 10px;
+  background-color: rgb(207, 239, 207);
+}
+
+.openNor {
+  margin-top: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.content {
+  margin-right: 90px;
+  margin-top: 10px;
+}
+
+/* 두번째 박스 부분 */
+
+.bicbox2 {
+  background-color: rgb(247, 255, 183);
+  width: 260px;
+  height: 50vh;
+  margin: 20px 20px 3vh 20px;
+  border-radius: 20px;
+  overflow: auto;
+}
+
+.smallbox {
+  background-color: rgb(247, 255, 183);
+  width: 260px;
+  height: 27vh;
+  margin: 0px 20px;
+  border-radius: 20px;
+}
+
+.content2 {
+  margin-right: 90px;
+  margin-top: 10px;
+}
+
+.heart {
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+/* 세번째 박스 부분 */
+
+.refresh {
+  cursor: pointer;
+}
+
+.contentbox {
+  display: flex;
+  background-color: white;
+  margin: 10px 10px;
+  border-radius: 10px;
+}
+
+.bicimg {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(198, 210, 218);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.thirdtext {
+  margin: 5px;
+}
+
+/* 검색창 부분 */
+
+.searchbox {
+  margin: 10px 20px 15px 20px;
+}
+
+.searchinputbox {
+  width: 130px;
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid rgb(139, 139, 139);
+}
+
+.searchbtn {
+  padding: 3px;
+  border-radius: 8px;
+  margin: 3px;
+  background-color: white;
+  border: 1px solid rgb(139, 139, 139);
+}
+
+.refreshbtn {
+  border-radius: 8px;
+  background-color: white;
+  border: 1px solid rgb(139, 139, 139);
+}
+
+.notexist {
+  text-align: center;
+  font-size: 1.1em;
+  color: rgb(255, 104, 104);
+}
+
+/* 외 */
+.day {
+  font-size: 0.9em;
 }

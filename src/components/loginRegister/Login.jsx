@@ -4,14 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { addLogin } from "../../redux/modules/LogInSlice";
 import styles from "./login.module.css"
 
+
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [login, setLogin] = useState({
     email: "",
-    password: ""
-  })
+    password: "",
+  });
 
   const onChange = (e) => {
     const { name, value } = e.target;

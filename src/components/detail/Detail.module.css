@@ -1,0 +1,16 @@
+.bicbox {
+  width: 900px;
+  margin: 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cardbox {
+  width: 240px;
+  height: 140px;
+  background-color: azure;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin: 20px;
+  padding: 10px;
+}
