@@ -27,7 +27,6 @@ export const addLogin = createAsyncThunk(
       console.log(error);
       return thunkAPI.rejectWithValue(error);
     }
-  }
 );
 
 export const LogInSlice = createSlice({

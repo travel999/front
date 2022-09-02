@@ -7,72 +7,71 @@ const initialState = {
     password: "",
     confirm: ""
 }
+
 // 회원가입 청크
 export const addJoin = createAsyncThunk(
     "signUpSlice/addJoin",
     async (payload, thunkAPI) => {
-        console.log(payload);
         try {
-            // 처음에 내가 원하는 대로 보내고 싶었으면 payload.data 해서 벗겨내고 줬으면.. 됐는데... 이 바보
             const response = await instance.post("user/signup", payload);
             if (response) {
                 alert("회원가입을 축하드립니다!");
                 payload.navigate("/login");
             }
-            console.log(response)
             return response;
-            
         } catch (error) {
+            if(error){
+                alert("내용을 확인해 주세요.")
+            }
             return thunkAPI.rejectWithValue(error);
         }
     }
 )
+
 // 이메일 중복확인 청크
 export const doubleCheckEmail = createAsyncThunk(
     "signUpSlice/doubleCheckEmail",
     async (payload, thunkAPI) => {
         try {
-            console.log(payload.email)
             const response = await instance.post("user/checkEmail", {
-                email: payload.email,
+                signUp: payload,
             });
-            console.log(response.data)
-            if (response.data == true) {
-                payload.setEmailMsg("사용가능한 이메일 입니다.");
+            if (response.result) {
+                payload.setEmailMsg(response.data.message);
             }
-            return thunkAPI.fulfillWithValue(response.data);
+            return thunkAPI.fulfillWithValue(response.result);
         } catch (error) {
-            if (error.response.data == false) {
-                payload.setEmailMsg("중복된 이메일입니다.");
-                console.log(error)
+            if (error) {
+                payload.setEmailMsg(error.response.data.message);
             }
             return thunkAPI.rejectWithValue(error);
         }
     }
 );
+
 // 닉네임 중복확인 청크
 export const doubleCheckNickName = createAsyncThunk(
     "signUpSlice/doubleCheckNickName",
     async (payload, thunkAPI) => {
         try {
-            console.log(payload.nickname)
+            console.log(payload)
             const response = await instance.post("user/checkNickname", {
-                nickname: payload.nickname,
+                signUp: payload,
             });
-            if (response.data == true) {
-                payload.setNickNameMsg("사용가능한 닉네임입니다.");
+            if (response.result) {
+                payload.setNickNameMsg(response.data.message);
             }
-            return thunkAPI.fulfillWithValue(response.data);
+            return thunkAPI.fulfillWithValue(response.result);
         } catch (error) {
-            if (error.response.data == false) {
-                payload.setNickNameMsg("중복된 닉네임입니다");
+            if (error) {
+                payload.setNickNameMsg(error.response.data.message);
             }
             return thunkAPI.rejectWithValue(error);
         }
     }
 );
 
-
+// 리듀서
 export const JoinSlice = createSlice({
     name: "JoinSlice",
     initialState,

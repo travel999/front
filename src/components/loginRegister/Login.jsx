@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addLogin } from "../../redux/modules/LogInSlice";
-import { TitleWrap, Title } from "./LoginStyle";
+import styles from "./login.module.css"
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,32 +24,28 @@ const Login = () => {
     if (login.email.trim() === "" || login.password.trim() === "") {
       return alert("모든 항목을 입력해주세요.");
     }
+    dispatch(addLogin({ login, navigate }));
     setLogin({
       email: "",
       password: "",
     });
-    dispatch(addLogin({ login, navigate }));
   };
+
   return (
-    <TitleWrap>
-      <Title>Service Name</Title>
-      <form>
-        <div>
-          email:
-          <input name="email" value={login.email} onChange={onChange}></input>
-          <br />
-          Password:
-          <input
-            name="password"
-            type="password"
-            defaultChecked=""
-            value={login.password}
-            onChange={onChange}
-          ></input>
+    <div className={styles.titleWrap}>
+      <h1 className={styles.title} onClick={() => navigate("/")}>ORIGACHI</h1>
+      <form className={styles.inputWrap}>
+        <div className={styles.inputBox}>
+          <div className={styles.inputName}>이메일</div>
+          <input className={styles.input} name="email" value={login.email} onChange={onChange}></input>
         </div>
-        <button onClick={onClick}>LogIn</button>
+        <div className={styles.inputBox}>
+          <div className={styles.inputName}>비밀번호</div>
+          <input className={styles.input} name="password" type="password" defaultChecked="" value={login.password} onChange={onChange}></input>
+        </div>
       </form>
-    </TitleWrap>
+      <button className={styles.button} onClick={onClick}>로그인</button>
+    </div>
   );
 };
 
