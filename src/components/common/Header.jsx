@@ -1,13 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { getCookie, removeCookie } from "../../res/cookie";
+import { removeCookie } from "../../res/cookie";
 
 const Header = () => {
   const navigate = useNavigate();
-  const tokenValue = getCookie("jwtToken");
-
-  if (!tokenValue) navigate("/");
 
   const removeToken = async () => {
     removeCookie("jwtToken");
@@ -22,19 +19,47 @@ const Header = () => {
           navigate("/");
         }}
       >
-        홈버튼
+        HOME
       </HomBtn>
-      {tokenValue ? (
+      <Topcontent>
+        <ContentBtn
+          onClick={() => {
+            navigate("/main");
+          }}
+        >
+          MAIN
+        </ContentBtn>
+        <ContentBtn
+          onClick={() => {
+            navigate("/wirte");
+          }}
+        >
+          WRITE
+        </ContentBtn>
+        <ContentBtn
+          onClick={() => {
+            navigate("/detail");
+          }}
+        >
+          LIKE
+        </ContentBtn>
+        <ContentBtn
+          onClick={() => {
+            navigate("/myprofile");
+          }}
+        >
+          PROFILE
+        </ContentBtn>
+      </Topcontent>
+      {
         <LogOutBtn
           onClick={() => {
             removeToken();
           }}
         >
-          로그아웃
+          LOGOUT
         </LogOutBtn>
-      ) : (
-        <div>로그인을 해주세요</div>
-      )}
+      }
     </HeaderBox>
   );
 };
@@ -44,6 +69,7 @@ const HeaderBox = styled.div`
   height: 8vh;
   display: flex;
   justify-content: space-between;
+  background-color: #d8f3fc;
 `;
 
 const HomBtn = styled.div`
@@ -56,4 +82,16 @@ const LogOutBtn = styled.div`
   cursor: pointer;
 `;
 
+const Topcontent = styled.div`
+  display: flex;
+  margin-left: 700px;
+  div {
+    margin-left: 30px;
+    margin-top: 18px;
+  }
+`;
+
+const ContentBtn = styled.div`
+  cursor: pointer;
+`;
 export default Header;

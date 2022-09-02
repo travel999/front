@@ -10,11 +10,13 @@ const ProfileBox = () => {
 
   return (
     <div>
-      <div className={`${styles?.profile}`}>
-        <div className={styles?.profileimg}></div>
+      <div className={`${styles.profile}`}>
+        <div className={styles.profileimg}></div>
         <div className={styles.profiltext}>
-          <div className={styles.profileNum}>{mypostNum}</div>
-          <div className={styles.profileNum}>{likepostNum}</div>
+          <div className={styles.profileNum}>{mypostNum ? mypostNum : 0}</div>
+          <div className={styles.profileNum}>
+            {likepostNum ? likepostNum : 0}
+          </div>
         </div>
         <div className={styles.profiltext}>
           <div className={styles.profilefont}>내 일정</div>

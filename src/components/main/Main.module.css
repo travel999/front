@@ -25,14 +25,14 @@
 }
 
 .profileNum {
-  margin: 10px auto 0px auto;
+  margin: 30px auto 0px auto;
   font-size: 1.7em;
   font-weight: 600;
   color: rgb(250, 101, 101);
 }
 
 .profilefont {
-  margin: 30px auto;
+  margin: 20px auto;
   font-size: 1.2em;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.936);
@@ -98,15 +98,13 @@
 }
 
 .openNor {
-  position: fixed;
-  margin-top: 25px;
-  margin-left: 200px;
+  margin-top: 20px;
+  margin-right: 20px;
   cursor: pointer;
 }
 
 .content {
-  position: fixed;
-  margin-left: 65px;
+  margin-right: 90px;
   margin-top: 10px;
 }
 
@@ -130,15 +128,13 @@
 }
 
 .content2 {
-  position: fixed;
-  margin-left: 65px;
+  margin-right: 90px;
   margin-top: 10px;
 }
 
 .heart {
-  position: fixed;
   margin-top: 20px;
-  margin-left: 200px;
+  margin-right: 10px;
 }
 
 /* 세번째 박스 부분 */
@@ -173,7 +169,7 @@
 }
 
 .searchinputbox {
-  width: 140px;
+  width: 130px;
   padding: 3px;
   border-radius: 8px;
   border: 1px solid rgb(139, 139, 139);
@@ -191,6 +187,12 @@
   border-radius: 8px;
   background-color: white;
   border: 1px solid rgb(139, 139, 139);
+}
+
+.notexist {
+  text-align: center;
+  font-size: 1.1em;
+  color: rgb(255, 104, 104);
 }
 
 /* 외 */

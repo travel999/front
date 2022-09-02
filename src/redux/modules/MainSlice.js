@@ -37,11 +37,33 @@ export const infinitiscroll = createAsyncThunk(
   }
 );
 
+export const searchInfiniti = createAsyncThunk(
+  "main/infiniti/search",
+  async (value, thunkAPI) => {
+    try {
+      console.log("검색어 있을때 무한스크롤");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const toOpenPublic = createAsyncThunk(
+  "main/open",
+  async (value, thunkAPI) => {
+    try {
+      console.log("공개예정");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 const initialState = {
   likeCards: [],
   MyPostCards: [],
   otherPeopleCards: [],
-  existdata: false,
+  searched: false,
 };
 
 export const mainSlice = createSlice({
@@ -49,8 +71,7 @@ export const mainSlice = createSlice({
   initialState,
   reducers: {
     refreshSearch(state, action) {
-      console.log("리듀서");
-      state.existdata = false;
+      state.searched = false;
       state.otherPeopleCards = [];
     },
   },
@@ -63,11 +84,10 @@ export const mainSlice = createSlice({
     },
 
     [searchText.fulfilled]: (state, action) => {
-      state.existdata = false;
+      state.searched = true;
       state.otherPeopleCards = action.payload;
     },
     [searchText.rejected]: (state, action) => {
-      state.existdata = true;
       state.otherPeopleCards = [];
     },
   },
