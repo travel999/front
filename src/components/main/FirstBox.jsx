@@ -6,7 +6,7 @@ import { toOpenPublic } from "../../redux/modules/MainSlice";
 const FirstBox = () => {
   const dispatch = useDispatch();
   const myPosts = useSelector((state) => state.main.MyPostCards.data1);
-  const state = useSelector((state) => state.main);
+  const state = useSelector((state) => state.main.MyPostCards);
 
   const openPublic = () => {
     // value를 뭘 줘야하나
