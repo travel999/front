@@ -1,0 +1,79 @@
+.startBox {
+    height: 1080px;
+    width: 1200px;
+    margin: auto;
+}
+
+.title {
+    position: absolute;
+    width: 452px;
+    height: 72px;
+    left: 360px;
+    top: 214px;
+
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 80px;
+}
+
+.description {
+    position: absolute;
+    width: 444px;
+    height: 160px;
+    left: 360px;
+    top: 322px;
+
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 40px;
+}
+
+.login {
+    padding: auto;
+    position: absolute;
+    width: 240px;
+    height: 54px;
+    left: 360px;
+    top: 562px;
+
+    background: #D9D9D9;
+    border: 0;
+    outline: 0;
+    border-radius: 999px;
+}
+
+.socialLogin {
+    padding: auto;
+    position: absolute;
+    width: 240px;
+    height: 54px;
+    left: 360px;
+    top: 632px;
+
+    background: #D9D9D9;
+    border: 0;
+    outline: 0;
+    border-radius: 999px;
+}
+
+.join {
+    padding: auto;
+    position: absolute;
+    width: 240px;
+    height: 54px;
+    left: 360px;
+    top: 702px;
+
+    /* background: #ffffff; */
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    border-radius: 999px;
+}
+
+.backgroundImg {
+    position: absolute;
+    width: 588px;
+    height: 1080px;
+    left: 972px;
+}

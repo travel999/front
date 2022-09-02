@@ -30,7 +30,6 @@ export const addLogin = createAsyncThunk(
         }
 
     }
-  }
 );
 
 export const LogInSlice = createSlice({

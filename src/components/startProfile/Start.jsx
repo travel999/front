@@ -1,41 +1,41 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./start.module.css"
 import background from "../../res/img/background.png"
-import { Img, Title, Des, Btn1, Btn2, Btn3 } from "./StartStyle";
 
 const Start = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <Title>Service Name</Title>
-      <Des>
-        어쩌고에 오신걸 환영해요!
-        <br />
-        혼자 말고, 친구와 함께
-        <br />
-        즐거운 여행 계획을 세워보세요!
-      </Des>
+    <div className={styles.startBox}>
       <div>
-        <Btn1
-          onClick={() => {
-            navigate("/login");
-          }}
-        >
-          Login
-        </Btn1>
-        <Btn2
-          onClick={() => {
-            navigate("/join");
-          }}
-        >
-          Join
-        </Btn2>
-        <Btn3>Social Login</Btn3>
+        <h1 className={styles.title}>ORIGACHI</h1>
+        <div className={styles.description}>
+          오리같이에 오신걸 환영합니다! <br />
+          실시간으로 의견을 공유하고 지도를 확인하며 <br />
+          오리 다같이, 재미있게 여행 일정 세워봐요!
+        </div>
+        <div>
+          <button className={styles.login}
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            로그인
+          </button>
+          <button className={styles.socialLogin}>카카오로 로그인</button>
+          <button className={styles.join}
+            onClick={() => {
+              navigate("/join");
+            }}
+          >
+            회원가입
+          </button>
+        </div>
+        <div className={styles.backgroundImg}>
+          <img src={background} alt="배경"></img>
+        </div>
       </div>
-      <Img>
-        <img src={background} alt="배경"></img>
-      </Img>
     </div>
   );
 };

@@ -8,7 +8,6 @@ import {
   Input,
 } from "./JoinStyle"
 
-
 const Join = () => {
   const dispatch = useDispatch();
   const initialState = {
@@ -18,12 +17,10 @@ const Join = () => {
     confirm: "",
   };
 
-  const inputRef = useRef();
   const navigate = useNavigate();
 
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNickName, setCheckNickName] = useState(false)
-  const [data, setData] = useState("")
 
   const [signUp, setSignUp] = useState(initialState);
   const [emailData, setEmailData] = useState("");
@@ -35,8 +32,8 @@ const Join = () => {
 
   //유효성 확인 메세지
   const [emailMsg, setEmailMsg] = useState("");
-  const [pwMsg, setPwMsg] = useState("");
   const [nickNameMsg, setNickNameMsg] = useState("")
+  const [pwMsg, setPwMsg] = useState("");
   const [confirmMsg, setConfirmMsg] = useState("");
 
   // 정규식 리스트
@@ -49,14 +46,14 @@ const Join = () => {
     if (checkEmail) {
       dispatch(doubleCheckEmail({ email: emailData, setEmailMsg }));
     }
-  }, [checkEmail]);
+  }, [emailData]);
 
   // 닉네임 중복 확인
   useEffect(() => {
     if (checkNickName) {
       dispatch(doubleCheckNickName({ nickname: nicknNameData, setNickNameMsg }));
     }
-  }, [checkNickName]);
+  }, [nicknNameData]);
 
   // 유효성 검사
   const onChangeHandler = (event) => {
@@ -69,6 +66,7 @@ const Join = () => {
         setCheckEmail(true);
       } else if (!emailRule.test(value)) {
         setEmailMsg("이메일 형식에 맞게 입력해주세요.");
+        setCheckEmail(false);
       }
     }
 
@@ -81,7 +79,7 @@ const Join = () => {
           "닉네임은 특수문자 제외 2~10 글자로 입력할 수 있습니다."
         );
       } else if (nickNameRule.test(value)) {
-        setNickNameMsg("사용가능한 닉네임입니다.");
+        setNickNameMsg("닉네임 형식에 맞습니다.");
         setNickNameData(value);
       }
     }
@@ -117,16 +115,15 @@ const Join = () => {
   // 버튼 클릭시 빈칸 확인, 올바르게 입력시 값 전송
   const onClickJoin = (e) => {
     if (
-      emailData == "" ||
+      emailData === "" ||
       nicknNameData === "" ||
       passData === "" ||
       confirm === ""
     ) {
-      alert("내용을 확인해 주세요!");
     } else {
       dispatch(addJoin({ navigate, signUp }));
     } // dispatch에 값도 같이 넣어서 보내줘유
-    dispatch(addJoin({ navigate, signUp }));
+    dispatch(addJoin({ navigate, signUp  }));
   }
 
   //이미지 체인지 핸들러
@@ -139,81 +136,77 @@ const Join = () => {
     setPreImg(imageUrl);
   };
 
-
   return (
     <Profile>
       <Inputwrap>
-      <form>
-        <div>
-         
-          <div>Nickname</div>
-        <Input
-            onChange={onChangeHandler}
-            type="text"
-            id="nickname"
-            name="nickname"
-            maxLength="10"
-          />
-          <span>{nickNameMsg}</span>
-          <div>Email</div>
-          <Input
-            ref={inputRef}
-            onChange={onChangeHandler}
-            type="mail"
-            id="email"
-            name="email"
-            required
-          />
-          <span>{emailMsg}</span>
-        </div>
-        <div >
-          <div>Password</div>
-          <Input
-            onChange={onChangeHandler}
-            type="password"
-            name="password"
-            id="password"
-            minLength="5"
-            maxLength="12"
-            required
-          />
-          <span>{pwMsg}</span>
-        </div>
-
-        <div>
-          <div>Confirm</div>
-          <Input
-            onChange={onChangeHandler}
-            type="password"
-            name="confirm"
-            minLength="5"
-            maxLength="12"
-            required
-          />
-          <span>{confirmMsg}</span>
-        </div>
+        <form>
+          <div>
+            <div>Email</div>
+            <Input
+              onChange={onChangeHandler}
+              type="mail"
+              id="email"
+              name="email"
+            />
+            <span>{emailMsg}</span>
+          </div>
+          <div>
+            <div>Nickname</div>
+            <Input
+              onChange={onChangeHandler}
+              type="text"
+              id="nickname"
+              name="nickname"
+              maxLength="10"
+            />
+            <span>{nickNameMsg}</span>
+          </div>
+          <div>
+            <div>Password</div>
+            <Input
+              onChange={onChangeHandler}
+              type="password"
+              name="password"
+              id="password"
+              minLength="5"
+              maxLength="12"
+            />
+            <span>{pwMsg}</span>
+          </div>
+          <div>
+            <div>Confirm</div>
+            <Input
+              onChange={onChangeHandler}
+              type="password"
+              name="confirm"
+              minLength="5"
+              maxLength="12"
+              required
+            />
+            <span>{confirmMsg}</span>
+          </div>
         </form>
       </Inputwrap>
       <div>
-          <div>프로필</div>
-          <div>
-            {/* {!preImgFile[0] ? (
+        <div>프로필</div>
+        <div>
+          {/* {!preImgFile[0] ? (
       <img src={base_img} alt="이미지 미리보기" />
     ) : (
       <img src={preImgFile} alt="이미지 미리보기" />
     )} */}
-            <label htmlFor="userimg">사진 업로드</label>
-          </div>
-          <input
-            onChange={onLoadImg}
-            type="file"
-            accept="image/*"
-            placeholder="프로필 이미지 등록하기"
-            name="userimg"
-            id="userimg"
-          />
+          <label htmlFor="userimg">사진 업로드</label>
         </div>
-        <button onClick={onClickJoin}>Join</button>
+        <input
+          onChange={onLoadImg}
+          type="file"
+          accept="image/*"
+          placeholder="프로필 이미지 등록하기"
+          name="userimg"
+          id="userimg"
+        />
+      </div>
+      <button onClick={onClickJoin}>Join</button>
     </Profile>
 
   );
