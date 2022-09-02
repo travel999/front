@@ -200,3 +200,8 @@
 .day {
   font-size: 0.9em;
 }
+
+.bottom {
+  color: rgb(247, 255, 183);
+  font-size: 0.3em;
+}

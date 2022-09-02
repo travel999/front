@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { searchText, refreshSearch } from "../../redux/modules/MainSlice";
 import styles from "./Main.module.css";
 
-const SearchBar = ({ input_ref, setShowrecomm }) => {
+const SearchBar = ({ input_ref, setShowrecomm, searchPage, setSearchPage }) => {
   const dispatch = useDispatch();
 
   const refresh = () => {
@@ -12,9 +12,10 @@ const SearchBar = ({ input_ref, setShowrecomm }) => {
     input_ref.current.value = "";
   };
 
-  const tosearch = (value) => {
-    dispatch(searchText(value));
+  const tosearch = (input) => {
+    dispatch(searchText([input, searchPage]));
     setShowrecomm(false);
+    setSearchPage((prev) => prev + 1);
   };
 
   return (

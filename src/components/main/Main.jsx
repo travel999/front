@@ -7,24 +7,22 @@ import FirstBox from "./FirstBox";
 import SecondBox from "./SecondBox";
 import ThirdBox from "./ThirdBox";
 import ProfileBox from "./ProfileBox";
-import {
-  getCards,
-  infinitiscroll,
-  searchInfiniti,
-} from "../../redux/modules/MainSlice";
+import { getCards, searchText } from "../../redux/modules/MainSlice";
 
 const Main = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const tokenValue = getCookie("jwtToken");
 
+  const input_ref = useRef(null); //검색ref
+
   const [page, setPage] = useState(1); //무한스크롤 페이지
+  const [searchPage, setSearchPage] = useState(1);
   const obsRef = useRef(null);
   const [load, setLoad] = useState(1); //로딩스피너 추가용
   const [prevent, setPrevent] = useState(true); //특정 환경에서 옵저버 핸들러가 2~3번까지 중복으로 실행되는 경우 방지
   const [end, setEnd] = useState(false);
   const searched = useSelector((state) => state.main.searched);
-  const state = useSelector((state) => state.main);
 
   // 토크없으면 로그인 페이지로
   useEffect(() => {
@@ -37,42 +35,38 @@ const Main = () => {
     // dispatch(getCards());
     const observer = new IntersectionObserver(obsHandler, { threshold: 0.5 });
     if (obsRef.current) observer.observe(obsRef.current);
-    console.log("1");
     return () => {
       observer.disconnect();
-      console.log("2");
     };
   }, []);
 
+  // obs보이면 page + 1
   const obsHandler = (entries) => {
     const target = entries[0];
-    console.log("6");
     if (!end && target.isIntersecting && prevent) {
       setPrevent(false);
-      console.log("7");
-      setPage((prev) => prev + 1);
+      if (searched === false) {
+        setPage((prev) => prev + 1);
+      } else if (searched === true) {
+        setSearchPage((prev) => prev + 1);
+      }
     }
   };
 
   useEffect(() => {
-    console.log("1.5");
     loadpost();
-    console.log("5");
   }, [page]);
 
   const loadpost = useCallback(async () => {
     setPrevent(true);
     setLoad(true); //피젯
-    console.log("2");
     if (searched === false) {
       dispatch(getCards(page));
-      console.log("3");
     } else if (searched === true) {
-      dispatch(searchInfiniti());
+      dispatch(searchText([input_ref.current.value, searchPage]));
     }
     setLoad(false); //피젯
     setPrevent(false);
-    console.log("4");
   }, [page]);
 
   return (
@@ -81,7 +75,12 @@ const Main = () => {
         <ProfileBox />
         <FirstBox />
         <SecondBox />
-        <ThirdBox page={page} setPage={setPage} obsRef={obsRef} />
+        <ThirdBox
+          searchPage={searchPage}
+          setSearchPage={setSearchPage}
+          input_ref={input_ref}
+          obsRef={obsRef}
+        />
       </div>
     </>
   );
