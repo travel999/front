@@ -8,7 +8,7 @@ const Start = () => {
 
   return (
     <div className={styles.startBox}>
-      <div>
+      <div className={styles.wrap}>
         <h1 className={styles.title}>ORIGACHI</h1>
         <div className={styles.description}>
           오리같이에 오신걸 환영합니다! <br />

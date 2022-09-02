@@ -32,17 +32,18 @@ const Login = () => {
 
   return (
     <div className={styles.titleWrap}>
-      <h1 className={styles.title}>ORIGACHI</h1>
-      <form>
+      <h1 className={styles.title} onClick={() => navigate("/")}>ORIGACHI</h1>
+      <form className={styles.inputWrap}>
         <div className={styles.inputBox}>
-          email:
+          <div className={styles.inputName}>이메일</div>
           <input className={styles.input} name="email" value={login.email} onChange={onChange}></input>
-          <br />
-          Password:
+        </div>
+        <div className={styles.inputBox}>
+          <div className={styles.inputName}>비밀번호</div>
           <input className={styles.input} name="password" type="password" defaultChecked="" value={login.password} onChange={onChange}></input>
         </div>
-        <button className={styles.button} onClick={onClick}>LogIn</button>
       </form>
+      <button className={styles.button} onClick={onClick}>로그인</button>
     </div>
   );
 };

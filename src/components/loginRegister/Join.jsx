@@ -2,11 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addJoin, doubleCheckEmail, doubleCheckNickName } from "../../redux/modules/JoinSlice";
-import {
-  Profile,
-  Inputwrap,
-  Input,
-} from "./JoinStyle"
+import styles from "./join.module.css"
 
 const Join = () => {
   const dispatch = useDispatch();
@@ -123,7 +119,7 @@ const Join = () => {
     } else {
       dispatch(addJoin({ navigate, signUp }));
     } // dispatch에 값도 같이 넣어서 보내줘유
-    dispatch(addJoin({ navigate, signUp  }));
+    dispatch(addJoin({ navigate, signUp }));
   }
 
   //이미지 체인지 핸들러
@@ -137,56 +133,54 @@ const Join = () => {
   };
 
   return (
-    <Profile>
-      <Inputwrap>
-        <form>
-          <div>
-            <div>Email</div>
-            <Input
-              onChange={onChangeHandler}
-              type="mail"
-              id="email"
-              name="email"
-            />
-            <span>{emailMsg}</span>
-          </div>
-          <div>
-            <div>Nickname</div>
-            <Input
-              onChange={onChangeHandler}
-              type="text"
-              id="nickname"
-              name="nickname"
-              maxLength="10"
-            />
-            <span>{nickNameMsg}</span>
-          </div>
-          <div>
-            <div>Password</div>
-            <Input
-              onChange={onChangeHandler}
-              type="password"
-              name="password"
-              id="password"
-              minLength="5"
-              maxLength="12"
-            />
-            <span>{pwMsg}</span>
-          </div>
-          <div>
-            <div>Confirm</div>
-            <Input
-              onChange={onChangeHandler}
-              type="password"
-              name="confirm"
-              minLength="5"
-              maxLength="12"
-              required
-            />
-            <span>{confirmMsg}</span>
-          </div>
-        </form>
-      </Inputwrap>
+    <div>
+      <div>
+        <div>
+          <div>Email</div>
+          <input
+            onChange={onChangeHandler}
+            type="mail"
+            id="email"
+            name="email"
+          />
+          <span>{emailMsg}</span>
+        </div>
+        <div>
+          <div>Nickname</div>
+          <input
+            onChange={onChangeHandler}
+            type="text"
+            id="nickname"
+            name="nickname"
+            maxLength="10"
+          />
+          <span>{nickNameMsg}</span>
+        </div>
+        <div>
+          <div>Password</div>
+          <input
+            onChange={onChangeHandler}
+            type="password"
+            name="password"
+            id="password"
+            minLength="5"
+            maxLength="12"
+          />
+          <span>{pwMsg}</span>
+        </div>
+        <div>
+          <div>Confirm</div>
+          <input
+            onChange={onChangeHandler}
+            type="password"
+            name="confirm"
+            minLength="5"
+            maxLength="12"
+            required
+          />
+          <span>{confirmMsg}</span>
+        </div>
+      </div>
       <div>
         <div>프로필</div>
         <div>
@@ -195,7 +189,7 @@ const Join = () => {
     ) : (
       <img src={preImgFile} alt="이미지 미리보기" />
     )} */}
-          <label htmlFor="userimg">사진 업로드</label>
+          <label>사진 업로드</label>
         </div>
         <input
           onChange={onLoadImg}
@@ -207,7 +201,7 @@ const Join = () => {
         />
       </div>
       <button onClick={onClickJoin}>Join</button>
-    </Profile>
+    </div>
 
   );
 };

@@ -1,10 +1,15 @@
 .startBox {
-    height: 1080px;
-    width: 1200px;
     margin: auto;
 }
 
+.wrap {
+    display: flex;
+    justify-content: flex-start;
+}
+
 .title {
+    display: flex;
+    justify-content: flex-start;
     position: absolute;
     width: 452px;
     height: 72px;
