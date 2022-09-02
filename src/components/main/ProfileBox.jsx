@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ProfileBox.module.css";
+import styles from "./Main.module.css";
 import PostBtn from "./PostBtn";
 import { useSelector } from "react-redux";
 
@@ -10,10 +10,18 @@ const ProfileBox = () => {
 
   return (
     <div>
-      <div className={`${styles?.profile}`}>
-        <div className={styles?.profileimg}></div>
-        <div>여행일정: {mypostNum}</div>
-        <div>좋아하는 일정: {likepostNum}</div>
+      <div className={`${styles.profile}`}>
+        <div className={styles.profileimg}></div>
+        <div className={styles.profiltext}>
+          <div className={styles.profileNum}>{mypostNum ? mypostNum : 0}</div>
+          <div className={styles.profileNum}>
+            {likepostNum ? likepostNum : 0}
+          </div>
+        </div>
+        <div className={styles.profiltext}>
+          <div className={styles.profilefont}>내 일정</div>
+          <div className={styles.profilefont}>좋아요</div>
+        </div>
       </div>
       <PostBtn />
     </div>

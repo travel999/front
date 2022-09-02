@@ -2,19 +2,16 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addLogin } from "../../redux/modules/LogInSlice";
-import {
-  TitleWrap,
-  Title,
-} from "./LoginStyle"
+import { TitleWrap, Title } from "./LoginStyle";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const [login, setLogin] = useState({
     email: "",
-    password: ""
-  })
+    password: "",
+  });
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -37,11 +34,17 @@ const Login = () => {
       <Title>Service Name</Title>
       <form>
         <div>
-        email:
+          email:
           <input name="email" value={login.email} onChange={onChange}></input>
           <br />
           Password:
-          <input name="password" type="password" defaultChecked="" value={login.password} onChange={onChange}></input>
+          <input
+            name="password"
+            type="password"
+            defaultChecked=""
+            value={login.password}
+            onChange={onChange}
+          ></input>
         </div>
         <button onClick={onClick}>LogIn</button>
       </form>

@@ -6,10 +6,12 @@ import styled from "styled-components";
 import PostCards from "../detail/PostCards";
 import { searchText } from "../../redux/modules/MainSlice";
 
+// 해당 파일 삭제 예정 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 const Shared = () => {
+  const dispatch = useDispatch();
   const [search, setSearch] = useState(false); //검색창 보이기 안보이기
   const Search_ref = useRef();
-  const dispatch = useDispatch();
 
   // 검색하기
   const tosearch = (value) => {
