@@ -33,16 +33,18 @@ export const doubleCheckEmail = createAsyncThunk(
     "signUpSlice/doubleCheckEmail",
     async (payload, thunkAPI) => {
         try {
+            console.log(payload)
             const response = await instance.post("user/checkEmail", {
                 signUp: payload,
             });
-            if (response.result) {
+            if (response) {
                 payload.setEmailMsg(response.data.message);
             }
             return thunkAPI.fulfillWithValue(response.result);
         } catch (error) {
             if (error) {
                 payload.setEmailMsg(error.response.data.message);
+                // 중복된 이메일입니다.
             }
             return thunkAPI.rejectWithValue(error);
         }
@@ -58,7 +60,7 @@ export const doubleCheckNickName = createAsyncThunk(
             const response = await instance.post("user/checkNickname", {
                 signUp: payload,
             });
-            if (response.result) {
+            if (response) {
                 payload.setNickNameMsg(response.data.message);
             }
             return thunkAPI.fulfillWithValue(response.result);

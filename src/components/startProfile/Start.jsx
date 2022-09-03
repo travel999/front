@@ -13,7 +13,7 @@ const Start = () => {
         <div className={styles.description}>
           오리같이에 오신걸 환영합니다! <br />
           실시간으로 의견을 공유하고 지도를 확인하며 <br />
-          오리 다같이, 재미있게 여행 일정 세워봐요!
+          우리 다같이, 재미있게 여행 일정 세워봐요!
         </div>
         <div>
           <button className={styles.login}
