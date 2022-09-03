@@ -20,7 +20,7 @@ const SecondBox = () => {
                     "https://forfiles.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2022-09-02+%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB+12.00.40.png"
                   }
                 />
-                <div className={styles.content}>
+                <div className={styles.content2}>
                   <div>{value.title}</div>
                   <div className={styles.day}>
                     {value.day.length - 1}박 {value.day.length}일

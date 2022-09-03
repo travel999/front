@@ -6,9 +6,8 @@ import { toOpenPublic } from "../../redux/modules/MainSlice";
 const FirstBox = () => {
   const dispatch = useDispatch();
   const myPosts = useSelector((state) => state.main.MyPostCards.data1);
-  const state = useSelector((state) => state.main.MyPostCards);
 
-  const openPublic = () => {
+  const OnOpenPublic = () => {
     // value를 뭘 줘야하나
     dispatch(toOpenPublic());
   };
@@ -35,7 +34,7 @@ const FirstBox = () => {
               {value.openPublic ? (
                 <div
                   onClick={() => {
-                    openPublic();
+                    OnOpenPublic();
                   }}
                   className={styles.openNor}
                 >
@@ -44,7 +43,7 @@ const FirstBox = () => {
               ) : (
                 <div
                   onClick={() => {
-                    openPublic();
+                    OnOpenPublic();
                   }}
                   className={styles.openNor}
                 >
