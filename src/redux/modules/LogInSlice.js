@@ -17,9 +17,9 @@ export const addLogin = createAsyncThunk(
       console.log(res);
       console.log(res.data.token);
       setCookie("jwtToken", `${token}`);
-      if (res) {
+      if (res) { 
         alert("반갑습니다!");
-        payload.navigate("/main");
+        await payload.navigate("/main");
       }
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {

@@ -2,7 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addJoin, doubleCheckEmail, doubleCheckNickName } from "../../redux/modules/JoinSlice";
+import S3upload from 'react-aws-s3';
 import styles from "./join.module.css"
+import pencil from "../../res/img/pencil.svg"
 
 const Join = () => {
   const dispatch = useDispatch();
@@ -62,7 +64,7 @@ const Join = () => {
         setCheckEmail(true);
       } else if (!emailRule.test(value)) {
         setEmailMsg("이메일 형식에 맞게 입력해주세요.");
-        setCheckEmail(false);
+        setEmailData(value);
       }
     }
 
@@ -122,11 +124,11 @@ const Join = () => {
     dispatch(addJoin({ navigate, signUp }));
   }
 
-  //이미지 체인지 핸들러
+  //이미지 
   const onLoadImg = (event) => {
     //현재 이미지 파일
     const imaData = event.target.files[0];
-    setImg(imaData);
+    // setImg(imaData);
     //선택한 이미지 파일의 url
     const imageUrl = URL.createObjectURL(imaData);
     setPreImg(imageUrl);
@@ -134,75 +136,83 @@ const Join = () => {
 
   return (
     <div>
-      <div>
+      <div className={styles.joinWrap}>
         <div>
-          <div>Email</div>
-          <input
-            onChange={onChangeHandler}
-            type="mail"
-            id="email"
-            name="email"
-          />
-          <span>{emailMsg}</span>
+          <div className={styles.inputBox}>
+            <div className={styles.inputName}>이메일</div>
+            <input
+              className={styles.input}
+              onChange={onChangeHandler}
+              type="mail"
+              id="email"
+              name="email"
+            />
+          </div>
+          <div className={styles.message}>{emailMsg}</div>
+          <div className={styles.inputBox}>
+            <div className={styles.inputName}>닉네임</div>
+            <input
+              className={styles.input}
+              onChange={onChangeHandler}
+              type="text"
+              id="nickname"
+              name="nickname"
+              maxLength="10"
+            />
+          </div>
+          <div className={styles.message}>{nickNameMsg}</div>
+          <div className={styles.inputBox}>
+            <div className={styles.inputName}>비밀번호</div>
+            <input
+              className={styles.input}
+              onChange={onChangeHandler}
+              type="password"
+              name="password"
+              id="password"
+              minLength="5"
+              maxLength="12"
+            />
+          </div>
+          <div className={styles.message}>{pwMsg}</div>
+          <div className={styles.inputBox}>
+            <div className={styles.inputName}>비밀번호 확인</div>
+            <input
+              className={styles.input}
+              onChange={onChangeHandler}
+              type="password"
+              name="confirm"
+              minLength="5"
+              maxLength="12"
+              required
+            />
+          </div>
+          <div className={styles.message}>{confirmMsg}</div>
         </div>
         <div>
-          <div>Nickname</div>
-          <input
-            onChange={onChangeHandler}
-            type="text"
-            id="nickname"
-            name="nickname"
-            maxLength="10"
+          {/* <div>프로필</div> */}
+          <div className={styles.profile}>
+            {!preImg[0] ? (
+              <img src={pencil} alt=""></img>
+            ) : (
+              <img src={preImg} alt="이미지 미리보기" />
+            )}
+          </div>
+          <label htmlFor="profileImg">프로필 이미지</label>
+            <input
+            onChange={onLoadImg}
+            placeholder="프로필 이미지"
+            type="file"
+            accept="image/*"
+            name="profileImg"
+            id="profileImg"
           />
-          <span>{nickNameMsg}</span>
-        </div>
-        <div>
-          <div>Password</div>
-          <input
-            onChange={onChangeHandler}
-            type="password"
-            name="password"
-            id="password"
-            minLength="5"
-            maxLength="12"
-          />
-          <span>{pwMsg}</span>
-        </div>
-        <div>
-          <div>Confirm</div>
-          <input
-            onChange={onChangeHandler}
-            type="password"
-            name="confirm"
-            minLength="5"
-            maxLength="12"
-            required
-          />
-          <span>{confirmMsg}</span>
         </div>
       </div>
-      <div>
-        <div>프로필</div>
-        <div>
-          {/* {!preImgFile[0] ? (
-      <img src={base_img} alt="이미지 미리보기" />
-    ) : (
-      <img src={preImgFile} alt="이미지 미리보기" />
-    )} */}
-          <label>사진 업로드</label>
-        </div>
-        <input
-          onChange={onLoadImg}
-          type="file"
-          accept="image/*"
-          placeholder="프로필 이미지 등록하기"
-          name="userimg"
-          id="userimg"
-        />
+      <div className={styles.buttonWrap}>
+        <button className={styles.button} onClick={onClickJoin}>회원가입</button>
       </div>
-      <button onClick={onClickJoin}>Join</button>
-    </div>
 
+    </div>
   );
 };
 

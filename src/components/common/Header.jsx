@@ -31,7 +31,7 @@ const Header = () => {
         </ContentBtn>
         <ContentBtn
           onClick={() => {
-            navigate("/wirte");
+            navigate("/write");
           }}
         >
           WRITE

@@ -30,43 +30,47 @@ export const addJoin = createAsyncThunk(
 
 // 이메일 중복확인 청크
 export const doubleCheckEmail = createAsyncThunk(
-  "signUpSlice/doubleCheckEmail",
-  async (payload, thunkAPI) => {
-    try {
-      const response = await instance.post("user/checkEmail", {
-        signUp: payload,
-      });
-      if (response.result) {
-        payload.setEmailMsg(response.data.message);
-      }
-      return thunkAPI.fulfillWithValue(response.result);
-    } catch (error) {
-      if (error) {
-        payload.setEmailMsg(error.response.data.message);
-      }
-      return thunkAPI.rejectWithValue(error);
+    "signUpSlice/doubleCheckEmail",
+    async (payload, thunkAPI) => {
+        try {
+            console.log(payload)
+            const response = await instance.post("user/checkEmail", {
+                signUp: payload,
+            });
+            if (response) {
+                payload.setEmailMsg(response.data.message);
+            }
+            return thunkAPI.fulfillWithValue(response.result);
+        } catch (error) {
+            if (error) {
+                payload.setEmailMsg(error.response.data.message);
+                // 중복된 이메일입니다.
+            }
+            return thunkAPI.rejectWithValue(error);
+        }
     }
   }
 );
 
 // 닉네임 중복확인 청크
 export const doubleCheckNickName = createAsyncThunk(
-  "signUpSlice/doubleCheckNickName",
-  async (payload, thunkAPI) => {
-    try {
-      console.log(payload);
-      const response = await instance.post("user/checkNickname", {
-        signUp: payload,
-      });
-      if (response.result) {
-        payload.setNickNameMsg(response.data.message);
-      }
-      return thunkAPI.fulfillWithValue(response.result);
-    } catch (error) {
-      if (error) {
-        payload.setNickNameMsg(error.response.data.message);
-      }
-      return thunkAPI.rejectWithValue(error);
+    "signUpSlice/doubleCheckNickName",
+    async (payload, thunkAPI) => {
+        try {
+            console.log(payload)
+            const response = await instance.post("user/checkNickname", {
+                signUp: payload,
+            });
+            if (response) {
+                payload.setNickNameMsg(response.data.message);
+            }
+            return thunkAPI.fulfillWithValue(response.result);
+        } catch (error) {
+            if (error) {
+                payload.setNickNameMsg(error.response.data.message);
+            }
+            return thunkAPI.rejectWithValue(error);
+        }
     }
   }
 );
