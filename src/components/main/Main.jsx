@@ -14,15 +14,14 @@ const Main = () => {
   const navigate = useNavigate();
   const tokenValue = getCookie("jwtToken");
 
-  const input_ref = useRef(null); //검색ref
-
-  const [page, setPage] = useState(1); //무한스크롤 페이지
-  const [searchPage, setSearchPage] = useState(1);
-  const obsRef = useRef(null);
-  const [load, setLoad] = useState(1); //로딩스피너 추가용
+  const input_ref = useRef(null); // 검색ref
+  const [page, setPage] = useState(1); // 무한스크롤 페이지
+  const [searchPage, setSearchPage] = useState(1); // 검색했을때 무한스크롤 페이지
+  const obsRef = useRef(null); // 스크롤 바닥 ref
+  const [load, setLoad] = useState(1); // 로딩스피너 추가용
   const [prevent, setPrevent] = useState(true); //특정 환경에서 옵저버 핸들러가 2~3번까지 중복으로 실행되는 경우 방지
   const [end, setEnd] = useState(false);
-  const searched = useSelector((state) => state.main.searched);
+  const searched = useSelector((state) => state.main.searched); // true false
 
   // 토크없으면 로그인 페이지로
   useEffect(() => {

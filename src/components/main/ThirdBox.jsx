@@ -1,10 +1,9 @@
-import React, { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styles from "./Main.module.css";
 import SearchBar from "./SearchBar";
 
 const ThirdBox = ({ obsRef, input_ref, searchPage, setSearchPage }) => {
-  const dispatch = useDispatch();
   const searchdata = useSelector((state) => state.main.otherPeopleCards.data);
   const recommendData = useSelector((state) => state.main.MyPostCards.data3);
 

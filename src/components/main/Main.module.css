@@ -19,9 +19,8 @@
 .profileimg {
   width: 150px;
   height: 150px;
-  background-color: rgb(255, 209, 216);
-  margin: 0px auto;
   border-radius: 150px;
+  margin: 0px 55px;
 }
 
 .profileNum {
@@ -135,7 +134,7 @@
 
 .heart {
   margin-top: 20px;
-  margin-right: 10px;
+  margin-right: 7px;
 }
 
 /* 세번째 박스 부분 */
