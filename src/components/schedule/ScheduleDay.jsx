@@ -18,8 +18,10 @@ const ScheduleDay = () => {
 
   //이벤트 함수
   const onGetDateDiff = (e) => {
-    const [name, value] = e.target.value;
+    const { name, value } = e.target;
+
     if (name === startDay) {
+      console.log(name);
       setSartDay(value);
     } else if (name === endDay) {
       setEndDay(value);
@@ -29,9 +31,10 @@ const ScheduleDay = () => {
     const date2 = new Date(endDay);
 
     const diffDate = date1.getTime() - date2.getTime();
+    console.log(diffDate);
     setFixDay(Math.abs(diffDate / (1000 * 60 * 60 * 24)));
   };
-
+  console.log(fixDay);
   //일차추가 버튼
   const onAddDay = () => {
     // const newDay = Number(dayNum.slice(-1)[0]) + 1;

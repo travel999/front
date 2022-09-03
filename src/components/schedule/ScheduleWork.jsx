@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 //style & elements
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
@@ -10,22 +10,18 @@ const ScheduleWrite = ({ day }) => {
     locate: "",
     content: "",
   };
-
+  //Hool
+  const divRef = useRef();
   //state
   const [cardNum, setCardNum] = useState([1]);
   const [conData, setConData] = useState("");
+  const [conList, setConList] = useState([]);
   const [listData, setListData] = useState(initState);
 
   //함수
-  if (conData !== "") {
-    setListData(...listData, {
-      placeName: "123",
-      locate: "1234",
-      content: conData,
-    });
-    window.localStorage.setItem(day, listData);
-  }
-
+  // if (divRef.current.value !== undefined) {
+  //   setConData([...conData, divRef]);
+  // }
   //이벤트 함수
   //일정추가 버튼
   const onAddWork = () => {
@@ -33,6 +29,46 @@ const ScheduleWrite = ({ day }) => {
     setCardNum([...cardNum, newWork]);
   };
 
+  const onGetContent = (e) => {
+    setConData(e.target.value);
+  };
+  //onChange 후 포커싱 아웃될때 제일 최종 값만 가지고 와서 리스트 배열 생성
+  const onGetContentList = () => {
+    setConList([...conList, conData]);
+  };
+
+  //일정 저장
+  const onSaveStorage = () => {
+    //빈 일정 저장할 수 없게 만들어둠
+    const filterConList = conList.filter((item) => item === "");
+
+    if (cardNum.length === filterConList.length) {
+      alert(`${day + 1}` + "일차 일정을 저장합니다!");
+      for (let i = 0; i <= cardNum.length; i++) {
+        setListData({
+          ...listData,
+          placeName: "123",
+          locate: "1234",
+          content: conList[i],
+        });
+      }
+
+      // window.localStorage.setItem(day, listData);
+    } else {
+      for (let i = 0; i <= cardNum.length; i++) {
+        if (
+          conList[i] === null ||
+          conList[i] === undefined ||
+          conList[i] === " "
+        ) {
+          alert("빈 일정은 저장할 수 없습니다.");
+          //onBlue때문에 초기화 작업
+          setConList([]);
+          return divRef.current.focus();
+        }
+      }
+    }
+  };
   //입력한 값
   return (
     <div className={styels.worksWrap}>
@@ -51,7 +87,9 @@ const ScheduleWrite = ({ day }) => {
             name="content"
             className={styels.content}
             placeholder="일정 입력"
-            onChange={(e) => setConData(e.target.value)}
+            ref={divRef}
+            onChange={onGetContent}
+            onBlur={onGetContentList}
             required
           />
         </div>
@@ -59,6 +97,7 @@ const ScheduleWrite = ({ day }) => {
       <Btn backgroundColor="gray" width="25px" onClick={onAddWork}>
         +
       </Btn>
+      <Btn onClick={onSaveStorage}>일정저장하기</Btn>
     </div>
   );
 };
