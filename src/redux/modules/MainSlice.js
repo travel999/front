@@ -4,11 +4,7 @@ import instance from "../../res/instance";
 export const getCards = createAsyncThunk("main/get", async (page, thunkAPI) => {
   try {
     const res = await instance.get(`post/main/${page}`);
-    if (res.data.data3?.result !== false) {
-      return thunkAPI.fulfillWithValue(res.data);
-    } else if (res.data.data3?.result !== false) {
-      return thunkAPI.rejectWithValue(res.data);
-    }
+    return thunkAPI.fulfillWithValue(res.data);
   } catch (error) {
     return error;
   }
@@ -18,7 +14,7 @@ export const searchText = createAsyncThunk(
   "main/search",
   async (value, thunkAPI) => {
     try {
-      const res = await instance.get(`post/search/${value}`);
+      const res = await instance.get(`post/search/${value[0]}/${value[1]}`);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue("애러");
@@ -26,6 +22,7 @@ export const searchText = createAsyncThunk(
   }
 );
 
+// 미사용중
 export const infinitiscroll = createAsyncThunk(
   "main/infiniti",
   async (page, thunkAPI) => {
@@ -39,6 +36,7 @@ export const infinitiscroll = createAsyncThunk(
   }
 );
 
+// 미사용중
 export const searchInfiniti = createAsyncThunk(
   "main/infiniti/search",
   async (value, thunkAPI) => {
@@ -66,7 +64,6 @@ const initialState = {
   MyPostCards: [],
   otherPeopleCards: [],
   searched: false,
-  endPage: true,
 };
 
 export const mainSlice = createSlice({
@@ -80,7 +77,6 @@ export const mainSlice = createSlice({
   },
   extraReducers: {
     [getCards.fulfilled]: (state, action) => {
-      console.log(current(state), action);
       state.MyPostCards = action.payload;
     },
     [getCards.rejected]: (state, action) => {
@@ -93,15 +89,6 @@ export const mainSlice = createSlice({
     },
     [searchText.rejected]: (state, action) => {
       state.otherPeopleCards = [];
-    },
-
-    [infinitiscroll.fulfilled]: (state, action) => {
-      // console.log(action.payload);
-      console.log(current(state.MyPostCards));
-      // state.MyPostCards.data3 = [...state.MyPostCards.data3, ...action.payload];
-    },
-    [infinitiscroll.rejected]: (state, action) => {
-      console.log(action);
     },
   },
 });

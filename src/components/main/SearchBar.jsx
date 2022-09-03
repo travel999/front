@@ -1,20 +1,21 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { searchText, refreshSearch } from "../../redux/modules/MainSlice";
 import styles from "./Main.module.css";
 
-const SearchBar = ({ input_ref, setShowrecomm }) => {
+const SearchBar = ({ input_ref, setShowrecomm, searchPage, setSearchPage }) => {
   const dispatch = useDispatch();
 
-  const refresh = () => {
+  const OnRefresh = () => {
     dispatch(refreshSearch());
     setShowrecomm(true);
     input_ref.current.value = "";
   };
 
-  const tosearch = (value) => {
-    dispatch(searchText(value));
+  const OnTosearch = (input) => {
+    dispatch(searchText([input, searchPage]));
     setShowrecomm(false);
+    setSearchPage((prev) => prev + 1);
   };
 
   return (
@@ -23,7 +24,7 @@ const SearchBar = ({ input_ref, setShowrecomm }) => {
       <button
         className={styles.searchbtn}
         onClick={() => {
-          tosearch(input_ref.current.value);
+          OnTosearch(input_ref.current.value);
         }}
       >
         입력
@@ -32,7 +33,7 @@ const SearchBar = ({ input_ref, setShowrecomm }) => {
       <button
         className={styles.refreshbtn}
         onClick={() => {
-          refresh();
+          OnRefresh();
         }}
       >
         ♻︎
