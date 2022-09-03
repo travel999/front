@@ -1,7 +1,5 @@
 import React, { useCallback, useState } from "react";
-import styles from "./Calendar.module.css";
-
-// const cx = classNames.bind(styles);
+import styled from "styled-components";
 
 const Calendar = () => {
   const today = {
@@ -75,6 +73,7 @@ const Calendar = () => {
       </select>
     );
   }, [selectedYear]);
+
   // onchange로 선택하면 연도 바뀜
   const changeSelectYear = (e) => {
     setSelectedYear(Number(e.target.value));
@@ -85,16 +84,13 @@ const Calendar = () => {
     let weekArr = [];
     week.forEach((value) => {
       weekArr.push(
-        <div
+        <WeekDay
           key={value}
-          //   className={cx(
-          //     { weekday: true },
-          //     { sunday: value === "일" },
-          //     { saturday: value === "토" }
-          //   )} Props로 처리 필요
+          Redcolor={value === "일" ? true : false}
+          Bluecolor={value === "토" ? true : false}
         >
           {value}
-        </div>
+        </WeekDay>
       );
     });
     return weekArr;
@@ -108,43 +104,32 @@ const Calendar = () => {
       if (week[day] === nowDay) {
         for (let i = 0; i < dateTotalCount; i++) {
           dayArr.push(
-            <div
+            <DayDay
               key={i + 1}
-              //   className={cx(
-              //     {
-              //       //오늘 날짜일 때 표시할 스타일 클라스네임
-              //       today:
-              //         today.year === selectedYear &&
-              //         today.month === selectedMonth &&
-              //         today.date === i + 1,
-              //     },
-              //     { weekday: true }, //전체 날짜 스타일
-              //     {
-              //       //전체 일요일 스타일
-              //       sunday:
-              //         new Date(
-              //           selectedYear,
-              //           selectedMonth - 1,
-              //           i + 1
-              //         ).getDay() === 0,
-              //     },
-              //     {
-              //       //전체 토요일 스타일
-              //       saturday:
-              //         new Date(
-              //           selectedYear,
-              //           selectedMonth - 1,
-              //           i + 1
-              //         ).getDay() === 6,
-              //     }
-              //   )}
+              Bluecolor={
+                new Date(selectedYear, selectedMonth - 1, i + 1).getDay() === 6
+                  ? true
+                  : false
+              }
+              Redcolor={
+                new Date(selectedYear, selectedMonth - 1, i + 1).getDay() === 0
+                  ? true
+                  : false
+              }
+              Orangecolor={
+                today.year == selectedYear &&
+                today.month == selectedMonth &&
+                today.date == i + 1
+                  ? true
+                  : false
+              }
             >
               {i + 1}
-            </div>
+            </DayDay>
           );
         }
       } else {
-        dayArr.push(<div className={styles.weekday}></div>);
+        dayArr.push(<div></div>);
       }
     }
 
@@ -152,20 +137,98 @@ const Calendar = () => {
   }, [selectedYear, selectedMonth, dateTotalCount]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>
-        <h3>
+    <Container>
+      <Title>
+        <div>
           {yearControl()}년 {monthControl()}월
-        </h3>
-        <div className={styles.pagination}>
-          <button onClick={prevMonth}>◀︎</button>
-          <button onClick={nextMonth}>▶︎</button>
         </div>
-      </div>
-      <div className={styles.week}>{returnWeek()}</div>
-      <div className={styles.date}>{returnDay()}</div>
-    </div>
+        <Pagination>
+          <ArrowBtn onClick={prevMonth}>◀︎</ArrowBtn>
+          <ArrowBtn onClick={nextMonth}>▶︎</ArrowBtn>
+        </Pagination>
+      </Title>
+      <WeekDayBox>
+        <WeekBox>{returnWeek()}</WeekBox>
+        <DayBox>{returnDay()}</DayBox>
+      </WeekDayBox>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  width: 260px;
+  /* height: 207px; */
+  height: 27vh;
+  background-color: rgb(247, 255, 183);
+  border: 1px solid rgb(247, 255, 183);
+  border-radius: 20px;
+  overflow: auto;
+`;
+
+const Title = styled.div`
+  display: flex;
+  margin-left: 20px;
+  margin-top: 10px;
+`;
+
+const Pagination = styled.div`
+  margin-left: 15px;
+  margin-top: 0px;
+`;
+
+const WeekDayBox = styled.div`
+  margin-left: 20px;
+`;
+
+const WeekBox = styled.div`
+  display: flex;
+  margin-top: 3px;
+  div {
+    width: calc(235px / 7);
+  }
+`;
+
+const DayBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -10px;
+  line-height: 22px;
+  div {
+    width: calc(235px / 7);
+    height: calc(150px / 6);
+    vertical-align: middle;
+  }
+`;
+
+const ArrowBtn = styled.button`
+  background: none;
+  border: none;
+`;
+
+const WeekDay = styled.div`
+  color: ${function (prop) {
+    if (prop.Bluecolor) {
+      return "blue";
+    } else if (prop.Redcolor) {
+      return "red";
+    }
+  }};
+`;
+
+const DayDay = styled.div`
+  text-align: center;
+  color: ${function (prop) {
+    if (prop.Orangecolor) {
+      return "#fff";
+    } else if (prop.Redcolor) {
+      return "red";
+    } else if (prop.Bluecolor) {
+      return "blue";
+    }
+  }};
+  font-weight: ${(prop) => (prop.Orangecolor ? "700" : "500")};
+  background-color: ${(prop) => (prop.Orangecolor ? "#fbc30d" : null)};
+  border-radius: ${(prop) => (prop.Orangecolor ? "100px" : null)};
+`;
 
 export default Calendar;
