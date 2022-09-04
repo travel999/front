@@ -2,33 +2,50 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addJoin, doubleCheckEmail, doubleCheckNickName } from "../../redux/modules/JoinSlice";
-import S3upload from 'react-aws-s3';
+import { uploadFile } from 'react-s3';
+
 import styles from "./join.module.css"
 import pencil from "../../res/img/pencil.svg"
 
+window.Buffer = window.Buffer || require("buffer").Buffer;
+
+// S3 이미지 업로드를 위한 액세스 키
+const S3_BUCKET = process.env.REACT_APP_BUCKET_NAME;
+const REGION = process.env.REACT_APP_REGION;
+const ACCESS_KEY = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
+const SECRET_ACCESS_KEY = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
+
+const config = {
+    bucketName: S3_BUCKET,
+    region: REGION,
+    accessKeyId: ACCESS_KEY,
+    secretAccessKey: SECRET_ACCESS_KEY,
+}
+
 const Join = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const initialState = {
     email: "",
     nickname: "",
     password: "",
     confirm: "",
   };
-
-  const navigate = useNavigate();
-
+  // State
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNickName, setCheckNickName] = useState(false)
-
+  // 회원가입 state
   const [signUp, setSignUp] = useState(initialState);
   const [emailData, setEmailData] = useState("");
   const [nicknNameData, setNickNameData] = useState("")
   const [passData, setPassData] = useState("");
   const [confirm, setConfirm] = useState("");
+  // 프로필 이미지 state
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
-
-  //유효성 확인 메세지
+  const [selectedFile, setSelectedFile] = useState(null);
+  //유효성 확인 state
   const [emailMsg, setEmailMsg] = useState("");
   const [nickNameMsg, setNickNameMsg] = useState("")
   const [pwMsg, setPwMsg] = useState("");
@@ -110,7 +127,7 @@ const Join = () => {
     setSignUp({ ...signUp, [name]: value });
   };
 
-  // 버튼 클릭시 빈칸 확인, 올바르게 입력시 값 전송
+  // 모든 값 입력했는지 확인 후 전송
   const onClickJoin = (e) => {
     if (
       emailData === "" ||
@@ -120,19 +137,27 @@ const Join = () => {
     ) {
     } else {
       dispatch(addJoin({ navigate, signUp }));
-    } // dispatch에 값도 같이 넣어서 보내줘유
+    }
     dispatch(addJoin({ navigate, signUp }));
   }
 
-  //이미지 
-  const onLoadImg = (event) => {
-    //현재 이미지 파일
-    const imaData = event.target.files[0];
-    // setImg(imaData);
-    //선택한 이미지 파일의 url
+  // 이미지 미리보기 
+  const onLoadImg = (e) => {
+    const imaData = e.target.files[0];
+    setImg(imaData);
+
     const imageUrl = URL.createObjectURL(imaData);
     setPreImg(imageUrl);
+    
+    setSelectedFile(e.target.files[0]);
   };
+
+  // 이미지 파일 업로드
+  const handleUpload = async (file) => {
+    uploadFile(file, config)
+        .then(data => console.log(data))
+        .catch(err => console.error(err))
+}
 
   return (
     <div>
@@ -189,23 +214,27 @@ const Join = () => {
           <div className={styles.message}>{confirmMsg}</div>
         </div>
         <div>
-          {/* <div>프로필</div> */}
           <div className={styles.profile}>
+            <label htmlFor="profileImg">
             {!preImg[0] ? (
               <img src={pencil} alt=""></img>
             ) : (
-              <img src={preImg} alt="이미지 미리보기" />
-            )}
+              <img src={preImg} alt="" />
+            )}</label>
+            <h4>프로필 이미지</h4>
           </div>
-          <label htmlFor="profileImg">프로필 이미지</label>
+          
+          <form onChange={() => handleUpload(selectedFile)}>
             <input
-            onChange={onLoadImg}
-            placeholder="프로필 이미지"
-            type="file"
-            accept="image/*"
-            name="profileImg"
-            id="profileImg"
-          />
+              className={styles.inputHidden}
+              onChange={onLoadImg}
+              placeholder="프로필 이미지"
+              type="file"
+              accept="image/*"
+              name="profileImg"
+              id="profileImg"
+            />
+          </form>
         </div>
       </div>
       <div className={styles.buttonWrap}>
@@ -217,5 +246,3 @@ const Join = () => {
 };
 
 export default Join;
-
-// 보완해야 할 점 : 값 다 확인하면 올바른 형식이라고 띄워주기

@@ -5,24 +5,30 @@
     flex-direction: row-reverse;
     align-items: center;
     margin: 104px auto auto auto;
+    justify-content: space-between;
 }
 
+.message {
+    font-size: 15px;
+    padding-left: 200px;
+}
 
 .inputBox {
     width: 500px;
-    margin: 30px 0;
+    margin-top: 25px;
+    margin-bottom: 5px;
     display: flex;
     flex-direction: row;
 }
 
 .inputName {
-    padding-right: 20px;
-    width: 100px;
+    padding-right: 40px;
+    width: 130px;
 
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 55px;
     text-align: left;
 }
@@ -44,11 +50,13 @@
     align-content: center;
     justify-content: center;
     margin-left: 400px;
+    margin-top: 50px;
 }
 
 .button {
     padding: 0;
-    width: 390px;
+    margin-left: 35px;
+    width: 348px;
     height: 54px;
 
     background: #D9D9D9;
@@ -56,8 +64,19 @@
     border-radius: 999px;
 }
 
+.profile h4 {
+    text-align: center;
+    margin-top: 20px;
+}
+
 .profile img {
     border-radius: 50%;
-    height: 100px;
-    width: 100px;
+    height: 177px;
+    width: 177px;
+    cursor: pointer;
+    background-color: #D9D9D9;
+}
+
+.inputHidden {
+    display: none;
 }

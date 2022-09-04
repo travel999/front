@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
 import { setCookie } from "../../res/cookie";
-import { Cookies } from "react-cookie";
+// import { Cookies } from "react-cookie";
 
 const initialState = {
   email: "",
