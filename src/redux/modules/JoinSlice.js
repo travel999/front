@@ -4,6 +4,7 @@ import instance from "../../res/instance";
 const initialState = {
   email: "",
   nickname: "",
+  userImage: "",
   password: "",
   confirm: "",
 };
