@@ -10,39 +10,46 @@ const ScheduleDay = () => {
   //state
   const [index, setIndex] = useState();
   const [dayNum, setDayNum] = useState([true]);
-  const [startDay, setSartDay] = useState("");
-  const [endDay, setEndDay] = useState("");
+  const [startDate, setSartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [fixDay, setFixDay] = useState();
 
   //함수
 
   //이벤트 함수
-  const onGetDateDiff = (e) => {
+  const onSetDate = (e) => {
+    console.log(e.target);
     const { name, value } = e.target;
 
-    if (name === startDay) {
-      console.log(name);
-      setSartDay(value);
-    } else if (name === endDay) {
-      setEndDay(value);
+    if (name === "startDay") {
+      setSartDate(value);
+    } else if (name === "endDay") {
+      setEndDate(value);
     }
+  };
 
-    const date1 = new Date(startDay);
-    const date2 = new Date(endDay);
+  const onGetDateDiff = () => {
+    const date1 = new Date(startDate);
+    const date2 = new Date(endDate);
 
     const diffDate = date1.getTime() - date2.getTime();
-    console.log(diffDate);
-    setFixDay(Math.abs(diffDate / (1000 * 60 * 60 * 24)));
+    const reulst = Math.abs(diffDate / (1000 * 60 * 60 * 24));
+
+    setFixDay(reulst);
   };
-  console.log(fixDay);
+
   //일차추가 버튼
   const onAddDay = () => {
     // const newDay = Number(dayNum.slice(-1)[0]) + 1;
-    if (dayNum.length === fixDay) {
-      alert({ fixDay } + "일차 까지만 입력할 수 있습니다.");
-      return;
+    if (fixDay !== undefined) {
+      if (dayNum.length === fixDay) {
+        alert(`${fixDay}` + "일차 까지만 입력할 수 있습니다.");
+        return;
+      } else {
+        setDayNum([...dayNum, true]);
+      }
     } else {
-      setDayNum([...dayNum, true]);
+      alert("여행기간을 먼저 선택해주세요!");
     }
   };
   //일차삭제 버튼
@@ -67,8 +74,21 @@ const ScheduleDay = () => {
     <div className={styels.WriteWrap}>
       <div className={styels.dayWrap}>
         <div className={styels.dayContent}>
-          <input type="date" name="startDay" onChange={onGetDateDiff} /> ~
-          <input type="date" name="endDay" onChange={onGetDateDiff} />
+          <input
+            type="date"
+            name="startDay"
+            value={startDate}
+            onChange={onSetDate}
+            onBlur={onGetDateDiff}
+          />
+          ~
+          <input
+            type="date"
+            name="endDay"
+            value={endDate}
+            onChange={onSetDate}
+            onBlur={onGetDateDiff}
+          />
           <input type="text" name="title" />
           <Btn color="red" onClick={onInvitePlane}>
             일행 초대하기
@@ -101,7 +121,7 @@ const ScheduleDay = () => {
         {dayNum
           .filter((item, i) => index === i)
           .map((item) => (
-            <ScheduleWork key={item} day={index} maxDay={fixDay} />
+            <ScheduleWork key={item} day={index} />
           ))}
       </div>
       <div className={styels.mapWrap}>

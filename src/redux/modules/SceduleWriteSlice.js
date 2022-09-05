@@ -1,7 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
 
-const initialState = {};
+// 초기 상태값
+const initialState = [
+  { id: 1, title: "테스트 ", content: "테스트1 ", isDone: false },
+];
+
+//액션
+const CREATE = "todo/CREATE";
+
+
+//액션 함수
+export const createTodo = (todo) => {
+  return { type: CREATE, todo };
+};
 
 //청크
 // export const ?? = createAsyncThunk(
