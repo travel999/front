@@ -28,12 +28,12 @@
 .inputName {
     padding-right: 20px;
     width: 80px;
-    line-height: 1.8;
+    line-height: 3;
 }
 
 .input {
     width: 300px;
-    height: 32px;
+    height: 54px;
     font-size: 15px;
     border: 0;
     border-radius: 999px;

@@ -2,19 +2,23 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addJoin, doubleCheckEmail, doubleCheckNickName } from "../../redux/modules/JoinSlice";
-import S3upload from 'react-aws-s3';
+import S3upload from "react-aws-s3";
+
 import styles from "./join.module.css"
 import pencil from "../../res/img/pencil.svg"
+
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const Join = () => {
   const dispatch = useDispatch();
   const initialState = {
     email: "",
     nickname: "",
+    userImage: "",
     password: "",
     confirm: "",
   };
-
+  const imgVal = useRef(null);
   const navigate = useNavigate();
 
   const [checkEmail, setCheckEmail] = useState(false);
@@ -25,15 +29,18 @@ const Join = () => {
   const [nicknNameData, setNickNameData] = useState("")
   const [passData, setPassData] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [userImage, setUserImage] = useState("")
+  // img 
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
+  // const [imgUrl, setImgUrl] = useState()
 
   //유효성 확인 메세지
   const [emailMsg, setEmailMsg] = useState("");
   const [nickNameMsg, setNickNameMsg] = useState("")
   const [pwMsg, setPwMsg] = useState("");
   const [confirmMsg, setConfirmMsg] = useState("");
-
+  const [profileMsg, setProfileMsg] = useState("")
   // 정규식 리스트
   const emailRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwRule = /^[a-zA-Z0-9]{5,12}$/;
@@ -82,6 +89,17 @@ const Join = () => {
       }
     }
 
+    // 이미지 유효성
+    else if (name === "userImage") {
+      
+      if (signUp.userImage !== "" && signUp.userImage !== value) {
+        setProfileMsg("프로필 이미지를 선택해 주세요.");
+      } else if (signUp.userImage == value) {
+        alert("업로드 완료!")
+        setUserImage(value);
+      }
+    }
+
     // 비밀번호 유효성
     else if (name === "password") {
       if (!pwRule.test(value) && value !== "") {
@@ -110,29 +128,54 @@ const Join = () => {
     setSignUp({ ...signUp, [name]: value });
   };
 
+  //이미지 
+  const onLoadImg = (event) => {
+    //현재 이미지 파일
+    const imaData = event.target.files[0];
+    setImg(imaData);
+    //선택한 이미지 파일의 url
+    const imageUrl = URL.createObjectURL(imaData);
+    setPreImg(imageUrl);
+  };
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    //이미지 처리
+    let file = imgVal.current.files[0];
+    let newFileName = imgVal.current.files[0].name;
+    // console.log(file, newFileName)
+    const config = {
+      accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+      bucketName: process.env.REACT_APP_BUCKET_NAME,
+      region: process.env.REACT_APP_REGION,
+    };
+    //aws 서버에 등록
+    const s3Client = new S3upload(config);
+    s3Client.uploadFile(file, newFileName).then(async (data) => {
+      if (data.status === 204) {
+        let userImage = data.location;
+        // setImgUrl({ ...signUp, userImage})
+        // console.log(imgUrl)
+        // 여기 콘솔로 확인! + 여기 state 로 만들어서 회원가입시에 태워주기
+      }
+    });
+  }
+  // console.log(imgUrl)
   // 버튼 클릭시 빈칸 확인, 올바르게 입력시 값 전송
   const onClickJoin = (e) => {
     if (
       emailData === "" ||
       nicknNameData === "" ||
+      userImage === "" ||
       passData === "" ||
       confirm === ""
     ) {
     } else {
       dispatch(addJoin({ navigate, signUp }));
-    } // dispatch에 값도 같이 넣어서 보내줘유
+    }
     dispatch(addJoin({ navigate, signUp }));
   }
-
-  //이미지 
-  const onLoadImg = (event) => {
-    //현재 이미지 파일
-    const imaData = event.target.files[0];
-    // setImg(imaData);
-    //선택한 이미지 파일의 url
-    const imageUrl = URL.createObjectURL(imaData);
-    setPreImg(imageUrl);
-  };
 
   return (
     <div>
@@ -189,23 +232,28 @@ const Join = () => {
           <div className={styles.message}>{confirmMsg}</div>
         </div>
         <div>
-          {/* <div>프로필</div> */}
           <div className={styles.profile}>
-            {!preImg[0] ? (
-              <img src={pencil} alt=""></img>
-            ) : (
-              <img src={preImg} alt="이미지 미리보기" />
-            )}
+            <label htmlFor="userImage">
+              {!preImg[0] ? (
+                <img src={pencil} alt=""></img>
+              ) : (
+                <img src={preImg} alt="" />
+              )}</label>
+            <h4>프로필 이미지</h4>
           </div>
-          <label htmlFor="profileImg">프로필 이미지</label>
+
+          <form onChange={onSubmitHandler}>
             <input
-            onChange={onLoadImg}
-            placeholder="프로필 이미지"
-            type="file"
-            accept="image/*"
-            name="profileImg"
-            id="profileImg"
-          />
+              ref={imgVal}
+              className={styles.inputHidden}
+              onChange={onLoadImg}
+              placeholder="프로필 이미지"
+              type="file"
+              accept="image/*"
+              name="userImage"
+              id="userImage"
+            />
+          </form>
         </div>
       </div>
       <div className={styles.buttonWrap}>
@@ -217,5 +265,3 @@ const Join = () => {
 };
 
 export default Join;
-
-// 보완해야 할 점 : 값 다 확인하면 올바른 형식이라고 띄워주기

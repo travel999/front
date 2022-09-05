@@ -4,6 +4,7 @@ import instance from "../../res/instance";
 const initialState = {
   email: "",
   nickname: "",
+  userImage: "",
   password: "",
   confirm: "",
 };
@@ -48,7 +49,6 @@ export const doubleCheckEmail = createAsyncThunk(
       }
       return thunkAPI.rejectWithValue(error);
     }
-  }
 );
 
 // 닉네임 중복확인 청크
@@ -70,7 +70,6 @@ export const doubleCheckNickName = createAsyncThunk(
       }
       return thunkAPI.rejectWithValue(error);
     }
-  }
 );
 
 // 리듀서
