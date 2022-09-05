@@ -3,6 +3,8 @@ import React, { useState, useRef } from "react";
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 
+import ScheduleMap from "./ScheduleMap";
+
 const ScheduleWrite = ({ day }) => {
   //초기화 값
   const initState = {
@@ -19,9 +21,7 @@ const ScheduleWrite = ({ day }) => {
   const [listData, setListData] = useState(initState);
 
   //함수
-  // if (divRef.current.value !== undefined) {
-  //   setConData([...conData, divRef]);
-  // }
+
   //이벤트 함수
   //일정추가 버튼
   const onAddWork = () => {
@@ -40,20 +40,17 @@ const ScheduleWrite = ({ day }) => {
   //일정 저장
   const onSaveStorage = () => {
     //빈 일정 저장할 수 없게 만들어둠
-    const filterConList = conList.filter((item) => item === "");
-
+    const filterConList = conList.filter((item) => item !== "");
     if (cardNum.length === filterConList.length) {
       alert(`${day + 1}` + "일차 일정을 저장합니다!");
-      for (let i = 0; i <= cardNum.length; i++) {
-        setListData({
-          ...listData,
-          placeName: "123",
-          locate: "1234",
-          content: conList[i],
-        });
-      }
+      setListData({
+        ...listData,
+        placeName: "123",
+        locate: "1234",
+        content: filterConList,
+      });
 
-      // window.localStorage.setItem(day, listData);
+      localStorage.setItem(day, JSON.stringify(listData));
     } else {
       for (let i = 0; i <= cardNum.length; i++) {
         if (
@@ -98,6 +95,7 @@ const ScheduleWrite = ({ day }) => {
         +
       </Btn>
       <Btn onClick={onSaveStorage}>일정저장하기</Btn>
+      <ScheduleMap />
     </div>
   );
 };
