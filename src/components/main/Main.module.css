@@ -122,7 +122,7 @@
 .smallbox {
   background-color: rgb(247, 255, 183);
   width: 260px;
-  height: 27vh;
+  /* height: 27vh; */
   margin: 0px 20px;
   border-radius: 20px;
 }

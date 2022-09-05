@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCards } from "../../redux/modules/MainSlice";
+import Chat from "../chat/Chat";
 import styles from "./Detail.module.css";
 
 const Detail = () => {
@@ -24,6 +25,7 @@ const Detail = () => {
           </div>
         );
       })}
+      <Chat />
     </div>
   );
 };

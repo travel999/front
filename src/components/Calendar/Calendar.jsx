@@ -1,7 +1,5 @@
-import React, { useCallback, useState } from "react";
-import styles from "./Calendar.module.css";
-
-// const cx = classNames.bind(styles);
+import React, { useCallback, useState, memo, useEffect } from "react";
+import styled from "styled-components";
 
 const Calendar = () => {
   const today = {
@@ -15,6 +13,42 @@ const Calendar = () => {
   const [selectedMonth, setSelectedMonth] = useState(today.month); //현재 선택된 달
   const dateTotalCount = new Date(selectedYear, selectedMonth, 0).getDate(); //선택된 연도, 달의 마지막 날짜
 
+  const [clickcount, setClickCount] = useState(0);
+  const [travelDay, setTravelDay] = useState({
+    start: "0000-00-00",
+    end: "0000-00-00",
+  });
+
+  const startSchedule = travelDay?.start?.split("-");
+  const endSchedule = travelDay?.end?.split("-");
+
+  // const [travelDate, setTravelDate] = useState(0);
+
+  // useEffect(() => {
+  //   if (endSchedule[2] - startSchedule[2] > 0) {
+  //     setTravelDate(Number(endSchedule[2]) - Number(startSchedule[2]));
+  //   } else if (startSchedule[1] !== endSchedule[1]) {
+  //     setTravelDate(
+  //       Number(dateTotalCount) -
+  //         Number(startSchedule[2]) +
+  //         Number(endSchedule[2]) -
+  //         1
+  //     );
+  //   }
+  // }, [clickcount]);
+
+  // console.log(Number(travelDate) + "박" + Number(travelDate + 1) + "일");
+
+  // useEffect(() => {
+  //   if (Number(travelDay.start) < Number(travelDay.end)) {
+  //     console.log(Number(travelDay.start), Number(travelDay.end));
+  //     console.log(Number(travelDay.end) - Number(travelDay.start));
+  //   } else if (Number(travelDay.end) < Number(travelDay.start)) {
+  //     console.log(Number(travelDay.start), Number(travelDay.end));
+  //     console.log(Number(travelDay.start) - Number(travelDay.end));
+  //   }
+  // }, [travelDay, clickcount]);
+
   //이전 달 보기 보튼
   const prevMonth = useCallback(() => {
     if (selectedMonth === 1) {
@@ -23,7 +57,7 @@ const Calendar = () => {
     } else {
       setSelectedMonth(selectedMonth - 1);
     }
-  }, [selectedMonth]);
+  }, [selectedMonth, clickcount]);
 
   //다음 달 보기 버튼
   const nextMonth = useCallback(() => {
@@ -33,14 +67,14 @@ const Calendar = () => {
     } else {
       setSelectedMonth(selectedMonth + 1);
     }
-  }, [selectedMonth]);
+  }, [selectedMonth, clickcount]);
 
-  //달 선택박스에서 고르기 <<<
+  //달 선택박스에서 고르기
   const monthControl = useCallback(() => {
     let monthArr = [];
     for (let i = 0; i < 12; i++) {
       monthArr.push(
-        <option key={i + 1} value={i + 1}>
+        <option key={"month" + i + 1} value={i + 1}>
           {i + 1}월
         </option>
       );
@@ -50,7 +84,7 @@ const Calendar = () => {
         {monthArr}
       </select>
     );
-  }, [selectedMonth]);
+  }, [selectedMonth, clickcount]);
 
   // onchange로 선택하면 월 바꿔줌
   const changeSelectMonth = (e) => {
@@ -60,11 +94,11 @@ const Calendar = () => {
   //연도 선택박스에서 고르기
   const yearControl = useCallback(() => {
     let yearArr = [];
-    const startYear = today.year - 10; //현재 년도부터 10년전 까지만
-    const endYear = today.year + 10; //현재 년도부터 10년후 까지만
+    const startYear = today.year - 5; //현재 년도부터 5년전 까지만
+    const endYear = today.year + 5; //현재 년도부터 5년후 까지만
     for (let i = startYear; i < endYear + 1; i++) {
       yearArr.push(
-        <option key={i} value={i}>
+        <option key={"year" + i} value={i}>
           {i}년
         </option>
       );
@@ -74,7 +108,8 @@ const Calendar = () => {
         {yearArr}
       </select>
     );
-  }, [selectedYear]);
+  }, [selectedYear, clickcount]);
+
   // onchange로 선택하면 연도 바뀜
   const changeSelectYear = (e) => {
     setSelectedYear(Number(e.target.value));
@@ -85,16 +120,13 @@ const Calendar = () => {
     let weekArr = [];
     week.forEach((value) => {
       weekArr.push(
-        <div
-          key={value}
-          //   className={cx(
-          //     { weekday: true },
-          //     { sunday: value === "일" },
-          //     { saturday: value === "토" }
-          //   )} Props로 처리 필요
+        <WeekDay
+          key={"week" + value}
+          Redcolor={value === "일" ? true : false}
+          Bluecolor={value === "토" ? true : false}
         >
           {value}
-        </div>
+        </WeekDay>
       );
     });
     return weekArr;
@@ -108,64 +140,196 @@ const Calendar = () => {
       if (week[day] === nowDay) {
         for (let i = 0; i < dateTotalCount; i++) {
           dayArr.push(
-            <div
-              key={i + 1}
-              //   className={cx(
-              //     {
-              //       //오늘 날짜일 때 표시할 스타일 클라스네임
-              //       today:
-              //         today.year === selectedYear &&
-              //         today.month === selectedMonth &&
-              //         today.date === i + 1,
-              //     },
-              //     { weekday: true }, //전체 날짜 스타일
-              //     {
-              //       //전체 일요일 스타일
-              //       sunday:
-              //         new Date(
-              //           selectedYear,
-              //           selectedMonth - 1,
-              //           i + 1
-              //         ).getDay() === 0,
-              //     },
-              //     {
-              //       //전체 토요일 스타일
-              //       saturday:
-              //         new Date(
-              //           selectedYear,
-              //           selectedMonth - 1,
-              //           i + 1
-              //         ).getDay() === 6,
-              //     }
-              //   )}
+            <DayDay
+              key={"day" + i + 1}
+              Bluecolor={
+                new Date(selectedYear, selectedMonth - 1, i + 1).getDay() === 6
+                  ? true
+                  : false
+              }
+              Redcolor={
+                new Date(selectedYear, selectedMonth - 1, i + 1).getDay() === 0
+                  ? true
+                  : false
+              }
+              Orangecolor={
+                today.year === selectedYear &&
+                today.month === selectedMonth &&
+                today.date === i + 1
+                  ? true
+                  : false
+              }
+              schedule={
+                startSchedule[0] == selectedYear &&
+                startSchedule[1] == selectedMonth &&
+                startSchedule[2] == i + 1
+                  ? true
+                  : false
+              }
+              schedule2={
+                endSchedule[0] == selectedYear &&
+                endSchedule[1] == selectedMonth &&
+                endSchedule[2] == i + 1
+                  ? true
+                  : false
+              }
+              onClick={() => {
+                OnCountPlus(i + 1);
+              }}
             >
               {i + 1}
-            </div>
+            </DayDay>
           );
         }
       } else {
-        dayArr.push(<div className={styles.weekday}></div>);
+        dayArr.push(<div key={"excepDay" + nowDay}></div>);
       }
     }
-
     return dayArr;
-  }, [selectedYear, selectedMonth, dateTotalCount]);
+  }, [selectedYear, selectedMonth, dateTotalCount, clickcount]);
+
+  const OnCountPlus = (day) => {
+    setClickCount((prev) => prev + 1);
+
+    // day
+    if (clickcount % 2 == 0) {
+      if (Number(selectedMonth) < 10 && Number(day) >= 10) {
+        setTravelDay({
+          ...travelDay,
+          start: `${selectedYear}-0${selectedMonth}-${day}`,
+        });
+      } else if (Number(selectedMonth) < 10 && Number(day) < 10) {
+        setTravelDay({
+          ...travelDay,
+          start: `${selectedYear}-0${selectedMonth}-0${day}`,
+        });
+      } else if (Number(day) < 10 && Number(selectedMonth) >= 10) {
+        setTravelDay({
+          ...travelDay,
+          start: `${selectedYear}-${selectedMonth}-0${day}`,
+        });
+      }
+    } else {
+      if (Number(selectedMonth) < 10 && Number(day) >= 10) {
+        setTravelDay({
+          ...travelDay,
+          end: `${selectedYear}-0${selectedMonth}-${day}`,
+        });
+      } else if (Number(selectedMonth) < 10 && Number(day) < 10) {
+        setTravelDay({
+          ...travelDay,
+          end: `${selectedYear}-0${selectedMonth}-0${day}`,
+        });
+      } else if (Number(day) < 10 && Number(selectedMonth) >= 10) {
+        setTravelDay({
+          ...travelDay,
+          end: `${selectedYear}-${selectedMonth}-0${day}`,
+        });
+      }
+    }
+  };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>
-        <h3>
+    <Container>
+      <Title>
+        <div>
           {yearControl()}년 {monthControl()}월
-        </h3>
-        <div className={styles.pagination}>
-          <button onClick={prevMonth}>◀︎</button>
-          <button onClick={nextMonth}>▶︎</button>
         </div>
-      </div>
-      <div className={styles.week}>{returnWeek()}</div>
-      <div className={styles.date}>{returnDay()}</div>
-    </div>
+        <Pagination>
+          <ArrowBtn onClick={prevMonth} style={{ cursor: "pointer" }}>
+            ◀︎
+          </ArrowBtn>
+          <ArrowBtn onClick={nextMonth} style={{ cursor: "pointer" }}>
+            ▶︎
+          </ArrowBtn>
+        </Pagination>
+      </Title>
+      <WeekDayBox>
+        <WeekBox>{returnWeek()}</WeekBox>
+        <DayBox>{returnDay()}</DayBox>
+      </WeekDayBox>
+    </Container>
   );
 };
 
-export default Calendar;
+const Container = styled.div`
+  width: 260px;
+  /* height: 207px; */
+  height: 27vh;
+  background-color: rgb(247, 255, 183);
+  border: 1px solid rgb(247, 255, 183);
+  border-radius: 20px;
+  overflow: auto;
+`;
+
+const Title = styled.div`
+  display: flex;
+  margin-left: 20px;
+  margin-top: 10px;
+`;
+
+const Pagination = styled.div`
+  margin-left: 15px;
+  margin-top: 0px;
+`;
+
+const WeekDayBox = styled.div`
+  margin-left: 20px;
+`;
+
+const WeekBox = styled.div`
+  display: flex;
+  margin-top: 3px;
+  div {
+    width: calc(235px / 7);
+  }
+`;
+
+const DayBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -10px;
+  line-height: 24px;
+  div {
+    width: calc(235px / 7);
+    height: calc(150px / 6);
+    vertical-align: middle;
+  }
+`;
+
+const ArrowBtn = styled.button`
+  background: none;
+  border: none;
+`;
+
+const WeekDay = styled.div`
+  color: ${function (prop) {
+    if (prop.Bluecolor) {
+      return "blue";
+    } else if (prop.Redcolor) {
+      return "red";
+    }
+  }};
+`;
+
+const DayDay = styled.div`
+  text-align: center;
+  color: ${function (prop) {
+    if (prop.Orangecolor) {
+      return "#fff";
+    } else if (prop.Redcolor) {
+      return "red";
+    } else if (prop.Bluecolor) {
+      return "blue";
+    }
+  }};
+
+  /* border-bottom: ${(prop) => (prop.schedule ? "1px solid black" : null)};
+  border-bottom: ${(prop) => (prop.schedule2 ? "1px solid black" : null)}; */
+
+  font-weight: ${(prop) => (prop.Orangecolor ? "700" : "500")};
+  background-color: ${(prop) => (prop.Orangecolor ? "#fbc30d" : null)};
+  border-radius: ${(prop) => (prop.Orangecolor ? "100px" : null)};
+`;
+
+export default memo(Calendar);
