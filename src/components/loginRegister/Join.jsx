@@ -33,14 +33,11 @@ const Join = () => {
   // img 
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
-  // const [imgUrl, setImgUrl] = useState()
-
   //유효성 확인 메세지
   const [emailMsg, setEmailMsg] = useState("");
   const [nickNameMsg, setNickNameMsg] = useState("")
   const [pwMsg, setPwMsg] = useState("");
   const [confirmMsg, setConfirmMsg] = useState("");
-  const [profileMsg, setProfileMsg] = useState("")
   // 정규식 리스트
   const emailRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwRule = /^[a-zA-Z0-9]{5,12}$/;
@@ -89,17 +86,6 @@ const Join = () => {
       }
     }
 
-    // 이미지 유효성
-    else if (name === "userImage") {
-      
-      if (signUp.userImage !== "" && signUp.userImage !== value) {
-        setProfileMsg("프로필 이미지를 선택해 주세요.");
-      } else if (signUp.userImage == value) {
-        alert("업로드 완료!")
-        setUserImage(value);
-      }
-    }
-
     // 비밀번호 유효성
     else if (name === "password") {
       if (!pwRule.test(value) && value !== "") {
@@ -125,10 +111,20 @@ const Join = () => {
         setConfirm(value);
       }
     }
+
+    // 이미지 유효성 필요한지?
+    // else if (name === "userImage") {
+    //   if (signUp.userImage == ""){
+    //   } else if ( signUp.userImage == value) {
+    //     alert("업로드 완료!")
+    //     setUserImage(userImage)
+    //   }
+    // }
+
     setSignUp({ ...signUp, [name]: value });
   };
 
-  //이미지 
+    //이미지 미리보기
   const onLoadImg = (event) => {
     //현재 이미지 파일
     const imaData = event.target.files[0];
@@ -143,7 +139,7 @@ const Join = () => {
     //이미지 처리
     let file = imgVal.current.files[0];
     let newFileName = imgVal.current.files[0].name;
-    // console.log(file, newFileName)
+
     const config = {
       accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
       secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
@@ -155,15 +151,14 @@ const Join = () => {
     s3Client.uploadFile(file, newFileName).then(async (data) => {
       if (data.status === 204) {
         let userImage = data.location;
-        // setImgUrl({ ...signUp, userImage})
-        // console.log(imgUrl)
-        // 여기 콘솔로 확인! + 여기 state 로 만들어서 회원가입시에 태워주기
+        setUserImage(userImage)
+        console.log(userImage)
+        setSignUp({...signUp, userImage})
       }
     });
   }
-  // console.log(imgUrl)
   // 버튼 클릭시 빈칸 확인, 올바르게 입력시 값 전송
-  const onClickJoin = (e) => {
+  const onJoin = (e) => {
     if (
       emailData === "" ||
       nicknNameData === "" ||
@@ -257,9 +252,8 @@ const Join = () => {
         </div>
       </div>
       <div className={styles.buttonWrap}>
-        <button className={styles.button} onClick={onClickJoin}>회원가입</button>
+        <button className={styles.button} onClick={onJoin}>회원가입</button>
       </div>
-
     </div>
   );
 };

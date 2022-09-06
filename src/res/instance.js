@@ -10,6 +10,10 @@ const instance = axios.create({
   withCredentials: true,
 });
 
+export const userApi = {
+  kakaoLogIn:(code) => "http://43.200.173.40:3000/".get(`/auth/kakao/callback?code=${code}`)
+}
+
 // if (getCookie("jwtToken") === undefined) {
 //   instance.defaults.headers.common["token"] = 500;
 // } else {

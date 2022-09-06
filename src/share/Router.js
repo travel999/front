@@ -4,8 +4,9 @@ import MainPage from "../pages/MainPage";
 import SchedulePage from "../pages/ScheduleWritePage";
 import StartPage from "../pages/StartPage";
 import LoginPage from "../pages/LoginPage";
+import KakaoLoginPage from "../pages/KakaoLoginPage";
 import JoinPage from "../pages/JoinPage";
-import MyProfilePage from "../pages/MyProfilePage";
+import ProfilePage from "../pages/ProfilePage";
 import DetailPage from "../pages/DetailPage";
 
 const Router = () => {
@@ -16,7 +17,8 @@ const Router = () => {
         <Route path="/main" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/join" element={<JoinPage />} />
-        <Route path="/myprofile" element={<MyProfilePage />} />
+        <Route path="/kakao/callback" element={<KakaoLoginPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/write" element={<SchedulePage />} />
         <Route path="/detail" element={<DetailPage />} />
       </Routes>

@@ -8,11 +8,6 @@
     justify-content: space-between;
 }
 
-.message {
-    font-size: 15px;
-    padding-left: 200px;
-}
-
 .inputBox {
     width: 500px;
     margin-top: 25px;
@@ -44,24 +39,8 @@
     background-color: #D9D9D9;
 }
 
-
-.buttonWrap {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    margin-left: 396px;
-    margin-top: 50px;
-}
-
-.button {
-    padding: 0;
-    margin-left: 35px;
-    width: 348px;
-    height: 60px;
-
-    background: #D9D9D9;
-    border: 0;
-    border-radius: 999px;
+.inputHidden {
+    display: none;
 }
 
 .profile h4 {
@@ -77,6 +56,33 @@
     background-color: #D9D9D9;
 }
 
-.inputHidden {
-    display: none;
+
+.buttonWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 395px;
+    margin-top: 50px;
+}
+
+.button {
+    padding: 0;
+    margin-left: 35px;
+    width: 348px;
+    height: 60px;
+
+    background: #D9D9D9;
+    border: 0;
+    border-radius: 999px;
+}
+
+.button2 {
+    padding: 0;
+    margin-left: 35px;
+    width: 348px;
+    height: 60px;
+
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    border-radius: 999px;
 }
