@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 
-import ScheduleMap from "./ScheduleMap";
+// import ScheduleMap from "./ScheduleMap";
 
 const ScheduleWrite = ({ day }) => {
   //초기화 값
@@ -14,6 +14,7 @@ const ScheduleWrite = ({ day }) => {
   };
   //Hool
   const divRef = useRef();
+
   //state
   const [cardNum, setCardNum] = useState([1]);
   const [conData, setConData] = useState("");
@@ -73,29 +74,26 @@ const ScheduleWrite = ({ day }) => {
       {cardNum.map((num) => (
         <div className={styels.work} key={num}>
           <h3>{num}번째 일정</h3>
-          <input
-            type="text"
-            name="work_title"
-            className={styels.title}
-            placeholder="장소 선택"
-            required
-          />
-          <textarea
-            name="content"
-            className={styels.content}
-            placeholder="일정 입력"
-            ref={divRef}
-            onChange={onGetContent}
-            onBlur={onGetContentList}
-            required
-          />
+
+          <div className="keywordSearchDiv">
+            <div></div>
+            <input type="text" name="placeName" id="placeName" />
+            <textarea
+              name="content"
+              className={styels.content}
+              placeholder="일정 입력"
+              ref={divRef}
+              onChange={onGetContent}
+              onBlur={onGetContentList}
+              required
+            />
+          </div>
         </div>
       ))}
       <Btn backgroundColor="gray" width="25px" onClick={onAddWork}>
         +
       </Btn>
       <Btn onClick={onSaveStorage}>일정저장하기</Btn>
-      <ScheduleMap />
     </div>
   );
 };
