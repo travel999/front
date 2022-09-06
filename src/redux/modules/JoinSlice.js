@@ -57,7 +57,7 @@ export const doubleCheckNickName = createAsyncThunk(
   "signUpSlice/doubleCheckNickName",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload);
+      // console.log(payload);
       const response = await instance.post("user/checkNickname", {
         signUp: payload,
       });
@@ -69,7 +69,7 @@ export const doubleCheckNickName = createAsyncThunk(
       if (error) {
         payload.setNickNameMsg(error.response.data.message);
       }
-      return thunkAPI.rejectWithValue(error);
+      return console.error(error)
     }
   }
 );

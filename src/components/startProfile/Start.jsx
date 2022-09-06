@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./start.module.css"
 import background from "../../res/img/background.png"
+import { KAKAO_AUTH_URL } from "../loginRegister/KakaoLogIn";
 
 const Start = () => {
   const navigate = useNavigate();
@@ -23,7 +24,14 @@ const Start = () => {
           >
             로그인
           </button>
-          <button className={styles.socialLogin}>카카오로 로그인</button>
+          <a href={KAKAO_AUTH_URL}>
+            <button className={styles.socialLogin}
+            // onClick={() => {
+            //   navigate({KAKAO_AUTH_URL});
+            // }}
+            >
+              카카오로 로그인
+            </button></a>
           <button className={styles.join}
             onClick={() => {
               navigate("/join");

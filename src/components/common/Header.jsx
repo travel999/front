@@ -45,7 +45,7 @@ const Header = () => {
         </ContentBtn>
         <ContentBtn
           onClick={() => {
-            navigate("/myprofile");
+            navigate("/profile");
           }}
         >
           PROFILE
