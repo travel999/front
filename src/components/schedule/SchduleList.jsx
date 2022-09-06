@@ -2,6 +2,7 @@ import React, { useState } from "react";
 //style & elements
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
+import ScheduleMap from "./ScheduleMap";
 import ScheduleWork from "./ScheduleWork";
 const ScheduleList = () => {
   //state
@@ -21,6 +22,7 @@ const ScheduleList = () => {
       for (let i = 1; i <= fixDay; i++) {
         dayArr.push(i);
       }
+
       return (
         <div>
           <ul>
@@ -37,7 +39,7 @@ const ScheduleList = () => {
           {dayArr
             .filter((item, i) => index === i)
             .map((item) => (
-              <ScheduleWork key={item} day={index} />
+              <ScheduleMap key={item} day={index} />
             ))}
         </div>
       );
