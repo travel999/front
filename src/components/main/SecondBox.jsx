@@ -1,10 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toLike } from "../../redux/modules/MainSlice";
 import styles from "./Main.module.css";
 import SecondMiniBox from "./SecondMiniBox";
 
 const SecondBox = () => {
+  const dispatch = useDispatch();
   const likePosts = useSelector((state) => state.main.MyPostCards.data2);
+
+  const Onlike = (value) => {
+    dispatch(toLike(value));
+  };
 
   return (
     <div>
@@ -13,7 +19,7 @@ const SecondBox = () => {
         {likePosts?.length &&
           likePosts?.map((value) => {
             return (
-              <div className={styles.card} key={value._id}>
+              <div className={styles.card} key={"SB" + value._id}>
                 <img
                   className={styles.img}
                   src={
@@ -26,7 +32,15 @@ const SecondBox = () => {
                     {value.day.length - 1}박 {value.day.length}일
                   </div>
                 </div>
-                <div className={styles.heart}> ❤️ {value.like}</div>
+                <div
+                  onClick={() => {
+                    Onlike(value._id);
+                  }}
+                  className={styles.heart}
+                >
+                  {" "}
+                  ❤️ {value.like}
+                </div>
               </div>
             );
           })}

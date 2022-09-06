@@ -7,9 +7,12 @@ const FirstBox = () => {
   const dispatch = useDispatch();
   const myPosts = useSelector((state) => state.main.MyPostCards.data1);
 
-  const OnOpenPublic = () => {
+  // const state = useSelector((state) => state.main);
+  // console.log(state);
+
+  const OnOpenPublic = (value) => {
     // value를 뭘 줘야하나
-    dispatch(toOpenPublic());
+    dispatch(toOpenPublic(value));
   };
 
   return (
@@ -34,20 +37,20 @@ const FirstBox = () => {
               {value.openPublic ? (
                 <div
                   onClick={() => {
-                    OnOpenPublic();
-                  }}
-                  className={styles.openNor}
-                >
-                  🔓
-                </div>
-              ) : (
-                <div
-                  onClick={() => {
-                    OnOpenPublic();
+                    OnOpenPublic(value._id);
                   }}
                   className={styles.openNor}
                 >
                   🔒
+                </div>
+              ) : (
+                <div
+                  onClick={() => {
+                    OnOpenPublic(value._id);
+                  }}
+                  className={styles.openNor}
+                >
+                  🔓
                 </div>
               )}
             </div>

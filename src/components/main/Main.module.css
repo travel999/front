@@ -204,3 +204,7 @@
   color: rgb(247, 255, 183);
   font-size: 0.3em;
 }
+
+.cursor {
+  cursor: pointer;
+}
