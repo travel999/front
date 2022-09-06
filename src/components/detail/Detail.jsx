@@ -25,7 +25,7 @@ const Detail = () => {
           </div>
         );
       })}
-      <Chat />
+      {/* <Chat /> */}
     </div>
   );
 };

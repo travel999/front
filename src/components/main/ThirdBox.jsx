@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toLike } from "../../redux/modules/MainSlice";
 import styles from "./Main.module.css";
 import SearchBar from "./SearchBar";
 
 const ThirdBox = ({ obsRef, input_ref, searchPage, setSearchPage }) => {
+  const dispatch = useDispatch();
   const searchdata = useSelector((state) => state.main.otherPeopleCards.data);
   const recommendData = useSelector((state) => state.main.MyPostCards.data3);
 
   const [showRecommend, setShowrecomm] = useState(true);
+
+  const Onlike = (value) => {
+    dispatch(toLike(value));
+  };
 
   return (
     <div>
@@ -22,14 +28,21 @@ const ThirdBox = ({ obsRef, input_ref, searchPage, setSearchPage }) => {
         {showRecommend && recommendData?.length
           ? recommendData?.map((value) => {
               return (
-                <div className={styles.contentbox} key={value._id}>
+                <div className={styles.contentbox} key={"TB" + value._id}>
                   <div className={styles.bicimg}></div>
                   <div className={styles.thirdtext}>
                     <div>{value.title}</div>
                     <div className={styles.day}>
                       {value?.day.length - 1}박 {value?.day.length}일
                     </div>
-                    <div>❤️ {value.like}</div>
+                    <div
+                      onClick={() => {
+                        Onlike(value._id);
+                      }}
+                      className={styles.cursor}
+                    >
+                      ❤️ {value.like}
+                    </div>
                   </div>
                 </div>
               );
@@ -45,7 +58,14 @@ const ThirdBox = ({ obsRef, input_ref, searchPage, setSearchPage }) => {
                   <div className={styles.day}>
                     {value?.day.length - 1}박 {value?.day.length}일
                   </div>
-                  <div>❤️ {value.like}</div>
+                  <div
+                    onClick={() => {
+                      Onlike(value._id);
+                    }}
+                    className={styles.cursor}
+                  >
+                    ❤️ {value.like}
+                  </div>
                 </div>
               </div>
             );
