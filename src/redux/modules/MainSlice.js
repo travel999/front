@@ -108,7 +108,7 @@ export const mainSlice = createSlice({
     },
 
     [toLike.fulfilled]: (state, action) => {
-      if (action.payload.isLike.message == "일정에 좋아요를 취소했습니다") {
+      if (action.payload.isLike.message === "일정에 좋아요를 취소했습니다") {
         const actionData = action.payload.isLike.existLikes;
         const MyPostCards2 = {};
         // 데이터 1 만듬
@@ -124,7 +124,7 @@ export const mainSlice = createSlice({
         MyPostCards2.data3 = copyData3;
         // 붙여넣기
         state.MyPostCards = MyPostCards2;
-      } else if (action.payload.isLike.message == "일정에 좋아요를 했습니다") {
+      } else if (action.payload.isLike.message === "일정에 좋아요를 했습니다") {
         const actionData = action.payload.isLike.existLikes;
         const MyPostCards2 = {};
         // 데이터 1 만듬

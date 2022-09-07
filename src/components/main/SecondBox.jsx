@@ -36,9 +36,8 @@ const SecondBox = () => {
                   onClick={() => {
                     Onlike(value._id);
                   }}
-                  className={styles.heart}
+                  className={`${styles.heart} ${styles.cursor}`}
                 >
-                  {" "}
                   ❤️ {value.like}
                 </div>
               </div>
