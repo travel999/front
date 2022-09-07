@@ -112,15 +112,6 @@ const Join = () => {
       }
     }
 
-    // 이미지 유효성 필요한지?
-    // else if (name === "userImage") {
-    //   if (signUp.userImage == ""){
-    //   } else if ( signUp.userImage == value) {
-    //     alert("업로드 완료!")
-    //     setUserImage(userImage)
-    //   }
-    // }
-
     setSignUp({ ...signUp, [name]: value });
   };
 
