@@ -1,51 +1,41 @@
-// import { createAction, handleActions } from "redux-actions";
-// import { produce } from "immer";
-// import { userApi } from "../../res/instance";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import instance from "../../res/instance"
 
-// const SET_USER = "SET_USER";
-// // 액션 생성
-// const setUser = createAction(SET_USER, (user) => ({ user }));
-// // 초기값
-// const initialState = {
-//     user: null,
-//     isLogin: false,
-// }
-// //middelware
-// const KakaoLogInDB = (code) => {
-//     return function (dispatch, getState, { history }) {
-//         userApi
-//             .KakaoLogIn(code)
-//             .then((response) => {
-//                 console.log(response);
-//                 sessionStorage.setItem('Token', response.data.token);
-//                 localStorage.setItem('username', response.data.username);
-//                 dispatch(setUser({
-//                     username: response.data.username,
-//                     nickname: response.data.nickname,
-//                     profileImgUrl: response.data.profileImgUrl
-//                 }))
-//                 history.replace('/home');
-//             })
-//             .catch((error) => {
-//                 console.log("error: ", error);
-//                 window.alert('로그인에 실패하였습니다. ')
-//                 window.replace('/');
-//             })
-//     }
-// }
-// //reducer
-// export default handleActions(
-//     {
-//         [SET_USER]: (state, action) => produce(state, (draft) => {
-//             draft.user = action.payload.user;
-//             draft.isLogin = true;
-//         })
-//     }, initialState
-// )
+const initialState = {
+    userLogin: [],
+    isLoading: false,
+    error: [],
+};
 
-// const actionCreators = {
-//     setUser,
-//     KakaoLogInDB,
-// }
+export const kakaoLogin = createAsyncThunk(
+    "KakaoSlice/kakaoCallback",
+    async (code, thunkAPI) => {
+        try {
+            const response = await instance.get(`http://localhost:3000/kakao/callback`,code); ///kakao?code=${code}
+            const ACCESS_TOKEN = response.data.accessToken;
+            // const data = await "http://localhost:3000/".get("/kakao", payload);
+            localStorage.setItem('token', ACCESS_TOKEN );
+            // localStorage.setItem('nickname', data.data.nickname);
+            // localStorage.setItem('userKey', data.data.userKey);
+            return thunkAPI.fulfillWithValue(ACCESS_TOKEN);
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    },
+);
 
-// export { actionCreators };
+export const KakaoSlice = createSlice({
+    name: 'login',
+    initialState,
+    reducers: {},
+    extraReducers: {
+        [kakaoLogin.fulfilled]: (state, action) => {
+            state.userLogin = action.payload;
+        },
+        [kakaoLogin.rejected]: (state, action) => {
+            state.error = action.payload;
+        },
+    },
+});
+
+export default KakaoSlice;

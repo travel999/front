@@ -2,11 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./start.module.css"
 import background from "../../res/img/background.png"
-import { KAKAO_AUTH_URL } from "../loginRegister/KakaoLogIn";
 
 const Start = () => {
   const navigate = useNavigate();
-
+  
+  const REST_API_KEY = "56b0ae6936317cb6d7059df454f97979"
+  const REDIRECT_URI = "http://localhost:3000/kakao/callback"
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+  // const KAKAO_AUTH_URL = "http://localhost:3000/kakao"
   return (
     <div className={styles.startBox}>
       <div className={styles.wrap}>

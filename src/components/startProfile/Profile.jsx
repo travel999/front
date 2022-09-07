@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import S3upload from "react-aws-s3";
-import { getUser, putImage, putPassword,deleteUser } from "../../redux/modules/ProfileSlice";
+import { getUser, putImage, putPassword, deleteUser } from "../../redux/modules/ProfileSlice";
 import styles from "./profile.module.css"
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
