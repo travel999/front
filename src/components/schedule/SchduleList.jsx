@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 import ScheduleMap from "./ScheduleMap";
-import ScheduleWork from "./ScheduleWork";
+
 const ScheduleList = () => {
   //state
   const [startDate, setSartDate] = useState("");

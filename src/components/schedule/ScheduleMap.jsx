@@ -4,17 +4,20 @@ import ScheduleWork from "./ScheduleWork";
 
 const { kakao } = window;
 
+//placeX : lat , placeY : lng >> 기억하기
+
 const ScheduleMap = ({ day }) => {
   const searchInit = {
     keyWord: null,
     pgn: null,
     result: [],
   };
-
+  //State
   const [map, setMap] = useState(null);
   const [inputVal, setInputVal] = useState("");
   const [search, setSearch] = useState(searchInit);
   const [pin, setPin] = useState([]);
+  const [placeNames, setPlaceNames] = useState([]);
 
   //처음 지도 그리기
   useEffect(() => {
@@ -27,27 +30,25 @@ const ScheduleMap = ({ day }) => {
     setMap(kakaoMap);
   }, []);
 
-  const onShowMarker = (placeX, palceY) => {
-    console.log(placeX, palceY);
-    // this.mapOption.center = {
-    //   lat: placeX,
-    //   lng: palceY,
-    // };
-    // //마커가 표시 될 위치
-    // setPin({ ...pin, latlng: new kakao.maps.LatLng(placeX, palceY) });
-
-    // console.log(pin);
-
-    // let markerPosition = new kakao.maps.LatLng(placeX, palceY);
-
-    // 마커를 생성
-    // let marker = new kakao.maps.Marker({
-    //   position: markerPosition,
-    // });
-
-    // 마커를 지도 위에 표시
-    // marker.setMap(map);
+  //마커 생성을 위한 배열 만들기
+  const onMakeMarker = (placeName, placeX, palceY) => {
+    setPin([...pin, { title: placeName, lat: palceY, lng: placeX }]);
+    const moveLatLon = new kakao.maps.LatLng(palceY, placeX);
+    //마커 위치로 지도 화면 포커싱
+    map.panTo(moveLatLon);
   };
+  //마커 찍기
+  useEffect(() => {
+    pin.map((item) => {
+      let marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: new kakao.maps.LatLng(item.lat, item.lng), // 마커를 표시할 위치
+        title: item.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+      });
+      setMap(map);
+    });
+  }, [pin]);
+
   // 키워드 검색을 요청하는 함수입니다
   const searchPlaces = (e) => {
     if (e.key === "Enter") {
@@ -94,14 +95,19 @@ const ScheduleMap = ({ day }) => {
           return (
             <div key={item.id}>
               <h4>{item.place_name}</h4>
-              <button onClick={() => onShowMarker(item.x, item.y)}>선택</button>
+              <button
+                value={item.x}
+                onClick={() => onMakeMarker(item.place_name, item.x, item.y)}
+              >
+                선택
+              </button>
             </div>
           );
         })}
       </div>
       <div id="map" style={{ width: "99%", height: "500px" }}></div>
 
-      <ScheduleWork day={day} />
+      <ScheduleWork day={day} name={pin} />
     </div>
   );
 };
