@@ -6,7 +6,7 @@ export const getCards = createAsyncThunk("main/get", async (page, thunkAPI) => {
     const res = await instance.get(`post/main/${page}`);
     return thunkAPI.fulfillWithValue(res.data);
   } catch (error) {
-    return error;
+    return thunkAPI.rejectWithValue(error);
   }
 });
 
@@ -61,40 +61,43 @@ export const mainSlice = createSlice({
   },
   extraReducers: {
     [getCards.fulfilled]: (state, action) => {
-      const MyPostCards2 = { data3: [] };
-      // 데이터 1
-      MyPostCards2.data1 = action.payload.data1;
-      // 데이터 2
-      MyPostCards2.data2 = action.payload.data2;
+      const MyPostCards2 = {
+        data1: action.payload.data1,
+        data2: action.payload.data2,
+        data3: [],
+      };
       // 데이터 3 걸러주기
-      MyPostCards2.data3 = action.payload?.data3?.filter((value) => {
-        let result = true;
-        action.payload.data2?.forEach((value2) => {
-          if (value2._id === value._id && value2._id === value._id) {
-            result = false;
-          }
+      if (action.payload.data2) {
+        MyPostCards2.data3 = action.payload?.data3?.filter((value) => {
+          let result = true;
+          action.payload.data2.map((value2) => {
+            if (value2._id === value._id) {
+              result = false;
+            }
+          });
+          return result;
         });
-        return result;
-      });
-
+      } else {
+        MyPostCards2.data3 = action.payload.data3;
+      }
       state.MyPostCards = MyPostCards2;
     },
     [getCards.rejected]: (state, action) => {
       console.log(state, action);
     },
-
+    //state.MyPostCards.data2에 아무것도 없을때 애러 처리
     [searchText.fulfilled]: (state, action) => {
       state.searched = true;
       const otherPeopleCards2 = action.payload.data.filter((value) => {
         let result = true;
-        state.MyPostCards.data2.forEach((value2) => {
-          if (value2._id === value._id && value2._id === value._id) {
+        state.MyPostCards.data2.map((value2) => {
+          if (value2._id === value._id) {
             result = false;
           }
         });
         return result;
       });
-      state.otherPeopleCards = { data: otherPeopleCards2 };
+      state.otherPeopleCards = otherPeopleCards2;
     },
     [searchText.rejected]: (state, action) => {
       state.otherPeopleCards = [];
@@ -131,6 +134,9 @@ export const mainSlice = createSlice({
         MyPostCards2.data1 = state.MyPostCards.data1;
         // 데이터 2 만듬 맨위에 추가
         const copyData2 = state.MyPostCards.data2.slice();
+        // if (!state.MyPostCards.data2) {
+        //   copyData2 = state.MyPostCards.data2.slice();
+        // }
         copyData2.unshift(actionData);
         MyPostCards2.data2 = copyData2;
         // 데이터 3 만듬 제거

@@ -9,7 +9,7 @@
 /* 프로필 사진부분 */
 .profile {
   background-color: rgb(247, 255, 183);
-  width: 260px;
+  width: 230px;
   height: 35vh;
   margin: 20px 20px 3vh 20px;
   border-radius: 20px;
@@ -20,19 +20,26 @@
   width: 150px;
   height: 150px;
   border-radius: 150px;
-  margin: 0px 55px;
+  margin: 0px 40px;
 }
 
 .profileNum {
   margin: 30px auto 0px auto;
-  font-size: 1.7em;
-  font-weight: 600;
+  font-size: 1.5em;
+  font-weight: 500;
   color: rgb(250, 101, 101);
 }
 
-.profilefont {
-  margin: 20px auto;
+.profilename {
+  text-align: center;
+  margin: 20px auto -10px auto;
   font-size: 1.2em;
+  font-weight: 500;
+}
+
+.profilefont {
+  margin: 5px auto;
+  font-size: 1.1em;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.936);
 }
@@ -45,7 +52,7 @@
 /* 게시글 등록하기 부분 */
 .postbtn {
   background-color: rgb(247, 255, 183);
-  width: 260px;
+  width: 230px;
   height: 6vh;
   margin: 10px 20px;
   border-radius: 20px;
@@ -61,23 +68,22 @@
 }
 
 .postbtn:hover {
-  background-color: rgb(220, 245, 216);
+  background-color: rgb(255, 252, 201);
 }
 
 /* 첫번째 박스부분 */
 .bicbox {
   background-color: rgb(247, 255, 183);
-  width: 260px;
+  width: 280px;
   height: 80vh;
-  margin: 20px 20px;
+  margin: 20px 10px;
   border-radius: 20px;
-  overflow: auto;
 }
 
 .toptext {
   text-align: center;
-  margin-top: 10px;
-  padding: 10px;
+  padding-top: 20px;
+  height: 20px;
 }
 
 .card {
@@ -86,55 +92,60 @@
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
-  height: 60px;
+  height: 70px;
 }
 
 .img {
   width: 45px;
   height: 45px;
   border-radius: 45px;
-  margin: 7.5px 10px 7.5px 10px;
+  margin: 12px 10px 10px 10px;
   background-color: rgb(207, 239, 207);
 }
 
 .openNor {
   margin-top: 20px;
-  margin-right: 20px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
 .content {
-  margin-right: 90px;
-  margin-top: 10px;
+  width: 160px;
+  margin: 8px 0px;
+}
+
+.traveldate {
+  font-size: 0.8em;
 }
 
 /* 두번째 박스 부분 */
 
 .bicbox2 {
   background-color: rgb(247, 255, 183);
-  width: 260px;
+  width: 280px;
   height: 50vh;
-  margin: 20px 20px 3vh 20px;
+  margin: 20px 10px 3vh 10px;
   border-radius: 20px;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 .smallbox {
   background-color: rgb(247, 255, 183);
-  width: 260px;
+  width: 270px;
   /* height: 27vh; */
   margin: 0px 20px;
   border-radius: 20px;
 }
 
 .content2 {
-  margin-right: 90px;
-  margin-top: 10px;
+  width: 200px;
+  margin: 10px 0px;
 }
 
 .heart {
-  margin-top: 20px;
-  margin-right: 7px;
+  margin-top: 1px;
+  margin-right: 15px;
+  font-size: 0.9em;
 }
 
 /* 세번째 박스 부분 */
@@ -145,14 +156,15 @@
 
 .contentbox {
   display: flex;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   margin: 10px 10px;
   border-radius: 10px;
+  height: 110px;
 }
 
 .bicimg {
   width: 100px;
-  height: 100px;
+  height: 110px;
   background-color: rgb(198, 210, 218);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -165,7 +177,7 @@
 /* 검색창 부분 */
 
 .searchbox {
-  margin: 10px 20px 15px 20px;
+  margin: 3px 20px;
 }
 
 .searchinputbox {
@@ -197,14 +209,33 @@
 
 /* 외 */
 .day {
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
 .bottom {
-  color: rgb(247, 255, 183);
-  font-size: 0.3em;
+  color: transparent;
+  font-size: 1em;
 }
 
 .cursor {
   cursor: pointer;
 }
+
+.onlyscroll {
+  height: 70vh;
+  overflow-y: scroll;
+}
+
+.firstboxscroll {
+  overflow-y: scroll;
+  height: 73vh;
+}
+
+.searchboxscroll {
+  overflow-y: scroll;
+  height: 45vh;
+}
+
+/* ::-webkit-scrollbar {
+  display: none;
+} */

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { removeCookie } from "../../res/cookie";
 
@@ -65,29 +65,44 @@ const Header = () => {
 };
 
 const HeaderBox = styled.div`
+  padding: 2vh 2vw;
   background-color: transparent;
-  height: 8vh;
   display: flex;
   justify-content: space-between;
-  background-color: #d8f3fc;
+  background-color: transparent;
+  border-bottom: 1px solid lightgray;
 `;
 
 const HomBtn = styled.div`
-  margin: 18px 0px 0px 18px;
   cursor: pointer;
+  margin-left: 10px;
+  margin-top: 3px;
+  :hover {
+    border-bottom: 1px solid black;
+    margin-bottom: -1px;
+  }
 `;
 
 const LogOutBtn = styled.div`
-  margin: 18px 18px 0px 0px;
   cursor: pointer;
+  margin-right: 10px;
+  margin-top: 3px;
+  :hover {
+    border-bottom: 1px solid black;
+    margin-bottom: -1px;
+  }
 `;
 
 const Topcontent = styled.div`
   display: flex;
-  margin-left: 700px;
+  margin-left: 35vw;
   div {
-    margin-left: 30px;
-    margin-top: 18px;
+    margin-left: 40px;
+    margin-top: 3px;
+    :hover {
+      border-bottom: 1px solid black;
+      margin-bottom: -1px;
+    }
   }
 `;
 

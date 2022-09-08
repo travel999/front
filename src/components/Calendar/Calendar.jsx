@@ -80,9 +80,9 @@ const Calendar = () => {
       );
     }
     return (
-      <select onChange={changeSelectMonth} value={selectedMonth}>
+      <Selectbox onChange={changeSelectMonth} value={selectedMonth}>
         {monthArr}
-      </select>
+      </Selectbox>
     );
   }, [selectedMonth, clickcount]);
 
@@ -104,9 +104,9 @@ const Calendar = () => {
       );
     }
     return (
-      <select onChange={changeSelectYear} value={selectedYear}>
+      <Selectbox onChange={changeSelectYear} value={selectedYear}>
         {yearArr}
-      </select>
+      </Selectbox>
     );
   }, [selectedYear, clickcount]);
 
@@ -253,13 +253,14 @@ const Calendar = () => {
 };
 
 const Container = styled.div`
-  width: 260px;
+  width: 280px;
   /* height: 207px; */
   height: 27vh;
   background-color: rgb(247, 255, 183);
   border: 1px solid rgb(247, 255, 183);
   border-radius: 20px;
   overflow: auto;
+  margin-left: -10px;
 `;
 
 const Title = styled.div`
@@ -269,19 +270,19 @@ const Title = styled.div`
 `;
 
 const Pagination = styled.div`
-  margin-left: 15px;
+  margin-left: 40px;
   margin-top: 0px;
 `;
 
 const WeekDayBox = styled.div`
-  margin-left: 20px;
+  margin-left: 25px;
 `;
 
 const WeekBox = styled.div`
   display: flex;
   margin-top: 3px;
   div {
-    width: calc(235px / 7);
+    width: calc(250px / 7);
   }
 `;
 
@@ -291,7 +292,7 @@ const DayBox = styled.div`
   margin-left: -10px;
   line-height: 24px;
   div {
-    width: calc(235px / 7);
+    width: calc(250px / 7);
     height: calc(150px / 6);
     vertical-align: middle;
   }
@@ -300,6 +301,13 @@ const DayBox = styled.div`
 const ArrowBtn = styled.button`
   background: none;
   border: none;
+`;
+
+const Selectbox = styled.select`
+  border: 1px solid white;
+  padding: 1px;
+  border-radius: 10px;
+  margin-right: 3px;
 `;
 
 const WeekDay = styled.div`
