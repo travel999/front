@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styles from "./Chatting.module.css";
 
 const ChatBox = ({ socket, username, room }) => {
   const [currentMsg, setCurrentMsg] = useState("");
@@ -31,18 +32,16 @@ const ChatBox = ({ socket, username, room }) => {
 
   return (
     <div>
-      <div>
-        헤더<p>Live Chat</p>
+      <div></div>
+      <div className={styles.chatBox}>
+        {msgList.map((msg) => {
+          return <div>{msg}</div>;
+        })}
       </div>
-      <div>바디</div>
-      {msgList.map((msg) => {
-        return <div>{msg}</div>;
-      })}
       <div>
-        푸터
         <input
           type="text"
-          placeholder="Hey... meg"
+          placeholder="Hey..."
           onChange={(e) => setCurrentMsg(e.target.value)}
         />
         <button onClick={OnsendMsg}>►</button>
