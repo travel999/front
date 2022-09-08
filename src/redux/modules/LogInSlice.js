@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
 import { setCookie } from "../../res/cookie";
-// import { Cookies } from "react-cookie";
 
 const initialState = {
   email: "",
@@ -12,16 +11,16 @@ export const addLogin = createAsyncThunk(
   "LoginSlice/addLogin",
   async (payload, thunkAPI) => {
     try {
-      const res = await instance.post("user/login", payload.login);
-      const token = res.data.token;
-      console.log(res);
-      console.log(res.data.token);
+      const response = await instance.post("user/login", payload.login);
+      const token = response.data.token;
+      console.log(response);
+      console.log(response.data.token);
       setCookie("jwtToken", `${token}`);
-      if (res) { 
+      if (response.status === 200) { 
         alert("반갑습니다!");
         await payload.navigate("/main");
       }
-      return thunkAPI.fulfillWithValue(res.data);
+      return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       alert("잘못된 아이디 또는 비밀번호 입니다.");
       console.log(error);
