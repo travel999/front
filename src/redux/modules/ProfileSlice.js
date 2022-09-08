@@ -13,7 +13,8 @@ export const getUser = createAsyncThunk(
     async (payload, thunkAPI) => {
         try {
             const response = await instance.get("user/me");
-            return response.data.user;
+            console.log(response)
+            return response;
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
         }
@@ -60,7 +61,7 @@ export const deleteUser = createAsyncThunk(
 )
 
 export const ProfileSlice = createSlice({
-    name: "ProfileSlice",
+    name: "profileEdit",
     initialState,
     reducers: {},
     extraReducers: {
@@ -106,3 +107,5 @@ export const ProfileSlice = createSlice({
         },
     }
 })
+
+export default ProfileSlice.reducer
