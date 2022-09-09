@@ -24,3 +24,4 @@
 // export default Chatting;
 
 // // 게시글에 들어가면,
+
