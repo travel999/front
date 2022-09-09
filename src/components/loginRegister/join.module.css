@@ -80,3 +80,14 @@
 .inputHidden {
     display: none;
 }
+
+.loading {
+    display: flex;
+    justify-content: center;
+    margin-top: 300px;
+    /* background-color: #F2F7FF; */
+    /* position: "fixed"; */
+    /* transform: "translate(-50%, -50%)"; */
+    /* background-color: "F2F7FF"; */
+
+}

@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import S3upload from "react-aws-s3";
 import { getUser, putImage, putPassword, deleteUser } from "../../redux/modules/ProfileSlice";
 import styles from "./profile.module.css"
@@ -7,19 +8,64 @@ import styles from "./profile.module.css"
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const Profile = () => {
-  const nickName = useSelector((state) => state.profile)
+  const navigate = useNavigate()
+  const nickName = useSelector((state) => state.profile.getUser)
   console.log(nickName)
   const imgVal = useRef(null);
+  const dispatch = useDispatch();
 
+  const initialState = {
+    newImage: "",
+    newPassword: "",
+    confirm: ""
+  }
+  // 기존 값도 가져와서 state로 만들기(이미지, 닉네임 보여줄 때, 회원탈퇴시 사용)
+  const [edit, setEdit] = useState(initialState)
+  const [passWord, setPassWord] = useState("")
+  const [confirm, setConfirm] = useState("");
+  const [userImage, setUserImage] = useState("")
+
+  // 비밀번호 
   const [pwMsg, setPwMsg] = useState("");
   const [confirmMsg, setConfirmMsg] = useState("");
-  const [img, setImg] = useState([]);
-  const [preImg, setPreImg] = useState([]);
+
   // 비밀번호 정규식
   const pwRule = /^[a-zA-Z0-9]{5,12}$/;
 
+  // 이미지 미리보기
+  const [img, setImg] = useState([]);
+  const [preImg, setPreImg] = useState([]);
+
+  // 비밀번호 유효성 검사, 원래 사용하던 비밀번호 일 때 사용중인 비밀번호라고 띄워주기
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "newPassword") {
+      if (!pwRule.test(value) && value !== "") {
+        setPwMsg("비밀번호는 5자 이상 ~ 12자 이하여야 합니다.");
+      } else if (pwRule.test(value)) {
+        setPwMsg("사용가능한 비밀번호 입니다.");
+        setPassWord(value);
+      }
+
+      if (value !== "" && edit.confirm !== value) {
+        setConfirmMsg("비밀번호가 다릅니다.");
+      } else if (edit.confirm === value) {
+        setConfirmMsg("비밀번호가 일치합니다.");
+      }
+    }
+    else if (name === "confirm") {
+      if (edit.newPassword !== "" && edit.newPassword !== value) {
+        setConfirmMsg("비밀번호가 다릅니다.");
+      } else if (edit.newPassword == value) {
+        setConfirmMsg("비밀번호가 일치합니다");
+        setConfirm(value);
+      }
+    }
+    setEdit({ ...edit, [name]: value })
+  }
+  // 선택한 이미지 미리보기
   const onLoadImg = (event) => {
-    //현재 이미지 파일
     const imaData = event.target.files[0];
     setImg(imaData);
     //선택한 이미지 파일의 url
@@ -45,12 +91,31 @@ const Profile = () => {
     s3Client.uploadFile(file, newFileName).then(async (data) => {
       if (data.status === 204) {
         let userImage = data.location;
-        // setUserImage(userImage)
+        setUserImage(userImage)
         console.log(userImage)
-        // setSignUp({ ...signUp, userImage })
+        setEdit({ ...edit, userImage })
       }
     });
   }
+  const onEditProfile = (e) => {
+    if (
+      userImage === ""
+    ) {
+    } else {
+      dispatch(putImage(edit));
+    }
+    if (
+      passWord === "" ||
+      confirm === ""
+    ) {
+    } else {
+      dispatch(putPassword(edit))
+    }
+  }
+  const onDeleteProfile = (e) => {
+    dispatch(deleteUser(edit))
+  }
+
   return (
     <div>
       <div className={styles.joinWrap}>
@@ -64,10 +129,10 @@ const Profile = () => {
             <div className={styles.inputName}>비밀번호</div>
             <input
               className={styles.input}
-              // onChange={onChangeHandler}
+              onChange={onChangeHandler}
               type="password"
-              name="password"
-              id="password"
+              name="newPassword"
+              id="newPassword"
               minLength="5"
               maxLength="12"
             />
@@ -77,7 +142,7 @@ const Profile = () => {
             <div className={styles.inputName}>비밀번호 확인</div>
             <input
               className={styles.input}
-              // onChange={onChangeHandler}
+              onChange={onChangeHandler}
               type="password"
               name="confirm"
               minLength="5"
@@ -110,8 +175,8 @@ const Profile = () => {
         </form>
       </div>
       <div className={styles.buttonWrap}>
-        <button className={styles.button}>저장</button>
-        <button className={styles.button2}>회원 탈퇴</button>
+        <button onClick={onEditProfile} className={styles.button}>저장</button>
+        <button onClick={onDeleteProfile} className={styles.button2}>회원 탈퇴</button>
       </div>
     </div>
   );
