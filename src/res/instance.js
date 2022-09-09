@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getCookie } from "./cookie";
 
-const accessToken = localStorage.getItem("token");
+// const accessToken = localStorage.getItem('token');
 
 const instance = axios.create({
   baseURL: "http://54.180.131.25:3000/",
@@ -9,16 +9,9 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-// const instance = axios.create({
-//   baseURL: "http://43.200.173.40:3000/",
-//   headers: { token: (getCookie("jwtToken"), (`${accessToken}`)) },
-//   withCredentials: true,
-// });
-
-// if (getCookie("jwtToken") === undefined) {
-//   instance.defaults.headers.common["token"] = 500;
-// } else {
-//   instance.defaults.headers.common["token"] = getCookie("jwtToken");
-// }
-
+console.log(instance.defaults.headers.common["token"]) // 헤더에 있는 토큰값
+console.log(getCookie("jwtToken")) // 일반 로그인
+console.log(getCookie("token")) // 카카오 소셜로그인
 export default instance;
+
+// instance.defaults.headers.common["token"] = `${accessToken}`

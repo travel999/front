@@ -9,6 +9,7 @@ const Header = () => {
 
   const removeToken = async () => {
     removeCookie("jwtToken");
+    // localStorage.removeItem('token')
     alert("로그아웃이 완료되었습니다.");
     await navigate("/");
   };

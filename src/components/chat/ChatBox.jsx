@@ -2,6 +2,7 @@
 // import styles from "./Chatting.module.css";
 
 // const ChatBox = ({ socket, user, room }) => {
+
 //   const [currentMsg, setCurrentMsg] = useState("");
 //   const [msgList, setMsgList] = useState([]);
 
@@ -10,7 +11,9 @@
 //       // 서버에 보낼 정보
 //       const messageData = {
 //         room: room,
+
 //         user: user,
+
 //         message: currentMsg,
 //         time:
 //           new Date(Date.now()).getHours() +

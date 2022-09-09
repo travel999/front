@@ -12,7 +12,8 @@ import { getCards, searchText } from "../../redux/modules/MainSlice";
 const Main = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const tokenValue = getCookie("jwtToken");
+
+  const loginToken = (getCookie("jwtToken"))
 
   const input_ref = useRef(null); // 검색ref
   const [page, setPage] = useState(1); // 무한스크롤 페이지
@@ -26,11 +27,12 @@ const Main = () => {
   console.log("메인 랜디링");
 
   // 토크없으면 로그인 페이지로
-  // useEffect(() => {
-  //   if (!tokenValue) {
-  //     navigate("/");
-  //   }
-  // }, []);
+
+  useEffect(() => {
+    if (loginToken === "") {
+      navigate("/");
+    }
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(obsHandler, { threshold: 0.5 });

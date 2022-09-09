@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addJoin, doubleCheckEmail, doubleCheckNickName } from "../../redux/modules/JoinSlice";
@@ -23,7 +23,7 @@ const Join = () => {
 
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNickName, setCheckNickName] = useState(false)
-
+  // 회원가입 
   const [signUp, setSignUp] = useState(initialState);
   const [emailData, setEmailData] = useState("");
   const [nicknNameData, setNickNameData] = useState("")
@@ -58,8 +58,8 @@ const Join = () => {
   }, [nicknNameData]);
 
   // 유효성 검사
-  const onChangeHandler = (event) => {
-    const { name, value } = event.target;
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
 
     // 이메일 유효성
     if (name === "email") {
@@ -115,7 +115,7 @@ const Join = () => {
     setSignUp({ ...signUp, [name]: value });
   };
 
-    //이미지 미리보기
+  //이미지 미리보기
   const onLoadImg = (event) => {
     //현재 이미지 파일
     const imaData = event.target.files[0];
@@ -128,8 +128,8 @@ const Join = () => {
     e.preventDefault();
 
     //이미지 처리
-    let file = imgVal.current.files[0];
-    let newFileName = imgVal.current.files[0].name;
+    const file = imgVal.current.files[0];
+    const newFileName = imgVal.current.files[0].name;
 
     const config = {
       accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
@@ -144,11 +144,11 @@ const Join = () => {
         let userImage = data.location;
         setUserImage(userImage)
         console.log(userImage)
-        setSignUp({...signUp, userImage})
+        setSignUp({ ...signUp, userImage })
       }
     });
   }
-  // 버튼 클릭시 빈칸 확인, 올바르게 입력시 값 전송
+  // 버튼 클릭시 빈칸 확인
   const onJoin = (e) => {
     if (
       emailData === "" ||
