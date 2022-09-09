@@ -26,11 +26,11 @@ const Main = () => {
   console.log("메인 랜디링");
 
   // 토크없으면 로그인 페이지로
-  useEffect(() => {
-    if (!tokenValue) {
-      navigate("/");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!tokenValue) {
+  //     navigate("/");
+  //   }
+  // }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(obsHandler, { threshold: 0.5 });
@@ -71,16 +71,18 @@ const Main = () => {
 
   return (
     <>
-      <div className={styles.mainbox}>
-        <ProfileBox />
-        <FirstBox />
-        <SecondBox />
-        <ThirdBox
-          searchPage={searchPage}
-          setSearchPage={setSearchPage}
-          input_ref={input_ref}
-          obsRef={obsRef}
-        />
+      <div className={styles.backcolor}>
+        <div className={styles.mainbox}>
+          <ProfileBox />
+          <FirstBox />
+          <SecondBox />
+          <ThirdBox
+            searchPage={searchPage}
+            setSearchPage={setSearchPage}
+            input_ref={input_ref}
+            obsRef={obsRef}
+          />
+        </div>
       </div>
     </>
   );

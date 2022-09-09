@@ -1,16 +1,35 @@
+.headtitle {
+  width: 1050px;
+  margin: 30px auto 0px auto;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
 .bicbox {
-  width: 900px;
-  margin: 50px auto;
+  width: 1090px;
+  margin: 20px auto;
   display: flex;
   flex-wrap: wrap;
 }
 
 .cardbox {
-  width: 240px;
-  height: 140px;
-  background-color: azure;
-  border-radius: 10px;
-  border: 1px solid black;
-  margin: 20px;
-  padding: 10px;
+  width: 300px;
+  height: 60px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  border: 1px solid #ffc51c;
+  margin: 10px;
+  flex-wrap: wrap;
+  padding: 20px 20px;
+}
+
+.title {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.space {
+  display: flex;
+  justify-content: space-between;
 }

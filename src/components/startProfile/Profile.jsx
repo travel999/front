@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useSelector } from "react-redux";
 import S3upload from "react-aws-s3";
 import { getUser, putImage, putPassword, deleteUser } from "../../redux/modules/ProfileSlice";
 import styles from "./profile.module.css"
@@ -6,12 +7,16 @@ import styles from "./profile.module.css"
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const Profile = () => {
+  const nickName = useSelector((state) => state.profile)
+  console.log(nickName)
   const imgVal = useRef(null);
 
   const [pwMsg, setPwMsg] = useState("");
   const [confirmMsg, setConfirmMsg] = useState("");
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
+  // 비밀번호 정규식
+  const pwRule = /^[a-zA-Z0-9]{5,12}$/;
 
   const onLoadImg = (event) => {
     //현재 이미지 파일
@@ -22,10 +27,10 @@ const Profile = () => {
     setPreImg(imageUrl);
   };
 
+  //이미지 업로드
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
-    //이미지 처리
     let file = imgVal.current.files[0];
     let newFileName = imgVal.current.files[0].name;
 
@@ -50,7 +55,7 @@ const Profile = () => {
     <div>
       <div className={styles.joinWrap}>
         <div>
-        <h2>회원정보 수정</h2>
+          <h2>회원정보 수정</h2>
           <div className={styles.inputBox}>
             <div className={styles.inputName}>닉네임</div>
             <input className={styles.input} disabled />
