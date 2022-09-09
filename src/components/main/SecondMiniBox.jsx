@@ -1,5 +1,5 @@
 import React from "react";
-import Calendar from "../Calendar/Calendar";
+import Calendar from "../calendar/Calendar";
 import styles from "./Main.module.css";
 
 const SecondMiniBox = () => {

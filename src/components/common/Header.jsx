@@ -1,10 +1,11 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { removeCookie } from "../../res/cookie";
+import { removeCookie, getCookie } from "../../res/cookie";
 
 const Header = () => {
   const navigate = useNavigate();
+  const tokenValue = getCookie("jwtToken");
 
   const removeToken = async () => {
     removeCookie("jwtToken");
@@ -13,11 +14,19 @@ const Header = () => {
     await navigate("/");
   };
 
+  const OntoHome = () => {
+    if (!tokenValue) {
+      navigate("/");
+    } else {
+      navigate("/main");
+    }
+  };
+
   return (
     <HeaderBox>
       <HomBtn
         onClick={() => {
-          navigate("/");
+          OntoHome();
         }}
       >
         HOME
@@ -66,6 +75,7 @@ const Header = () => {
 };
 
 const HeaderBox = styled.div`
+  height: 3vh;
   padding: 2vh 2vw;
   background-color: transparent;
   display: flex;

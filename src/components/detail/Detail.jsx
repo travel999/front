@@ -13,20 +13,23 @@ const Detail = () => {
   }, []);
 
   return (
-    <div className={styles.bicbox}>
-      {likecard?.map((value) => {
-        return (
-          <div key={value._id} className={styles.cardbox}>
-            <div>{value.title}</div>
-            <div>
-              {value.day.length - 1}박 {value.day.length} 일
+    <>
+      <div className={styles.headtitle}>내가 좋아요 한 여행 일정</div>
+      <div className={styles.bicbox}>
+        {likecard?.map((value) => {
+          return (
+            <div key={value._id} className={styles.cardbox}>
+              <div className={styles.title}>{value.title}</div>
+              <div className={styles.space}>
+                <span>2022.09.11- 2022.09.15</span>
+                <span>❤️ {value.like}</span>
+              </div>
             </div>
-            <div>❤️ {value.like}</div>
-          </div>
-        );
-      })}
-      <Chatting />
-    </div>
+          );
+        })}
+        {/* <Chatting /> */}
+      </div>
+    </>
   );
 };
 

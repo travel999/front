@@ -1,7 +1,8 @@
 // import React, { useEffect, useState } from "react";
 // import styles from "./Chatting.module.css";
 
-// const ChatBox = ({ socket, username, room }) => {
+// const ChatBox = ({ socket, user, room }) => {
+
 //   const [currentMsg, setCurrentMsg] = useState("");
 //   const [msgList, setMsgList] = useState([]);
 
@@ -10,7 +11,9 @@
 //       // 서버에 보낼 정보
 //       const messageData = {
 //         room: room,
-//         username: username,
+
+//         user: user,
+
 //         message: currentMsg,
 //         time:
 //           new Date(Date.now()).getHours() +
@@ -24,7 +27,6 @@
 //   };
 
 //   useEffect(() => {
-//     // 메세지 받기
 //     socket.on("receive_msg", (data) => {
 //       setMsgList((list) => [...list, data]);
 //     });
@@ -32,7 +34,6 @@
 
 //   return (
 //     <div>
-//       <div></div>
 //       <div className={styles.chatBox}>
 //         {msgList.map((msg) => {
 //           return <div>{msg}</div>;
