@@ -6,7 +6,7 @@ const initialState = {
     newPassword: "",
     confirm: ""
 }
-// 대충 틀만 짠거라 수정 필요
+
 // 유저 정보 조회
 export const getUser = createAsyncThunk(
     "profileSlice/getUser",
@@ -14,7 +14,7 @@ export const getUser = createAsyncThunk(
         try {
             const response = await instance.get("user/me");
             console.log(response)
-            return response;
+            return thunkAPI.fulfillWithValue(response);
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
         }
@@ -25,8 +25,9 @@ export const putImage = createAsyncThunk(
     "profileSlice/putImage",
     async (payload, thunkAPI) => {
         try {
-            const response = await instance.put("user/image", payload);
-            return response
+            console.log(payload)
+            const response = await instance.put("user/me/image", payload);
+            return thunkAPI.fulfillWithValue(response);
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
         }
@@ -37,8 +38,9 @@ export const putPassword = createAsyncThunk(
     "profileSlice/putPassword",
     async (payload, thunkAPI) => {
         try {
-            const response = await instance.put("user/password", payload);
-            return response
+            console.log(payload)
+            const response = await instance.put("user/me/password", payload);
+            return thunkAPI.fulfillWithValue(response);
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
         }
@@ -49,11 +51,12 @@ export const deleteUser = createAsyncThunk(
     "profileSlice/deleteUser",
     async (payload, thunkAPI) => {
         try {
-            const response = await instance.delete("user/delete", payload);
+            console.log(payload)
+            const response = await instance.delete("user/me/delete", payload);
             if (response) {
-                // payload.setMsg(response.data.message);
+                alert("회원 탈퇴가 완료되었습니다🙁")
             }
-            return response
+            return thunkAPI.fulfillWithValue(response);
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
         }
@@ -108,4 +111,4 @@ export const ProfileSlice = createSlice({
     }
 })
 
-export default ProfileSlice.reducer
+export default ProfileSlice.reducer;

@@ -4,6 +4,7 @@ import instance from "../../res/instance";
 export const getCards = createAsyncThunk("main/get", async (page, thunkAPI) => {
   try {
     const res = await instance.get(`post/main/${page}`);
+    console.log(res)
     return thunkAPI.fulfillWithValue(res.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
