@@ -256,11 +256,13 @@ const Container = styled.div`
   width: 280px;
   /* height: 207px; */
   height: 27vh;
-  background-color: rgb(247, 255, 183);
-  border: 1px solid rgb(247, 255, 183);
+  /* background-color: rgb(247, 255, 183);
+  border: 1px solid rgb(247, 255, 183); */
+  background-color: white;
+
   border-radius: 20px;
   overflow: auto;
-  margin-left: -10px;
+  margin-left: 0px;
 `;
 
 const Title = styled.div`
@@ -282,7 +284,7 @@ const WeekBox = styled.div`
   display: flex;
   margin-top: 3px;
   div {
-    width: calc(250px / 7);
+    width: calc(252px / 7);
   }
 `;
 
@@ -304,7 +306,7 @@ const ArrowBtn = styled.button`
 `;
 
 const Selectbox = styled.select`
-  border: 1px solid white;
+  border: 1px solid #e2e2e2;
   padding: 1px;
   border-radius: 10px;
   margin-right: 3px;
@@ -336,7 +338,7 @@ const DayDay = styled.div`
   border-bottom: ${(prop) => (prop.schedule2 ? "1px solid black" : null)}; */
 
   font-weight: ${(prop) => (prop.Orangecolor ? "700" : "500")};
-  background-color: ${(prop) => (prop.Orangecolor ? "#fbc30d" : null)};
+  background-color: ${(prop) => (prop.Orangecolor ? "#ffc51c;" : null)};
   border-radius: ${(prop) => (prop.Orangecolor ? "100px" : null)};
 `;
 

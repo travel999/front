@@ -1,5 +1,9 @@
+.backcolor {
+  background-color: #f2f7ff;
+  height: 92.9vh;
+}
+
 .mainbox {
-  background-color: rgb(255, 255, 255);
   width: 1200px;
   margin: 0px auto;
   display: flex;
@@ -8,50 +12,54 @@
 
 /* 프로필 사진부분 */
 .profile {
-  background-color: rgb(247, 255, 183);
+  /* background-color: rgb(247, 255, 183); */
+  background-color: white;
   width: 230px;
-  height: 35vh;
+  height: 280px;
   margin: 20px 20px 3vh 20px;
   border-radius: 20px;
   padding: 20px 0px;
+  box-shadow: 0px 2px 4px rgba(36, 50, 75, 0.2);
 }
 
 .profileimg {
   width: 150px;
   height: 150px;
   border-radius: 150px;
-  margin: 0px 40px;
+  margin: 0px 37.5px;
+  background-color: #ffc51c;
+  padding: 5px;
 }
 
 .profileNum {
-  margin: 30px auto 0px auto;
-  font-size: 1.5em;
+  margin: 0px auto 0px auto;
+  font-size: 1em;
   font-weight: 500;
-  color: rgb(250, 101, 101);
 }
 
 .profilename {
   text-align: center;
-  margin: 20px auto -10px auto;
+  margin: 20px auto 2.5vh auto;
   font-size: 1.2em;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .profilefont {
   margin: 5px auto;
   font-size: 1.1em;
-  font-weight: 500;
+  font-weight: 400;
   color: rgba(0, 0, 0, 0.936);
 }
 
 .profiltext {
   display: flex;
-  margin: auto;
+  margin: 4px auto;
 }
 
 /* 게시글 등록하기 부분 */
 .postbtn {
-  background-color: rgb(247, 255, 183);
+  background-color: #4386ff;
+  color: white;
   width: 230px;
   height: 6vh;
   margin: 10px 20px;
@@ -62,28 +70,43 @@
 
 .posttext {
   margin-top: 10px;
-  padding: 12.5px;
+  padding-top: 6px;
+  padding-left: 7px;
   font-size: 1.1em;
   font-weight: 600;
 }
 
 .postbtn:hover {
-  background-color: rgb(255, 252, 201);
+  box-shadow: 0px 2px 8px rgba(36, 50, 75, 0.2);
+}
+
+.plusfont {
+  font-size: 1.4em;
+  margin: 8px;
 }
 
 /* 첫번째 박스부분 */
 .bicbox {
-  background-color: rgb(247, 255, 183);
+  /* background-color: rgb(247, 255, 183); */
+  background-color: white;
   width: 280px;
   height: 80vh;
-  margin: 20px 10px;
+  margin-top: 20px;
+  margin-right: 0px;
+  margin-left: 0px;
   border-radius: 20px;
+  box-shadow: 0px 2px 4px rgba(36, 50, 75, 0.2);
 }
 
 .toptext {
-  text-align: center;
-  padding-top: 20px;
+  /* text-align: center; */
+  padding: 20px 20px 15px 20px;
   height: 20px;
+  font-weight: 600;
+  font-size: 1.1em;
+
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .card {
@@ -94,12 +117,16 @@
   justify-content: space-between;
   height: 70px;
 }
+.card:hover {
+  box-shadow: 0px 2px 4px rgba(36, 50, 75, 0.2);
+  cursor: pointer;
+}
 
 .img {
   width: 45px;
   height: 45px;
   border-radius: 45px;
-  margin: 12px 10px 10px 10px;
+  margin: 12px 0px 10px 10px;
   background-color: rgb(207, 239, 207);
 }
 
@@ -111,7 +138,7 @@
 
 .content {
   width: 160px;
-  margin: 8px 0px;
+  margin: 8px 20px 5px 0px;
 }
 
 .traveldate {
@@ -121,25 +148,30 @@
 /* 두번째 박스 부분 */
 
 .bicbox2 {
-  background-color: rgb(247, 255, 183);
+  /* background-color: rgb(247, 255, 183); */
+  background-color: white;
   width: 280px;
   height: 50vh;
-  margin: 20px 10px 3vh 10px;
+  margin-top: 20px;
+  margin-bottom: 3vh;
+  margin-left: 10px;
+  margin-right: 10px;
   border-radius: 20px;
-  /* overflow: auto; */
+  box-shadow: 0px 2px 4px rgba(36, 50, 75, 0.2);
 }
 
 .smallbox {
-  background-color: rgb(247, 255, 183);
-  width: 270px;
+  /* background-color: rgb(247, 255, 183); */
+  width: 280px;
   /* height: 27vh; */
-  margin: 0px 20px;
+  margin-left: 10px;
   border-radius: 20px;
+  box-shadow: 0px 2px 4px rgba(36, 50, 75, 0.2);
 }
 
 .content2 {
   width: 200px;
-  margin: 10px 0px;
+  margin: 10px 12px;
 }
 
 .heart {
@@ -160,6 +192,10 @@
   margin: 10px 10px;
   border-radius: 10px;
   height: 110px;
+  /* box-shadow: 0px 2px 4px rgba(36, 50, 75, 0.2); */
+}
+.contentbox:hover {
+  box-shadow: 0px 2px 4px rgba(36, 50, 75, 0.2);
 }
 
 .bicimg {
@@ -168,6 +204,7 @@
   background-color: rgb(198, 210, 218);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  object-fit: cover;
 }
 
 .thirdtext {
@@ -177,7 +214,8 @@
 /* 검색창 부분 */
 
 .searchbox {
-  margin: 3px 20px;
+  margin: 0px 20px 8px 20px;
+  padding: 20px 10px 0px 20px;
 }
 
 .searchinputbox {
@@ -222,20 +260,49 @@
 }
 
 .onlyscroll {
-  height: 70vh;
+  height: 72.2vh;
   overflow-y: scroll;
+  border-radius: 22px;
+}
+
+.onlyscroll::-webkit-scrollbar {
+  /* background-color: rgb(246, 246, 246); */
+  border-radius: 200px;
+  width: 8px;
+}
+.onlyscroll::-webkit-scrollbar-thumb {
+  border: 1px solid #a0c1ff;
+  border-radius: 200px;
 }
 
 .firstboxscroll {
   overflow-y: scroll;
-  height: 73vh;
+  height: 71.8vh;
+}
+.firstboxscroll::-webkit-scrollbar {
+  /* background-color: rgb(246, 246, 246); */
+  border-radius: 200px;
+  width: 8px;
+}
+.firstboxscroll::-webkit-scrollbar-thumb {
+  border: 1px solid #a0c1ff;
+  border-radius: 200px;
 }
 
 .searchboxscroll {
   overflow-y: scroll;
-  height: 45vh;
+  height: 42.5vh;
+}
+.searchboxscroll::-webkit-scrollbar {
+  /* background-color: rgb(246, 246, 246); */
+  border-radius: 200px;
+  width: 8px;
+}
+.searchboxscroll::-webkit-scrollbar-thumb {
+  border: 1px solid #a0c1ff;
+  border-radius: 200px;
 }
 
-/* ::-webkit-scrollbar {
-  display: none;
-} */
+/* ::-webkit-scrollbar : 스크롤바 영역에 대한 설정
+::-webkit-scrollbar-thumb : 스크롤바 막대에 대한 설정
+::-webkit-scrollbar-track  : 스크롤바 뒷 배경에 대한 설정 */
