@@ -5,7 +5,7 @@ import Btn from "../elements/Btn";
 
 // import ScheduleMap from "./ScheduleMap";
 
-const ScheduleWrite = ({ day, name }) => {
+const ScheduleCard = ({ day, name }) => {
   //초기화 값
   const initState = {
     placeName: "",
@@ -67,4 +67,4 @@ const ScheduleWrite = ({ day, name }) => {
   );
 };
 
-export default ScheduleWrite;
+export default ScheduleCard;
