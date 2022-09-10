@@ -1,16 +1,59 @@
-/* 일차 추가 컴포넌트 */
+/* ScheduleCreate*/
 .WriteWrap {
   width: 100%;
   display: flex;
 }
 .dayWrap {
-  width: 25%;
-  height: 76vh;
-  border: 1px solid red;
+  width: 30%;
+  height: 108vh;
+  padding: 1.9rem 0.5rem;
+
+  /* background-color: #fffefb; */
+  background-color: #fdf5dc;
 }
 .dayContent {
   width: 100%;
 }
+
+.dayContent input[type="date"] {
+  border: none;
+  width: 150px;
+  height: 36px;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 2px solid #ffc51c;
+  padding: 0 1rem;
+  text-align: center;
+  margin: 0 0.5rem;
+}
+
+.dayContent input[type="text"] {
+  border: none;
+  width: 239px;
+  height: 36px;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 2px solid #ffc51c;
+  padding: 0 1rem;
+  text-align: center;
+  margin: 0.5rem;
+}
+.dayContent button {
+  border-radius: 20px;
+}
+
+/* -------------------- */
+/* ScheduleList*/
+.dayWrap2 {
+}
+.invite {
+  width: 100%;
+  margin: 1rem 2.6rem;
+}
+.schedulDay {
+}
+/* -------------------- */
+/* SchduleWork */
 .dayContent ul {
   list-style: none;
   background-color: yellow;

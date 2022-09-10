@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styels from "./Schedule.module.css";
-import ScheduleWork from "./ScheduleWork";
+import ScheduleCard from "./ScheduleCard";
 
 const { kakao } = window;
 
@@ -107,7 +107,7 @@ const ScheduleMap = ({ day }) => {
       </div>
       <div id="map" style={{ width: "99%", height: "500px" }}></div>
 
-      <ScheduleWork day={day} name={pin} />
+      <ScheduleCard day={day} name={pin} />
     </div>
   );
 };
