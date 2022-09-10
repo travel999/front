@@ -1,12 +1,12 @@
 import React from "react";
-import Layout from "../components/common/Layout";
+import NoHeaderLayout from "../components/common/NoHeaderLayout";
 import Profile from "../components/startProfile/Profile";
 
 const MyProfilePage = () => {
     return (
-        <Layout>
+        <NoHeaderLayout>
             <Profile />
-        </Layout>
+        </NoHeaderLayout>
     );
 };
 
