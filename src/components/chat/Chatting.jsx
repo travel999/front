@@ -3,15 +3,18 @@
 // import styles from "./Chatting.module.css";
 // import ChatBox from "./ChatBox";
 
-// const socket = io.connect("link받아야함");
+// const socket = io.connect("http://localhost:3001");
 
 // const Chatting = () => {
-//   const [room, setRoom] = useState(""); // room 이름은 게시글의 id값을 쓰던가 해야할것 같음.
-//   const [user, setUser] = useState(""); // 게시글에서 받아옴, 닉네임?
+//   const [room, setRoom] = useState("타타타의 방"); // room 이름은 게시글의 id값을 쓰던가 해야할것 같음.
+//   const [user, setUser] = useState("타타타"); // 닉네임, 리덕스에서 구해옴
 
-//   if (user !== "" && room !== "") {
-//     socket.emit("join이름", room);
-//   }
+//   // 해당 게시글의 닉네임이 없으면, 채팅에 들어갈수 없음. 여기서 차단해야함.
+//   useEffect(() => {
+//     if (user !== "" && room !== "") {
+//       socket.emit("join_room", room);
+//     }
+//   }, []);
 
 //   return (
 //     <div className={styles.bicbox}>
@@ -24,4 +27,3 @@
 // export default Chatting;
 
 // // 게시글에 들어가면,
-

@@ -29,6 +29,7 @@
   margin: 0px 37.5px;
   background-color: #ffc51c;
   padding: 5px;
+  object-fit: cover;
 }
 
 .profileNum {
