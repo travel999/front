@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
-import { setCookie } from "../../res/cookie";
+import { setCookie,removeCookie } from "../../res/cookie";
 
 const initialState = {
   email: "",
@@ -15,6 +15,7 @@ export const addLogin = createAsyncThunk(
       const token = response.data.token;
       console.log(response);
       console.log(response.data.token);
+      removeCookie("jwtToken")
       setCookie("jwtToken", `${token}`);
       if (response.status === 200) { 
         alert("반갑습니다!");

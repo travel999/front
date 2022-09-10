@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import S3upload from "react-aws-s3";
 import { getUser, putImage, putPassword, deleteUser } from "../../redux/modules/ProfileSlice";
 import styles from "./profile.module.css"
+import { useEffect } from "react";
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
@@ -19,6 +20,8 @@ const Profile = () => {
     newPassword: "",
     confirm: ""
   }
+  
+
   // 기존 값도 가져와서 state로 만들기(이미지, 닉네임 보여줄 때, 회원탈퇴시 사용)
   const [edit, setEdit] = useState(initialState)
   const [passWord, setPassWord] = useState("")
@@ -35,6 +38,12 @@ const Profile = () => {
   // 이미지 미리보기
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
+
+  // useEffect(()=> {
+  //   if (checkEmail) {
+  //     dispatch(doubleCheckEmail({ email: emailData, setEmailMsg }));
+  //   }
+  // })
 
   // 비밀번호 유효성 검사, 원래 사용하던 비밀번호 일 때 사용중인 비밀번호라고 띄워주기
   const onChangeHandler = (e) => {
@@ -118,6 +127,8 @@ const Profile = () => {
 
   return (
     <div>
+      <h1 className={styles.title}>OORIGACHI</h1>
+      <h4>회원가입</h4>
       <div className={styles.joinWrap}>
         <div>
           <h2>회원정보 수정</h2>

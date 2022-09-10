@@ -1,3 +1,8 @@
+.background {
+    background-color: #f2f7ff;
+    height: 100vh;
+}
+
 .joinWrap {
     width: 782px;
     display: flex;
@@ -6,6 +11,7 @@
     align-items: center;
     margin: 100px auto auto auto;
     justify-content: space-between;
+    background: #F2F7FF;
 }
 
 .message {
