@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import instance from "../../res/instance"
-import { setCookie } from "../../res/cookie";
+import { getCookie, removeCookie, setCookie } from "../../res/cookie";
 
 const initialState = {
     userLogin: [],
@@ -12,12 +12,12 @@ export const kakaoLogin = createAsyncThunk(
     "KakaoSlice/kakaoLogin",
     async (code, thunkAPI) => {
         try {
-            console.log(code)
+            console.log("카카오")
             const response = await instance.get(`kakao/callback?code=${code.code}`, code.code);
-            console.log(response)
             const token = response.data.user.token
+            removeCookie("jwtToken")
             setCookie("jwtToken", `${token}`);
-            console.log(token)
+            console.log(getCookie("jwtToken"))
             // localStorage.setItem('token', response.data.user.token);
             if (response.status === 200) {
                 alert("반갑습니다!");

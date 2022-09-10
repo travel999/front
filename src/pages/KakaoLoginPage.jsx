@@ -1,12 +1,12 @@
 import React from "react";
-import Layout from "../components/common/Layout";
+import NoHeaderLayout from "../components/common/NoHeaderLayout";
 import KakaoLogIn from "../components/loginRegister/KakaoLogIn";
 
 const KakaoLoginPage = () => {
   return (
-    <Layout>
+    <NoHeaderLayout>
       <KakaoLogIn />
-    </Layout>
+    </NoHeaderLayout>
   );
 };
 

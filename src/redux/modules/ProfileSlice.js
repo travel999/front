@@ -40,8 +40,15 @@ export const putPassword = createAsyncThunk(
         try {
             console.log(payload)
             const response = await instance.put("user/me/password", payload);
+            console.log(response)
+            if (response) {
+                payload.setPwMsg(response.data.message)
+            }
             return thunkAPI.fulfillWithValue(response);
         } catch (error) {
+            if (error) {
+                payload.setPwMsg(error.response.data.message)
+            }
             return thunkAPI.rejectWithValue(error)
         }
     }
@@ -55,9 +62,13 @@ export const deleteUser = createAsyncThunk(
             const response = await instance.delete("user/me/delete", payload);
             if (response) {
                 alert("회원 탈퇴가 완료되었습니다🙁")
+                await window.location.replace("/")
             }
             return thunkAPI.fulfillWithValue(response);
         } catch (error) {
+            if (error) {
+                alert("회원 탈퇴에 실패했어요! 관리자에게 문의해 주세요.")
+            }
             return thunkAPI.rejectWithValue(error)
         }
     }

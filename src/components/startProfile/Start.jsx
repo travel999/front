@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./start.module.css"
-import background from "../../res/img/background.png"
 
 const Start = () => {
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ const Start = () => {
   return (
     <div className={styles.startBox}>
       <div className={styles.wrap}>
-        <h1 className={styles.title}>ORIGACHI</h1>
+        <h1 className={styles.title}>OORIGACHI</h1>
         <div className={styles.description}>
           오리같이에 오신걸 환영합니다! <br />
           실시간으로 의견을 공유하고 지도를 확인하며 <br />
@@ -29,9 +28,6 @@ const Start = () => {
           </button>
           <a href={KAKAO_AUTH_URL}>
             <button className={styles.socialLogin}
-            // onClick={() => {
-            //   navigate({KAKAO_AUTH_URL});
-            // }}
             >
               카카오로 로그인
             </button></a>
@@ -42,9 +38,6 @@ const Start = () => {
           >
             회원가입
           </button>
-        </div>
-        <div className={styles.backgroundImg}>
-          <img src={background} alt="배경"></img>
         </div>
       </div>
     </div>

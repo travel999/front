@@ -6,6 +6,7 @@ import styles from "./login.module.css"
 
 
 const Login = () => {
+  console.log("로그인")
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
