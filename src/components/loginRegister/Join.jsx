@@ -164,7 +164,7 @@ const Join = () => {
   }
 
   return (
-    <div>
+    <div className={styles.background}>
       <div className={styles.joinWrap}>
         <div>
           <div className={styles.inputBox}>

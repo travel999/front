@@ -1,12 +1,12 @@
 import React from "react";
-import Layout from "../components/common/Layout";
+import NoHeaderLayout from "../components/common/NoHeaderLayout";
 import Loading from "../components/loginRegister/Loading"
 
 const LoadingPage = () => {
     return (
-        <Layout>
+        <NoHeaderLayout>
             <Loading />
-        </Layout>
+        </NoHeaderLayout>
     );
 };
 

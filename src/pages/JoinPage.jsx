@@ -1,12 +1,12 @@
 import React from "react";
-import Layout from "../components/common/Layout";
+import NoHeaderLayout from "../components/common/NoHeaderLayout";
 import Join from "../components/loginRegister/Join";
 
 const JoinPage = () => {
   return (
-    <Layout>
+    <NoHeaderLayout>
       <Join />
-    </Layout>
+    </NoHeaderLayout>
   );
 };
 

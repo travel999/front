@@ -1,10 +1,11 @@
 import React from "react";
-// import Layout from "../components/common/Layout";
 import Start from "../components/startProfile/Start";
-
+import NoHeaderLayout from "../components/common/NoHeaderLayout";
 const StartPage = () => {
     return (
+        <NoHeaderLayout>
             <Start />
+        </NoHeaderLayout>
     );
 };
 
