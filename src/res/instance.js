@@ -4,6 +4,7 @@ import { getCookie, removeCookie } from "./cookie";
 // const accessToken = localStorage.getItem('token');
 
 const instance = axios.create({
+
   baseURL: "http://52.78.142.77/",
   headers: { token: getCookie("jwtToken") },
   withCredentials: true,

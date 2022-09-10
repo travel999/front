@@ -21,14 +21,14 @@ const ScheduleCreate = () => {
   const [scheduleSave, setScheduleSave] = useState({});
   const [fixDay, setFixDay] = useState();
 
-  const createData = useSelector((state) => state.schedule.saveSchedule);
+  const createData = useSelector((state) => state.schedule);
 
   // 토크없으면 로그인 페이지로
-  useEffect(() => {
-    if (!tokenValue) {
-      navigate("/");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!tokenValue) {
+  //     navigate("/");
+  //   }
+  // }, []);
 
   //일정생성하기
   const onSaveSchdule = () => {
@@ -39,7 +39,7 @@ const ScheduleCreate = () => {
       dispatch(saveSchedule(scheduleSave));
     }
   };
-  //시작일-종료일-타이을 지정
+  //시작일-종료일-타이틀 지정
   const onSetData = (e) => {
     const { name, value } = e.target;
 
@@ -70,28 +70,51 @@ const ScheduleCreate = () => {
   };
 
   return (
-    <div className={styels.dayContent}>
-      <input
-        type="date"
-        name="startDay"
-        value={startDate}
-        onChange={onSetData}
-      />
-      ~
-      <input type="date" name="endDay" value={endDate} onChange={onSetData} />
-      <input type="text" name="title" value={title} onChange={onSetData} />
-      {createData !== undefined ? (
-        <Btn color="green">일정 수정하기</Btn>
-      ) : (
-        <Btn color="blue" onClick={onSaveSchdule}>
-          일정 생성하기
-        </Btn>
-      )}
-      {createData !== undefined ? (
-        <ScheduleList startDate={startDate} endDate={endDate} fixDay={fixDay} />
-      ) : (
-        "여행갈 날짜를 먼저 지정해주세요!"
-      )}
+    <div className={styels.WriteWrap}>
+      <div className={styels.dayWrap}>
+        <div className={styels.dayContent}>
+          <input
+            type="date"
+            id="startDay"
+            name="startDay"
+            value={startDate}
+            onChange={onSetData}
+          />
+          <input
+            type="date"
+            id="endDay"
+            name="endDay"
+            value={endDate}
+            onChange={onSetData}
+          />
+          <input
+            type="text"
+            name="title"
+            value={title}
+            onChange={onSetData}
+            placeholder="일정의 제목을 입력해주세요"
+          />
+          {createData.title !== "" || createData.title !== undefined ? (
+            <Btn color="#fff" backgroundColor="#FF8C0A" height="36px">
+              수정
+            </Btn>
+          ) : (
+            <Btn
+              color="#fff"
+              backgroundColor="#ffc51c"
+              height="36px"
+              onClick={onSaveSchdule}
+            >
+              일정 생성하기
+            </Btn>
+          )}
+          {createData.title !== "" || createData.title !== undefined ? (
+            <ScheduleList fixDay={fixDay} id={createData.postId} />
+          ) : (
+            "여행갈 날짜를 먼저 지정해주세요!"
+          )}
+        </div>
+      </div>
     </div>
   );
 };

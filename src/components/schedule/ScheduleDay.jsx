@@ -1,9 +1,11 @@
+//이거 안쓴다!!!!!!!1>>2022.09.10 토 오전 3시 48분
+
 import React, { useState } from "react";
 //style & elements
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 //컴포넌트
-import ScheduleWork from "./ScheduleWork";
+import ScheduleCard from "./ScheduleCard";
 import ScheduleMap from "./ScheduleMap";
 
 const ScheduleDay = () => {
@@ -121,7 +123,7 @@ const ScheduleDay = () => {
         {dayNum
           .filter((item, i) => index === i)
           .map((item) => (
-            <ScheduleWork key={item} day={index} />
+            <ScheduleCard key={item} day={index} />
           ))}
       </div>
       <div className={styels.mapWrap}>

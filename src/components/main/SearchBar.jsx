@@ -25,14 +25,15 @@ const SearchBar = ({
 
   return (
     <div className={styles.searchbox}>
-      <input className={styles.searchinputbox} ref={input_ref} />
+      <div class="input-group"></div>
+      <input className={styles.searchinputbox} ref={input_ref}></input>
       <button
         className={styles.searchbtn}
         onClick={() => {
           OnTosearch(input_ref.current.value);
         }}
       >
-        입력
+        검색
       </button>
 
       <button
@@ -41,7 +42,7 @@ const SearchBar = ({
           OnRefresh();
         }}
       >
-        ♻︎
+        다시
       </button>
     </div>
   );

@@ -3,20 +3,22 @@ import instance from "../../res/instance";
 
 // 초기 상태값
 const initialState = {
-  title: "",
-  date: [],
-  postId: "",
+  result: "",
+  message: "",
 };
 //액션
 
 //액션 함수
 
 //청크
-export const saveSchedule = createAsyncThunk(
-  "schedule/saveSchedule",
+export const saveNickName = createAsyncThunk(
+  "invite/saveNickName",
   async (payload, thunkAPI) => {
     try {
-      const res = await instance.post(`post`, payload);
+      const res = await instance.patch(
+        `post/invite/${payload.postId}`,
+        payload.data
+      );
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -25,25 +27,24 @@ export const saveSchedule = createAsyncThunk(
 );
 
 //슬라이스
-export const ScheduleSlice = createSlice({
-  name: "schedule",
+export const InviteSlice = createSlice({
+  name: "invite",
   initialState,
   reducers: {},
   extraReducers: {
-    [saveSchedule.pending]: (state) => {
+    [saveNickName.pending]: (state) => {
       state.isLoading = true;
     },
-    [saveSchedule.fulfilled]: (state, action) => {
+    [saveNickName.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.title = action.payload.title;
-      state.date = action.payload.date;
-      state.postId = action.payload.postId;
+      state.result = action.payload.result;
+      state.message = action.payload.message;
     },
-    [saveSchedule.rejected]: (state, action) => {
+    [saveNickName.rejected]: (state, action) => {
       console.log(current(state), action);
     },
   },
 });
 
 // export const {} = ScheduleSlice.actions;
-export default ScheduleSlice.reducer;
+export default InviteSlice.reducer;
