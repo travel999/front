@@ -14,6 +14,7 @@ export const addJoin = createAsyncThunk(
   "signUpSlice/addJoin",
   async (payload, thunkAPI) => {
     try {
+      console.log(payload)
       const response = await instance.post("user/signup", payload);
       if (response) {
         alert("회원가입을 축하드립니다!");
@@ -69,7 +70,7 @@ export const doubleCheckNickName = createAsyncThunk(
       if (error) {
         payload.setNickNameMsg(error.response.data.message);
       }
-      return console.error(error)
+      return thunkAPI.rejectWithValue("");
     }
   }
 );

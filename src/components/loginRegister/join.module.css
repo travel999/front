@@ -9,7 +9,7 @@
     height: 400px;
     flex-direction: row-reverse;
     align-items: center;
-    margin: 100px auto auto auto;
+    margin: auto;
     justify-content: space-between;
     background: #F2F7FF;
 }
@@ -68,6 +68,7 @@
     background: #D9D9D9;
     border: 0;
     border-radius: 999px;
+    cursor: pointer;
 }
 
 .profile h4 {

@@ -1,68 +1,88 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "../../res/cookie";
 import S3upload from "react-aws-s3";
 import { getUser, putImage, putPassword, deleteUser } from "../../redux/modules/ProfileSlice";
+
 import styles from "./profile.module.css"
-import { useEffect } from "react";
+import pencil from "../../res/img/pencil.svg"
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const Profile = () => {
-  const navigate = useNavigate()
-  const nickName = useSelector((state) => state.profile.getUser)
-  console.log(nickName)
-  const imgVal = useRef(null);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  
   const initialState = {
     newImage: "",
     newPassword: "",
     confirm: ""
   }
-  
+  const imgVal = useRef(null);
 
+  const loginToken = (getCookie("jwtToken"))
+
+  const [checkPwd, setCheckPwd] = useState(false)
   // 기존 값도 가져와서 state로 만들기(이미지, 닉네임 보여줄 때, 회원탈퇴시 사용)
   const [edit, setEdit] = useState(initialState)
   const [passWord, setPassWord] = useState("")
   const [confirm, setConfirm] = useState("");
-  const [userImage, setUserImage] = useState("")
+  const [newImage, setNewImage] = useState("")
+  const [nickname, setNickname] = useState("")
 
   // 비밀번호 
   const [pwMsg, setPwMsg] = useState("");
   const [confirmMsg, setConfirmMsg] = useState("");
 
   // 비밀번호 정규식
-  const pwRule = /^[a-zA-Z0-9]{5,12}$/;
+  const pwRule = /^[a-zA-Z0-9]{6,12}$/;
 
   // 이미지 미리보기
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
 
-  // useEffect(()=> {
-  //   if (checkEmail) {
-  //     dispatch(doubleCheckEmail({ email: emailData, setEmailMsg }));
-  //   }
-  // })
+  // 토큰 없으면 못 들어오게 
+  useEffect(() => {
+    if (loginToken === "") {
+      alert("로그인 후 이용해주세요!")
+      navigate("/");
+    }
+  }, []);
+
+  // 닉네임 불러오기
+  useEffect(() => {
+    if (!loginToken === "") {
+      dispatch(putImage(setNickname));
+      console.log(nickname)
+    }
+  }, []);
+
+  // 닉네임 수정 불가 마우스오버 이벤트
+  const onEditNickName = () => {
+    alert("닉네임은 수정할 수 없어요.")
+  }
 
   // 비밀번호 유효성 검사, 원래 사용하던 비밀번호 일 때 사용중인 비밀번호라고 띄워주기
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
-
+    // 비밀번호 유효성 검사
     if (name === "newPassword") {
       if (!pwRule.test(value) && value !== "") {
-        setPwMsg("비밀번호는 5자 이상 ~ 12자 이하여야 합니다.");
+        setPwMsg("비밀번호는 6자 이상 ~ 12자 이하여야 합니다.");
+        setCheckPwd(true)
       } else if (pwRule.test(value)) {
         setPwMsg("사용가능한 비밀번호 입니다.");
         setPassWord(value);
       }
-
+      // 비밀번호 확인 먼저 작성되었을 경우
       if (value !== "" && edit.confirm !== value) {
         setConfirmMsg("비밀번호가 다릅니다.");
       } else if (edit.confirm === value) {
         setConfirmMsg("비밀번호가 일치합니다.");
       }
     }
+    // 확인 비밀번호 유효성 검사
     else if (name === "confirm") {
       if (edit.newPassword !== "" && edit.newPassword !== value) {
         setConfirmMsg("비밀번호가 다릅니다.");
@@ -82,7 +102,7 @@ const Profile = () => {
     setPreImg(imageUrl);
   };
 
-  //이미지 업로드
+  //S3 서버에 이미지 업로드
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
@@ -99,53 +119,55 @@ const Profile = () => {
     const s3Client = new S3upload(config);
     s3Client.uploadFile(file, newFileName).then(async (data) => {
       if (data.status === 204) {
-        let userImage = data.location;
-        setUserImage(userImage)
-        console.log(userImage)
-        setEdit({ ...edit, userImage })
+        let newImage = data.location;
+        setNewImage(newImage)
+        setEdit({ ...edit, newImage })
       }
     });
   }
-  const onEditProfile = (e) => {
-    if (
-      userImage === ""
-    ) {
-    } else {
-      dispatch(putImage(edit));
+  
+  // 프로필 이미지 변경 
+  useEffect(() => {
+    if (newImage) {
+      setEdit({ ...edit, newImage })
+      dispatch(putImage(edit))
     }
-    if (
-      passWord === "" ||
-      confirm === ""
-    ) {
+  }, [newImage])
+
+  // 프로필 수정
+  const onEditProfile = (e) => {
+    if (passWord === "" || confirm === "") {
     } else {
       dispatch(putPassword(edit))
     }
   }
+  // 회원 탈퇴
   const onDeleteProfile = (e) => {
     dispatch(deleteUser(edit))
   }
 
   return (
     <div>
-      <h1 className={styles.title}>OORIGACHI</h1>
-      <h4>회원가입</h4>
+      <h1 className={styles.title} onClick={() => navigate("/main")}>OORIGACHI</h1>
       <div className={styles.joinWrap}>
         <div>
           <h2>회원정보 수정</h2>
           <div className={styles.inputBox}>
             <div className={styles.inputName}>닉네임</div>
-            <input className={styles.input} disabled />
+            <input onMouseDown={onEditNickName} className={styles.nickInput} readOnly></input>
           </div>
           <div className={styles.inputBox}>
-            <div className={styles.inputName}>비밀번호</div>
+            <div className={styles.inputName}>비밀번호 변경</div>
             <input
               className={styles.input}
               onChange={onChangeHandler}
               type="password"
               name="newPassword"
               id="newPassword"
-              minLength="5"
+              minLength="6"
               maxLength="12"
+              autoFocus
+              autoComplete="new-password"
             />
           </div>
           <div className={styles.message}>{pwMsg}</div>
@@ -156,17 +178,18 @@ const Profile = () => {
               onChange={onChangeHandler}
               type="password"
               name="confirm"
-              minLength="5"
+              minLength="6"
               maxLength="12"
               required
+              autoComplete="new-password"
             />
           </div>
           <div className={styles.message}>{confirmMsg}</div>
         </div>
         <div className={styles.profile}>
-          <label htmlFor="userImage">
+          <label htmlFor="newImage">
             {!preImg[0] ? (
-              <img alt=""></img>
+              <img src={pencil} alt=""></img>
             ) : (
               <img src={preImg} alt="" />
             )}</label>
@@ -177,11 +200,10 @@ const Profile = () => {
             ref={imgVal}
             className={styles.inputHidden}
             onChange={onLoadImg}
-            placeholder="프로필 이미지"
             type="file"
             accept="image/*"
-            name="userImage"
-            id="userImage"
+            name="newImage"
+            id="newImage"
           />
         </form>
       </div>
@@ -192,5 +214,5 @@ const Profile = () => {
     </div>
   );
 };
-// 여기서도 유효성 검사랑 메세지 띄워줘야 함..
+
 export default Profile;

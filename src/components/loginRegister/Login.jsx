@@ -38,7 +38,7 @@ const Login = () => {
       <form className={styles.inputWrap}>
         <div className={styles.inputBox}>
           <div className={styles.inputName}>이메일</div>
-          <input className={styles.input} name="email" value={login.email} onChange={onChange}></input>
+          <input className={styles.input} name="email" value={login.email} onChange={onChange} autoFocus></input>
         </div>
         <div className={styles.inputBox}>
           <div className={styles.inputName}>비밀번호</div>

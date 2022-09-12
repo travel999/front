@@ -1,78 +1,115 @@
+body {
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
 .startBox {
+    background-color: #fff5e1;
+    position: relative;
+}
+
+.imgBox {
+    position: relative;
+    width: 1200px;
+    height: 90%;
     margin: auto;
 }
 
-.wrap {
-    display: flex;
-
-}
-
 .title {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    width: 452px;
-    height: 72px;
-    left: 360px;
-    top: 214px;
-    /* top: 60%; */
-    bottom: 21.61%;
-    font-weight: 600;
-    font-size: 80px;
-    line-height: 80px;
-
+    margin: 140px auto;
+    width: 1200px;
+    height: 728px;
 }
 
 .description {
-    /* position: absolute; */
-    width: 444px;
-    height: 160px;
-    margin: 396px 255px auto 255px;
-
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    /* margin-left: 366.5px; */
+    transform: translate(-50%, -50%);
     font-family: 'Roboto';
     font-weight: 400;
-    font-size: 24px;
+    font-size: 25px;
     line-height: 40px;
 }
 
 .login {
     padding: auto;
     position: absolute;
-    width: 240px;
-    height: 54px;
-    left: 360px;
-    top: 562px;
+    left: 28%;
+    top: 63%;
 
-    background: #D9D9D9;
     border: 0;
     outline: 0;
+    width: 240px;
+    height: 54px;
+    background: #FFC51C;
     border-radius: 999px;
+    cursor: pointer;
 }
 
 .socialLogin {
     padding: auto;
     position: absolute;
-    width: 240px;
-    height: 54px;
-    left: 360px;
-    top: 632px;
+    left: 52%;
+    top: 63%;
 
-    background: #D9D9D9;
     border: 0;
     outline: 0;
+    width: 240px;
+    height: 54px;
+    background: #FFC51C;
     border-radius: 999px;
+    cursor: pointer;
+}
+
+.joinText {
+    padding: auto;
+    position: absolute;
+    /* left: 30%; */
+    top: 73%;
+    margin-left: 352px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 40px;
 }
 
 .join {
     padding: auto;
     position: absolute;
-    width: 240px;
-    height: 54px;
-    left: 360px;
-    top: 702px;
-
-    /* background: #ffffff; */
+    left: 65%;
+    /* margin-left: 774px; */
+    top: 73%;
     background-color: rgba(255, 255, 255, 0);
     border: 0;
     border-radius: 999px;
+    cursor: pointer;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.imgBox1 {
+    position: relative;
+}
+
+.cloud {
+    position: absolute;
+    left: 76.1%;
+    top: 5%;
+}
+
+.cloud1 {
+    position: absolute;
+    /* left: 0%; */
+    top: 87.4%;
 }
