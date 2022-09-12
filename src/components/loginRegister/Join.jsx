@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { addJoin, doubleCheckEmail, doubleCheckNickName } from "../../redux/modules/JoinSlice";
 import S3upload from "react-aws-s3";
 
+import logo from "../../res/img/logo.png"
 import styles from "./join.module.css"
 import pencil from "../../res/img/pencil.svg"
 
@@ -166,7 +167,8 @@ const Join = () => {
   return (
     <div className={styles.background}>
       <div className={styles.joinWrap}>
-        <div>
+        <img className={styles.backgroundImg} src={logo} alt=""/>
+        <div className={styles.inputWrap}>
           <div className={styles.inputBox}>
             <div className={styles.inputName}>이메일</div>
             <input
