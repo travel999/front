@@ -3,9 +3,8 @@
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-
 
 .startBox {
     background-color: #F2F7FF;
@@ -28,80 +27,80 @@
 }
 
 .description {
-    position: absolute;
-    top: 57%;
-    left: 50%;
-    /* margin-left: 366.5px; */
-    transform: translate(-50%, -50%);
-    font-family: 'Roboto';
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 40px;
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  /* margin-left: 366.5px; */
+  transform: translate(-50%, -50%);
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 40px;
 }
 
 .login {
-    padding: auto;
-    position: absolute;
-    left: 28%;
-    top: 63%;
+  padding: auto;
+  position: absolute;
+  left: 28%;
+  top: 63%;
 
-    border: 0;
-    outline: 0;
-    width: 240px;
-    height: 54px;
-    background: #FFC51C;
-    border-radius: 999px;
-    cursor: pointer;
+  border: 0;
+  outline: 0;
+  width: 240px;
+  height: 54px;
+  background: #ffc51c;
+  border-radius: 999px;
+  cursor: pointer;
 }
 
 .socialLogin {
-    padding: auto;
-    position: absolute;
-    left: 52%;
-    top: 63%;
+  padding: auto;
+  position: absolute;
+  left: 52%;
+  top: 63%;
 
-    border: 0;
-    outline: 0;
-    width: 240px;
-    height: 54px;
-    background: #FFC51C;
-    border-radius: 999px;
-    cursor: pointer;
+  border: 0;
+  outline: 0;
+  width: 240px;
+  height: 54px;
+  background: #ffc51c;
+  border-radius: 999px;
+  cursor: pointer;
 }
 
 .joinText {
-    padding: auto;
-    position: absolute;
-    /* left: 30%; */
-    top: 73%;
-    margin-left: 352px;
+  padding: auto;
+  position: absolute;
+  /* left: 30%; */
+  top: 73%;
+  margin-left: 352px;
 
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 40px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 40px;
 }
 
 .join {
-    padding: auto;
-    position: absolute;
-    left: 65%;
-    /* margin-left: 774px; */
-    top: 73%;
-    background-color: rgba(255, 255, 255, 0);
-    border: 0;
-    border-radius: 999px;
-    cursor: pointer;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 40px;
+  padding: auto;
+  position: absolute;
+  left: 65%;
+  /* margin-left: 774px; */
+  top: 73%;
+  background-color: rgba(255, 255, 255, 0);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 40px;
 }
 
 .imgBox1 {
-    position: relative;
+  position: relative;
 }
 
 .cloud {
@@ -115,3 +114,4 @@
     right: 95%;
     top: 86.5%;
 }
+
