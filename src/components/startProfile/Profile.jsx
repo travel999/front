@@ -10,9 +10,12 @@ import pencil from "../../res/img/pencil.svg"
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
+console.log("프로필")
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const profile = useSelector((state) => state)
+  console.log(profile)
   
   const initialState = {
     newImage: "",
@@ -21,9 +24,6 @@ const Profile = () => {
   }
   const imgVal = useRef(null);
 
-  const loginToken = (getCookie("jwtToken"))
-
-  const [checkPwd, setCheckPwd] = useState(false)
   // 기존 값도 가져와서 state로 만들기(이미지, 닉네임 보여줄 때, 회원탈퇴시 사용)
   const [edit, setEdit] = useState(initialState)
   const [passWord, setPassWord] = useState("")
@@ -42,7 +42,8 @@ const Profile = () => {
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
 
-  // 토큰 없으면 못 들어오게 
+  // 토큰 없으면 못 들어오게
+  const loginToken = (getCookie("jwtToken"))
   useEffect(() => {
     if (loginToken === "") {
       alert("로그인 후 이용해주세요!")
@@ -52,10 +53,8 @@ const Profile = () => {
 
   // 닉네임 불러오기
   useEffect(() => {
-    if (!loginToken === "") {
-      dispatch(putImage(setNickname));
-      console.log(nickname)
-    }
+      dispatch(getUser());
+      console.log(getUser.response)
   }, []);
 
   // 닉네임 수정 불가 마우스오버 이벤트
@@ -70,7 +69,6 @@ const Profile = () => {
     if (name === "newPassword") {
       if (!pwRule.test(value) && value !== "") {
         setPwMsg("비밀번호는 6자 이상 ~ 12자 이하여야 합니다.");
-        setCheckPwd(true)
       } else if (pwRule.test(value)) {
         setPwMsg("사용가능한 비밀번호 입니다.");
         setPassWord(value);
@@ -154,7 +152,7 @@ const Profile = () => {
           <h2>회원정보 수정</h2>
           <div className={styles.inputBox}>
             <div className={styles.inputName}>닉네임</div>
-            <input onMouseDown={onEditNickName} className={styles.nickInput} readOnly></input>
+            <input value={nickname} type="text" onMouseDown={onEditNickName} className={styles.nickInput} readOnly />
           </div>
           <div className={styles.inputBox}>
             <div className={styles.inputName}>비밀번호 변경</div>
