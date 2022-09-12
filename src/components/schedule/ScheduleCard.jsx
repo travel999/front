@@ -1,41 +1,44 @@
 import React, { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 //style & elements
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 
+import { getConData } from "../../redux/modules/MapSlice";
+import { useEffect } from "react";
+
 // import ScheduleMap from "./ScheduleMap";
 
 const ScheduleCard = ({ data }) => {
-  //초기화 값
-  const initState = {
-    placeName: "",
-    locate: "",
-    content: "",
-  };
   //Hool
   const divRef = useRef();
+  const dispatch = useDispatch();
 
   //state
-  const [conData, setConData] = useState("");
-  const [conList, setConList] = useState([]);
-  const [listData, setListData] = useState(initState);
+  const [conData, setConData] = useState({});
+  const [saveCheck, setSaveCheck] = useState(false);
 
   //함수
 
   //이벤트 함수
 
   const onGetContent = (e) => {
-    setConData(e.target.value);
-  };
-  //onChange 후 포커싱 아웃될때 제일 최종 값만 가지고 와서 리스트 배열 생성
-  const onGetContentList = () => {
-    setConList([...conList, conData]);
+    const { name, value } = e.target;
+    setConData({ ...conData, [name]: value });
   };
 
-  //일정 저장
-  const onSaveStorage = () => {};
+  //일정의 컨텐츠 저장
+  const onSaveStorage = (choseDay) => {
+    // setSaveCheck({ choseDay, true });
+  };
+
+  useEffect(() => {
+    if (saveCheck === true) {
+      dispatch(getConData(conData));
+    }
+  }, []);
+
   //입력한 값
-  console.log(data.pin.pin);
   return (
     <div className={styels.worksWrap}>
       <h2>
@@ -48,17 +51,16 @@ const ScheduleCard = ({ data }) => {
             {index + 1}.{item.title}
           </div>
           <textarea
-            name="content"
             className={styels.content}
+            name={index + 1}
             placeholder="일정 입력"
             ref={divRef}
             onChange={onGetContent}
-            onBlur={onGetContentList}
             required
           />
         </div>
       ))}
-      <Btn onClick={onSaveStorage}>일정저장하기</Btn>
+      <Btn onClick={() => onSaveStorage(data.day)}>일정 저장</Btn>
     </div>
   );
 };

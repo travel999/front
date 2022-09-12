@@ -53,7 +53,6 @@ const ScheduleList = ({ fixDay, id }) => {
 
   const sendMapData = (day) => {
     setIndex(day);
-    console.log(day);
     dispatch(getMapData(day));
   };
 

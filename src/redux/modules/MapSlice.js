@@ -5,6 +5,7 @@ import { act } from "react-dom/test-utils";
 const initialState = {
   day: "",
   pin: [],
+  content: [],
 };
 //액션
 
@@ -18,17 +19,17 @@ export const MapSlice = createSlice({
   initialState,
   reducers: {
     getMapData(state, action) {
-      console.log("getMapData");
       state.day = action.payload;
-      state.pin = [];
     },
     getDayPlaceData(state, action) {
-      console.log("getDayPlaceData");
       state.pin = action.payload;
+    },
+    getConData(state, action) {
+      state.content = action.payload;
     },
   },
   extraReducers: {},
 });
 
-export const { getMapData, getDayPlaceData } = MapSlice.actions;
+export const { getMapData, getDayPlaceData, getConData } = MapSlice.actions;
 export default MapSlice.reducer;
