@@ -1,33 +1,41 @@
 .background {
     background-color: #f2f7ff;
-    height: 100vh;
+    height: 100%;
 }
 
 .joinWrap {
-    width: 782px;
     display: flex;
-    height: 400px;
-    flex-direction: row-reverse;
+    position: relative;
     align-items: center;
-    margin: auto;
-    justify-content: space-between;
     background: #F2F7FF;
 }
 
+.backgroundImg {
+    position: absolute;
+    background-color: #F2F7FF;
+    position: relative;
+    object-fit: cover;
+}
+
 .message {
+    position: absolute;
     font-size: 15px;
     padding-left: 200px;
 }
 
-.inputBox {
-    width: 500px;
-    margin-top: 25px;
-    margin-bottom: 5px;
+.inputWrap {
+    position: absolute;
     display: flex;
-    flex-direction: row;
+}
+
+.inputBox {
+    position: absolute;
+    width: 500px;
+    display: flex;
 }
 
 .inputName {
+    position: absolute;
     padding-right: 40px;
     width: 130px;
 
@@ -52,6 +60,7 @@
 
 
 .buttonWrap {
+    position: absolute;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -60,8 +69,9 @@
 }
 
 .button {
+    position: absolute;
     padding: 0;
-    margin-left: 35px;
+    /* margin-left: 35px; */
     width: 348px;
     height: 60px;
 
@@ -72,11 +82,13 @@
 }
 
 .profile h4 {
+    position: absolute;
     text-align: center;
     margin-top: 20px;
 }
 
 .profile img {
+    position: absolute;
     border-radius: 50%;
     height: 177px;
     width: 177px;
@@ -85,16 +97,18 @@
 }
 
 .inputHidden {
+    position: absolute;
     display: none;
 }
 
 .loading {
+    position: absolute;
     display: flex;
     justify-content: center;
     margin-top: 300px;
-    /* background-color: #F2F7FF; */
-    /* position: "fixed"; */
-    /* transform: "translate(-50%, -50%)"; */
-    /* background-color: "F2F7FF"; */
+    background-color: #F2F7FF;
+    position: "fixed";
+    transform: "translate(-50%, -50%)";
+    background-color: "F2F7FF";
 
 }

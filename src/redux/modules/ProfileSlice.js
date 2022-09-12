@@ -13,10 +13,11 @@ export const getUser = createAsyncThunk(
     "profileSlice/getUser",
     async (payload, thunkAPI) => {
         try {
-            console.log("try 안 response 전")
-            const response = await instance.get("user/me", payload);
-            console.log(response)
-            return thunkAPI.fulfillWithValue(response);
+            console.log("유저 정보 조회")
+            console.log(instance.defaults.headers)
+            const response = await instance.get("user/me");
+            console.log(response.user)
+            return thunkAPI.fulfillWithValue(response.user);
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
         }
@@ -33,8 +34,6 @@ export const putImage = createAsyncThunk(
             console.log(response.data.updateUser.nickname)
             if (response) {
                 alert("이미지가 변경되었습니다!")
-                payload.setNickname(response.data.updateUser.nickname)
-                
             }
             return thunkAPI.fulfillWithValue(response);
         } catch (error) {
@@ -51,9 +50,8 @@ export const putPassword = createAsyncThunk(
             const response = await instance.put("user/me/password", payload);
             console.log(response)
             if (response) {
-                // payload.setPwMsg(response.data.message)
                 alert("비밀번호가 변경되었습니다!🙃")
-                await window.location.replace("/login")
+                // await window.location.replace("/login")
             }
             return thunkAPI.fulfillWithValue(response);
         } catch (error) {

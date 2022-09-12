@@ -1,4 +1,4 @@
-body {
+.startBox {
     -ms-overflow-style: none;
 }
 
@@ -8,20 +8,22 @@ body {
 
 
 .startBox {
-    background-color: #fff5e1;
+    background-color: #F2F7FF;
     position: relative;
+    object-fit: cover;
 }
 
 .imgBox {
     position: relative;
     width: 1200px;
-    height: 90%;
+    height: 100%;
     margin: auto;
 }
 
 .title {
     margin: 140px auto;
-    width: 1200px;
+    margin-left: 100px;
+    width: 1000px;
     height: 728px;
 }
 
@@ -104,12 +106,12 @@ body {
 
 .cloud {
     position: absolute;
-    left: 76.1%;
-    top: 5%;
+    left: 92%;
+    top: 8%;
 }
 
 .cloud1 {
     position: absolute;
-    /* left: 0%; */
-    top: 87.4%;
+    right: 95%;
+    top: 86.5%;
 }

@@ -17,8 +17,8 @@ export const addLogin = createAsyncThunk(
       console.log("로그인")
       if (response.status === 200) { 
         alert("반갑습니다!");
-        // await window.location.replace("/main")
-        await payload.navigate("/main");
+        await window.location.replace("/main")
+        // await payload.navigate("/main");
       }
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
