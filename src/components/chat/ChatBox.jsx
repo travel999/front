@@ -32,37 +32,50 @@ const ChatBox = ({ socket, users, room, isConnected, nickname }) => {
   }, [socket]);
 
   // 실시간ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-  const [live, setLive] = useState("");
-  const [go, setGo] = useState(true);
-
-  const sendmsg = () => {
-    const msg = {
-      msg: live,
-      room: room,
-    };
-    socket.emit("test_send", msg);
-  };
+  const [sendValue, setSendValue] = useState("");
+  const [getShowing, setGetShowing] = useState("");
+  const liveRef = useRef(null);
 
   useEffect(() => {
-    if (live !== "" && go) {
-      console.log("보내짐");
-      sendmsg();
-    }
-  }, [live]);
-
-  useEffect(() => {
-    console.log("받음");
     socket.on("test_receive", (data) => {
-      setLive(data.msg);
+      console.log("받음:" + data.msg);
+      setGetShowing(data.msg);
     });
-  }, [socket]);
+  }, []);
+
+  useEffect(() => {
+    if (sendValue !== "") {
+      console.log("보내짐");
+      const msg = {
+        msg: sendValue,
+        room: room,
+      };
+      setGetShowing(sendValue);
+      socket.emit("test_send", msg);
+    }
+  }, [sendValue]);
+
+  const deleteLastText = (key) => {
+    if (key == 8 && getShowing.length == 1) {
+      const msg = {
+        msg: "",
+        room: room,
+      };
+      setGetShowing("");
+      socket.emit("test_send", msg);
+    }
+  };
 
   // 실시간테스트버전 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
   return (
     <div>
-      <input onChange={(e) => setLive(e.target.value)} />
-      <div>{live}</div>
+      <div>{getShowing}</div>
+      <input
+        onChange={(e) => setSendValue(e.target.value)}
+        ref={liveRef}
+        onKeyDown={(e) => deleteLastText(e.keyCode)}
+      />
       <div>
         <ScrollToBottom className={styles.chatpart}>
           {messageList?.map((value) => {
@@ -102,7 +115,7 @@ const ChatBox = ({ socket, users, room, isConnected, nickname }) => {
 const MegWrap = styled.div`
   display: flex;
   flex-direction: ${(prop) => (prop.justify ? "row" : "row-reverse")};
-  align-items: center;
+  align-items: flex-end;
 `;
 
 const Message = styled.div`
@@ -129,12 +142,42 @@ const AuthorWrap = styled.div`
 `;
 
 const Time = styled.p`
-  font-size: 0.8em;
+  font-size: 0.7em;
   /* margin-top: 6%; */
 `;
 
 const Author = styled.p`
-  font-size: 0.8em;
+  font-size: 0.7em;
 `;
 
 export default ChatBox;
+
+// 실시간ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+// const [sendValue, setSendValue] = useState("");
+// const [getShowing, setGetShowing] = useState("");
+
+// useEffect(() => {
+//   socket.on("test_receive", (data) => {
+//     console.log("받음:" + data.msg);
+//     setGetShowing(data.msg);
+//   });
+// }, []);
+
+// useEffect(() => {
+//   if (sendValue !== "") {
+//     console.log("보내짐");
+//     const msg = {
+//       msg: sendValue,
+//       room: room,
+//     };
+//     setGetShowing(sendValue);
+//     socket.emit("test_send", msg);
+//   }
+// }, [sendValue]);
+
+// // 실시간테스트버전 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+// return (
+//   <div>
+//     <input onChange={(e) => setSendValue(e.target.value)} />
+//     <div>{getShowing}</div>

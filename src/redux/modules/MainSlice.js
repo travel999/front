@@ -4,8 +4,7 @@ import instance from "../../res/instance";
 export const getCards = createAsyncThunk("main/get", async (page, thunkAPI) => {
   try {
     const res = await instance.get(`post/main/${page}`);
-    console.log("메인")
-    console.log(res)
+    console.log(res);
     return thunkAPI.fulfillWithValue(res.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -72,7 +71,7 @@ export const mainSlice = createSlice({
       if (action.payload.data2) {
         MyPostCards2.data3 = action.payload?.data3?.filter((value) => {
           let result = true;
-          action.payload.data2.map((value2) => {
+          action.payload?.data2?.map((value2) => {
             if (value2._id === value._id) {
               result = false;
             }
