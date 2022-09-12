@@ -2,12 +2,12 @@ import React from "react";
 import Layout from "../components/common/Layout";
 import ScheduleDay from "../components/schedule/ScheduleDay";
 import ScheduleList from "../components/schedule/SchduleList";
-import ScheduleCreate from "../components/schedule/ScheduleCreate";
+import Schedule from "../components/schedule/Schedule";
 
 const SceduleWritePage = () => {
   return (
     <Layout>
-      <ScheduleCreate />
+      <Schedule />
     </Layout>
   );
 };
