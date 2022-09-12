@@ -1,12 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
 //style & elements
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
-import ScheduleMap from "./ScheduleMap";
 import MemberAddModal from "./modal/MemberAddModal";
+import { getMapData } from "../../redux/modules/MapSlice";
+import { useNavigate } from "react-router-dom";
 
 const ScheduleList = ({ fixDay, id }) => {
   //Hook
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   //state
   const [index, setIndex] = useState();
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,25 +30,31 @@ const ScheduleList = ({ fixDay, id }) => {
       dayArr.push(i);
     }
     return (
-      <div className={styels.schedulDay}>
+      <div className={styels.dayWrap}>
         <ul>
-          {dayArr.map((item, i) => (
+          {dayArr.map((item) => (
             <li
-              key={i}
-              className={index === i ? "active" : null}
-              onClick={() => setIndex(i)}
+              key={item}
+              className={index === item ? styels.active : styels.noActive}
+              onClick={() => sendMapData(item, dayArr)}
             >
-              {i + 1}일
+              {item}일
             </li>
           ))}
         </ul>
-        {dayArr
+        {/* {dayArr
           .filter((item, i) => index === i)
           .map((item) => (
             <ScheduleMap key={item} day={index} />
-          ))}
+          ))} */}
       </div>
     );
+  };
+
+  const sendMapData = (day) => {
+    setIndex(day);
+    console.log(day);
+    dispatch(getMapData(day));
   };
 
   //이벤트 함수

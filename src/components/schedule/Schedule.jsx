@@ -1,99 +1,61 @@
-//ScheduleWork Copy  본!!!!!! >> 2022.09.07
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getCookie } from "../../res/cookie";
 
-import React, { useState, useRef } from "react";
-//style & elements
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 
-// import ScheduleMap from "./ScheduleMap";
+import ScheduleCreate from "./ScheduleCreate";
+import ScheduleCard from "./ScheduleCard";
+import ScheduleMap from "./ScheduleMap";
 
-const ScheduleWrite = ({ day, name }) => {
-  //초기화 값
-  const initState = {
-    placeName: "",
-    locate: "",
-    content: "",
-  };
-  //Hool
-  const divRef = useRef();
+const Schedule = () => {
+  const tokenValue = getCookie("jwtToken"); // 토크없으면 로그인 페이지로
+  const navigate = useNavigate();
 
-  //state
-  const [cardNum, setCardNum] = useState([1]);
-  const [conData, setConData] = useState("");
-  const [conList, setConList] = useState([]);
-  const [listData, setListData] = useState(initState);
+  const createData = useSelector((state) => state.schedule);
+  const mapData = useSelector((state) => state.kakaoMap);
 
-  //함수
+  const [result, setResult] = useState([]);
+  const [pinData, setPinData] = useState([]);
 
-  //이벤트 함수
-  //일정추가 버튼
-  const onAddWork = () => {
-    const newWork = Number(cardNum.slice(-1)[0]) + 1;
-    setCardNum([...cardNum, newWork]);
-  };
+  console.log(createData);
+  console.log(mapData);
+  // 원하는 형태
+  // place = [{ 1, Array(2) }, { 2,Array(3) }]
+  useEffect(() => {
+    const data = {
+      [mapData.day]: mapData.pin.pin,
+    };
+    setResult([data, ...result]);
+  }, [mapData.day]);
+  console.log("test", result);
 
-  const onGetContent = (e) => {
-    setConData(e.target.value);
-  };
-  //onChange 후 포커싱 아웃될때 제일 최종 값만 가지고 와서 리스트 배열 생성
-  const onGetContentList = () => {
-    setConList([...conList, conData]);
-  };
-
-  //일정 저장
-  const onSaveStorage = () => {
-    //빈 일정 저장할 수 없게 만들어둠
-    const filterConList = conList.filter((item) => item !== "");
-    if (cardNum.length === filterConList.length) {
-      alert(`${day + 1}` + "일차 일정을 저장합니다!");
-      setListData({
-        ...listData,
-        placeName: "123",
-        locate: "1234",
-        content: filterConList,
-      });
-
-      localStorage.setItem(day, JSON.stringify(listData));
-    } else {
-      for (let i = 0; i <= cardNum.length; i++) {
-        if (
-          conList[i] === null ||
-          conList[i] === undefined ||
-          conList[i] === " "
-        ) {
-          alert("빈 일정은 저장할 수 없습니다.");
-          //onBlue때문에 초기화 작업
-          setConList([]);
-          return divRef.current.focus();
-        }
-      }
+  useEffect(() => {
+    if (!tokenValue) {
+      navigate("/");
     }
-  };
-  //입력한 값
+  }, []);
+
   return (
-    <div className={styels.worksWrap}>
-      <h2>{day + 1}일차 우리가 갈 곳..!</h2>
-      {cardNum.map((num) => (
-        <div className={styels.work} key={num}>
-          <h3>{num}번째 일정</h3>
-          <input type="text" name="placeName" id="placeName" />
-          <textarea
-            name="content"
-            className={styels.content}
-            placeholder="일정 입력"
-            ref={divRef}
-            onChange={onGetContent}
-            onBlur={onGetContentList}
-            required
-          />
+    <div className={styels.wrap}>
+      <div className={styels.wrapLeft}>
+        <ScheduleCreate />
+        {}
+        {mapData.pin.length !== 0 ? <ScheduleCard data={mapData} /> : null}
+      </div>
+      {mapData.day !== "" ? (
+        <div className={styels.wrapCenter}>
+          <ScheduleMap allDay={mapData.allDay} nowDay={mapData.day} />
         </div>
-      ))}
-      <Btn backgroundColor="gray" width="25px" onClick={onAddWork}>
-        +
-      </Btn>
-      <Btn onClick={onSaveStorage}>일정저장하기</Btn>
+      ) : (
+        <div className={styels.wrapCenter}>날짜를 먼저 선택해주세요</div>
+      )}
+
+      <div className={styels.wrapRight}>채팅</div>
     </div>
   );
 };
 
-export default ScheduleWrite;
+export default Schedule;

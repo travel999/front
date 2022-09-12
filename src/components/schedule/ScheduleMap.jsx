@@ -1,23 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
 import styels from "./Schedule.module.css";
+import Btn from "../elements/Btn";
+
+import MapSearchNav from "./MapSearchNav";
 import ScheduleCard from "./ScheduleCard";
 
 const { kakao } = window;
 
 //placeX : lat , placeY : lng >> 기억하기
-
-const ScheduleMap = ({ day }) => {
+const ScheduleMap = ({ allDay, nowDay, check_init }) => {
   const searchInit = {
     keyWord: null,
     pgn: null,
     result: [],
   };
+  //HooK
+
   //State
   const [map, setMap] = useState(null);
   const [inputVal, setInputVal] = useState("");
   const [search, setSearch] = useState(searchInit);
   const [pin, setPin] = useState([]);
   const [placeNames, setPlaceNames] = useState([]);
+  const [menu, Setmenu] = useState(false);
+  const [visible, Setvisible] = useState(false);
 
   //처음 지도 그리기
   useEffect(() => {
@@ -80,34 +88,27 @@ const ScheduleMap = ({ day }) => {
         marginRight: "5px",
       }}
     >
-      <input
-        type="text"
-        name="keyword"
-        id="keyword"
-        size="15"
-        onKeyUp={searchPlaces}
-        className={styels.title}
-        placeholder="장소 선택"
-        required
+      <Btn
+        onClick={() => {
+          Setmenu((prev) => !prev);
+          Setvisible((prev) => !prev);
+        }}
+      >
+        =
+      </Btn>
+      <MapSearchNav
+        visible={visible}
+        menu={menu}
+        onMakeMarker={onMakeMarker}
+        searchPlaces={searchPlaces}
+        searchData={search}
+        day={nowDay}
+        allDay={allDay}
+        pin={pin}
       />
-      <div className="placeResult">
-        {search.result.map((item) => {
-          return (
-            <div key={item.id}>
-              <h4>{item.place_name}</h4>
-              <button
-                value={item.x}
-                onClick={() => onMakeMarker(item.place_name, item.x, item.y)}
-              >
-                선택
-              </button>
-            </div>
-          );
-        })}
-      </div>
-      <div id="map" style={{ width: "99%", height: "500px" }}></div>
+      <div id="map" style={{ width: "100%", height: "900px" }}></div>
 
-      <ScheduleCard day={day} name={pin} />
+      {/* <ScheduleCard day={day} name={pin} /> */}
     </div>
   );
 };

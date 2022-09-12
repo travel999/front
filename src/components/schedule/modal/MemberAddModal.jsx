@@ -19,7 +19,7 @@ const MemberAddModal = (props) => {
     setNickName(e.target.value);
   };
   const onAddMember = () => {
-    dispatch(saveNickName({ data: nickName, postId: postId }));
+    dispatch(saveNickName({ nickname2: nickName, postId: postId }));
   };
 
   return (
