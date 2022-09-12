@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { removeCookie } from "../../res/cookie";
 import instance from "../../res/instance";
 
 const initialState = {
@@ -12,7 +13,8 @@ export const getUser = createAsyncThunk(
     "profileSlice/getUser",
     async (payload, thunkAPI) => {
         try {
-            const response = await instance.get("user/me");
+            console.log("try 안 response 전")
+            const response = await instance.get("user/me", payload);
             console.log(response)
             return thunkAPI.fulfillWithValue(response);
         } catch (error) {
@@ -27,6 +29,13 @@ export const putImage = createAsyncThunk(
         try {
             console.log(payload)
             const response = await instance.put("user/me/image", payload);
+            console.log(response)
+            console.log(response.data.updateUser.nickname)
+            if (response) {
+                alert("이미지가 변경되었습니다!")
+                payload.setNickname(response.data.updateUser.nickname)
+                
+            }
             return thunkAPI.fulfillWithValue(response);
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
@@ -42,13 +51,12 @@ export const putPassword = createAsyncThunk(
             const response = await instance.put("user/me/password", payload);
             console.log(response)
             if (response) {
-                payload.setPwMsg(response.data.message)
+                // payload.setPwMsg(response.data.message)
+                alert("비밀번호가 변경되었습니다!🙃")
+                await window.location.replace("/login")
             }
             return thunkAPI.fulfillWithValue(response);
         } catch (error) {
-            if (error) {
-                payload.setPwMsg(error.response.data.message)
-            }
             return thunkAPI.rejectWithValue(error)
         }
     }
@@ -60,7 +68,9 @@ export const deleteUser = createAsyncThunk(
         try {
             console.log(payload)
             const response = await instance.delete("user/me/delete", payload);
+            console.log(response)
             if (response) {
+                removeCookie("jwtToken")
                 alert("회원 탈퇴가 완료되었습니다🙁")
                 await window.location.replace("/")
             }

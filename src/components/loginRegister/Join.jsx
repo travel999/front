@@ -40,7 +40,7 @@ const Join = () => {
   const [confirmMsg, setConfirmMsg] = useState("");
   // 정규식 리스트
   const emailRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-  const pwRule = /^[a-zA-Z0-9]{5,12}$/;
+  const pwRule = /^[a-zA-Z0-9]{6,12}$/;
   const nickNameRule = /^[ㄱ-ㅎ가-힣ㅏ-ㅣa-zA-Z0-9]{2,10}$/;
 
   // Email 중복 확인
@@ -89,7 +89,7 @@ const Join = () => {
     // 비밀번호 유효성
     else if (name === "password") {
       if (!pwRule.test(value) && value !== "") {
-        setPwMsg("비밀번호는 5자 이상 ~ 12자 이하여야 합니다.");
+        setPwMsg("비밀번호는 6자 이상 ~ 12자 이하여야 합니다.");
       } else if (pwRule.test(value)) {
         setPwMsg("사용가능한 비밀번호 입니다.");
         setPassData(value);
@@ -175,6 +175,7 @@ const Join = () => {
               type="mail"
               id="email"
               name="email"
+              autoFocus
             />
           </div>
           <div className={styles.message}>{emailMsg}</div>
@@ -198,7 +199,7 @@ const Join = () => {
               type="password"
               name="password"
               id="password"
-              minLength="5"
+              minLength="6"
               maxLength="12"
             />
           </div>
@@ -210,7 +211,7 @@ const Join = () => {
               onChange={onChangeHandler}
               type="password"
               name="confirm"
-              minLength="5"
+              minLength="6"
               maxLength="12"
               required
             />
