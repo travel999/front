@@ -5,6 +5,7 @@ import { getCookie } from "../../res/cookie";
 
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
+import DuckImg from "../../res/img/duck.png";
 
 import ScheduleCreate from "./ScheduleCreate";
 import ScheduleCard from "./ScheduleCard";
@@ -18,10 +19,8 @@ const Schedule = () => {
   const mapData = useSelector((state) => state.kakaoMap);
 
   const [result, setResult] = useState([]);
-  const [pinData, setPinData] = useState([]);
 
-  console.log(createData);
-  console.log(mapData);
+  console.log("맵데이터", mapData);
   // 원하는 형태
   // place = [{ 1, Array(2) }, { 2,Array(3) }]
   useEffect(() => {
@@ -50,7 +49,9 @@ const Schedule = () => {
           <ScheduleMap allDay={mapData.allDay} nowDay={mapData.day} />
         </div>
       ) : (
-        <div className={styels.wrapCenter}>날짜를 먼저 선택해주세요</div>
+        <div className={styels.wrapCenter}>
+          <img src={DuckImg} alt="등록일정 없음 이미지" />
+        </div>
       )}
 
       <div className={styels.wrapRight}>채팅</div>

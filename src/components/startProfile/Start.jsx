@@ -40,6 +40,7 @@ const Start = () => {
         >
           회원가입
         </button>
+
         <img src={cloud} alt="cloud" className={styles.cloud} />
         <img src={cloud1} alt="cloud1" className={styles.cloud1} />
       </div>
