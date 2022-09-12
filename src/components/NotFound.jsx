@@ -1,9 +1,15 @@
 import React from "react";
-import firebase from "../firebase";
+import Chatting from "./chat/Chatting";
+import RealTimeFuc from "./RealTimeFuc";
 
 const NotFound = () => {
-  console.log(firebase);
-  return <div>페이지를 찾을수 없습니다.</div>;
+  return (
+    <div>
+      페이지를 찾을수 없습니다.
+      <Chatting />
+      <RealTimeFuc />
+    </div>
+  );
 };
 
 export default NotFound;
