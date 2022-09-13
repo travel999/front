@@ -1,12 +1,12 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
+import io from "socket.io-client";
 //style & elements
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
-
 import { getConData } from "../../redux/modules/MapSlice";
 
-// import ScheduleMap from "./ScheduleMap";
+// const socket = io.connect("http://localhost:3001/");
 
 const ScheduleCard = ({ data }) => {
   //Hool
