@@ -10,7 +10,7 @@ import ScheduleCard from "./ScheduleCard";
 const { kakao } = window;
 
 //placeX : lat , placeY : lng >> 기억하기
-const ScheduleMap = ({ allDay, nowDay, check_init }) => {
+const ScheduleMap = ({ allDay, nowDay }) => {
   const searchInit = {
     keyWord: null,
     pgn: null,
@@ -40,7 +40,10 @@ const ScheduleMap = ({ allDay, nowDay, check_init }) => {
 
   //마커 생성을 위한 배열 만들기
   const onMakeMarker = (placeName, placeX, palceY) => {
-    setPin([...pin, { title: placeName, lat: palceY, lng: placeX }]);
+    setPin([
+      ...pin,
+      { day: nowDay, title: placeName, lat: palceY, lng: placeX },
+    ]);
     const moveLatLon = new kakao.maps.LatLng(palceY, placeX);
     //마커 위치로 지도 화면 포커싱
     map.panTo(moveLatLon);
