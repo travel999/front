@@ -6,7 +6,7 @@ import S3upload from "react-aws-s3";
 
 import logo from "../../res/img/logo.png"
 import styles from "./join.module.css"
-import pencil from "../../res/img/pencil.svg"
+import profile from "../../res/img/profile.png"
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
@@ -166,88 +166,88 @@ const Join = () => {
 
   return (
     <div className={styles.background}>
-      <div className={styles.joinWrap}>
-        <img className={styles.backgroundImg} src={logo} alt=""/>
-        <div className={styles.inputWrap}>
-          <div className={styles.inputBox}>
-            <div className={styles.inputName}>이메일</div>
-            <input
-              className={styles.input}
-              onChange={onChangeHandler}
-              type="mail"
-              id="email"
-              name="email"
-              autoFocus
-            />
-          </div>
-          <div className={styles.message}>{emailMsg}</div>
-          <div className={styles.inputBox}>
-            <div className={styles.inputName}>닉네임</div>
-            <input
-              className={styles.input}
-              onChange={onChangeHandler}
-              type="text"
-              id="nickname"
-              name="nickname"
-              maxLength="10"
-            />
-          </div>
-          <div className={styles.message}>{nickNameMsg}</div>
-          <div className={styles.inputBox}>
-            <div className={styles.inputName}>비밀번호</div>
-            <input
-              className={styles.input}
-              onChange={onChangeHandler}
-              type="password"
-              name="password"
-              id="password"
-              minLength="6"
-              maxLength="12"
-            />
-          </div>
-          <div className={styles.message}>{pwMsg}</div>
-          <div className={styles.inputBox}>
-            <div className={styles.inputName}>비밀번호 확인</div>
-            <input
-              className={styles.input}
-              onChange={onChangeHandler}
-              type="password"
-              name="confirm"
-              minLength="6"
-              maxLength="12"
-              required
-            />
-          </div>
-          <div className={styles.message}>{confirmMsg}</div>
-        </div>
-        <div>
-          <div className={styles.profile}>
-            <label htmlFor="userImage">
-              {!preImg[0] ? (
-                <img src={pencil} alt=""></img>
-              ) : (
-                <img src={preImg} alt="" />
-              )}</label>
-            <h4>프로필 이미지</h4>
-          </div>
-
-          <form onChange={onSubmitHandler}>
-            <input
-              ref={imgVal}
-              className={styles.inputHidden}
-              onChange={onLoadImg}
-              placeholder="프로필 이미지"
-              type="file"
-              accept="image/*"
-              name="userImage"
-              id="userImage"
-            />
-          </form>
+      {/* Input 모음 */}
+      <div className={styles.inputWrap}>
+        <img className={styles.backgroundImg} src={logo} alt="" />
+        <input
+          className={styles.inputEmail}
+          onChange={onChangeHandler}
+          type="mail"
+          id="email"
+          name="email"
+          placeholder="oorigachi@email.com"
+          autoFocus
+        />
+        <input
+          className={styles.inputNickname}
+          onChange={onChangeHandler}
+          type="text"
+          id="nickname"
+          name="nickname"
+          maxLength="10"
+          placeholder="오리가치"
+        />
+        <input
+          className={styles.inputPassword}
+          onChange={onChangeHandler}
+          type="password"
+          name="password"
+          id="password"
+          minLength="6"
+          maxLength="12"
+          placeholder="6자 이상 12자 이하로 입력해주세요."
+        />
+        <input
+          className={styles.inputConfirm}
+          onChange={onChangeHandler}
+          type="password"
+          name="confirm"
+          minLength="6"
+          maxLength="12"
+          required
+          placeholder="비밀번호를 확인해주세요."
+        />
+        {/* 입력값 확인 메세지 모음 */}
+        <div className={styles.message}>
+          <div className={styles.emailMsg}>{emailMsg}</div>
+          <div className={styles.nickNameMsg}>{nickNameMsg}</div>
+          <div className={styles.pwMsg}>{pwMsg}</div>
+          <div className={styles.confirmMsg}>{confirmMsg}</div>
         </div>
       </div>
-      <div className={styles.buttonWrap}>
+      {/* inputName 모음 */}
+      <div className={styles.nameWrap}>
+        <div className={styles.email}>이메일</div>
+        <div className={styles.nickname}>닉네임</div>
+        <div className={styles.password}>비밀번호</div>
+        <div className={styles.confirm}>비밀번호 확인</div>
+      </div>
+      {/* 프로필 이미지 */}
+      <div>
+        <div className={styles.profile}>
+          <label htmlFor="userImage">
+            {!preImg[0] ? (
+              <img src={profile} alt=""></img>
+            ) : (
+              <img src={preImg} alt="" />
+            )}</label>
+          <h4>프로필 이미지</h4>
+        </div>
+        <form onChange={onSubmitHandler}>
+          <input
+            ref={imgVal}
+            className={styles.inputHidden}
+            onChange={onLoadImg}
+            placeholder="프로필 이미지"
+            type="file"
+            accept="image/*"
+            name="userImage"
+            id="userImage"
+          />
+        </form>
+      </div>
+      {/* 회원가입 버튼 */}
         <button className={styles.button} onClick={onJoin}>회원가입</button>
-      </div>
     </div>
   );
 };

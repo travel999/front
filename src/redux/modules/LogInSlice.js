@@ -12,6 +12,7 @@ export const addLogin = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await instance.post("user/login", payload.login);
+      console.log(response)
       const token = response.data.token;
       localStorage.setItem('jwtToken', token);
       console.log("로그인")
