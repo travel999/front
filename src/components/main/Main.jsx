@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../res/cookie";
 import styles from "./Main.module.css";
+import minitravelduck from "../../res/img/travelduck-1.png";
+import bottomcloud from "../../res/img/cloud1.png";
+import topcloud from "../../res/img/cloud.png";
 import FirstBox from "./FirstBox";
 import SecondBox from "./SecondBox";
 import ThirdBox from "./ThirdBox";
@@ -13,7 +16,7 @@ const Main = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const loginToken = (getCookie("jwtToken"))
+  const loginToken = getCookie("jwtToken");
 
   const input_ref = useRef(null); // 검색ref
   const [page, setPage] = useState(1); // 무한스크롤 페이지
@@ -85,6 +88,9 @@ const Main = () => {
             obsRef={obsRef}
           />
         </div>
+        <img src={minitravelduck} alt="" className={styles.miniduck} />
+        <img src={bottomcloud} alt="" className={styles.bottomcloud} />
+        <img src={topcloud} alt="" className={styles.topcloud} />
       </div>
     </>
   );

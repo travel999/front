@@ -5,12 +5,12 @@ import styled from "styled-components";
 
 const Header = () => {
   const navigate = useNavigate();
-  const tokenValue = localStorage.getItem('jwtToken')
+  const tokenValue = localStorage.getItem("jwtToken");
 
   const removeToken = async () => {
-    localStorage.removeItem('jwtToken')
-    localStorage.removeItem('nickname')
-    localStorage.removeItem('profileImage')
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("nickname");
+    localStorage.removeItem("profileImage");
     alert("로그아웃이 완료되었습니다.");
     await navigate("/");
   };
@@ -78,10 +78,8 @@ const Header = () => {
 const HeaderBox = styled.div`
   height: 3vh;
   padding: 2vh 2vw;
-  background-color: transparent;
   display: flex;
   justify-content: space-between;
-  background-color: transparent;
   border-bottom: 1px solid lightgray;
 `;
 
@@ -108,6 +106,7 @@ const LogOutBtn = styled.div`
 const Topcontent = styled.div`
   display: flex;
   margin-left: 35vw;
+  z-index: 5;
   div {
     margin-left: 40px;
     margin-top: 3px;

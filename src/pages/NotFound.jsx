@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../components/common/Layout";
 import NotFound from "../components/NotFound";
 
-const LoadingPage = () => {
+const NotFoundPage = () => {
   return (
     <Layout>
       <NotFound />
@@ -10,4 +10,4 @@ const LoadingPage = () => {
   );
 };
 
-export default LoadingPage;
+export default NotFoundPage;
