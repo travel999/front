@@ -6,7 +6,7 @@ import S3upload from "react-aws-s3";
 import { getUser, putImage, putPassword, deleteUser } from "../../redux/modules/ProfileSlice";
 
 import styles from "./profile.module.css"
-import pencil from "../../res/img/pencil.svg"
+import profile from "../../res/img/profile.png"
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
@@ -14,9 +14,15 @@ console.log("프로필")
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const profile = useSelector((state) => state)
-  console.log(profile)
   
+  // 스토어에서 닉네임, 프로필 이미지 가져오기
+  const user = useSelector((state) => state.profile.result)
+  console.log(user)
+  const nickname = user.nickname
+  console.log(nickname)
+  const profileImg = user.userImage
+  console.log(profileImg)
+
   const initialState = {
     newImage: "",
     newPassword: "",
@@ -29,7 +35,7 @@ const Profile = () => {
   const [passWord, setPassWord] = useState("")
   const [confirm, setConfirm] = useState("");
   const [newImage, setNewImage] = useState("")
-  const [nickname, setNickname] = useState("")
+  // const [nick, setNickname] = useState(nickname)
 
   // 비밀번호 
   const [pwMsg, setPwMsg] = useState("");
@@ -53,8 +59,7 @@ const Profile = () => {
 
   // 닉네임 불러오기
   useEffect(() => {
-      dispatch(getUser());
-      console.log(getUser.response)
+    dispatch(getUser());
   }, []);
 
   // 닉네임 수정 불가 마우스오버 이벤트
@@ -123,7 +128,7 @@ const Profile = () => {
       }
     });
   }
-  
+
   // 프로필 이미지 변경 
   useEffect(() => {
     if (newImage) {
@@ -187,7 +192,7 @@ const Profile = () => {
         <div className={styles.profile}>
           <label htmlFor="newImage">
             {!preImg[0] ? (
-              <img src={pencil} alt=""></img>
+              <img src={profile} alt=""></img>
             ) : (
               <img src={preImg} alt="" />
             )}</label>
