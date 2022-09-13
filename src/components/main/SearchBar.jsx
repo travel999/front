@@ -2,6 +2,11 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { searchText, refreshSearch } from "../../redux/modules/MainSlice";
 import styles from "./Main.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMagnifyingGlass,
+  faRotateRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 const SearchBar = ({
   input_ref,
@@ -25,15 +30,20 @@ const SearchBar = ({
 
   return (
     <div className={styles.searchbox}>
-      <div class="input-group"></div>
-      <input className={styles.searchinputbox} ref={input_ref}></input>
+      <input
+        className={styles.searchinputbox}
+        ref={input_ref}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") OnTosearch(input_ref.current.value);
+        }}
+      />
       <button
         className={styles.searchbtn}
         onClick={() => {
           OnTosearch(input_ref.current.value);
         }}
       >
-        검색
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
       </button>
 
       <button
@@ -42,7 +52,7 @@ const SearchBar = ({
           OnRefresh();
         }}
       >
-        다시
+        <FontAwesomeIcon icon={faRotateRight} />
       </button>
     </div>
   );

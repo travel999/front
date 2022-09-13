@@ -13,7 +13,7 @@ const SecondBox = () => {
   };
 
   return (
-    <div>
+    <div style={{ zIndex: "5" }}>
       <div className={`${styles.bicbox2}`}>
         <div className={styles.toptext}>찜한 일정</div>
         <div className={styles.searchboxscroll}>

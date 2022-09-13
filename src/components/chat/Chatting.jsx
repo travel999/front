@@ -5,62 +5,56 @@
 // import ChatBox from "./ChatBox";
 // import { useSelector } from "react-redux";
 
-// const socket = io.connect("http://localhost:3001");
 
-// const Chatting = () => {
-//   const nickname = "익명";
-//   const [isConnected, setIsConnected] = useState(socket.connected);
-//   const [room, setRoom] = useState("tatataroom"); // room 이름은 게시글의 id값을 쓰던가 해야할것 같음.
-//   const [users, setUsers] = useState([]); // 닉네임, 리덕스에서 구해옴, 누구누구 초대했는지 필요.
-//   const [showChat, setShowChat] = useState(true);
+const socket = io.connect("http://13.209.12.128:3000/");
 
-//   console.log(socket);
-//   console.log(nickname);
+const Chatting = () => {
+  const nickname = "익명";
+  const [room, setRoom] = useState("tatataroom"); // room 이름은 게시글의 id값을 쓰던가 해야할것 같음.
+  const [users, setUsers] = useState(["익명", "익명이", "타타타"]); // 닉네임, 리덕스에서 구해옴, 누구누구 초대했는지 필요.
+  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [showChat, setShowChat] = useState(null);
 
-//   // 해당 게시글의 닉네임이 없으면, 채팅에 들어갈수 없음. 여기서 차단해야함.
-//   useEffect(() => {
-//     if (nickname !== "" && room !== "") {
-//       socket.emit("join_room", room);
-//       setIsConnected(true);
-//       setShowChat(true);
-//     }
-//   }, []);
+  console.log(socket.connected);
+  console.log(nickname);
 
-//   const hideChat = () => {
-//     setShowChat(!showChat);
-//   };
+  // 해당 게시글의 닉네임이 없으면, 채팅에 들어갈수 없음. 여기서 차단해야함.
+  useEffect(() => {
+    if (nickname !== "" && room !== "" && users.includes(nickname)) {
+      socket.emit("join_room", room);
+      setShowChat(true);
+    } else {
+      setIsConnected(false);
+      setShowChat(false);
+    }
+  }, []);
 
-//   return (
-//     <BicBox size={showChat}>
-//       <div
-//         style={{
-//           display: "flex",
-//           justifyContent: "space-between",
-//           marginRight: "20px",
-//         }}
-//       >
-//         <div className={styles.chathead}>Chatting Room</div>
-//         <div
-//           className={styles.hidebtn}
-//           onClick={() => {
-//             hideChat();
-//           }}
-//         >
-//           _
-//         </div>
-//       </div>
-//       {showChat ? (
-//         <ChatBox
-//           socket={socket}
-//           users={users}
-//           room={room}
-//           isConnected={isConnected}
-//           nickname={nickname}
-//         />
-//       ) : null}
-//     </BicBox>
-//   );
-// };
+  return (
+    <BicBox size={showChat}>
+      <div className={styles.chatheadtext}>
+        <div className={styles.chathead}>Chatting Room</div>
+        <div
+          className={styles.hidebtn}
+          onClick={() => {
+            setShowChat(!showChat);
+          }}
+        >
+          _
+        </div>
+      </div>
+      {showChat ? (
+        <ChatBox
+          socket={socket}
+          users={users}
+          room={room}
+          isConnected={isConnected}
+          nickname={nickname}
+        />
+      ) : null}
+    </BicBox>
+  );
+};
+
 
 // const BicBox = styled.div`
 //   position: fixed;

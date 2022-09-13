@@ -3,6 +3,7 @@ import { removeCookie } from "../../res/cookie";
 import instance from "../../res/instance";
 
 const initialState = {
+    result: {},
     newImage: "",
     newPassword: "",
     confirm: ""
@@ -14,10 +15,8 @@ export const getUser = createAsyncThunk(
     async (payload, thunkAPI) => {
         try {
             console.log("유저 정보 조회")
-            console.log(instance.defaults.headers)
-            const response = await instance.get("user/me");
-            console.log(response.user)
-            return thunkAPI.fulfillWithValue(response.user);
+            const response = await instance.get("user/me", payload);
+            return thunkAPI.fulfillWithValue(response.data.data.userInfo);
         } catch (error) {
             return thunkAPI.rejectWithValue(error)
         }
