@@ -16,6 +16,14 @@
   width: 17.5%;
   background-color: yellow;
 }
+.wrap img {
+  width: 20%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  top: 20rem;
+}
 
 /* SchduleCreate */
 .createWrap {

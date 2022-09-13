@@ -5,6 +5,7 @@
 // import ChatBox from "./ChatBox";
 // import { useSelector } from "react-redux";
 
+
 const socket = io.connect("http://13.209.12.128:3000/");
 
 const Chatting = () => {
@@ -53,6 +54,7 @@ const Chatting = () => {
     </BicBox>
   );
 };
+
 
 // const BicBox = styled.div`
 //   position: fixed;

@@ -5,7 +5,6 @@ import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 
 import { getConData } from "../../redux/modules/MapSlice";
-import { useEffect } from "react";
 
 // import ScheduleMap from "./ScheduleMap";
 
@@ -16,7 +15,6 @@ const ScheduleCard = ({ data }) => {
 
   //state
   const [conData, setConData] = useState({});
-  const [saveCheck, setSaveCheck] = useState(false);
 
   //함수
 
@@ -28,15 +26,9 @@ const ScheduleCard = ({ data }) => {
   };
 
   //일정의 컨텐츠 저장
-  const onSaveStorage = (choseDay) => {
-    // setSaveCheck({ choseDay, true });
+  const onSaveStorage = () => {
+    dispatch(getConData(conData));
   };
-
-  useEffect(() => {
-    if (saveCheck === true) {
-      dispatch(getConData(conData));
-    }
-  }, []);
 
   //입력한 값
   return (
@@ -60,7 +52,7 @@ const ScheduleCard = ({ data }) => {
           />
         </div>
       ))}
-      <Btn onClick={() => onSaveStorage(data.day)}>일정 저장</Btn>
+      <Btn onClick={onSaveStorage}>일정 저장</Btn>
     </div>
   );
 };

@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 //style & elements
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 import MemberAddModal from "./modal/MemberAddModal";
 import { getMapData } from "../../redux/modules/MapSlice";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const ScheduleList = ({ fixDay, id }) => {
   //Hook
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const mapData = useSelector((state) => state.kakaoMap);
   //state
   const [index, setIndex] = useState();
+  const [result, setReult] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
   //함수
@@ -53,8 +57,11 @@ const ScheduleList = ({ fixDay, id }) => {
 
   const sendMapData = (day) => {
     setIndex(day);
-    dispatch(getMapData(day));
   };
+  useEffect(() => {
+    console.log("useEffect", index);
+    dispatch(getMapData(index));
+  }, [index]);
 
   //이벤트 함수
   return (

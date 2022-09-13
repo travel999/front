@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getCookie } from "../../res/cookie";
 
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
-import DuckImg from "../../res/img/duck.png";
+import NoDateDuckImg from "../../res/img/duck/noDateDuck.png";
 
 import ScheduleCreate from "./ScheduleCreate";
 import ScheduleCard from "./ScheduleCard";
 import ScheduleMap from "./ScheduleMap";
 
 const Schedule = () => {
-  const tokenValue = getCookie("jwtToken"); // 토크없으면 로그인 페이지로
+  const tokenValue = localStorage.getItem("jwtToken"); // 토크없으면 로그인 페이지로
   const navigate = useNavigate();
-
-  const createData = useSelector((state) => state.schedule);
   const mapData = useSelector((state) => state.kakaoMap);
 
   const [result, setResult] = useState([]);
@@ -41,7 +38,6 @@ const Schedule = () => {
     <div className={styels.wrap}>
       <div className={styels.wrapLeft}>
         <ScheduleCreate />
-        {}
         {mapData.pin.length !== 0 ? <ScheduleCard data={mapData} /> : null}
       </div>
       {mapData.day !== "" ? (
@@ -50,7 +46,7 @@ const Schedule = () => {
         </div>
       ) : (
         <div className={styels.wrapCenter}>
-          <img src={DuckImg} alt="등록일정 없음 이미지" />
+          <img src={NoDateDuckImg} alt="등록일정 없음 이미지" />
         </div>
       )}
 
