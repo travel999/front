@@ -1,5 +1,7 @@
 import React, { useCallback, useState, memo, useEffect } from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Calendar = () => {
   const today = {
@@ -237,10 +239,10 @@ const Calendar = () => {
         </div>
         <Pagination>
           <ArrowBtn onClick={prevMonth} style={{ cursor: "pointer" }}>
-            ◀︎
+            <FontAwesomeIcon icon={faAngleLeft} />
           </ArrowBtn>
           <ArrowBtn onClick={nextMonth} style={{ cursor: "pointer" }}>
-            ▶︎
+            <FontAwesomeIcon icon={faAngleRight} />
           </ArrowBtn>
         </Pagination>
       </Title>

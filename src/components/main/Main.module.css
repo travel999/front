@@ -10,6 +10,27 @@
   justify-content: space-between;
 }
 
+.miniduck {
+  position: absolute;
+  bottom: 8vh;
+  left: 7vw;
+  z-index: 1;
+}
+
+.bottomcloud {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 0;
+}
+
+.topcloud {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  z-index: 0;
+}
+
 /* 프로필 사진부분 */
 .profile {
   /* background-color: rgb(247, 255, 183); */
@@ -20,7 +41,7 @@
   border-radius: 20px;
   padding: 20px 0px;
   box-shadow: 2px 4px 8px rgba(14, 25, 46, 0.2);
-  border: 1px solid #90afe7;
+  border: 1px solid #c4cfe6;
 }
 
 .profileimg {
@@ -60,23 +81,23 @@
 
 /* 게시글 등록하기 부분 */
 .postbtn {
-  background-color: #4386ff;
+  background-color: #ffc51c;
   color: white;
   width: 230px;
-  height: 6vh;
+  height: 5vh;
   margin: 10px 20px;
   border-radius: 20px;
   cursor: pointer;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .posttext {
-  margin-top: 10px;
-  padding-top: 6px;
-  padding-left: 7px;
+  margin-bottom: 0.5vh;
   font-size: 1.1em;
   font-weight: 600;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -86,14 +107,11 @@
 }
 
 .plusfont {
-  font-size: 1.4em;
-  padding: 9px;
-  margin-top: -3px;
+  font-size: 1.3em;
 }
 
 /* 첫번째 박스부분 */
 .bicbox {
-  /* background-color: rgb(247, 255, 183); */
   background-color: white;
   width: 280px;
   height: 80vh;
@@ -102,12 +120,13 @@
   margin-left: 0px;
   border-radius: 20px;
   box-shadow: 2px 4px 8px rgba(14, 25, 46, 0.2);
-  border: 1px solid #90afe7;
+  border: 1px solid #c4cfe6;
+  z-index: 3;
 }
 
 .toptext {
-  /* text-align: center; */
-  padding: 20px 20px 15px 20px;
+  margin-top: 0.5vh;
+  padding: 20px 20px 3vh 20px;
   height: 20px;
   font-weight: 600;
   font-size: 1.1em;
@@ -123,9 +142,10 @@
   display: flex;
   justify-content: space-between;
   height: 70px;
+  box-shadow: 0px 1px 2px rgba(50, 72, 112, 0.2);
 }
 .card:hover {
-  box-shadow: 2px 4px 8px rgba(14, 25, 46, 0.2);
+  box-shadow: 1px 2px 4px rgba(14, 25, 46, 0.2);
   cursor: pointer;
 }
 
@@ -165,7 +185,8 @@
   margin-right: 10px;
   border-radius: 20px;
   box-shadow: 2px 4px 8px rgba(14, 25, 46, 0.2);
-  border: 1px solid #90afe7;
+  border: 1px solid #c4cfe6;
+  z-index: 5;
 }
 
 .smallbox {
@@ -175,7 +196,8 @@
   margin-left: 10px;
   border-radius: 20px;
   box-shadow: 2px 4px 8px rgba(14, 25, 46, 0.2);
-  border: 1px solid #90afe7;
+  border: 1px solid #c4cfe6;
+  z-index: 5;
 }
 
 .content2 {
@@ -201,10 +223,11 @@
   margin: 10px 10px;
   border-radius: 10px;
   height: 110px;
-  /* box-shadow: 0px 2px 4px rgba(36, 50, 75, 0.2); */
+  box-shadow: 0px 1px 2px rgba(50, 72, 112, 0.2);
 }
 .contentbox:hover {
-  box-shadow: 2px 4px 8px rgba(14, 25, 46, 0.2);
+  box-shadow: 1px 2px 4px rgba(14, 25, 46, 0.2);
+  cursor: pointer;
 }
 
 .bicimg {
@@ -224,24 +247,51 @@
 
 .searchbox {
   margin: 0px 20px 8px 20px;
-  padding: 20px 10px 0px 20px;
+  padding: 20px 10px 10px 20px;
 }
 
 .searchinputbox {
-  width: 130px;
-  padding: 3px;
-  border: 1px solid rgb(139, 139, 139);
+  margin-left: 15px;
+  width: 110px;
+  padding: 5px;
+  border-bottom: 1px solid #b6c5e3;
+  border-left: 1px solid #b6c5e3;
+  border-right: 0px solid white;
+  border-top: 1px solid #b6c5e3;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .searchbtn {
-  padding: 3px;
+  padding: 5px;
   background-color: white;
-  border: 1px solid rgb(139, 139, 139);
+  border-bottom: 1px solid #b6c5e3;
+  border-left: 0px solid white;
+  border-right: 0px solid white;
+  border-top: 1px solid #b6c5e3;
+  color: #ffc51c;
 }
 
 .refreshbtn {
+  padding: 5px;
   background-color: white;
-  border: 1px solid rgb(139, 139, 139);
+  border-bottom: 1px solid #b6c5e3;
+  border-left: 0px solid white;
+  border-right: 1px solid #b6c5e3;
+  border-top: 1px solid #b6c5e3;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #ffc51c;
+}
+
+.searchbtn :hover {
+  color: black;
+  cursor: pointer;
+}
+
+.refreshbtn :hover {
+  color: black;
+  cursor: pointer;
 }
 
 .notexist {
@@ -265,9 +315,9 @@
 }
 
 .onlyscroll {
-  height: 72.2vh;
+  height: 70.5vh;
   overflow-y: scroll;
-  border-radius: 22px;
+  border-radius: 8%;
 }
 
 .onlyscroll::-webkit-scrollbar {
@@ -282,7 +332,8 @@
 
 .firstboxscroll {
   overflow-y: scroll;
-  height: 71.8vh;
+  height: 70vh;
+  border-radius: 8%;
 }
 .firstboxscroll::-webkit-scrollbar {
   /* background-color: rgb(246, 246, 246); */
@@ -296,7 +347,7 @@
 
 .searchboxscroll {
   overflow-y: scroll;
-  height: 42.5vh;
+  height: 40vh;
 }
 .searchboxscroll::-webkit-scrollbar {
   /* background-color: rgb(246, 246, 246); */

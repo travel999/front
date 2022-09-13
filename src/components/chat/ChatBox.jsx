@@ -3,7 +3,7 @@ import styles from "./Chatting.module.css";
 import styled from "styled-components";
 import ScrollToBottom from "react-scroll-to-bottom";
 
-const ChatBox = ({ socket, users, room, isConnected, nickname }) => {
+const ChatBox = ({ socket, room, isConnected, nickname }) => {
   const [messageList, setMessageList] = useState([]);
   const CurrentMessageRef = useRef("");
 
@@ -36,6 +36,8 @@ const ChatBox = ({ socket, users, room, isConnected, nickname }) => {
   const [getShowing, setGetShowing] = useState("");
   const liveRef = useRef(null);
 
+  // const [msg, setMsg] = useState({ msg: sendValue, room });
+
   useEffect(() => {
     socket.on("test_receive", (data) => {
       console.log("받음:" + data.msg);
@@ -46,10 +48,7 @@ const ChatBox = ({ socket, users, room, isConnected, nickname }) => {
   useEffect(() => {
     if (sendValue !== "") {
       console.log("보내짐");
-      const msg = {
-        msg: sendValue,
-        room: room,
-      };
+      const msg = { msg: sendValue, room };
       setGetShowing(sendValue);
       socket.emit("test_send", msg);
     }
@@ -57,12 +56,9 @@ const ChatBox = ({ socket, users, room, isConnected, nickname }) => {
 
   const deleteLastText = (key) => {
     if (key == 8 && getShowing.length == 1) {
-      const msg = {
-        msg: "",
-        room: room,
-      };
+      const resetmsg = { msg: "", room };
       setGetShowing("");
-      socket.emit("test_send", msg);
+      socket.emit("test_send", resetmsg);
     }
   };
 
@@ -151,33 +147,3 @@ const Author = styled.p`
 `;
 
 export default ChatBox;
-
-// 실시간ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-// const [sendValue, setSendValue] = useState("");
-// const [getShowing, setGetShowing] = useState("");
-
-// useEffect(() => {
-//   socket.on("test_receive", (data) => {
-//     console.log("받음:" + data.msg);
-//     setGetShowing(data.msg);
-//   });
-// }, []);
-
-// useEffect(() => {
-//   if (sendValue !== "") {
-//     console.log("보내짐");
-//     const msg = {
-//       msg: sendValue,
-//       room: room,
-//     };
-//     setGetShowing(sendValue);
-//     socket.emit("test_send", msg);
-//   }
-// }, [sendValue]);
-
-// // 실시간테스트버전 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-// return (
-//   <div>
-//     <input onChange={(e) => setSendValue(e.target.value)} />
-//     <div>{getShowing}</div>
