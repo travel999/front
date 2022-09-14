@@ -104,9 +104,7 @@ const ScheduleCreate = () => {
       )}
       {createData.title !== "" ? (
         <ScheduleList fixDay={fixDay} id={createData.postId} />
-      ) : (
-        <div>여행갈 날짜를 먼저 지정해주세요!</div>
-      )}
+      ) : null}
     </div>
   );
 };

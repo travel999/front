@@ -1,4 +1,5 @@
 import React from "react";
+
 import duck from "../res/img/duck/noDateDuck.png";
 import styled from "styled-components";
 

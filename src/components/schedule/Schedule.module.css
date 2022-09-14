@@ -6,11 +6,11 @@
 }
 .wrapLeft {
   width: 17.5%;
-  background-color: #fffdf0;
+  background-color: #f2f7ff;
 }
 .wrapCenter {
   width: 65%;
-  background-color: #4386ff;
+  background-color: #f2f7ff;
 }
 .wrapRight {
   width: 17.5%;
@@ -27,16 +27,16 @@
 
 /* SchduleCreate */
 .createWrap {
-  background-color: red;
   margin: 1rem 0;
   width: 100%;
   box-sizing: border-box;
+  border-bottom: 1px solid #f2f7ff;
 }
 .createWrap input[type="date"] {
   width: 141px;
   height: 36px;
   border-radius: 17px;
-  border: 1px solid yellow;
+  border: 1px solid #ffc51c;
   margin: 0.3rem;
   text-align: center;
 }
@@ -44,7 +44,7 @@
   width: 192px;
   height: 36px;
   border-radius: 17px;
-  border: 1px solid yellow;
+  border: 1px solid #ffc51c;
   margin: 0.3rem;
   text-align: center;
 }
@@ -77,14 +77,15 @@
 }
 .worksWrap h2 {
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 }
 .workDay {
-  color: red;
+  color: #4386ff;
 }
 .work {
-  background-color: yellow;
+  background-color: #fff;
+  border: 1px solid #ffc51c;
   padding: 1rem;
   border-radius: 10px;
   margin: 0 0 10px 0;
@@ -103,4 +104,15 @@
   padding: 0.3rem;
   height: 70px;
   width: 100%;
+}
+/* ScheduleMap */
+.mapWrap {
+  width: "100%";
+  display: "inline-block";
+}
+.mapWrap button {
+  z-index: 999;
+  position: relative;
+  top: 3rem;
+  background-color: #ffff;
 }

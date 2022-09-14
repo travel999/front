@@ -36,26 +36,29 @@ const ScheduleCard = ({ data }) => {
         우리들의 "<span className={styels.workDay}>{data.day}일차</span>" 일정
       </h2>
 
-      {data.pin.pin.map((item, index) => (
-        <div className={styels.work} key={`${item.lat}-${item.lng}`}>
-          <div className={styels.workIndex}>
-            {index + 1}.{item.title}
+      {data.pin
+        .filter((item) => item.day === data.day)
+        .map((item, index) => (
+          <div
+            id={`${item.day}-${index}`}
+            className={styels.work}
+            key={`${item.lat}-${item.lng}`}
+          >
+            <div className={styels.workIndex}>
+              {index + 1}.{item.title}
+            </div>
+            <textarea
+              className={styels.content}
+              name={index + 1}
+              placeholder="일정 입력"
+              ref={divRef}
+              onChange={onGetContent}
+              required
+            />
           </div>
-          <textarea
-            className={styels.content}
-            name={index + 1}
-            placeholder="일정 입력"
-            ref={divRef}
-            onChange={onGetContent}
-            required
-          />
-          <ScheduleInput
-            room={room}
-            index={index}
-            onGetContent={onGetContent}
-          />
-        </div>
-      ))}
+
+        ))}
+
       <Btn onClick={onSaveStorage}>일정 저장</Btn>
     </div>
   );

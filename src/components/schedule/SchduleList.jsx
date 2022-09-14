@@ -15,10 +15,8 @@ const ScheduleList = ({ fixDay, id }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const mapData = useSelector((state) => state.kakaoMap);
   //state
   const [index, setIndex] = useState();
-  const [result, setReult] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
   //함수
@@ -58,11 +56,8 @@ const ScheduleList = ({ fixDay, id }) => {
 
   const sendMapData = (day) => {
     setIndex(day);
-  };
-  useEffect(() => {
-    console.log("useEffect", index);
     dispatch(getMapData(index));
-  }, [index]);
+  };
 
   //이벤트 함수
   return (

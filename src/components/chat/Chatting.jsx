@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ChatBox from "./ChatBox";
 import { useSelector } from "react-redux";
 
+
 const socket = io.connect("http://52.78.142.77/", {
   path: "/socket.io",
   transports: ["websocket"],
