@@ -4,12 +4,15 @@ import styled from "styled-components";
 import ChatBox from "./ChatBox";
 import { useSelector } from "react-redux";
 
-const socket = io.connect("http://localhost:3001/");
+const socket = io.connect("http://52.78.142.77/", {
+  path: "/socket.io",
+  transports: ["websocket"],
+});
 
 const Chatting = () => {
+  const room = useSelector((state) => state?.schedule?.postId);
   const nickname = "익명";
   const myNickname = useSelector((state) => state);
-  const [room, setRoom] = useState("tatataroom"); // room 이름은 게시글의 id값을 쓰던가 해야할것 같음.
   const [users, setUsers] = useState(["익명", "익명이", "타타타"]); // 닉네임, 리덕스에서 구해옴, 누구누구 초대했는지 필요.
   const [showChat, setShowChat] = useState(null);
 
