@@ -17,9 +17,7 @@ const Profile = () => {
 
   const user = useSelector((state) => state.profile.result)
   const nickname = user.nickname
-  // console.log(nickname)
   const profileImg = user.userImage
-  // console.log(profileImg)
 
   const initialState = {
     newImage: "",
@@ -46,14 +44,14 @@ const Profile = () => {
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
 
-  // 토큰 없으면 못 들어오게
-  const loginToken = (getCookie("jwtToken"))
-  useEffect(() => {
-    if (loginToken === "") {
-      alert("로그인 후 이용해주세요!")
-      navigate("/");
-    }
-  }, []);
+  // 토큰 없거나 카카오 소셜 회원일 경우 마이페이지 이용 불가능
+  // const kakaoLogin = localStorage.getItem("nickname")
+  // useEffect(() => {
+  //   if (kakaoLogin !== "") {
+  //     alert("소셜로그인 회원은 마이페이지를 이용할 수 없어요!")
+  //     navigate("/main")
+  //   }
+  // }, []);
 
   // 닉네임 불러오기
   useEffect(() => {
@@ -189,10 +187,10 @@ const Profile = () => {
         </div>
         <div className={styles.profile}>
           <label htmlFor="newImage">
-            {{ profileImg } ? (<img src={profileImg} alt="" />) : 
-            preImg[0] ? (<img src={preImg} alt="" />) : 
-            (<img src={profile} alt="" />)} 
-          </label> 
+            {{ profileImg } ? (<img src={profileImg} alt="" />) :
+              preImg[0] ? (<img src={preImg} alt="" />) :
+                (<img src={profile} alt="" />)}
+          </label>
           {/* 여기 기본이미지 안보인다.. 하 */}
           <h4>프로필 이미지</h4>
         </div>

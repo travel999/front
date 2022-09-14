@@ -10,9 +10,9 @@ import { getConData } from "../../redux/modules/MapSlice";
 // import { DRAFT_STATE } from "immer/dist/internal";
 
 const ScheduleCard = ({ data }) => {
-  const divRef = useRef();
   const dispatch = useDispatch();
   const room = useSelector((state) => state?.schedule?.postId);
+
   // day2:[ pin:[~],content:[~]]
 
   //state
@@ -28,9 +28,11 @@ const ScheduleCard = ({ data }) => {
     setConData([...conData, { day: data.day, [name]: value }]);
   };
 
+
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
     dispatch(getConData(conData));
+    console.log(conData);
   };
   // useEffect(() => {
   //   let filterPinData = data.pin.filter((item) => item.day === data.day);
@@ -41,11 +43,13 @@ const ScheduleCard = ({ data }) => {
   //     filterContentData = "";
   //   }
 
+
   //   setResult({ pin: filterPinData, con: filterContentData });
   // }, []);
 
   console.log(data);
   //입력한 값
+
   return (
     <div className={styels.worksWrap}>
       <h2>
@@ -74,8 +78,20 @@ const ScheduleCard = ({ data }) => {
                 required
               />
             </div>
+
           );
         })}
+
+            <ScheduleInput
+              setConData={setConData}
+              conData={conData}
+              room={room}
+              day={item.day + 1}
+              index={index + 1}
+            />
+          </div>
+        ))}
+
 
       <Btn onClick={onSaveStorage}>일정 저장</Btn>
     </div>

@@ -91,7 +91,9 @@ export const ProfileSlice = createSlice({
             state.isLoading = true;
         },
         [getUser.fulfilled]: (state, action) => {
-            state.result = action.payload;
+            state.result = action.payload
+            state.nickname = action.payload.nickname;
+            state.userImage = action.payload.userImage;
             state.isLoading = false;
         },
         [getUser.rejected]: (state) => {
