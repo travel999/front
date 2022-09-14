@@ -1,17 +1,15 @@
 import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 //style & elements
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
-
 import { getConData } from "../../redux/modules/MapSlice";
-
-// import ScheduleMap from "./ScheduleMap";
+import ScheduleInput from "./ScheduleInput";
 
 const ScheduleCard = ({ data }) => {
-  //Hool
   const divRef = useRef();
   const dispatch = useDispatch();
+  const room = useSelector((state) => state?.schedule?.postId);
 
   //state
   const [conData, setConData] = useState({});
@@ -30,6 +28,7 @@ const ScheduleCard = ({ data }) => {
     dispatch(getConData(conData));
   };
 
+  console.log(conData);
   //입력한 값
   return (
     <div className={styels.worksWrap}>
@@ -49,6 +48,11 @@ const ScheduleCard = ({ data }) => {
             ref={divRef}
             onChange={onGetContent}
             required
+          />
+          <ScheduleInput
+            room={room}
+            index={index}
+            onGetContent={onGetContent}
           />
         </div>
       ))}
