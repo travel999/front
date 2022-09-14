@@ -12,7 +12,6 @@ import ScheduleMap from "./ScheduleMap";
 import Chatting from "../chat/Chatting";
 
 const Schedule = () => {
-  console.log("스케줄")
   const tokenValue = localStorage.getItem("jwtToken"); // 토크없으면 로그인 페이지로
   const navigate = useNavigate();
   const mapData = useSelector((state) => state.kakaoMap);
@@ -41,10 +40,8 @@ const Schedule = () => {
           {/* <div>여행갈 날짜를 먼저 지정해주세요!</div> */}
         </div>
       )}
-
-      <div className={styels.wrapRight}>
-        <Chatting />
-      </div>
+      <Chatting />
+      {/* <div className={styels.wrapRight}></div> */}
     </div>
   );
 };

@@ -10,7 +10,7 @@ import { getMapData } from "../../redux/modules/MapSlice";
 import { useEffect } from "react";
 
 const ScheduleList = ({ fixDay, id }) => {
-  console.log("스케줄리스트")
+  console.log("스케줄리스트");
   //Hook
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ const ScheduleList = ({ fixDay, id }) => {
 
   const sendMapData = (day) => {
     setIndex(day);
-    dispatch(getMapData(index));
+    dispatch(getMapData(day));
   };
 
   //이벤트 함수

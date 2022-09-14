@@ -14,7 +14,6 @@ const initialState = {
 export const saveNickName = createAsyncThunk(
   "invite/saveNickName",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const res = await instance.patch(`post/invite/${payload.postId}`, {
         nickname2: payload.nickname2,
