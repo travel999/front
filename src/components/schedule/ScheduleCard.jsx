@@ -7,29 +7,21 @@ import { getConData } from "../../redux/modules/MapSlice";
 import ScheduleInput from "./ScheduleInput";
 
 const ScheduleCard = ({ data }) => {
-  const divRef = useRef();
   const dispatch = useDispatch();
   const room = useSelector((state) => state?.schedule?.postId);
-
-  //state
   const [conData, setConData] = useState({});
 
-  //함수
-
-  //이벤트 함수
-
-  const onGetContent = (e) => {
-    const { name, value } = e.target;
-    setConData({ ...conData, [name]: value });
-  };
+  // const onGetContent = (e) => {
+  //   const { name, value } = e.target;
+  //   setConData({ ...conData, [name]: value });
+  // };
 
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
     dispatch(getConData(conData));
+    console.log(conData);
   };
 
-  console.log(conData);
-  //입력한 값
   return (
     <div className={styels.worksWrap}>
       <h2>
@@ -47,16 +39,14 @@ const ScheduleCard = ({ data }) => {
             <div className={styels.workIndex}>
               {index + 1}.{item.title}
             </div>
-            <textarea
-              className={styels.content}
-              name={index + 1}
-              placeholder="일정 입력"
-              ref={divRef}
-              onChange={onGetContent}
-              required
+            <ScheduleInput
+              setConData={setConData}
+              conData={conData}
+              room={room}
+              day={item.day + 1}
+              index={index + 1}
             />
           </div>
-
         ))}
 
       <Btn onClick={onSaveStorage}>일정 저장</Btn>
