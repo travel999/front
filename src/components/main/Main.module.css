@@ -33,14 +33,13 @@
 
 /* 프로필 사진부분 */
 .profile {
-  /* background-color: rgb(247, 255, 183); */
   background-color: white;
   width: 230px;
   height: 280px;
   margin: 20px 20px 3vh 20px;
   border-radius: 20px;
   padding: 20px 0px;
-  box-shadow: 2px 4px 8px rgba(14, 25, 46, 0.2);
+  box-shadow: 1px 2px 6px rgba(56, 78, 118, 0.2);
   border: 1px solid #c4cfe6;
 }
 
@@ -119,7 +118,7 @@
   margin-right: 0px;
   margin-left: 0px;
   border-radius: 20px;
-  box-shadow: 2px 4px 8px rgba(14, 25, 46, 0.2);
+  box-shadow: 1px 2px 6px rgba(56, 78, 118, 0.2);
   border: 1px solid #c4cfe6;
   z-index: 3;
 }
@@ -184,7 +183,7 @@
   margin-left: 10px;
   margin-right: 10px;
   border-radius: 20px;
-  box-shadow: 2px 4px 8px rgba(14, 25, 46, 0.2);
+  box-shadow: 1px 2px 6px rgba(56, 78, 118, 0.2);
   border: 1px solid #c4cfe6;
   z-index: 5;
 }
@@ -195,7 +194,7 @@
   /* height: 27vh; */
   margin-left: 10px;
   border-radius: 20px;
-  box-shadow: 2px 4px 8px rgba(14, 25, 46, 0.2);
+  box-shadow: 1px 2px 6px rgba(56, 78, 118, 0.2);
   border: 1px solid #c4cfe6;
   z-index: 5;
 }
@@ -233,7 +232,6 @@
 .bicimg {
   width: 100px;
   height: 110px;
-  background-color: rgb(198, 210, 218);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   object-fit: cover;
@@ -358,7 +356,3 @@
   border: 1px solid #a0c1ff;
   border-radius: 200px;
 }
-
-/* ::-webkit-scrollbar : 스크롤바 영역에 대한 설정
-::-webkit-scrollbar-thumb : 스크롤바 막대에 대한 설정
-::-webkit-scrollbar-track  : 스크롤바 뒷 배경에 대한 설정 */
