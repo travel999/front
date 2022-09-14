@@ -9,7 +9,6 @@ import ScheduleList from "./SchduleList";
 import { saveSchedule } from "../../redux/modules/ScheduleSlice";
 
 const ScheduleCreate = () => {
-  console.log("스케줄크리에이트")
   //Hook
   const dispatch = useDispatch();
   const navigate = useNavigate();

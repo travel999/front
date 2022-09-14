@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addLogin } from "../../redux/modules/LogInSlice";
 import styles from "./login.module.css"
@@ -9,7 +9,6 @@ const Login = () => {
   console.log("로그인")
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const [login, setLogin] = useState({
     email: "",
     password: "",

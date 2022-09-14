@@ -56,7 +56,7 @@ const ScheduleList = ({ fixDay, id }) => {
 
   const sendMapData = (day) => {
     setIndex(day);
-    dispatch(getMapData(index));
+    dispatch(getMapData(day));
   };
 
   //이벤트 함수
