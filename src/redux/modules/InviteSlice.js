@@ -14,13 +14,17 @@ const initialState = {
 export const saveNickName = createAsyncThunk(
   "invite/saveNickName",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
-      const res = await instance.patch(
-        `post/invite/${payload.postId}`,
-        payload.nickname2
-      );
+      const res = await instance.patch(`post/invite/${payload.postId}`, {
+        nickname2: payload.nickname2,
+      });
+      if (res.data.result) {
+        payload.setMessage(res.data.message);
+      }
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
+      payload.setMessage("존재하지 않는 닉네임 입니다.");
       return thunkAPI.rejectWithValue(error);
     }
   }

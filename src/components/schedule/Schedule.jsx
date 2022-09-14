@@ -15,18 +15,7 @@ const Schedule = () => {
   const navigate = useNavigate();
   const mapData = useSelector((state) => state.kakaoMap);
 
-  const [result, setResult] = useState([]);
-
   console.log("맵데이터", mapData);
-  // 원하는 형태
-  // place = [{ 1, Array(2) }, { 2,Array(3) }]
-  useEffect(() => {
-    const data = {
-      [mapData.day]: mapData.pin.pin,
-    };
-    setResult([data, ...result]);
-  }, [mapData.day]);
-  console.log("test", result);
 
   useEffect(() => {
     if (!tokenValue) {
@@ -47,6 +36,7 @@ const Schedule = () => {
       ) : (
         <div className={styels.wrapCenter}>
           <img src={NoDateDuckImg} alt="등록일정 없음 이미지" />
+          {/* <div>여행갈 날짜를 먼저 지정해주세요!</div> */}
         </div>
       )}
 

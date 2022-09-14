@@ -19,14 +19,14 @@ const MapSearchNav = ({
   const dispatch = useDispatch();
   //좌표 전역 스테이지로 올려주기
   useEffect(() => {
-    dispatch(getDayPlaceData({ day: day, pin: pin }));
+    dispatch(getDayPlaceData(pin));
   }, [pin]);
 
   return (
     <MapSearchDiv>
       <SearchDiv visible={visible} menu={menu}>
-        <div className="searhArea">
-          <span>장소 검색 :</span>
+        <div className="searchArea">
+          <span>장소 검색 </span>
           <input
             type="text"
             name="keyword"
@@ -86,6 +86,7 @@ const SearchDiv = styled.div`
   background-color: white;
   position: absolute;
   top: 90px;
+  left: 19.7rem;
   font-size: 15px;
   z-index: 99;
   text-align: center;
@@ -93,22 +94,22 @@ const SearchDiv = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > div.searchArea {
+  div.searchArea {
     display: flex;
     justify-content: space-around;
     margin: 0.5rem;
   }
-  & > span {
+  & > div.searchArea > span {
     line-height: 2.5rem;
+    font-weight: bold;
   }
 
-  & > input {
+  & > div.searchArea > input {
     width: 74%;
     height: 36px;
-    border-radius: 20px;
-    border: 1px solid red;
-    text-align: center;
-    padding: 0.2rem;
+    border-radius: 22px;
+    padding: 0 0.5rem;
+    border: 1px solid #ffc51c;
   }
   & > div.placeResult > div {
     display: flex;

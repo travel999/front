@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
@@ -23,7 +22,6 @@ const ScheduleMap = ({ allDay, nowDay }) => {
   const [inputVal, setInputVal] = useState("");
   const [search, setSearch] = useState(searchInit);
   const [pin, setPin] = useState([]);
-  const [placeNames, setPlaceNames] = useState([]);
   const [menu, Setmenu] = useState(false);
   const [visible, Setvisible] = useState(false);
 
@@ -83,14 +81,7 @@ const ScheduleMap = ({ allDay, nowDay }) => {
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        display: "inline-block",
-        marginLeft: "5px",
-        marginRight: "5px",
-      }}
-    >
+    <div className={styels.mapWrap}>
       <Btn
         onClick={() => {
           Setmenu((prev) => !prev);
@@ -110,8 +101,6 @@ const ScheduleMap = ({ allDay, nowDay }) => {
         pin={pin}
       />
       <div id="map" style={{ width: "100%", height: "900px" }}></div>
-
-      {/* <ScheduleCard day={day} name={pin} /> */}
     </div>
   );
 };

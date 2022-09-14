@@ -10,6 +10,7 @@ const MemberAddModal = (props) => {
   const dispatch = useDispatch();
   //State
   const [nickName, setNickName] = useState("");
+  const [message, setMessage] = useState("");
 
   //함수
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
@@ -19,7 +20,8 @@ const MemberAddModal = (props) => {
     setNickName(e.target.value);
   };
   const onAddMember = () => {
-    dispatch(saveNickName({ nickname2: nickName, postId: postId }));
+    dispatch(saveNickName({ nickname2: nickName, postId: postId, setMessage }));
+    setNickName("");
   };
 
   return (
@@ -35,6 +37,7 @@ const MemberAddModal = (props) => {
           </header>
           <main>
             <input type="text" name="nickName" onChange={onGetNickName} />
+            <span>{message}</span>
           </main>
           <footer>
             <button className="addMember" onClick={onAddMember}>
