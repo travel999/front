@@ -4,7 +4,6 @@ import styled from "styled-components";
 import ChatBox from "./ChatBox";
 import { useSelector } from "react-redux";
 
-
 const socket = io.connect("http://52.78.142.77/", {
   path: "/socket.io",
   transports: ["websocket"],
@@ -17,8 +16,8 @@ const Chatting = () => {
   const [users, setUsers] = useState(["익명", "익명이", "타타타"]); // 닉네임, 리덕스에서 구해옴, 누구누구 초대했는지 필요.
   const [showChat, setShowChat] = useState(null);
 
-//   console.log(socket.connected);
-//   console.log(nickname);
+  //   console.log(socket.connected);
+  //   console.log(nickname);
 
   // 해당 게시글의 닉네임이 없으면, 채팅에 들어갈수 없음. 여기서 차단해야함.
   useEffect(() => {
