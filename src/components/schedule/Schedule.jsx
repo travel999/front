@@ -40,10 +40,8 @@ const Schedule = () => {
           {/* <div>여행갈 날짜를 먼저 지정해주세요!</div> */}
         </div>
       )}
-
-      <div className={styels.wrapRight}>
-        <Chatting />
-      </div>
+      <Chatting />
+      {/* <div className={styels.wrapRight}></div> */}
     </div>
   );
 };
