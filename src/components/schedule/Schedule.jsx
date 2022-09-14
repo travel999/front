@@ -11,6 +11,7 @@ import ScheduleCard from "./ScheduleCard";
 import ScheduleMap from "./ScheduleMap";
 
 const Schedule = () => {
+  console.log("스케줄")
   const tokenValue = localStorage.getItem("jwtToken"); // 토크없으면 로그인 페이지로
   const navigate = useNavigate();
   const mapData = useSelector((state) => state.kakaoMap);

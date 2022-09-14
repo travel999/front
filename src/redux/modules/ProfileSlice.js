@@ -33,6 +33,7 @@ export const putImage = createAsyncThunk(
             console.log(response.data.updateUser.nickname)
             if (response) {
                 alert("이미지가 변경되었습니다!")
+                await window.location.replace("/profile")
             }
             return thunkAPI.fulfillWithValue(response);
         } catch (error) {

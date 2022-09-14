@@ -9,6 +9,7 @@ import { getConData } from "../../redux/modules/MapSlice";
 // import ScheduleMap from "./ScheduleMap";
 
 const ScheduleCard = ({ data }) => {
+  console.log("스케줄카드")
   //Hool
   const divRef = useRef();
   const dispatch = useDispatch();
