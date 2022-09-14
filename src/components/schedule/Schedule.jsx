@@ -9,6 +9,7 @@ import NoDateDuckImg from "../../res/img/duck/noDateDuck.png";
 import ScheduleCreate from "./ScheduleCreate";
 import ScheduleCard from "./ScheduleCard";
 import ScheduleMap from "./ScheduleMap";
+import Chatting from "../chat/Chatting";
 
 const Schedule = () => {
   console.log("스케줄")
@@ -51,7 +52,9 @@ const Schedule = () => {
         </div>
       )}
 
-      <div className={styels.wrapRight}>채팅</div>
+      <div className={styels.wrapRight}>
+        <Chatting />
+      </div>
     </div>
   );
 };

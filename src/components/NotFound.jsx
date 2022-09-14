@@ -1,5 +1,5 @@
 import React from "react";
-import duck from "../res/img/duck/duckButt.png";
+import duck from "../res/img/duck/noDateDuck.png";
 import styled from "styled-components";
 
 const NotFound = () => {
