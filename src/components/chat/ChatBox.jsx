@@ -3,12 +3,12 @@ import styles from "./Chatting.module.css";
 import styled from "styled-components";
 import ScrollToBottom from "react-scroll-to-bottom";
 
-const ChatBox = ({ socket, room, isConnected, nickname }) => {
+const ChatBox = ({ socket, room, nickname }) => {
   const [messageList, setMessageList] = useState([]);
   const CurrentMessageRef = useRef("");
 
   const OnsendMsg = async () => {
-    if (CurrentMessageRef.current.value !== "" && isConnected) {
+    if (CurrentMessageRef.current.value !== "") {
       const messageData = {
         room: room,
         author: nickname,
@@ -61,19 +61,19 @@ const ChatBox = ({ socket, room, isConnected, nickname }) => {
       socket.emit("test_send", resetmsg);
     }
   };
+  // <div>{getShowing}</div>
+  // <input
+  //   onChange={(e) => setSendValue(e.target.value)}
+  //   ref={liveRef}
+  //   onKeyDown={(e) => deleteLastText(e.keyCode)}
+  // />
 
   // 실시간테스트버전 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
   return (
     <div>
-      <div>{getShowing}</div>
-      <input
-        onChange={(e) => setSendValue(e.target.value)}
-        ref={liveRef}
-        onKeyDown={(e) => deleteLastText(e.keyCode)}
-      />
       <div>
-        <ScrollToBottom className={styles.chatpart}>
+        <ScrollToBottom className={styles.scrollBottom}>
           {messageList?.map((value) => {
             return (
               <div>
@@ -90,19 +90,16 @@ const ChatBox = ({ socket, room, isConnected, nickname }) => {
             );
           })}
         </ScrollToBottom>
-        <div className={styles.chatinput}>
-          <input
+        <ChatInput>
+          <InputBox
             type="text"
             ref={CurrentMessageRef}
-            className={styles.inputpart}
             onKeyPress={(e) => {
               if (e.key === "Enter") OnsendMsg();
             }}
           />
-          <button className={`${styles.pushbtn}`} onClick={OnsendMsg}>
-            전송
-          </button>
-        </div>
+          <PushBtn onClick={OnsendMsg}>전송</PushBtn>
+        </ChatInput>
       </div>
     </div>
   );
@@ -129,6 +126,31 @@ const Message = styled.div`
   border-radius: 15px;
   overflow-wrap: break-word;
   word-break: break-word;
+`;
+
+const ChatInput = styled.div`
+  height: 7vh;
+  margin: 1vh 1vw 0vh 1vw;
+  border: 1px solid #ffc51c;
+  background-color: white;
+  display: flex;
+  align-items: center;
+`;
+
+const InputBox = styled.input`
+  width: 69%;
+  height: 70%;
+  border: 0px solid transparent;
+  margin-left: 4%;
+`;
+
+const PushBtn = styled.button`
+  background-color: #ffc51c;
+  border: 0px solid #ffc51c;
+  height: 70%;
+  width: 18%;
+  border-radius: 10px;
+  margin-left: 5%;
 `;
 
 const AuthorWrap = styled.div`

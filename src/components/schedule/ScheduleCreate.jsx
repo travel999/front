@@ -9,6 +9,7 @@ import ScheduleList from "./SchduleList";
 import { saveSchedule } from "../../redux/modules/ScheduleSlice";
 
 const ScheduleCreate = () => {
+  console.log("스케줄크리에이트")
   //Hook
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,9 +49,11 @@ const ScheduleCreate = () => {
     const date2 = new Date(endDate);
 
     const diffDate = date1.getTime() - date2.getTime();
-    const reulst = Math.abs(diffDate / (1000 * 60 * 60 * 24));
 
-    setFixDay(reulst);
+    const sum = Math.abs(diffDate / (1000 * 60 * 60 * 24));
+    const result = sum + 1
+
+    setFixDay(result);
   };
 
   //일정생성하기
