@@ -14,14 +14,12 @@ console.log("프로필")
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-  // 스토어에서 닉네임, 프로필 이미지 가져오기
+
   const user = useSelector((state) => state.profile.result)
-  console.log(user)
   const nickname = user.nickname
-  console.log(nickname)
+  // console.log(nickname)
   const profileImg = user.userImage
-  console.log(profileImg)
+  // console.log(profileImg)
 
   const initialState = {
     newImage: "",
@@ -191,11 +189,11 @@ const Profile = () => {
         </div>
         <div className={styles.profile}>
           <label htmlFor="newImage">
-            {!preImg[0] ? (
-              <img src={profile} alt=""></img>
-            ) : (
-              <img src={preImg} alt="" />
-            )}</label>
+            {{ profileImg } ? (<img src={profileImg} alt="" />) : 
+            preImg[0] ? (<img src={preImg} alt="" />) : 
+            (<img src={profile} alt="" />)} 
+          </label> 
+          {/* 여기 기본이미지 안보인다.. 하 */}
           <h4>프로필 이미지</h4>
         </div>
         <form onChange={onSubmitHandler}>

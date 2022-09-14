@@ -10,6 +10,7 @@ import { getMapData } from "../../redux/modules/MapSlice";
 import { useEffect } from "react";
 
 const ScheduleList = ({ fixDay, id }) => {
+  console.log("스케줄리스트")
   //Hook
   const dispatch = useDispatch();
   const navigate = useNavigate();

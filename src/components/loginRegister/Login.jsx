@@ -31,7 +31,7 @@ const Login = () => {
       password: "",
     });
   };
-
+  
   return (
     <div className={styles.wrap}>
       <div className={styles.titleWrap}>

@@ -11,6 +11,7 @@ const { kakao } = window;
 
 //placeX : lat , placeY : lng >> 기억하기
 const ScheduleMap = ({ allDay, nowDay }) => {
+  console.log("스케줄맵")
   const searchInit = {
     keyWord: null,
     pgn: null,
