@@ -16,6 +16,7 @@ export const searchText = createAsyncThunk(
   async (value, thunkAPI) => {
     try {
       const res = await instance.get(`post/search/${value[0]}/${value[1]}`);
+      console.log(res);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue("애러");
@@ -49,6 +50,7 @@ const initialState = {
   MyPostCards: [],
   otherPeopleCards: [],
   searched: false,
+  error: false,
 };
 
 export const mainSlice = createSlice({
@@ -62,43 +64,26 @@ export const mainSlice = createSlice({
   },
   extraReducers: {
     [getCards.fulfilled]: (state, action) => {
-      const MyPostCards2 = {
-        data1: action.payload.data1,
-        data2: action.payload.data2,
-        data3: [],
-      };
-      // 데이터 3 걸러주기
-      if (action.payload.data2) {
-        MyPostCards2.data3 = action.payload?.data3?.filter((value) => {
-          let result = true;
-          action.payload?.data2?.map((value2) => {
-            if (value2._id === value._id) {
-              result = false;
-            }
-          });
-          return result;
-        });
-      } else {
-        MyPostCards2.data3 = action.payload.data3;
-      }
-      state.MyPostCards = MyPostCards2;
+      state.MyPostCards = action.payload;
     },
     [getCards.rejected]: (state, action) => {
       console.log(state, action);
+      state.error = true;
     },
     //state.MyPostCards.data2에 아무것도 없을때 애러 처리
     [searchText.fulfilled]: (state, action) => {
       state.searched = true;
-      const otherPeopleCards2 = action.payload.data.filter((value) => {
-        let result = true;
-        state.MyPostCards.data2.map((value2) => {
-          if (value2._id === value._id) {
-            result = false;
-          }
-        });
-        return result;
-      });
-      state.otherPeopleCards = otherPeopleCards2;
+      console.log(action.payload);
+      // const otherPeopleCards2 = action.payload.data.filter((value) => {
+      //   let result = true;
+      //   state.MyPostCards.data2.map((value2) => {
+      //     if (value2._id === value._id) {
+      //       result = false;
+      //     }
+      //   });
+      //   return result;
+      // });
+      state.otherPeopleCards = action.payload;
     },
     [searchText.rejected]: (state, action) => {
       state.otherPeopleCards = [];
@@ -114,43 +99,56 @@ export const mainSlice = createSlice({
     [toLike.fulfilled]: (state, action) => {
       if (action.payload.isLike.message === "일정에 좋아요를 취소했습니다") {
         const actionData = action.payload.isLike.existLikes;
+        actionData.isLiked = false; //
+        actionData.like -= 1; //
         const MyPostCards2 = {};
-        // 데이터 1 만듬
+        // data1 만들기
         MyPostCards2.data1 = state.MyPostCards.data1;
-        // 데이터 2 만듬
+        // data2 만들기
         const forData2 = state.MyPostCards.data2.filter(
           (value) => value._id !== actionData._id
         );
         MyPostCards2.data2 = forData2;
-        // 데이터 3 만듬
-        const copyData3 = state.MyPostCards.data3.slice();
-        copyData3.push(actionData);
-        MyPostCards2.data3 = copyData3;
-        // 붙여넣기
+        // data3 만들기
+        MyPostCards2.data3 = state.MyPostCards.data3.map((value) => {
+          if (value._id === actionData._id) {
+            value.isLiked = false;
+            value.like -= 1;
+          }
+          return value;
+        });
+        // 넣기
         state.MyPostCards = MyPostCards2;
       } else if (action.payload.isLike.message === "일정에 좋아요를 했습니다") {
         const actionData = action.payload.isLike.existLikes;
+        actionData.isLiked = true; //
+        actionData.like += 1; //
         const MyPostCards2 = {};
-        // 데이터 1 만듬
+        // data1 만들기
         MyPostCards2.data1 = state.MyPostCards.data1;
-        // 데이터 2 만듬 맨위에 추가
-        const copyData2 = state.MyPostCards.data2.slice();
-        // if (!state.MyPostCards.data2) {
-        //   copyData2 = state.MyPostCards.data2.slice();
-        // }
-        copyData2.unshift(actionData);
+        // data2 만들기
+        let copyData2 = [];
+        if (state.MyPostCards.data2?.result !== false) {
+          copyData2 = [...state.MyPostCards.data2, actionData];
+        } else {
+          copyData2?.unshift(actionData);
+        }
         MyPostCards2.data2 = copyData2;
-        // 데이터 3 만듬 제거
-        const forData3 = state.MyPostCards.data3.filter(
-          (value) => value._id !== actionData._id
-        );
-        MyPostCards2.data3 = forData3;
-        // 붙여넣기
+        // data3 만들기
+        MyPostCards2.data3 = state.MyPostCards.data3.map((value) => {
+          if (value._id === actionData._id) {
+            value.isLiked = true;
+            value.like += 1;
+          }
+          return value;
+        });
+        // 넣기
         state.MyPostCards = MyPostCards2;
       }
     },
     [toLike.rejected]: (state, action) => {
-      console.log(action.payload);
+      console.log(state, action);
+      state.error = true;
     },
   },
 });

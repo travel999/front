@@ -33,35 +33,35 @@ const ChatBox = ({ socket, room, nickname }) => {
   }, [socket]);
 
   // 실시간ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-  const [sendValue, setSendValue] = useState("");
-  const [getShowing, setGetShowing] = useState("");
-  const liveRef = useRef(null);
+  // const [sendValue, setSendValue] = useState("");
+  // const [getShowing, setGetShowing] = useState("");
+  // const liveRef = useRef(null);
 
   // const [msg, setMsg] = useState({ msg: sendValue, room });
 
-  useEffect(() => {
-    socket.on("test_receive", (data) => {
-      console.log("받음:" + data.msg);
-      setGetShowing(data.msg);
-    });
-  }, []);
+  // useEffect(() => {
+  //   socket.on("test_receive", (data) => {
+  //     console.log("받음:" + data.msg);
+  //     setGetShowing(data.msg);
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    if (sendValue !== "") {
-      console.log("보내짐");
-      const msg = { msg: sendValue, room };
-      setGetShowing(sendValue);
-      socket.emit("test_send", msg);
-    }
-  }, [sendValue]);
+  // useEffect(() => {
+  //   if (sendValue !== "") {
+  //     console.log("보내짐");
+  //     const msg = { msg: sendValue, room };
+  //     setGetShowing(sendValue);
+  //     socket.emit("test_send", msg);
+  //   }
+  // }, [sendValue]);
 
-  const deleteLastText = (key) => {
-    if (key == 8 && getShowing.length == 1) {
-      const resetmsg = { msg: "", room };
-      setGetShowing("");
-      socket.emit("test_send", resetmsg);
-    }
-  };
+  // const deleteLastText = (key) => {
+  //   if (key == 8 && getShowing.length == 1) {
+  //     const resetmsg = { msg: "", room };
+  //     setGetShowing("");
+  //     socket.emit("test_send", resetmsg);
+  //   }
+  // };
   // <div>{getShowing}</div>
   // <input
   //   onChange={(e) => setSendValue(e.target.value)}
