@@ -27,6 +27,7 @@ const ChatBox = ({ socket, room, nickname }) => {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
+      console.log(data);
       setMessageList((list) => [...list, data]);
     });
   }, [socket]);
