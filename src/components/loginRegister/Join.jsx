@@ -58,6 +58,11 @@ const Join = () => {
     }
   }, [nicknNameData]);
 
+  // 유효 이메일 인증 
+  const onCertifyEmail = () => {
+
+  }
+
   // 유효성 검사
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -246,8 +251,10 @@ const Join = () => {
           />
         </form>
       </div>
+      {/* 이메일 인증 버튼 */}
+      <button className={styles.certifyButton} onClick={onCertifyEmail}>인증</button>
       {/* 회원가입 버튼 */}
-        <button className={styles.button} onClick={onJoin}>회원가입</button>
+      <button className={styles.button} onClick={onJoin}>회원가입</button>
     </div>
   );
 };
