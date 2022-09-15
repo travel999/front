@@ -10,15 +10,15 @@
     background-color: #F2F7FF;
     position: relative;
     object-fit: cover;
-    width: 1070px;
-    /* margin: 62px auto auto auto; */
+    /* width: 1070px; */
+    margin: 62px auto auto auto;
 }
 
 /* input style */
 .inputWrap {
     display: flex;
     position: relative;
-    align-items: center;
+    justify-content: center;
     background: #F2F7FF;
     width: 1200px;
     height: 955px;
@@ -46,7 +46,7 @@
 .inputEmail {
     position: absolute;
     top: 41.5%;
-    width: 296px !important;
+    width: 260px !important;
 }
 
 .inputPassword {
@@ -155,7 +155,7 @@
     top: 41.5%;
     left: 68.5%;
     width: 96px;
-    height: 54px;
+    height: 56px;
     margin: auto;
 
     background: #FFC51C;
