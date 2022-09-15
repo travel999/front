@@ -30,8 +30,10 @@ const ScheduleCard = ({ data }) => {
 
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
-    dispatch(getConData(conData));
+    const newContent = data.content.filter((item) => item.day !== data.day);
+    const newArr = newContent.concat(conData);
     setConData([]);
+    dispatch(getConData(newArr));
   };
 
   // useEffect(() => {
@@ -46,7 +48,6 @@ const ScheduleCard = ({ data }) => {
   //   setResult({ pin: filterPinData, con: filterContentData });
   // }, []);
 
-  console.log(data);
   //입력한 값
 
   return (
@@ -54,7 +55,7 @@ const ScheduleCard = ({ data }) => {
       <h2>
         우리들의 "<span className={styels.workDay}>{data.day}일차</span>" 일정
       </h2>
-      <div></div>
+
       {data.pin
         .filter((item) => item.day === data.day)
         .map((item, index) => {
@@ -72,7 +73,7 @@ const ScheduleCard = ({ data }) => {
                 setConData={setConData}
                 conData={conData}
                 room={room}
-
+                content={data.content}
                 day={item.day}
                 index={index + 1}
               />
@@ -82,7 +83,7 @@ const ScheduleCard = ({ data }) => {
 
       <Btn onClick={onSaveStorage}>일정 저장</Btn>
     </div>
-    );
+  );
 };
 
 export default ScheduleCard;

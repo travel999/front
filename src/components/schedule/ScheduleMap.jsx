@@ -83,6 +83,7 @@ const ScheduleMap = ({ allDay, nowDay }) => {
   return (
     <div className={styels.mapWrap}>
       <Btn
+        className={styels.searchBtn}
         onClick={() => {
           Setmenu((prev) => !prev);
           Setvisible((prev) => !prev);
