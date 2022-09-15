@@ -16,6 +16,7 @@ const ScheduleInput = ({ room, day, index, content }) => {
   const [sendValue, setSendValue] = useState("");
   const [getShowing, setGetShowing] = useState("");
   const [conData, setConData] = useState({});
+  const [sendResult, setSendResult] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -47,13 +48,18 @@ const ScheduleInput = ({ room, day, index, content }) => {
   };
 
   const saveCard = () => {
-    setConData({ day: day, cardNum: `${day}_${index}`, cardMemo: getShowing });
+    dispatch(getConData(conData));
   };
+  console.log(conData);
+  console.log(sendResult);
 
   useEffect(() => {
-    console.log(conData);
-    dispatch(getConData(conData));
-  }, [conData]);
+    setConData({
+      day: day,
+      cardNum: `${day}_${index}`,
+      cardMemo: getShowing,
+    });
+  }, [getShowing]);
 
   console.log("input", content);
   //   setConData({ ...conData, day: day, [index]: sendValue, });
@@ -67,7 +73,6 @@ const ScheduleInput = ({ room, day, index, content }) => {
           placeholder="일정 입력"
           onChange={(e) => setSendValue(e.target.value)}
           onKeyDown={(e) => deleteLastText(e.keyCode)}
-          // onBlur={() => SendConData()}
           required
         />
         <Btn onClick={saveCard}>일정 저장</Btn>

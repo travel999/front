@@ -26,16 +26,33 @@ export const MapSlice = createSlice({
     },
     getConData(state, action) {
       console.log(action.payload);
-      state.content.map(
-        (item) => console.log(item.cardNum)
-        // item.cardNum === action.payload.cardNum
-        //   ? { ...state.content, content: action.payload }
-        //   : it
-      );
-      // if (state.content.includes(action.payload.cardNum)) {
-      //   console.log("payload는!!");
+      if (state.content.length == 0) {
+        console.log("0입니다");
+        state.content = [...state.content, action.payload];
+      } else {
+        console.log("0이 아닙니다");
+        let newArr = [];
+        // 겹치는거 빼줌.
+        newArr = state.content.filter((item) => {
+          return item.cardNum !== action.payload.cardNum;
+        });
+        // 넣어줌
+        newArr.push(action.payload);
+        // 씌워주기
+        state.content = newArr;
 
-      // } else {
+        // state.content.map((item) =>
+        //   item.cardNum === action.payload.cardNum
+        //     ? { ...item, cardMemo: action.payload.cardMemo }
+        //     : [...state.content, action.payload]
+        // );
+      }
+
+      // else if (state.content.includes(action.payload.cardNum)) {
+      //   console.log("include_true");
+
+      // } else if (!state.content.includes(action.payload.cardNum)) {
+      //   console.log("include_false");
       //   state.content = [...state.content, action.payload];
       // }
     },
