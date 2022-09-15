@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 
 // 초기 상태값
 const initialState = {
@@ -25,7 +26,18 @@ export const MapSlice = createSlice({
     },
     getConData(state, action) {
       console.log(action.payload);
-      state.content = action.payload;
+      state.content.map(
+        (item) => console.log(item.cardNum)
+        // item.cardNum === action.payload.cardNum
+        //   ? { ...state.content, content: action.payload }
+        //   : it
+      );
+      // if (state.content.includes(action.payload.cardNum)) {
+      //   console.log("payload는!!");
+
+      // } else {
+      //   state.content = [...state.content, action.payload];
+      // }
     },
   },
   extraReducers: {},

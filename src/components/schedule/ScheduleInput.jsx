@@ -1,15 +1,23 @@
 import React, { useState, useEffect, memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import io from "socket.io-client";
 import styels from "./Schedule.module.css";
+import Btn from "../elements/Btn";
+
+import { getConData } from "../../redux/modules/MapSlice";
 
 const socket = io.connect("http://52.78.142.77/", {
   path: "/socket.io",
   transports: ["websocket"],
 });
 
-const ScheduleInput = ({ room, day, index, conData, setConData, content }) => {
+const ScheduleInput = ({ room, day, index, content }) => {
   const [sendValue, setSendValue] = useState("");
   const [getShowing, setGetShowing] = useState("");
+  const [conData, setConData] = useState({});
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     socket.on("test_receive", (data) => {
@@ -38,45 +46,30 @@ const ScheduleInput = ({ room, day, index, conData, setConData, content }) => {
     }
   };
 
-  const SendConData = () => {
-    setConData([...conData, { day, index, memo: sendValue }]);
+  const saveCard = () => {
+    setConData({ day: day, cardNum: `${day}_${index}`, cardMemo: sendValue });
   };
+  useEffect(() => {
+    console.log(conData);
+    dispatch(getConData(conData));
+  }, [conData]);
 
+  console.log("input", content);
   //   setConData({ ...conData, day: day, [index]: sendValue, });
-
   return (
     <div className={styels.inputWrap}>
-      {content.length !== 0 ? (
-        content
-          .filter((item) => item.day === day)
-          .map((item, index) => {
-            return (
-              <>
-                {/* <div>{item.memo}</div> */}
-                <input
-                  key={index}
-                  placeholder="일정 입력"
-                  onChange={(e) => setSendValue(e.target.value)}
-                  onKeyDown={(e) => deleteLastText(e.keyCode)}
-                  value={item.memo}
-                  onBlur={() => SendConData()}
-                  required
-                />
-              </>
-            );
-          })
-      ) : (
-        <>
-          {console.log("hhi")}
-          <input
-            placeholder="일정 입력"
-            onChange={(e) => setSendValue(e.target.value)}
-            onKeyDown={(e) => deleteLastText(e.keyCode)}
-            onBlur={() => SendConData()}
-            required
-          />
-        </>
-      )}
+      <>
+        <div>{getShowing}</div>
+        <input
+          key={index}
+          placeholder="일정 입력"
+          onChange={(e) => setSendValue(e.target.value)}
+          onKeyDown={(e) => deleteLastText(e.keyCode)}
+          // onBlur={() => SendConData()}
+          required
+        />
+        <Btn onClick={saveCard}>일정 저장</Btn>
+      </>
     </div>
   );
 };

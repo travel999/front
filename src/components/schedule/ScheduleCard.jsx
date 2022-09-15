@@ -1,9 +1,8 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 //style & elements
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
-import { getConData } from "../../redux/modules/MapSlice";
 import ScheduleInput from "./ScheduleInput";
 // import { useEffect } from "react";
 // import { dateISOString } from "react-s3/lib/Date";
@@ -12,30 +11,16 @@ import ScheduleInput from "./ScheduleInput";
 const ScheduleCard = ({ data }) => {
   const dispatch = useDispatch();
   const room = useSelector((state) => state?.schedule?.postId);
-  const content = useSelector((state) => state?.kakaoMap?.content);
-  // day2:[ pin:[~],content:[~]]
 
   //state
-  const [conData, setConData] = useState([]);
-  const [result, setResult] = useState([]);
 
   //함수
 
   //이벤트 함수
-  const onGetContent = (e) => {
-    const { name, value } = e.target;
-    setConData([...conData, { day: data.day, [name]: value }]);
-  };
 
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
-
-    const newContent = content.filter((item) => item.day !== data.day);
-    // console.log("newcontent", newContent);
-    const newarr = newContent.concat(conData);
-    dispatch(getConData(newarr));
-    setConData([]);
-    dispatch(getConData(newArr));
+    // dispatch(getConData(conData));
   };
 
   // const newContent = content.filter((item) => item.day !== data.day);
@@ -52,7 +37,6 @@ const ScheduleCard = ({ data }) => {
 
   //   setResult({ pin: filterPinData, con: filterContentData });
   // }, []);
-
 
   //입력한 값
 
@@ -75,17 +59,16 @@ const ScheduleCard = ({ data }) => {
                 {index + 1}.{item.title}
               </div>
               <ScheduleInput
-                setConData={setConData}
-                conData={conData}
                 room={room}
                 day={item.day}
+                content={data.content}
                 index={index + 1}
               />
             </div>
           );
         })}
 
-      <Btn onClick={onSaveStorage}>일정 저장</Btn>
+      <Btn onClick={onSaveStorage}>{data.day}일차 전체 일정 저장</Btn>
     </div>
   );
 };
