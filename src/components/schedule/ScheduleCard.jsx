@@ -29,13 +29,11 @@ const ScheduleCard = ({ data }) => {
 
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
-
     const newContent = content.filter((item) => item.day !== data.day);
     // console.log("newcontent", newContent);
     const newarr = newContent.concat(conData);
     dispatch(getConData(newarr));
     setConData([]);
-    dispatch(getConData(newArr));
   };
 
   // const newContent = content.filter((item) => item.day !== data.day);
@@ -52,7 +50,6 @@ const ScheduleCard = ({ data }) => {
 
   //   setResult({ pin: filterPinData, con: filterContentData });
   // }, []);
-
 
   //입력한 값
 
@@ -80,6 +77,7 @@ const ScheduleCard = ({ data }) => {
                 room={room}
                 day={item.day}
                 index={index + 1}
+                content={data.content}
               />
             </div>
           );

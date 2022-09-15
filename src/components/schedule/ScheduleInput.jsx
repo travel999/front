@@ -44,6 +44,8 @@ const ScheduleInput = ({ room, day, index, conData, setConData, content }) => {
 
   //   setConData({ ...conData, day: day, [index]: sendValue, });
 
+  console.log(content.length);
+
   return (
     <div className={styels.inputWrap}>
       {content.length !== 0 ? (
