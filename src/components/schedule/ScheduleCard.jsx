@@ -31,8 +31,8 @@ const ScheduleCard = ({ data }) => {
   const onSaveStorage = () => {
     const newContent = content.filter((item) => item.day !== data.day);
     // console.log("newcontent", newContent);
-    const newarr = newContent.concat(conData);
-    dispatch(getConData(newarr));
+    const newArr = newContent.concat(conData);
+    dispatch(getConData(newArr));
     setConData([]);
   };
 
@@ -73,6 +73,7 @@ const ScheduleCard = ({ data }) => {
               </div>
               <ScheduleInput
                 setConData={setConData}
+                content={data.content}
                 conData={conData}
                 room={room}
                 day={item.day}
