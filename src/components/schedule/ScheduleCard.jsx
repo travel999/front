@@ -67,10 +67,12 @@ const ScheduleCard = ({ data }) => {
               <div className={styels.workIndex}>
                 {index + 1}.{item.title}
               </div>
+
               <ScheduleInput
                 setConData={setConData}
                 conData={conData}
                 room={room}
+
                 day={item.day}
                 index={index + 1}
               />

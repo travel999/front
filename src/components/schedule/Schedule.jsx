@@ -14,6 +14,7 @@ import Chatting from "../chat/Chatting";
 const Schedule = () => {
   const tokenValue = localStorage.getItem("jwtToken"); // 토크없으면 로그인 페이지로
   const navigate = useNavigate();
+  const createData = useSelector((state) => state.schedule);
   const mapData = useSelector((state) => state.kakaoMap);
 
   console.log("맵데이터", mapData);
@@ -28,7 +29,9 @@ const Schedule = () => {
     <div className={styels.wrap}>
       <div className={styels.wrapLeft}>
         <ScheduleCreate />
-        {mapData.pin.length !== 0 ? <ScheduleCard data={mapData} /> : null}
+        {mapData.pin.length !== 0 ? (
+          <ScheduleCard data={mapData} postId={createData.postId} />
+        ) : null}
       </div>
       {mapData.day !== "" ? (
         <div className={styels.wrapCenter}>

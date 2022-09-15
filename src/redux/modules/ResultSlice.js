@@ -3,23 +3,34 @@ import instance from "../../res/instance";
 
 // 초기 상태값
 const initialState = {
-  title: "",
-  date: [],
-  day: {
-    pin: [],
-    cottetn: [],
-  },
+  message: "",
 };
-//액션
-
-//액션 함수
 
 //청크
-export const getResult = createAsyncThunk(
-  "result/getResult",
+export const saveDayData = createAsyncThunk(
+  "result/saveDayData",
   async (payload, thunkAPI) => {
     try {
-      const res = await instance.put(`post`, payload);
+      let type = "";
+      if (payload[0] === "1") {
+        type = "day1";
+      } else if (payload[0] === "2") {
+        type = "day2";
+      } else if (payload[0] === "3") {
+        type = "day3";
+      } else if (payload[0] === "4") {
+        type = "day4";
+      } else if (payload[0] === "5") {
+        type = "day5";
+      } else if (payload[0] === "6") {
+        type = "day6";
+      } else if (payload[0] === "7") {
+        type = "day7";
+      }
+      console.log(type);
+      const res = await instance.put(`/post/${payload[2]}`, {
+        type: payload[1],
+      });
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -33,16 +44,16 @@ export const ResultSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [getResult.pending]: (state) => {
+    [saveDayData.pending]: (state) => {
       state.isLoading = true;
     },
-    [getResult.fulfilled]: (state, action) => {
+    [saveDayData.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.title = action.payload.title;
-      state.date = action.payload.date;
-      state.postId = action.payload.postId;
+      // state.title = action.payload.title;
+      // state.date = action.payload.date;
+      // state.postId = action.payload.postId;
     },
-    [getResult.rejected]: (state, action) => {
+    [saveDayData.rejected]: (state, action) => {
       console.log(current(state), action);
     },
   },
