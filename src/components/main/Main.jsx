@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "../../res/cookie";
 import styles from "./Main.module.css";
 import minitravelduck from "../../res/img/travelduck-1.png";
 import bottomcloud from "../../res/img/cloud1.png";
@@ -16,7 +15,7 @@ const Main = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const loginToken = getCookie("jwtToken");
+  const loginToken = localStorage.getItem("jwtToken");
 
   const input_ref = useRef(null); // 검색ref
   const [page, setPage] = useState(1); // 무한스크롤 페이지
