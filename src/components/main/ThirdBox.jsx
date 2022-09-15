@@ -10,7 +10,6 @@ const ThirdBox = ({ obsRef, input_ref, searchPage, setSearchPage }) => {
   const dispatch = useDispatch();
   const searchdata = useSelector((state) => state.main.otherPeopleCards);
   const recommendData = useSelector((state) => state.main.MyPostCards.data3);
-  console.log(searchdata);
 
   const [showRecommend, setShowrecommend] = useState(true);
 
