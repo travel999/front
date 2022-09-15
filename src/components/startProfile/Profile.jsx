@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../res/cookie";
 import S3upload from "react-aws-s3";
 import { getUser, putImage, putPassword, deleteUser } from "../../redux/modules/ProfileSlice";
-
+import { ToastContainer } from 'react-toastify';
 import styles from "./profile.module.css"
 import profile from "../../res/img/profile.png"
 
@@ -45,13 +45,13 @@ const Profile = () => {
   const [preImg, setPreImg] = useState([]);
 
   // 토큰 없거나 카카오 소셜 회원일 경우 마이페이지 이용 불가능
-  // const kakaoLogin = localStorage.getItem("nickname")
-  // useEffect(() => {
-  //   if (kakaoLogin !== "") {
-  //     alert("소셜로그인 회원은 마이페이지를 이용할 수 없어요!")
-  //     navigate("/main")
-  //   }
-  // }, []);
+  const kakaoLogin = localStorage.getItem("nickname")
+  useEffect(() => {
+    if (kakaoLogin !== null) {
+      alert("소셜로그인 회원은 마이페이지를 이용할 수 없어요!")
+      navigate("/main")
+    }
+  }, []);
 
   // 닉네임 불러오기
   useEffect(() => {
@@ -208,7 +208,9 @@ const Profile = () => {
       </div>
       <div className={styles.buttonWrap}>
         <button onClick={onEditProfile} className={styles.button}>저장</button>
+        <ToastContainer />
         <button onClick={onDeleteProfile} className={styles.button2}>회원 탈퇴</button>
+        <ToastContainer />
       </div>
     </div>
   );

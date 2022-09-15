@@ -80,7 +80,7 @@ const ScheduleCard = ({ data }) => {
 
       <Btn onClick={onSaveStorage}>일정 저장</Btn>
     </div>
-  );
+    );
 };
 
 export default ScheduleCard;
