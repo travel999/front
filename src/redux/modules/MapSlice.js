@@ -31,11 +31,21 @@ export const MapSlice = createSlice({
         state.content = [...state.content, action.payload];
       } else {
         console.log("0이 아닙니다");
-        state.content.map((item) =>
-          item.cardNum === action.payload.cardNum
-            ? { ...item, cardMemo: action.payload.cardMemo }
-            : [...state.content, action.payload]
-        );
+        let newArr = [];
+        // 겹치는거 빼줌.
+        newArr = state.content.filter((item) => {
+          return item.cardNum !== action.payload.cardNum;
+        });
+        // 넣어줌
+        newArr.push(action.payload);
+        // 씌워주기
+        state.content = newArr;
+
+        // state.content.map((item) =>
+        //   item.cardNum === action.payload.cardNum
+        //     ? { ...item, cardMemo: action.payload.cardMemo }
+        //     : [...state.content, action.payload]
+        // );
       }
 
       // else if (state.content.includes(action.payload.cardNum)) {

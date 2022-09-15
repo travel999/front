@@ -59,7 +59,7 @@ const ScheduleInput = ({ room, day, index, content }) => {
       cardNum: `${day}_${index}`,
       cardMemo: getShowing,
     });
-  }, []);
+  }, [getShowing]);
 
   console.log("input", content);
   //   setConData({ ...conData, day: day, [index]: sendValue, });
