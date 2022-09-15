@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addLogin } from "../../redux/modules/LogInSlice";
 import styles from "./login.module.css"
 import Background from "../../res/img/background.png"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   console.log("로그인")
@@ -19,7 +21,7 @@ const Login = () => {
     setLogin({ ...login, [name]: value });
   };
 
-  const onClick = (event) => {
+  const onLogin = (event) => {
     event.preventDefault();
     if (login.email.trim() === "" || login.password.trim() === "") {
       return alert("모든 항목을 입력해주세요.");
@@ -29,8 +31,9 @@ const Login = () => {
       email: "",
       password: "",
     });
+
   };
-  
+
   return (
     <div className={styles.wrap}>
       <div className={styles.titleWrap}>
@@ -45,7 +48,8 @@ const Login = () => {
             <input className={styles.input} name="password" type="password" defaultChecked="" value={login.password} onChange={onChange}></input>
           </div>
         </form>
-        <button className={styles.button} onClick={onClick}>로그인</button>
+        <button className={styles.button} onClick={onLogin}>로그인</button>
+        <ToastContainer />
       </div>
     </div>
   );

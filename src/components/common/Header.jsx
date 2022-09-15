@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-// import { removeCookie, getCookie } from "../../res/cookie";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -11,8 +11,17 @@ const Header = () => {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("nickname");
     localStorage.removeItem("profileImage");
-    alert("로그아웃이 완료되었습니다.");
-    await navigate("/");
+    toast('로그아웃이 완료되었습니다.', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    }, setTimeout(() => {
+      navigate("/")
+    }, 1000))
   };
 
   const OntoHome = () => {
@@ -70,7 +79,9 @@ const Header = () => {
         >
           LOGOUT
         </LogOutBtn>
+
       }
+      <ToastContainer />
     </HeaderBox>
   );
 };

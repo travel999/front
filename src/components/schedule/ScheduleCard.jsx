@@ -31,8 +31,9 @@ const ScheduleCard = ({ data }) => {
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
     dispatch(getConData(conData));
-    console.log(conData);
+    setConData([]);
   };
+
   // useEffect(() => {
   //   let filterPinData = data.pin.filter((item) => item.day === data.day);
   //   let filterContentData = [];
@@ -66,20 +67,13 @@ const ScheduleCard = ({ data }) => {
               <div className={styels.workIndex}>
                 {index + 1}.{item.title}
               </div>
-              {/* <textarea
-                className={styels.content}
-                name="memo"
-                placeholder="일정 입력"
-                ref={divRef}
-                value={data.content[0]}
-                onChange={onGetContent}
-                required
-              /> */}
+
               <ScheduleInput
                 setConData={setConData}
                 conData={conData}
                 room={room}
-                day={item.day + 1}
+
+                day={item.day}
                 index={index + 1}
               />
             </div>
@@ -88,7 +82,7 @@ const ScheduleCard = ({ data }) => {
 
       <Btn onClick={onSaveStorage}>일정 저장</Btn>
     </div>
-  );
+    );
 };
 
 export default ScheduleCard;
