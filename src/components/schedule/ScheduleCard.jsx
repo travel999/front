@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 import { getConData } from "../../redux/modules/MapSlice";
-// import ScheduleInput from "./ScheduleInput";
+import ScheduleInput from "./ScheduleInput";
 // import { useEffect } from "react";
 // import { dateISOString } from "react-s3/lib/Date";
 // import { DRAFT_STATE } from "immer/dist/internal";
@@ -28,7 +28,6 @@ const ScheduleCard = ({ data }) => {
     setConData([...conData, { day: data.day, [name]: value }]);
   };
 
-
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
     dispatch(getConData(conData));
@@ -42,7 +41,6 @@ const ScheduleCard = ({ data }) => {
   //   } else {
   //     filterContentData = "";
   //   }
-
 
   //   setResult({ pin: filterPinData, con: filterContentData });
   // }, []);
@@ -68,7 +66,7 @@ const ScheduleCard = ({ data }) => {
               <div className={styels.workIndex}>
                 {index + 1}.{item.title}
               </div>
-              <textarea
+              {/* <textarea
                 className={styels.content}
                 name="memo"
                 placeholder="일정 입력"
@@ -76,22 +74,17 @@ const ScheduleCard = ({ data }) => {
                 value={data.content[0]}
                 onChange={onGetContent}
                 required
+              /> */}
+              <ScheduleInput
+                setConData={setConData}
+                conData={conData}
+                room={room}
+                day={item.day + 1}
+                index={index + 1}
               />
             </div>
-
           );
         })}
-
-            <ScheduleInput
-              setConData={setConData}
-              conData={conData}
-              room={room}
-              day={item.day + 1}
-              index={index + 1}
-            />
-          </div>
-        ))}
-
 
       <Btn onClick={onSaveStorage}>일정 저장</Btn>
     </div>

@@ -10,11 +10,10 @@
 }
 .wrapCenter {
   width: 82.5%;
-  background-color: #f2f7ff;
+  background-color: #e5eefc;
 }
 .wrapRight {
   width: 17.5%;
-  background-color: yellow;
 }
 .wrap img {
   width: 20%;
@@ -36,7 +35,7 @@
   width: 141px;
   height: 36px;
   border-radius: 17px;
-  border: 1px solid #ffc51c;
+  border: 1px solid #c4cfe6;
   margin: 0.3rem;
   text-align: center;
 }
@@ -44,7 +43,7 @@
   width: 192px;
   height: 36px;
   border-radius: 17px;
-  border: 1px solid #ffc51c;
+  border: 1px solid #c4cfe6;
   margin: 0.3rem;
   text-align: center;
 }
