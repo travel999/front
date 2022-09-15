@@ -12,7 +12,7 @@ import ScheduleInput from "./ScheduleInput";
 const ScheduleCard = ({ data }) => {
   const dispatch = useDispatch();
   const room = useSelector((state) => state?.schedule?.postId);
-
+  const content = useSelector((state) => state?.kakaoMap?.content);
   // day2:[ pin:[~],content:[~]]
 
   //state
@@ -22,7 +22,6 @@ const ScheduleCard = ({ data }) => {
   //함수
 
   //이벤트 함수
-
   const onGetContent = (e) => {
     const { name, value } = e.target;
     setConData([...conData, { day: data.day, [name]: value }]);
@@ -30,9 +29,15 @@ const ScheduleCard = ({ data }) => {
 
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
-    dispatch(getConData(conData));
+    const newContent = content.filter((item) => item.day !== data.day);
+    // console.log("newcontent", newContent);
+    const newarr = newContent.concat(conData);
+    dispatch(getConData(newarr));
     setConData([]);
   };
+
+  // const newContent = content.filter((item) => item.day !== data.day);
+  // setContent(newContent);
 
   // useEffect(() => {
   //   let filterPinData = data.pin.filter((item) => item.day === data.day);
@@ -67,12 +72,10 @@ const ScheduleCard = ({ data }) => {
               <div className={styels.workIndex}>
                 {index + 1}.{item.title}
               </div>
-
               <ScheduleInput
                 setConData={setConData}
                 conData={conData}
                 room={room}
-
                 day={item.day}
                 index={index + 1}
               />
@@ -82,7 +85,7 @@ const ScheduleCard = ({ data }) => {
 
       <Btn onClick={onSaveStorage}>일정 저장</Btn>
     </div>
-    );
+  );
 };
 
 export default ScheduleCard;

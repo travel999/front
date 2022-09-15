@@ -27,10 +27,7 @@ const Main = () => {
   const [end, setEnd] = useState(false);
   const searched = useSelector((state) => state.main.searched); // true false
 
-  console.log("메인 랜디링");
-
   // 토크없으면 로그인 페이지로
-
   useEffect(() => {
     if (loginToken === "") {
       navigate("/");

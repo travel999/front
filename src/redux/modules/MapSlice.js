@@ -25,7 +25,6 @@ export const MapSlice = createSlice({
     },
     getConData(state, action) {
       console.log(action.payload);
-      // console.log("content" + action.payload[0].day);
       state.content = action.payload;
     },
   },

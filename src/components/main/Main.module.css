@@ -31,6 +31,16 @@
   z-index: 0;
 }
 
+.duckfoot {
+  width: 15px;
+  height: 15px;
+}
+
+.duckfoot:hover {
+  width: 17px;
+  height: 17px;
+}
+
 /* 프로필 사진부분 */
 .profile {
   background-color: white;
@@ -168,6 +178,7 @@
 }
 
 .traveldate {
+  margin-top: 1.3vh;
   font-size: 0.8em;
 }
 

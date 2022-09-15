@@ -6,7 +6,6 @@ import { toOpenPublic } from "../../redux/modules/MainSlice";
 const FirstBox = () => {
   const dispatch = useDispatch();
   const myPosts = useSelector((state) => state.main.MyPostCards.data1);
-  console.log(myPosts);
 
   const OnOpenPublic = (value) => {
     // value를 뭘 줘야하나
@@ -28,9 +27,8 @@ const FirstBox = () => {
               />
               <div className={styles.content}>
                 <div>{value.title}</div>
-                <div className={styles.traveldate}>2022.09.11- 2022.09.15</div>
-                <div className={styles.day}>
-                  {value.day?.length - 1}박 {value.day?.length}일
+                <div className={styles.traveldate}>
+                  {value.date[0] + "~ " + value.date[1]}
                 </div>
               </div>
             </div>

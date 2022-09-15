@@ -45,7 +45,6 @@ const SearchBar = ({
       >
         <FontAwesomeIcon icon={faMagnifyingGlass} />
       </button>
-
       <button
         className={styles.refreshbtn}
         onClick={() => {
