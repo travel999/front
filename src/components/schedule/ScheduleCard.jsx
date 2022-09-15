@@ -29,11 +29,13 @@ const ScheduleCard = ({ data }) => {
 
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
+
     const newContent = content.filter((item) => item.day !== data.day);
     // console.log("newcontent", newContent);
     const newarr = newContent.concat(conData);
     dispatch(getConData(newarr));
     setConData([]);
+    dispatch(getConData(newArr));
   };
 
   // const newContent = content.filter((item) => item.day !== data.day);
@@ -51,7 +53,7 @@ const ScheduleCard = ({ data }) => {
   //   setResult({ pin: filterPinData, con: filterContentData });
   // }, []);
 
-  console.log("데이터", data);
+
   //입력한 값
 
   return (
@@ -59,7 +61,7 @@ const ScheduleCard = ({ data }) => {
       <h2>
         우리들의 "<span className={styels.workDay}>{data.day}일차</span>" 일정
       </h2>
-      <div></div>
+
       {data.pin
         .filter((item) => item.day === data.day)
         .map((item, index) => {

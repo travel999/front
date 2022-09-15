@@ -100,12 +100,13 @@ const SearchDiv = styled.div`
     margin: 0.5rem;
   }
   & > div.searchArea > span {
-    line-height: 2.5rem;
+    line-height: 1.4rem;
     font-weight: bold;
+    margin: 0.5rem;
   }
 
   & > div.searchArea > input {
-    width: 74%;
+    width: 60%;
     height: 36px;
     border-radius: 22px;
     padding: 0 0.5rem;
