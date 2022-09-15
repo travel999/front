@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import { act } from "react-dom/test-utils";
 
 // 초기 상태값
@@ -26,16 +26,23 @@ export const MapSlice = createSlice({
     },
     getConData(state, action) {
       console.log(action.payload);
-      state.content.map(
-        (item) => console.log(item.cardNum)
-        // item.cardNum === action.payload.cardNum
-        //   ? { ...state.content, content: action.payload }
-        //   : it
-      );
-      // if (state.content.includes(action.payload.cardNum)) {
-      //   console.log("payload는!!");
+      if (state.content.length == 0) {
+        console.log("0입니다");
+        state.content = [...state.content, action.payload];
+      } else {
+        console.log("0이 아닙니다");
+        state.content.map((item) =>
+          item.cardNum === action.payload.cardNum
+            ? { ...item, cardMemo: action.payload.cardMemo }
+            : [...state.content, action.payload]
+        );
+      }
 
-      // } else {
+      // else if (state.content.includes(action.payload.cardNum)) {
+      //   console.log("include_true");
+
+      // } else if (!state.content.includes(action.payload.cardNum)) {
+      //   console.log("include_false");
       //   state.content = [...state.content, action.payload];
       // }
     },

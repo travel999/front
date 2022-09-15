@@ -20,9 +20,7 @@ const ScheduleCard = ({ data }) => {
 
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
-
     // dispatch(getConData(conData));
-
   };
 
   // const newContent = content.filter((item) => item.day !== data.day);
@@ -65,7 +63,6 @@ const ScheduleCard = ({ data }) => {
                 day={item.day}
                 content={data.content}
                 index={index + 1}
-                content={data.content}
               />
             </div>
           );
