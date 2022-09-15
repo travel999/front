@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
-// import { setCookie,removeCookie,getCookie } from "../../res/cookie";
+import { toast } from 'react-toastify';
 
 const initialState = {
   email: "",
@@ -17,9 +17,19 @@ export const addLogin = createAsyncThunk(
       localStorage.setItem("jwtToken", token);
       console.log("로그인");
       if (response.status === 200) {
-        alert("반갑습니다!");
-        await window.location.replace("/main");
-        // await payload.navigate("/main");
+        toast('반갑습니다!', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        },
+          setTimeout(() => {
+            window.location.replace("/main")
+          }, 1000)
+        );
       }
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {

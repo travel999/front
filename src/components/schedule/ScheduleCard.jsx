@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 import { getConData } from "../../redux/modules/MapSlice";
-// import ScheduleInput from "./ScheduleInput";
+import ScheduleInput from "./ScheduleInput";
 // import { useEffect } from "react";
 // import { dateISOString } from "react-s3/lib/Date";
 // import { DRAFT_STATE } from "immer/dist/internal";
@@ -52,50 +52,44 @@ const ScheduleCard = ({ data }) => {
 
   return (
     <div className={styels.worksWrap}>
-      <h2>
-        우리들의 "<span className={styels.workDay}>{data.day}일차</span>" 일정
-      </h2>
-      <div></div>
-      {data.pin
-        .filter((item) => item.day === data.day)
-        .map((item, index) => {
-          return (
-            <div
-              id={`${item.day}-${index}`}
-              className={styels.work}
-              key={index}
-            >
-              <div className={styels.workIndex}>
-                {index + 1}.{item.title}
-              </div>
-              <textarea
-                className={styels.content}
-                name="memo"
-                placeholder="일정 입력"
-                ref={divRef}
-                value={data.content[0]}
-                onChange={onGetContent}
-                required
-              />
-            </div>
-
-          );
-        })}
-
-            <ScheduleInput
-              setConData={setConData}
-              conData={conData}
-              room={room}
-              day={item.day + 1}
-              index={index + 1}
-            />
-          </div>
-        ))}
-
-
-      <Btn onClick={onSaveStorage}>일정 저장</Btn>
+    <h2>
+    우리들의 "<span className={styels.workDay}>{data.day}일차</span>" 일정
+    </h2>
+    <div></div>
+    {data.pin
+    .filter((item) => item.day === data.day)
+    .map((item, index) => {
+    return (
+    <div
+    id={`${item.day}-${index}`}
+    className={styels.work}
+    key={index}
+    >
+    <div className={styels.workIndex}>
+    {index + 1}.{item.title}
     </div>
-  );
+    <textarea
+    className={styels.content}
+    name="memo"
+    placeholder="일정 입력"
+    value={data.content[0]}
+    onChange={onGetContent}
+    required
+    />
+    <ScheduleInput
+    setConData={setConData}
+    conData={conData}
+    room={room}
+    day={item.day + 1}
+    index={index + 1}
+    />
+    </div>
+    );
+    })}
+    
+    <Btn onClick={onSaveStorage}>일정 저장</Btn>
+    </div>
+    );
 };
 
 export default ScheduleCard;
