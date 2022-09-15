@@ -47,8 +47,9 @@ const ScheduleInput = ({ room, day, index, content }) => {
   };
 
   const saveCard = () => {
-    setConData({ day: day, cardNum: `${day}_${index}`, cardMemo: sendValue });
+    setConData({ day: day, cardNum: `${day}_${index}`, cardMemo: getShowing });
   };
+
   useEffect(() => {
     console.log(conData);
     dispatch(getConData(conData));
