@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import io from "socket.io-client";
 
 const socket = io.connect("http://52.78.142.77/", {
@@ -9,13 +9,12 @@ const socket = io.connect("http://52.78.142.77/", {
 const ScheduleInput = ({ room, day, index, conData, setConData }) => {
   const [sendValue, setSendValue] = useState("");
   const [getShowing, setGetShowing] = useState("");
-  const liveRef = useRef(null);
 
   useEffect(() => {
     socket.on("test_receive", (data) => {
       console.log("받음:" + data.msg);
       setGetShowing(data.msg);
-      setConData({ ...conData, [index]: sendValue });
+      //   setConData({ day: day, memo: getShowing });
     });
   }, []);
 
@@ -24,7 +23,8 @@ const ScheduleInput = ({ room, day, index, conData, setConData }) => {
       console.log("보내짐");
       const msg = { msg: sendValue, room: `${room}${day}${index}` };
       setGetShowing(sendValue);
-      setConData({ ...conData, [index]: sendValue });
+      // slice
+      //   setConData([...conData, { day: day, index: index, memo: getShowing }]);
       socket.emit("test_send", msg);
     }
   }, [sendValue]);
@@ -37,14 +37,21 @@ const ScheduleInput = ({ room, day, index, conData, setConData }) => {
     }
   };
 
+  const SendConData = () => {
+    console.log(sendValue);
+    setConData([...conData, { day, index, memo: sendValue }]);
+  };
+
+  //   setConData({ ...conData, day: day, [index]: sendValue, });
+
   return (
     <>
       <div>{getShowing}</div>
       <input
         placeholder="일정 입력"
         onChange={(e) => setSendValue(e.target.value)}
-        ref={liveRef}
         onKeyDown={(e) => deleteLastText(e.keyCode)}
+        onBlur={() => SendConData()}
         required
       />
     </>
