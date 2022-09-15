@@ -46,7 +46,7 @@ const ScheduleCard = ({ data }) => {
   //   setResult({ pin: filterPinData, con: filterContentData });
   // }, []);
 
-  console.log(data);
+  console.log("데이터", data);
   //입력한 값
 
   return (

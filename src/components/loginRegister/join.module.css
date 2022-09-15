@@ -38,14 +38,15 @@
     padding-left: 2%;
 }
 
-.inputEmail {
-    position: absolute;
-    top: 30%
-}
-
 .inputNickname {
     position: absolute;
-    top: 41.5%
+    top: 30%;
+}
+
+.inputEmail {
+    position: absolute;
+    top: 41.5%;
+    width: 296px !important;
 }
 
 .inputPassword {
@@ -57,19 +58,20 @@
     position: absolute;
     top: 63.5%;
 }
+
 /* 유효성 메세지 style */
-.message > div{
+.message>div {
     position: absolute;
     font-size: 15px;
     left: 52%;
 }
 
-.emailMsg {
+.nicknameMsg {
     position: absolute;
     top: 37%;
 }
 
-.nickNameMsg {
+.emailMsg {
     position: absolute;
     top: 48%;
 }
@@ -97,12 +99,12 @@
     text-align: left;
 }
 
-.email {
+.nickname {
     position: absolute;
     top: 30%;
 }
 
-.nickname {
+.email {
     position: absolute;
     top: 41%;
 }
@@ -145,6 +147,21 @@
     font-size: 16px;
     line-height: 40px;
 
+}
+
+.certifyButton {
+    position: absolute;
+    padding: 0;
+    top: 41.5%;
+    left: 68.5%;
+    width: 96px;
+    height: 54px;
+    margin: auto;
+
+    background: #FFC51C;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
 }
 
 /* 회원가입 버튼 */
