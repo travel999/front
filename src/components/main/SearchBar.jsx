@@ -1,6 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { searchText, refreshSearch } from "../../redux/modules/MainSlice";
+import {
+  searchText,
+  refreshSearch,
+  firstsearch,
+} from "../../redux/modules/MainSlice";
 import styles from "./Main.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,20 +17,37 @@ const SearchBar = ({
   setShowrecommend,
   searchPage,
   setSearchPage,
+  beforeSearched,
+  setBeforeSearched,
+  topRef,
 }) => {
   const dispatch = useDispatch();
 
   const OnRefresh = () => {
-    dispatch(refreshSearch());
-    setShowrecommend(true);
-    input_ref.current.value = "";
+    // dispatch(refreshSearch());
+    // setShowrecommend(true);
+    // input_ref.current.value = "";
     window.location.reload();
   };
 
   const OnTosearch = (input) => {
-    dispatch(searchText([input, searchPage]));
-    setShowrecommend(false);
-    setSearchPage((prev) => prev + 1);
+    if (beforeSearched !== input) {
+      console.log("첫검색");
+      // window.scrollTo({ top: 0, behavior: "smooth" });
+      onHomeClick();
+      setBeforeSearched(input);
+      dispatch(firstsearch([input, 1]));
+      setShowrecommend(false);
+      setSearchPage(1);
+    }
+  };
+
+  const executeScroll = () => {
+    window.scrollTo({ top: topRef.current.offsetTop, behavior: "smooth" });
+  };
+
+  const onHomeClick = () => {
+    topRef.current?.scrollIntoView();
   };
 
   return (

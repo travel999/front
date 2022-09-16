@@ -253,6 +253,13 @@
   cursor: pointer;
 }
 
+.toptitle {
+  width: 135px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .duckfootpart {
   display: flex;
   align-items: center;
@@ -337,7 +344,9 @@
 .notexist {
   text-align: center;
   font-size: 1.1em;
-  color: rgb(255, 104, 104);
+  font-weight: 600;
+  color: rgb(255, 103, 103);
+  margin-top: 40px;
 }
 
 /* 외 */
@@ -347,7 +356,7 @@
 
 .bottom {
   color: transparent;
-  height: 60px;
+  height: 10px;
 }
 
 .cursor {
