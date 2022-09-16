@@ -41,8 +41,10 @@ const DetailSchedule = () => {
   //   }, 0)
   // }, []);
 
-  // const dbData = useSelector((state) => state.detailSchedul);
-  // console.log(dbData);
+
+  const dbData = useSelector((state) => state.detailSchedul);
+  console.log(dbData);
+
   // let dayData;
 
   // const makeDayArr = () => {
