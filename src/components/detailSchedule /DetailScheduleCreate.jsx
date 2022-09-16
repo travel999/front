@@ -7,14 +7,13 @@ import Btn from "../elements/Btn";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import DetailScheduleList from "./DetailSchduleList";
+import DetailSchduleList from "./DetailSchduleList";
 import {
   saveSchedule,
   modifySchedule,
 } from "../../redux/modules/ScheduleSlice";
 
-const DetailScheduleCreate = ({ dbData }) => {
-  console.log(dbData);
+const DetailScheduleCreate = ({ dbData, dbFixDay }) => {
   //Hook
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ const DetailScheduleCreate = ({ dbData }) => {
   const [startDate, setSartDate] = useState(dbData.data.data.date[0]);
   const [endDate, setEndDate] = useState(dbData.data.data.date[1]);
   const [scheduleSave, setScheduleSave] = useState({});
-  const [fixDay, setFixDay] = useState();
+  const [fixDay, setFixDay] = useState(dbFixDay);
 
   const createData = useSelector((state) => state.schedule);
 
@@ -133,9 +132,7 @@ const DetailScheduleCreate = ({ dbData }) => {
       >
         일정 수정
       </Btn>
-      {createData.title !== "" ? (
-        <DetailScheduleList fixDay={fixDay} id={createData.postId} />
-      ) : null}
+      <DetailSchduleList fixDay={fixDay} id={id} />
     </div>
   );
 };
