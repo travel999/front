@@ -11,7 +11,7 @@ const Header = () => {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("nickname");
     localStorage.removeItem("profileImage");
-    toast('로그아웃이 완료되었습니다.', {
+    toast.success('로그아웃이 완료되었습니다.', {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: true,

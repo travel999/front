@@ -66,7 +66,7 @@
     left: 52%;
 }
 
-.nicknameMsg {
+.nickNameMsg {
     position: absolute;
     top: 37%;
 }
@@ -122,7 +122,7 @@
 /* profile img */
 .profile h4 {
     position: absolute;
-    left: 32.5%;
+    left: 30%;
     top: 52%;
 }
 
@@ -132,7 +132,7 @@
     height: 177px;
     width: 177px;
     cursor: pointer;
-    left: 30%;
+    left: 27%;
     top: 30%;
 
     background: #FFFFFF;
@@ -148,14 +148,14 @@
     line-height: 40px;
 
 }
-
+/* email 인증 */
 .certifyButton {
     position: absolute;
     padding: 0;
-    top: 41.5%;
-    left: 68.5%;
+    top: 41.8%;
+    left: 70%;
     width: 96px;
-    height: 56px;
+    height: 54px;
     margin: auto;
 
     background: #FFC51C;

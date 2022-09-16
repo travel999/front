@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import instance from "../../res/instance"
-// import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const initialState = {
     userLogin: [],
@@ -13,7 +13,7 @@ export const kakaoLogin = createAsyncThunk(
     "KakaoSlice/kakaoLogin",
     async (code, thunkAPI) => {
         try {
-            const response = await instance.get(`kakao/callback?code=${code.code}`,code.code);
+            const response = await instance.get(`kakao/callback?code=${code.code}`, code.code);
             const token = response.data.user.token // accessToken
             const nickname = response.data.user.userInfo.nickname // 닉네임
             const profileImage = response.data.user.userInfo.profile_image // 프로필 이미지
@@ -21,9 +21,19 @@ export const kakaoLogin = createAsyncThunk(
             localStorage.setItem('nickname', nickname);
             localStorage.setItem('profileImage', profileImage);
             if (response.status === 200) {
-                alert("반갑습니다!");
-                // await code.navigate("/main")
-                await window.location.replace("/main")
+                toast.success('반갑습니다!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                },
+                    setTimeout(() => {
+                        window.location.replace("/main")
+                    }, 1000)
+                );
             }
             return thunkAPI.fulfillWithValue(response.data);
         } catch (error) {

@@ -7,6 +7,8 @@ import S3upload from "react-aws-s3";
 import logo from "../../res/img/logo.png"
 import styles from "./join.module.css"
 import profile from "../../res/img/profile.png"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
@@ -255,6 +257,7 @@ const Join = () => {
       <button className={styles.certifyButton} onClick={onCertifyEmail}>인증</button>
       {/* 회원가입 버튼 */}
       <button className={styles.button} onClick={onJoin}>회원가입</button>
+      <ToastContainer />
     </div>
   );
 };
