@@ -22,6 +22,18 @@ export const searchText = createAsyncThunk(
   }
 );
 
+export const anotherSearch = createAsyncThunk(
+  "main/search/first",
+  async (value, thunkAPI) => {
+    try {
+      const res = await instance.get(`post/search/${value[0]}/${value[1]}`);
+      return thunkAPI.fulfillWithValue(res.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const toOpenPublic = createAsyncThunk(
   "main/open",
   async (value, thunkAPI) => {
@@ -87,25 +99,39 @@ export const mainSlice = createSlice({
     },
 
     [searchText.fulfilled]: (state, action) => {
-      console.log(action.payload);
       if (action.payload?.data?.message === "검색 결과가 존재하지 않습니다.") {
         console.log(action.payload.data);
         console.log("더이상 데이터가 존재하지 않습니다.");
       } else {
         state.searched = true;
-        console.log(action.payload);
         const mydata = [];
         if (state.otherPeopleCards.length === 0) {
           mydata.push(...action.payload.data);
         } else {
+          // 다른것을 검색했을때 구분할수 있어야함.
           mydata.push(...state.otherPeopleCards);
           mydata.push(...action.payload.data);
         }
-        state.otherPeopleCards = mydata;
+        // 중복 제거
+        const newArray = mydata.filter((item, i) => {
+          return (
+            mydata.findIndex((item2, j) => {
+              return item._id === item2._id;
+            }) === i
+          );
+        });
+        state.otherPeopleCards = newArray;
       }
     },
     [searchText.rejected]: (state, action) => {
       console.log("더이상 자료가 없습니다.");
+    },
+
+    [anotherSearch.fulfilled]: (state, action) => {
+      console.log(action.payload);
+    },
+    [anotherSearch.rejected]: (state, action) => {
+      console.log("첫검색!!", action.payload);
     },
 
     [toOpenPublic.fulfilled]: (state, action) => {

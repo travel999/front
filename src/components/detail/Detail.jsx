@@ -14,7 +14,7 @@ const Detail = () => {
 
   return (
     <>
-      <div className={styles.headtitle}>내가 좋아요 한 여행 일정</div>
+      <div className={styles.headtitle}>내가 찜한 여행 일정</div>
       <div className={styles.bicbox}>
         {likecard?.map((value) => {
           return (

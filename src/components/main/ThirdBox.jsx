@@ -40,36 +40,38 @@ const ThirdBox = ({ obsRef, input_ref, searchPage, setSearchPage, load }) => {
                     alt="img"
                   ></img>
                   <div className={styles.thirdtext}>
-                    <div>{value.title}</div>
-                    {value.isLiked ? (
-                      <div
-                        onClick={() => {
-                          Onlike(value._id);
-                        }}
-                        className={`${styles.cursor} ${styles.duckfootpart}`}
-                      >
-                        <img
-                          src={duckfoot}
-                          className={styles.duckfoot2}
-                          alt="duckfoot"
-                        />{" "}
-                        {value.like}
-                      </div>
-                    ) : (
-                      <div
-                        onClick={() => {
-                          Onlike(value._id);
-                        }}
-                        className={`${styles.cursor} ${styles.duckfootpart}`}
-                      >
-                        <img
-                          src={duckfootDark}
-                          className={styles.darkfoot}
-                          alt="duckfoot-2"
-                        />{" "}
-                        {value.like}
-                      </div>
-                    )}
+                    <div className={styles.toptitle}>
+                      <div>{value.title}</div>
+                      {value.isLiked ? (
+                        <div
+                          onClick={() => {
+                            Onlike(value._id);
+                          }}
+                          className={`${styles.cursor} ${styles.duckfootpart}`}
+                        >
+                          <img
+                            src={duckfoot}
+                            className={styles.duckfoot2}
+                            alt="duckfoot"
+                          />{" "}
+                          {value.like}
+                        </div>
+                      ) : (
+                        <div
+                          onClick={() => {
+                            Onlike(value._id);
+                          }}
+                          className={`${styles.cursor} ${styles.duckfootpart}`}
+                        >
+                          <img
+                            src={duckfootDark}
+                            className={styles.darkfoot}
+                            alt="duckfoot-2"
+                          />{" "}
+                          {value.like}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               );
