@@ -34,7 +34,7 @@
 .duckfoot {
   width: 25px;
   height: 25px;
-  padding: 5px;
+  padding: 5px 1px 5px 5px;
 }
 
 .duckfoot:hover {
@@ -242,7 +242,7 @@
 .heart {
   margin-top: 1px;
   margin-right: 15px;
-  font-size: 0.9em;
+  font-size: 1em;
   display: flex;
   align-items: center;
 }

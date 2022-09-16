@@ -2,7 +2,7 @@
   -ms-overflow-style: none;
 }
 
-.startBox ::-webkit-scrollbar {
+.startBox::-webkit-scrollbar {
   display: none;
 
 }
@@ -119,6 +119,6 @@
 
 .cloud1 {
   position: absolute;
-  right: 95%;
+  right: 90.5%;
   top: 86.5%;
 }
