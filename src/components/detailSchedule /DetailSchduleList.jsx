@@ -8,7 +8,8 @@ import MemberAddModal from "./modal/MemberAddModal";
 import { getMapData } from "../../redux/modules/MapSlice";
 
 const DetailScheduleList = ({ fixDay, id }) => {
-  console.log("스케줄리스트");
+  console.log("fixDay", fixDay);
+
   //Hook
   const dispatch = useDispatch();
 
