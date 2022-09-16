@@ -1,15 +1,19 @@
-/* .startBox {
+.startBox {
     -ms-overflow-style: none;
 }
 
-::-webkit-scrollbar {
+.startBox ::-webkit-scrollbar {
   display: none;
-} */
+  
+}
 
 .startBox {
     background-color: #F2F7FF;
     position: relative;
     object-fit: cover;
+    overflow: hidden;
+    scrollbar-color: rgba(255, 255, 255, 0);
+    
 }
 
 .imgBox {
@@ -59,11 +63,11 @@
   left: 52%;
   top: 63%;
 
-  border: 0;
+  border: 1px solid #ffc51c;
   outline: 0;
   width: 240px;
   height: 54px;
-  background: #ffc51c;
+  background-color: rgba(255, 255, 255, 0);
   border-radius: 999px;
   cursor: pointer;
 }

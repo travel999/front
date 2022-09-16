@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { addLogin } from "../../redux/modules/LogInSlice";
 import styles from "./login.module.css"
 import Background from "../../res/img/background.png"
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
@@ -24,7 +24,15 @@ const Login = () => {
   const onLogin = (event) => {
     event.preventDefault();
     if (login.email.trim() === "" || login.password.trim() === "") {
-      return alert("모든 항목을 입력해주세요.");
+      return toast.warn('모든 항목을 입력해주세요!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
     }
     dispatch(addLogin({ login, navigate }));
     setLogin({

@@ -1,111 +1,158 @@
-.title {
-    margin-top: 151px;
+.background {
+    background-color: #f2f7ff;
+    height: 100%;
     margin: auto;
-    margin-left: 569px;
-
-    width: 465px;
-    height: 64.37px;
-    cursor: pointer;
+    position: relative;
 }
 
-.joinWrap {
-    width: 782px;
+.backgroundImg {
+    position: absolute;
+    background-color: #F2F7FF;
+    position: relative;
+    object-fit: cover;
+    /* width: 1070px; */
+    margin: 62px auto auto auto;
+}
+
+/* input 모음 */
+.inputWrap {
     display: flex;
-    height: 400px;
-    flex-direction: row-reverse;
-    align-items: center;
-    margin: 100px auto auto auto;
-    justify-content: space-between;
+    position: relative;
+    justify-content: center;
+    background: #F2F7FF;
+    width: 1200px;
+    height: 955px;
+    margin: auto;
 }
 
-.inputBox {
-    width: 500px;
-    margin-top: 25px;
-    margin-bottom: 5px;
-    display: flex;
-    flex-direction: row;
+.inputWrap>input {
+    position: absolute;
+    left: 50%;
+    width: 376px;
+    height: 54px;
+    font-size: 15px;
+    border-radius: 999px;
+    outline: none;
+    background: #FFFFFF;
+    border: 1px solid #E2E2E2;
+    padding-left: 2%;
 }
 
-.inputName {
-    padding-right: 40px;
+.inputNickname {
+    position: absolute;
+    top: 30%;
+}
+
+
+.inputPassword {
+    position: absolute;
+    top: 42%;
+}
+
+.inputConfirm {
+    position: absolute;
+    top: 54%
+}
+
+/* 유효성 메세지 */
+.message>div {
+    position: absolute;
+    font-size: 15px;
+    left: 52.5%;
+}
+
+.pwMsg {
+    position: absolute;
+    top: 49%;
+}
+
+.confirmMsg {
+    position: absolute;
+    top: 61%;
+}
+
+/* inputName */
+.nameWrap>div {
+    position: absolute;
+    left: 40%;
     width: 130px;
-
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 55px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 63px;
     text-align: left;
 }
 
-.input {
-    width: 400px;
-    height: 54px;
-    font-size: 15px;
-    border: 0;
-    border-radius: 999px;
-    outline: none;
-    padding-left: 10px;
-    background-color: #D9D9D9;
+.nickname {
+    position: absolute;
+    top: 30%;
 }
 
-.nickInput {
-    width: 400px;
-    height: 54px;
-    font-size: 15px;
-    border: 0;
-    border-radius: 999px;
-    outline: none;
-    padding-left: 10px;
-    background-color: #D9D9D9;
-    cursor: default;
+.password {
+    position: absolute;
+    top: 41.5%;
 }
 
-.inputHidden {
-    display: none;
+.confirm {
+    position: absolute;
+    top: 53.5%;
 }
 
+/* profile Img */
 .profile h4 {
-    text-align: center;
-    margin-top: 20px;
+    position: absolute;
+    left: 22.5%;
+    top: 52%;
 }
 
 .profile img {
+    position: absolute;
     border-radius: 50%;
     height: 177px;
     width: 177px;
     cursor: pointer;
-    background-color: #D9D9D9;
-    border: none;
+    left: 19%;
+    top: 30%;
+
+    background: #FFFFFF;
 }
 
+.inputHidden {
+    position: absolute;
+    display: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 40px;
 
-.buttonWrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 395px;
-    margin-top: 50px;
 }
 
 .button {
+    position: absolute;
     padding: 0;
-    margin-left: 35px;
-    width: 348px;
-    height: 60px;
+    margin: auto;
+    width: 400px;
+    height: 54px;
+    top: 70%;
+    left: 50%;
 
-    background: #D9D9D9;
+    background: #FFC51C;
     border: 0;
     border-radius: 999px;
     cursor: pointer;
 }
 
 .button2 {
+    position: absolute;
     padding: 0;
-    margin-left: 35px;
-    width: 348px;
-    height: 60px;
-
+    margin: auto;
+    width: 400px;
+    height: 54px;
+    top: 78%;
+    left: 50%;
+    color: #A3A3A3;
     background-color: rgba(255, 255, 255, 0);
     border: 0;
     border-radius: 999px;
