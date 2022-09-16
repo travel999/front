@@ -47,9 +47,9 @@ const ScheduleCard = ({ data, postId }) => {
         draggable: true,
         progress: undefined,
       });
-      setTimeout(() => {
+      setTimeout(()=> {
         window.location.replace("/main");
-      }, 2000);
+      }, 2000)
     } else {
       dispatch(saveDayData(result));
     }

@@ -56,18 +56,10 @@ export const addLogin = createAsyncThunk(
 export const LogInSlice = createSlice({
   name: "addLogin",
   initialState,
-  reducers: {
-    getUserInfo(state, action) {
-      state.data.nickname = action.payload.data.nickname;
-      state.data.image = action.payload.data.image;
-      console.log(state.nickname);
-    },
-  },
+  reducers: {},
   extraReducers: {
     [addLogin.pending]: (state) => {},
     [addLogin.fulfilled]: (state, action) => {
-      console.log(action.payload.nickname);
-      console.log(action.payload.image);
       state.nickname = action.payload.nickname;
       state.image = action.payload.image;
       state.isLoading = false;

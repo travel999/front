@@ -1,33 +1,33 @@
 .startBox {
-    -ms-overflow-style: none;
+  -ms-overflow-style: none;
 }
 
 .startBox ::-webkit-scrollbar {
   display: none;
-  
+
 }
 
 .startBox {
-    background-color: #F2F7FF;
-    position: relative;
-    object-fit: cover;
-    overflow: hidden;
-    scrollbar-color: rgba(255, 255, 255, 0);
-    
+  background-color: #F2F7FF;
+  position: relative;
+  object-fit: cover;
+  overflow: hidden;
+  scrollbar-color: rgba(255, 255, 255, 0);
+
 }
 
 .imgBox {
-    position: relative;
-    width: 1200px;
-    height: 100%;
-    margin: auto;
+  position: relative;
+  width: 1200px;
+  height: 100%;
+  margin: auto;
 }
 
 .title {
-    margin: 140px auto;
-    margin-left: 100px;
-    width: 1000px;
-    height: 728px;
+  margin: 140px auto;
+  margin-left: 100px;
+  width: 1000px;
+  height: 728px;
 }
 
 .description {
@@ -55,6 +55,8 @@
   background: #ffc51c;
   border-radius: 999px;
   cursor: pointer;
+  font-size: 18px;
+  line-height: 40px;
 }
 
 .socialLogin {
@@ -70,6 +72,8 @@
   background-color: rgba(255, 255, 255, 0);
   border-radius: 999px;
   cursor: pointer;
+  font-size: 18px;
+  line-height: 40px;
 }
 
 .joinText {
@@ -108,14 +112,13 @@
 }
 
 .cloud {
-    position: absolute;
-    left: 92%;
-    top: 8%;
+  position: absolute;
+  left: 92%;
+  top: 8%;
 }
 
 .cloud1 {
-    position: absolute;
-    right: 95%;
-    top: 86.5%;
+  position: absolute;
+  right: 95%;
+  top: 86.5%;
 }
-
