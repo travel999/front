@@ -11,7 +11,7 @@ import ScheduleInput from "./ScheduleInput";
 import { saveDayData } from "../../redux/modules/ResultSlice";
 import { useNavigate } from "react-router-dom";
 
-const ScheduleCard = ({ data, dayData, postId }) => {
+const ScheduleCard = ({ data, postId }) => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const room = useSelector((state) => state?.schedule?.postId);
@@ -52,7 +52,7 @@ const ScheduleCard = ({ data, dayData, postId }) => {
       dispatch(saveDayData(result));
     }
   }, [result]);
-
+  console.log("data", data.day);
   return (
     <div className={styels.worksWrap}>
       <h2>
@@ -75,6 +75,9 @@ const ScheduleCard = ({ data, dayData, postId }) => {
                 day={item.day}
                 content={data.content}
                 index={index + 1}
+                value={data.content
+                  .filter((item) => item.day === data.day)
+                  .map((item) => item.cardMemo)}
               />
             </div>
           );

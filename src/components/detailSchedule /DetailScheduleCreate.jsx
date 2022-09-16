@@ -13,18 +13,19 @@ import {
   modifySchedule,
 } from "../../redux/modules/ScheduleSlice";
 
-const DetailScheduleCreate = ({ dbData, dbFixDay }) => {
+const DetailScheduleCreate = ({ data }) => {
+  console.log(data.title);
   //Hook
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
 
   //State
-  const [title, setTitle] = useState(dbData.data.data.title);
-  const [startDate, setSartDate] = useState(dbData.data.data.date[0]);
-  const [endDate, setEndDate] = useState(dbData.data.data.date[1]);
+  const [title, setTitle] = useState(data.title);
+  const [startDate, setSartDate] = useState(data.date[0]);
+  const [endDate, setEndDate] = useState(data.date[1]);
   const [scheduleSave, setScheduleSave] = useState({});
-  const [fixDay, setFixDay] = useState(dbFixDay);
+  const [fixDay, setFixDay] = useState();
 
   const createData = useSelector((state) => state.schedule);
 
@@ -43,6 +44,9 @@ const DetailScheduleCreate = ({ dbData, dbFixDay }) => {
     //일차 차 구하는 함수 호출
     onGetDateDiff();
   };
+  useEffect(() => {
+    onGetDateDiff();
+  }, []);
 
   //일차 차이 구하는 함수
   const onGetDateDiff = () => {

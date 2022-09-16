@@ -7,6 +7,8 @@ const initialState = {
   allDay: [],
   pin: [],
   content: [],
+  title: "",
+  date: [],
 };
 //액션
 
@@ -18,7 +20,43 @@ export const getSchedule = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await instance.get(`post/${payload}`);
-      return thunkAPI.fulfillWithValue(res.data);
+      const response = {};
+      response.createdAt = res.data.data.createdAt;
+      response.isLiked = res.data.data.isLiked;
+      response.like = res.data.data.like;
+      response.openPublic = res.data.data.openPublic;
+      response.title = res.data.data.title;
+      response.date = res.data.data.date;
+      response.__v = res.data.data.__v;
+      response._id = res.data.data._id;
+
+      let dayData;
+      const newData = [];
+      for (let i = 1; i <= 7; i++) {
+        let days = "day" + i;
+        newData.push(res.data.data[days]);
+      }
+      dayData = newData.filter((item) => item !== undefined);
+
+      const con = [];
+      const pin = [];
+      dayData.map((value) => {
+        value.pin.map((item) => {
+          if (item?.title) {
+            pin.push(item);
+          }
+        });
+        value.con.map((item2) => {
+          if (item2?.cardMemo) {
+            con.push(item2);
+          }
+        });
+      });
+      response.pin = pin;
+      response.con = con;
+      console.log("rest", response);
+
+      return thunkAPI.fulfillWithValue(response);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -59,7 +97,10 @@ export const MapSlice = createSlice({
     },
     [getSchedule.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.pin = action.payload.pin;
+      state.content = action.payload.con;
+      state.date = action.payload.date;
+      state.title = action.payload.title;
     },
     [getSchedule.rejected]: (state, action) => {
       console.log(current(state), action);
