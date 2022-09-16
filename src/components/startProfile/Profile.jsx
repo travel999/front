@@ -46,7 +46,7 @@ const Profile = () => {
   const [preImg, setPreImg] = useState([]);
 
   // 토큰 없거나 카카오 소셜 회원일 경우 마이페이지 이용 불가능
-  const kakaoLogin = localStorage.getItem("nickname")
+  const kakaoLogin = localStorage.getItem("kakaoName")
   useEffect(() => {
     if (kakaoLogin !== null) {
       toast.warn(
@@ -59,10 +59,7 @@ const Profile = () => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        },
-        navigate("/main")
-      );
-      
+        }, navigate("/main"));
     }
   }, []);
 
@@ -73,7 +70,17 @@ const Profile = () => {
 
   // 닉네임 수정 불가 마우스오버 이벤트
   const onEditNickName = () => {
-    alert("닉네임은 수정할 수 없어요.")
+    toast.info(
+      "닉네임은 수정할 수 없어요!",
+      {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
   }
 
   // 비밀번호 유효성 검사, 원래 사용하던 비밀번호 일 때 사용중인 비밀번호라고 띄워주기

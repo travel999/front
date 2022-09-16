@@ -16,7 +16,11 @@ export const addLogin = createAsyncThunk(
       const response = await instance.post("user/login", payload.login);
       console.log(response)
       const token = response.data.token;
+      const nickname = response.data.nickname;
+      const image = response.data.image;
       localStorage.setItem("jwtToken", token);
+      localStorage.setItem("nickname", nickname);
+      localStorage.setItem("profileImage", image);
       if (response.status === 200) {
         toast.success('반갑습니다!', {
           position: "top-center",
@@ -51,24 +55,13 @@ export const addLogin = createAsyncThunk(
 export const LogInSlice = createSlice({
   name: "addLogin",
   initialState,
-  reducers: {
-    getUserInfo(state, action) {
-      state.nickname = action.payload.data.nickname;
-      state.image = action.payload.data.image
-      console.log(state.nickname)
-    },
-    
-  },
+  reducers: {},
   extraReducers: {
     [addLogin.pending]: (state) => {},
     [addLogin.fulfilled]: (state, action) => {
-      console.log("1")
       state.nickname = action.payload.nickname;
-      console.log("2")
       state.image = action.payload.image;
-      console.log("3")
       state.isLoading = false;
-      console.log("4")
     },
     [addLogin.rejected]: (state, action) => {
       state.isLoading = false;

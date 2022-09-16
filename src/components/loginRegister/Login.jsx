@@ -2,13 +2,16 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addLogin } from "../../redux/modules/LogInSlice";
+
 import styles from "./login.module.css"
-import Background from "../../res/img/background.png"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Background from "../../res/img/background.png"
+import cloud from "../../res/img/cloud.png"
+import cloud1 from "../../res/img/cloud1.png"
 const Login = () => {
-  const user = useSelector((state)=> state)
+  const user = useSelector((state) => state)
   console.log(user)
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -33,7 +36,7 @@ const Login = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        });
+      });
     }
     dispatch(addLogin({ login, navigate }));
     setLogin({
@@ -44,6 +47,8 @@ const Login = () => {
 
   return (
     <div className={styles.wrap}>
+      <img src={cloud} alt="cloud" className={styles.cloud} />
+      <img src={cloud1} alt="cloud1" className={styles.cloud1} />
       <div className={styles.titleWrap}>
         <img src={Background} alt="" className={styles.title} />
         <form className={styles.inputWrap}>

@@ -1,10 +1,12 @@
 .wrap {
   background-color: #F2F7FF;
+  overflow: hidden;
+  position: relative;
 }
 
 .titleWrap {
   /* background-color: #F2F7FF; */
-  position: relative;
+  /* position: relative; */
   width: 1200px;
   height: 100%;
   margin: auto;
@@ -80,4 +82,20 @@
   border: 0;
   border-radius: 999px;
   cursor: pointer;
+}
+
+.imgBox1 {
+  position: relative;
+}
+
+.cloud {
+  position: absolute;
+  left: 92%;
+  top: 8%;
+}
+
+.cloud1 {
+  position: absolute;
+  right: 95%;
+  top: 86.5%;
 }

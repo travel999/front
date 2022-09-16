@@ -32,31 +32,97 @@ export const saveDayData = createAsyncThunk(
         const res = await instance.put(`/post/${payload[2].postId}`, {
           day2: payload[1],
         });
+        if (res.data) {
+          toast("2일차가 저장되었습니다.", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
         return thunkAPI.fulfillWithValue(res.data);
       } else if (payload[0] === "3") {
         const res = await instance.put(`/post/${payload[2].postId}`, {
           day3: payload[1],
         });
+        if (res.data) {
+          toast("3일차가 저장되었습니다.", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
         return thunkAPI.fulfillWithValue(res.data);
       } else if (payload[0] === "4") {
         const res = await instance.put(`/post/${payload[2].postId}`, {
           day4: payload[1],
         });
+        if (res.data) {
+          toast("4일차가 저장되었습니다.", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
         return thunkAPI.fulfillWithValue(res.data);
       } else if (payload[0] === "5") {
         const res = await instance.put(`/post/${payload[2].postId}`, {
           day5: payload[1],
         });
+        if (res.data) {
+          toast("5일차가 저장되었습니다.", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
         return thunkAPI.fulfillWithValue(res.data);
       } else if (payload[0] === "6") {
         const res = await instance.put(`/post/${payload[2].postId}`, {
           day6: payload[1],
         });
+        if (res.data) {
+          toast("6일차가 저장되었습니다.", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
         return thunkAPI.fulfillWithValue(res.data);
       } else if (payload[0] === "7") {
         const res = await instance.put(`/post/${payload[2].postId}`, {
           day7: payload[1],
         });
+        if (res.data) {
+          toast("7일차가 저장되었습니다.", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
         return thunkAPI.fulfillWithValue(res.data);
       }
     } catch (error) {
