@@ -7,10 +7,10 @@ const FirstBox = () => {
   const dispatch = useDispatch();
   const myPosts = useSelector((state) => state.main.MyPostCards.data1);
 
-  const OnOpenPublic = (value) => {
-    // value를 뭘 줘야하나
-    dispatch(toOpenPublic(value));
-  };
+  // 공개하기
+  // const OnOpenPublic = (value) => {
+  //   dispatch(toOpenPublic(value));
+  // };
 
   return (
     <div className={styles.bicbox}>

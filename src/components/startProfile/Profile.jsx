@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import S3upload from "react-aws-s3";
 import { getUser, putImage, putPassword, deleteUser } from "../../redux/modules/ProfileSlice";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 import profilelogo from "../../res/img/profilelogo.png"
 import styles from "./profile.module.css"
@@ -49,8 +49,20 @@ const Profile = () => {
   const kakaoLogin = localStorage.getItem("nickname")
   useEffect(() => {
     if (kakaoLogin !== null) {
-      alert("소셜로그인 회원은 마이페이지를 이용할 수 없어요!")
-      navigate("/main")
+      toast.warn(
+        "소셜로그인 회원은 프로필을 사용할 수 없어요!",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        },
+        navigate("/main")
+      );
+      
     }
   }, []);
 
@@ -188,7 +200,7 @@ const Profile = () => {
           <label htmlFor="newImage">
             {{ profileImg } ? (<img src={profileImg} alt="" />) :
               preImg[0] ? (<img src={preImg} alt="" />) :
-                (<img src={profile} alt="" />)}
+                <img src={profile} alt="" />}
           </label>
           {/* 여기 기본이미지 안보인다.. 하 */}
           <h4>프로필 이미지</h4>

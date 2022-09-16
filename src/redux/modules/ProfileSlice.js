@@ -62,7 +62,7 @@ export const putPassword = createAsyncThunk(
       console.log(payload);
       const response = await instance.put("user/me/password", payload);
       console.log(response);
-      if (response) {
+      if (response.status === 200) {
         toast.success(
             "비밀번호가 변경되었습니다!",
             {
@@ -108,10 +108,9 @@ export const deleteUser = createAsyncThunk(
               progress: undefined,
             },
             setTimeout(() => {
-              window.location.replace("/profile");
+              window.location.replace("/");
             }, 1000)
           );
-        await window.location.replace("/");
       }
       return thunkAPI.fulfillWithValue(response);
     } catch (error) {

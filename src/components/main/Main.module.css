@@ -345,8 +345,8 @@
   text-align: center;
   font-size: 1.1em;
   font-weight: 600;
-  color: rgb(255, 104, 104);
-  margin-top: 30px;
+  color: rgb(255, 103, 103);
+  margin-top: 40px;
 }
 
 /* 외 */
@@ -356,7 +356,7 @@
 
 .bottom {
   color: transparent;
-  height: 60px;
+  height: 10px;
 }
 
 .cursor {

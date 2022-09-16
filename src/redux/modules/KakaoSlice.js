@@ -20,7 +20,7 @@ export const kakaoLogin = createAsyncThunk(
             localStorage.setItem('jwtToken', token);
             localStorage.setItem('nickname', nickname);
             localStorage.setItem('profileImage', profileImage);
-            if (response.status === 200) {
+            if (response) {
                 toast.success('반갑습니다!', {
                     position: "top-center",
                     autoClose: 5000,

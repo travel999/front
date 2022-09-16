@@ -17,7 +17,7 @@ export const addJoin = createAsyncThunk(
     try {
       console.log(payload)
       const response = await instance.post("user/signup", payload);
-      if (response.status === 200) {
+      if (response) {
         toast.success('회원가입을 축하드립니다!', {
           position: "top-center",
           autoClose: 5000,
@@ -28,7 +28,7 @@ export const addJoin = createAsyncThunk(
           progress: undefined,
         },
           setTimeout(() => {
-            window.location.replace("/main")
+            window.location.replace("/login")
           }, 1000)
         );
       }

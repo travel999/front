@@ -85,12 +85,23 @@ export const mainSlice = createSlice({
         let mydata3 = [];
         if (state.MyPostCards?.data3 === undefined) {
           mydata3.push(...action.payload.data3);
+          MyPostCards2.data3 = [...mydata3];
+          state.MyPostCards = MyPostCards2;
         } else {
           mydata3.push(...state.MyPostCards?.data3);
           mydata3.push(...action.payload.data3);
+
+          const newArray = mydata3.filter((item, i) => {
+            return (
+              mydata3.findIndex((item2, j) => {
+                return item._id === item2._id;
+              }) === i
+            );
+          });
+
+          MyPostCards2.data3 = [...newArray];
+          state.MyPostCards = MyPostCards2;
         }
-        MyPostCards2.data3 = [...mydata3];
-        state.MyPostCards = MyPostCards2;
       }
     },
     [getCards.rejected]: (state, action) => {

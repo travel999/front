@@ -38,9 +38,10 @@ const Main = () => {
     }
   }, []);
 
+  // 감시 부분
   useEffect(() => {
     if (!searched) {
-      const observer = new IntersectionObserver(obsHandler, { threshold: 0.5 });
+      const observer = new IntersectionObserver(obsHandler, { threshold: 0.6 });
       if (obsRef.current) observer.observe(obsRef.current);
       return () => {
         observer.disconnect();
@@ -56,7 +57,7 @@ const Main = () => {
     }
   }, [searched]);
 
-  // obs보이면 page + 1 검색전
+  // obs보이면 page + 1 검색전 내부에서 if문이 써지질 않아 두개로 쪼갬
   const obsHandler = (entries) => {
     const target = entries[0];
     if (target.isIntersecting && prevent) {
@@ -64,6 +65,7 @@ const Main = () => {
       setPage((prev) => prev + 1);
     }
   };
+
   // obs보이면 page + 1 검색후
   const searchedObsHandler = () => {
     setPrevent(false);
