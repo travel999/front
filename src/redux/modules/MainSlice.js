@@ -22,6 +22,18 @@ export const searchText = createAsyncThunk(
   }
 );
 
+export const firstsearch = createAsyncThunk(
+  "main/search/first",
+  async (value, thunkAPI) => {
+    try {
+      const res = await instance.get(`post/search/${value[0]}/${value[1]}`);
+      return thunkAPI.fulfillWithValue(res.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const toOpenPublic = createAsyncThunk(
   "main/open",
   async (value, thunkAPI) => {
@@ -73,12 +85,23 @@ export const mainSlice = createSlice({
         let mydata3 = [];
         if (state.MyPostCards?.data3 === undefined) {
           mydata3.push(...action.payload.data3);
+          MyPostCards2.data3 = [...mydata3];
+          state.MyPostCards = MyPostCards2;
         } else {
           mydata3.push(...state.MyPostCards?.data3);
           mydata3.push(...action.payload.data3);
+
+          const newArray = mydata3.filter((item, i) => {
+            return (
+              mydata3.findIndex((item2, j) => {
+                return item._id === item2._id;
+              }) === i
+            );
+          });
+
+          MyPostCards2.data3 = [...newArray];
+          state.MyPostCards = MyPostCards2;
         }
-        MyPostCards2.data3 = [...mydata3];
-        state.MyPostCards = MyPostCards2;
       }
     },
     [getCards.rejected]: (state, action) => {
@@ -87,25 +110,41 @@ export const mainSlice = createSlice({
     },
 
     [searchText.fulfilled]: (state, action) => {
-      console.log(action.payload);
+      console.log("검색한게 여전히 똑같거나 처음이야");
       if (action.payload?.data?.message === "검색 결과가 존재하지 않습니다.") {
-        console.log(action.payload.data);
         console.log("더이상 데이터가 존재하지 않습니다.");
       } else {
         state.searched = true;
-        console.log(action.payload);
         const mydata = [];
         if (state.otherPeopleCards.length === 0) {
           mydata.push(...action.payload.data);
         } else {
+          // 다른것을 검색했을때 구분할수 있어야함.
           mydata.push(...state.otherPeopleCards);
           mydata.push(...action.payload.data);
         }
-        state.otherPeopleCards = mydata;
+        // 중복 제거
+        const newArray = mydata.filter((item, i) => {
+          return (
+            mydata.findIndex((item2, j) => {
+              return item._id === item2._id;
+            }) === i
+          );
+        });
+        state.otherPeopleCards = newArray;
       }
     },
     [searchText.rejected]: (state, action) => {
       console.log("더이상 자료가 없습니다.");
+    },
+
+    [firstsearch.fulfilled]: (state, action) => {
+      console.log("첫검색이던가 검색한게 달라졌어!!!");
+      state.searched = true;
+      state.otherPeopleCards = action.payload.data;
+    },
+    [firstsearch.rejected]: (state, action) => {
+      console.log(action.payload);
     },
 
     [toOpenPublic.fulfilled]: (state, action) => {

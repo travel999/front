@@ -3,8 +3,7 @@ import instance from "../../res/instance";
 import { toast } from "react-toastify";
 
 const initialState = {
-  nickname: "",
-  image: "",
+  data: {},
   email: "",
   password: "",
 };
@@ -14,23 +13,25 @@ export const addLogin = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await instance.post("user/login", payload.login);
-      console.log(response)
+      console.log(response);
       const token = response.data.token;
       const nickname = response.data.nickname;
       const image = response.data.image;
       localStorage.setItem("jwtToken", token);
       localStorage.setItem("nickname", nickname);
-      localStorage.setItem("profileImage", image);
+      localStorage.setItem("image", image);
       if (response.status === 200) {
-        toast.success('반갑습니다!', {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        },
+        toast.success(
+          "반갑습니다!",
+          {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          },
           setTimeout(() => {
             window.location.replace("/main");
           }, 1000)
@@ -38,7 +39,7 @@ export const addLogin = createAsyncThunk(
       }
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
-      toast.error('잘못된 아이디 또는 비밀번호 입니다.', {
+      toast.error("잘못된 아이디 또는 비밀번호 입니다.", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: true,
@@ -46,7 +47,7 @@ export const addLogin = createAsyncThunk(
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        });
+      });
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -69,5 +70,5 @@ export const LogInSlice = createSlice({
   },
 });
 
-export const { getUserInfo } = LogInSlice.actions
+export const { getUserInfo } = LogInSlice.actions;
 export default LogInSlice.reducer;
