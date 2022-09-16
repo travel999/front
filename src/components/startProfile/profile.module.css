@@ -108,6 +108,7 @@
 
 .profile img {
     position: absolute;
+    border: 1px solid #E2E2E2;
     border-radius: 50%;
     height: 177px;
     width: 177px;

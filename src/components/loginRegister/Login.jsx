@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addLogin } from "../../redux/modules/LogInSlice";
 import styles from "./login.module.css"
@@ -8,7 +8,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-  console.log("로그인")
+  const user = useSelector((state)=> state)
+  console.log(user)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [login, setLogin] = useState({
@@ -39,7 +40,6 @@ const Login = () => {
       email: "",
       password: "",
     });
-
   };
 
   return (
