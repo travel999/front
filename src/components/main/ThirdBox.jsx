@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toLike } from "../../redux/modules/MainSlice";
 import styles from "./Main.module.css";
@@ -8,13 +8,22 @@ import duckfootDark from "../../res/img/duck/duckfoot-3.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotate } from "@fortawesome/free-solid-svg-icons";
 
-const ThirdBox = ({ obsRef, input_ref, searchPage, setSearchPage, load }) => {
+const ThirdBox = ({
+  obsRef,
+  input_ref,
+  searchPage,
+  setSearchPage,
+  load,
+  beforeSearched,
+  setBeforeSearched,
+}) => {
   const dispatch = useDispatch();
   const searchdata = useSelector((state) => state.main.otherPeopleCards);
   const recommendData = useSelector((state) => state.main.MyPostCards.data3);
   const searched = useSelector((state) => state.main.searched); // true false
 
   const [showRecommend, setShowrecommend] = useState(true);
+  const topRef = useRef(null);
 
   const Onlike = (value) => {
     dispatch(toLike(value));
@@ -27,8 +36,12 @@ const ThirdBox = ({ obsRef, input_ref, searchPage, setSearchPage, load }) => {
         searchPage={searchPage}
         setShowrecommend={setShowrecommend}
         setSearchPage={setSearchPage}
+        beforeSearched={beforeSearched}
+        setBeforeSearched={setBeforeSearched}
+        topRef={topRef}
       />
       <div className={styles.onlyscroll}>
+        <div ref={topRef} />
         {showRecommend
           ? recommendData?.length &&
             recommendData?.map((value) => {
@@ -76,7 +89,8 @@ const ThirdBox = ({ obsRef, input_ref, searchPage, setSearchPage, load }) => {
                 </div>
               );
             })
-          : searchdata?.map((value) => {
+          : searchdata?.length &&
+            searchdata?.map((value) => {
               return (
                 <div className={styles.contentbox} key={value._id}>
                   <img
@@ -121,7 +135,9 @@ const ThirdBox = ({ obsRef, input_ref, searchPage, setSearchPage, load }) => {
             })}
         {load ? (
           <FontAwesomeIcon icon={faRotate} className={styles.spinner} />
-        ) : null}
+        ) : (
+          <div className={styles.notexist}>자료가 존재하지 않습니다.</div>
+        )}
         <div className={styles.bottom} ref={obsRef}>
           바닥
         </div>

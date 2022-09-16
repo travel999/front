@@ -22,7 +22,7 @@ export const searchText = createAsyncThunk(
   }
 );
 
-export const anotherSearch = createAsyncThunk(
+export const firstsearch = createAsyncThunk(
   "main/search/first",
   async (value, thunkAPI) => {
     try {
@@ -99,8 +99,8 @@ export const mainSlice = createSlice({
     },
 
     [searchText.fulfilled]: (state, action) => {
+      console.log("검색한게 여전히 똑같거나 처음이야");
       if (action.payload?.data?.message === "검색 결과가 존재하지 않습니다.") {
-        console.log(action.payload.data);
         console.log("더이상 데이터가 존재하지 않습니다.");
       } else {
         state.searched = true;
@@ -127,11 +127,13 @@ export const mainSlice = createSlice({
       console.log("더이상 자료가 없습니다.");
     },
 
-    [anotherSearch.fulfilled]: (state, action) => {
-      console.log(action.payload);
+    [firstsearch.fulfilled]: (state, action) => {
+      console.log("첫검색이던가 검색한게 달라졌어!!!");
+      state.searched = true;
+      state.otherPeopleCards = action.payload.data;
     },
-    [anotherSearch.rejected]: (state, action) => {
-      console.log("첫검색!!", action.payload);
+    [firstsearch.rejected]: (state, action) => {
+      console.log(action.payload);
     },
 
     [toOpenPublic.fulfilled]: (state, action) => {

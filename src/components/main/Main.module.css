@@ -344,7 +344,9 @@
 .notexist {
   text-align: center;
   font-size: 1.1em;
+  font-weight: 600;
   color: rgb(255, 104, 104);
+  margin-top: 30px;
 }
 
 /* 외 */
