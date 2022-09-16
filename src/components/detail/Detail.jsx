@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCards } from "../../redux/modules/MainSlice";
-import Chatting from "../chat/Chatting";
 import styles from "./Detail.module.css";
+import duckfoot from "../../res/img/duck/duckfoot-1.png";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -21,14 +21,22 @@ const Detail = () => {
             <div key={value._id} className={styles.cardbox}>
               <div className={styles.title}>{value.title}</div>
               <div className={styles.space}>
-                <span>2022.09.11- 2022.09.15</span>
-                <span>❤️ {value.like}</span>
+                <span>
+                  <div>{value.date[0] + "~ " + value.date[1]}</div>
+                </span>
+                <span>
+                  <img
+                    src={duckfoot}
+                    alt="duckfoot"
+                    className={styles.duckfoot}
+                  />{" "}
+                  {value.like}
+                </span>
               </div>
             </div>
           );
         })}
       </div>
-      <Chatting />
     </>
   );
 };

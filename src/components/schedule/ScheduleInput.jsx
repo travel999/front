@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import io from "socket.io-client";
@@ -17,6 +17,7 @@ const ScheduleInput = ({ room, day, index, content }) => {
   const [getShowing, setGetShowing] = useState("");
   const [conData, setConData] = useState({});
   const [sendResult, setSendResult] = useState(false);
+  const inputRef = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -48,7 +49,11 @@ const ScheduleInput = ({ room, day, index, content }) => {
   };
 
   const saveCard = () => {
-    dispatch(getConData(conData));
+    if (inputRef.current.value == "") {
+      alert("일정을 넣어주세요.");
+    } else {
+      dispatch(getConData(conData));
+    }
   };
   console.log(conData);
   console.log(sendResult);
@@ -69,6 +74,7 @@ const ScheduleInput = ({ room, day, index, content }) => {
       <>
         <div>{getShowing}</div>
         <input
+          ref={inputRef}
           key={index}
           placeholder="일정 입력"
           onChange={(e) => setSendValue(e.target.value)}
