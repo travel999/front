@@ -2,15 +2,22 @@ import React from "react";
 import styles from "./Main.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { toOpenPublic } from "../../redux/modules/MainSlice";
+import { useNavigate } from "react-router-dom";
 
 const FirstBox = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const myPosts = useSelector((state) => state.main.MyPostCards.data1);
 
   // 공개하기
   // const OnOpenPublic = (value) => {
   //   dispatch(toOpenPublic(value));
   // };
+
+  //조회하기
+  const onGoDetailPage = (postId) => {
+    navigate(`/schedulDetail/${postId}`);
+  };
 
   return (
     <div className={styles.bicbox}>
@@ -19,7 +26,11 @@ const FirstBox = () => {
         {myPosts?.length &&
           myPosts?.map((value) => {
             return (
-              <div className={styles.card} key={value._id}>
+              <div
+                className={styles.card}
+                key={value._id}
+                onClick={() => onGoDetailPage(value._id)}
+              >
                 <img
                   className={styles.img}
                   src={
