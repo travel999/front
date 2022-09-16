@@ -34,7 +34,9 @@ const DetailSchedule = () => {
   }, []);
 
   useEffect(() => {
-    makeDayArr();
+    setTimeout(() => {
+      makeDayArr();
+    }, 0)
   }, []);
 
   const dbData = useSelector((state) => state.detailSchedul);

@@ -162,6 +162,9 @@
     border: 0;
     border-radius: 999px;
     cursor: pointer;
+
+    font-size: 15px;
+    line-height: 40px;
 }
 
 /* 회원가입 버튼 */
@@ -177,6 +180,8 @@
     border: 0;
     border-radius: 999px;
     cursor: pointer;
+    font-size: 18px;
+    line-height: 40px;
 }
 
 /* 카카오 소셜로그인 로딩화면 */
