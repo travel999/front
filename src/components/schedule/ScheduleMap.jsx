@@ -4,12 +4,11 @@ import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 
 import MapSearchNav from "./MapSearchNav";
-import ScheduleCard from "./ScheduleCard";
 
 const { kakao } = window;
 
 //placeX : lat , placeY : lng >> 기억하기
-const ScheduleMap = ({ allDay, nowDay }) => {
+const ScheduleMap = ({ nowDay }) => {
   const searchInit = {
     keyWord: null,
     pgn: null,
@@ -98,7 +97,6 @@ const ScheduleMap = ({ allDay, nowDay }) => {
         searchPlaces={searchPlaces}
         searchData={search}
         day={nowDay}
-        allDay={allDay}
         pin={pin}
       />
       <div id="map" style={{ width: "100%", height: "900px" }}></div>
