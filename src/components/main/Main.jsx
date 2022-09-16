@@ -12,6 +12,8 @@ import ProfileBox from "./ProfileBox";
 import { getCards, searchText } from "../../redux/modules/MainSlice";
 
 const Main = () => {
+  const user = useSelector((state) => state)
+  console.log(user)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

@@ -177,15 +177,6 @@ const Join = () => {
       <div className={styles.inputWrap}>
         <img className={styles.backgroundImg} src={logo} alt="" />
         <input
-          className={styles.inputEmail}
-          onChange={onChangeHandler}
-          type="mail"
-          id="email"
-          name="email"
-          placeholder="oorigachi@email.com"
-          autoFocus
-        />
-        <input
           className={styles.inputNickname}
           onChange={onChangeHandler}
           type="text"
@@ -193,6 +184,15 @@ const Join = () => {
           name="nickname"
           maxLength="10"
           placeholder="오리가치"
+        />
+        <input
+          className={styles.inputEmail}
+          onChange={onChangeHandler}
+          type="mail"
+          id="email"
+          name="email"
+          placeholder="oorigachi@email.com"
+          autoFocus
         />
         <input
           className={styles.inputPassword}
