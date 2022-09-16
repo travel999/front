@@ -8,6 +8,7 @@ import LoadingPage from "../pages/LoadingPage";
 import JoinPage from "../pages/JoinPage";
 import ProfilePage from "../pages/ProfilePage";
 import DetailPage from "../pages/DetailPage";
+import ScheduleDetailPage from "../pages/ScheduleDetailPage";
 import NotFoundPage from "../pages/NotFound";
 
 const Router = () => {
@@ -22,6 +23,7 @@ const Router = () => {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/write" element={<SchedulePage />} />
         <Route path="/detail" element={<DetailPage />} />
+        <Route path="/schedulDetail/:id" element={<ScheduleDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

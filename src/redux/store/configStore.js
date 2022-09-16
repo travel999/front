@@ -8,6 +8,7 @@ import ScheduleSlice from "../modules/ScheduleSlice";
 import InviteSlice from "../modules/InviteSlice";
 import MapSlice from "../modules/MapSlice";
 import ResultSlice from "../modules/ResultSlice";
+import DeatilScheduleSlice from "../modules/detailSchedule/DetailScheduleSlice";
 
 const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
     kakao: KakaoSlice,
     profile: ProfileSlice,
     schedule: ScheduleSlice,
+    detailSchedul: DeatilScheduleSlice,
     invite: InviteSlice,
     kakaoMap: MapSlice,
     result: ResultSlice,
