@@ -15,17 +15,17 @@ export const addLogin = createAsyncThunk(
       const token = response.data.token;
       localStorage.setItem("jwtToken", token);
       if (response.status === 200) {
-        toast(
-          "반갑습니다!",
-          {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          },
+
+        toast.success('반갑습니다!', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        },
+
           setTimeout(() => {
             window.location.replace("/main");
           }, 1000)
@@ -33,7 +33,15 @@ export const addLogin = createAsyncThunk(
       }
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
-      alert("잘못된 아이디 또는 비밀번호 입니다.");
+      toast.error('잘못된 아이디 또는 비밀번호 입니다.', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
       return thunkAPI.rejectWithValue(error);
     }
   }

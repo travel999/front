@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
+import { toast } from 'react-toastify';
 
 const initialState = {
   email: "",
@@ -16,14 +17,33 @@ export const addJoin = createAsyncThunk(
     try {
       console.log(payload)
       const response = await instance.post("user/signup", payload);
-      if (response) {
-        alert("회원가입을 축하드립니다!");
-        payload.navigate("/login");
+      if (response.status === 200) {
+        toast.success('회원가입을 축하드립니다!', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        },
+          setTimeout(() => {
+            window.location.replace("/main")
+          }, 1000)
+        );
       }
       return response;
     } catch (error) {
       if (error) {
-        alert("내용을 확인해 주세요.");
+        toast.error('내용을 확인해 주세요.', {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
       }
       return thunkAPI.rejectWithValue(error);
     }

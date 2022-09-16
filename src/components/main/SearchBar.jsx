@@ -20,6 +20,7 @@ const SearchBar = ({
     dispatch(refreshSearch());
     setShowrecommend(true);
     input_ref.current.value = "";
+    window.location.reload();
   };
 
   const OnTosearch = (input) => {

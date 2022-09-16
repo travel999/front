@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import S3upload from "react-aws-s3";
 import { getUser, putImage, putPassword, deleteUser } from "../../redux/modules/ProfileSlice";
 import { ToastContainer } from 'react-toastify';
+
+import profilelogo from "../../res/img/profilelogo.png"
 import styles from "./profile.module.css"
 import profile from "../../res/img/profile.png"
 
@@ -145,44 +147,42 @@ const Profile = () => {
   }
 
   return (
-    <div>
-      <h1 className={styles.title} onClick={() => navigate("/main")}>OORIGACHI</h1>
-      <div className={styles.joinWrap}>
-        <div>
-          <h2>회원정보 수정</h2>
-          <div className={styles.inputBox}>
-            <div className={styles.inputName}>닉네임</div>
-            <input value={nickname} type="text" onMouseDown={onEditNickName} className={styles.nickInput} readOnly />
-          </div>
-          <div className={styles.inputBox}>
-            <div className={styles.inputName}>비밀번호 변경</div>
-            <input
-              className={styles.input}
-              onChange={onChangeHandler}
-              type="password"
-              name="newPassword"
-              id="newPassword"
-              minLength="6"
-              maxLength="12"
-              autoFocus
-              autoComplete="new-password"
-            />
-          </div>
-          <div className={styles.message}>{pwMsg}</div>
-          <div className={styles.inputBox}>
-            <div className={styles.inputName}>비밀번호 확인</div>
-            <input
-              className={styles.input}
-              onChange={onChangeHandler}
-              type="password"
-              name="confirm"
-              minLength="6"
-              maxLength="12"
-              required
-              autoComplete="new-password"
-            />
-          </div>
-          <div className={styles.message}>{confirmMsg}</div>
+    <div className={styles.background}>
+      <div className={styles.inputWrap}>
+        <img className={styles.backgroundImg} src={profilelogo} alt="" />
+        <input value={nickname} type="text" onMouseDown={onEditNickName} className={styles.inputNickname} readOnly />
+        <input
+          className={styles.inputPassword}
+          onChange={onChangeHandler}
+          type="password"
+          name="newPassword"
+          id="newPassword"
+          minLength="6"
+          maxLength="12"
+          autoFocus
+          autoComplete="new-password"
+          placeholder="6자 이상 12자 이하로 입력해주세요."
+        />
+        <input
+          className={styles.inputConfirm}
+          onChange={onChangeHandler}
+          type="password"
+          name="confirm"
+          minLength="6"
+          maxLength="12"
+          required
+          autoComplete="new-password"
+          placeholder="비밀번호를 확인해주세요."
+        />
+        <div className={styles.message}>
+          <div className={styles.pwMsg}>{pwMsg}</div>
+          <div className={styles.confirmMsg}>{confirmMsg}</div>
+        </div>
+        {/* 인풋네임 모음 */}
+        <div className={styles.nameWrap}>
+          <div className={styles.nickname}>닉네임</div>
+          <div className={styles.password}>비밀번호 변경</div>
+          <div className={styles.confirm}>비밀번호 확인</div>
         </div>
         <div className={styles.profile}>
           <label htmlFor="newImage">
@@ -205,12 +205,10 @@ const Profile = () => {
           />
         </form>
       </div>
-      <div className={styles.buttonWrap}>
-        <button onClick={onEditProfile} className={styles.button}>저장</button>
-        <ToastContainer />
-        <button onClick={onDeleteProfile} className={styles.button2}>회원 탈퇴</button>
-        <ToastContainer />
-      </div>
+      <button onClick={onEditProfile} className={styles.button}>저장</button>
+      <ToastContainer />
+      <button onClick={onDeleteProfile} className={styles.button2}>회원 탈퇴</button>
+      <ToastContainer />
     </div>
   );
 };

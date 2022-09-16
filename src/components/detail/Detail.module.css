@@ -33,3 +33,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.duckfoot {
+  width: 15px;
+  height: 15px;
+}

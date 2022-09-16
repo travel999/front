@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toLike } from "../../redux/modules/MainSlice";
 import styles from "./Main.module.css";
 import SecondMiniBox from "./SecondMiniBox";
-import duckfoot from "../../res/img/duck/duckfoot-1.png";
+import duckfoot from "../../res/img/duck/duckfoot-4.png";
 
 const SecondBox = () => {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ const SecondBox = () => {
                     src={
                       "https://forfiles.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2022-09-02+%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB+12.00.40.png"
                     }
+                    alt="img"
                   />
                   <div className={styles.content2}>
                     <div
@@ -41,12 +42,20 @@ const SecondBox = () => {
                           Onlike(value._id);
                         }}
                         className={`${styles.cursor} ${styles.heart}`}
+                        style={{ marginTop: "-7px" }}
                       >
-                        <img src={duckfoot} className={styles.duckfoot} />{" "}
+                        <img
+                          src={duckfoot}
+                          className={styles.duckfoot}
+                          alt="duckfoot"
+                        />{" "}
                         {value.like}
                       </div>
                     </div>
-                    <div className={styles.traveldate}>
+                    <div
+                      className={styles.traveldate}
+                      style={{ marginTop: "0.3vh" }}
+                    >
                       {value.date[0] + "~ " + value.date[1]}
                     </div>
                   </div>

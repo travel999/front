@@ -17,7 +17,7 @@ export const searchText = createAsyncThunk(
       const res = await instance.get(`post/search/${value[0]}/${value[1]}`);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
-      return thunkAPI.rejectWithValue("애러");
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -58,22 +58,54 @@ export const mainSlice = createSlice({
     refreshSearch(state, action) {
       state.searched = false;
       state.otherPeopleCards = [];
+      console.log(current(state));
     },
   },
   extraReducers: {
     [getCards.fulfilled]: (state, action) => {
-      state.MyPostCards = action.payload;
+      if (action.payload?.data3?.message !== "공개된 일정이 없습니다.") {
+        let MyPostCards2 = {};
+        // 데이터 1 2 만들기
+        MyPostCards2.data1 = action.payload.data1;
+        MyPostCards2.data2 = action.payload.data2;
+        // 데이터 3 만들기
+        MyPostCards2.data3 = [];
+        let mydata3 = [];
+        if (state.MyPostCards?.data3 === undefined) {
+          mydata3.push(...action.payload.data3);
+        } else {
+          mydata3.push(...state.MyPostCards?.data3);
+          mydata3.push(...action.payload.data3);
+        }
+        MyPostCards2.data3 = [...mydata3];
+        state.MyPostCards = MyPostCards2;
+      }
     },
     [getCards.rejected]: (state, action) => {
       console.log(state, action);
       state.error = true;
     },
+
     [searchText.fulfilled]: (state, action) => {
-      state.searched = true;
-      state.otherPeopleCards = action.payload.data;
+      console.log(action.payload);
+      if (action.payload?.data?.message === "검색 결과가 존재하지 않습니다.") {
+        console.log(action.payload.data);
+        console.log("더이상 데이터가 존재하지 않습니다.");
+      } else {
+        state.searched = true;
+        console.log(action.payload);
+        const mydata = [];
+        if (state.otherPeopleCards.length === 0) {
+          mydata.push(...action.payload.data);
+        } else {
+          mydata.push(...state.otherPeopleCards);
+          mydata.push(...action.payload.data);
+        }
+        state.otherPeopleCards = mydata;
+      }
     },
     [searchText.rejected]: (state, action) => {
-      state.otherPeopleCards = [];
+      console.log("더이상 자료가 없습니다.");
     },
 
     [toOpenPublic.fulfilled]: (state, action) => {
