@@ -23,6 +23,20 @@ export const saveSchedule = createAsyncThunk(
     }
   }
 );
+export const modifySchedule = createAsyncThunk(
+  "schedule/modifySchedule",
+  async (payload, thunkAPI) => {
+    try {
+      const res = await instance.put(
+        `post/${payload.postId}/title`,
+        payload.data
+      );
+      return thunkAPI.fulfillWithValue(res.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 //슬라이스
 export const ScheduleSlice = createSlice({
@@ -40,6 +54,18 @@ export const ScheduleSlice = createSlice({
       state.postId = action.payload.postId;
     },
     [saveSchedule.rejected]: (state, action) => {
+      console.log(current(state), action);
+    },
+    [modifySchedule.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [modifySchedule.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.title = action.payload.title;
+      state.date = action.payload.date;
+      state.postId = action.payload.postId;
+    },
+    [modifySchedule.rejected]: (state, action) => {
       console.log(current(state), action);
     },
   },

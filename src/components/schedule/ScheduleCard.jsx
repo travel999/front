@@ -1,51 +1,63 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //style & elements
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
+
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import ScheduleInput from "./ScheduleInput";
-// import { useEffect } from "react";
-// import { dateISOString } from "react-s3/lib/Date";
-// import { DRAFT_STATE } from "immer/dist/internal";
+import { saveDayData } from "../../redux/modules/ResultSlice";
+import { useNavigate } from "react-router-dom";
 
-const ScheduleCard = ({ data }) => {
+const ScheduleCard = ({ data, postId }) => {
   const dispatch = useDispatch();
+  const navigation = useNavigate();
   const room = useSelector((state) => state?.schedule?.postId);
-
   //state
-
+  const [result, setResult] = useState([]);
   //함수
 
   //이벤트 함수
-
+  console.log(data.allDay.length, data.day);
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
-    // dispatch(getConData(conData));
+    let filterPinData = data.pin.filter((item) => item.day === data.day);
+    let filterContentData = data.content.filter(
+      (item) => item.day === data.day
+    );
+    setResult([
+      `${data.day}`,
+      { pin: filterPinData, con: filterContentData },
+      { postId },
+    ]);
   };
-
-  // const newContent = content.filter((item) => item.day !== data.day);
-  // setContent(newContent);
-
-  // useEffect(() => {
-  //   let filterPinData = data.pin.filter((item) => item.day === data.day);
-  //   let filterContentData = [];
-  //   if (data.content.length !== 0) {
-  //     filterContentData = data.content.filter((item) => item.day === data.day);
-  //   } else {
-  //     filterContentData = "";
-  //   }
-
-  //   setResult({ pin: filterPinData, con: filterContentData });
-  // }, []);
-
-  //입력한 값
+  //저장 버튼 눌렀을때만 dispatch 동작하기
+  useEffect(() => {
+    //마지막 일정 일때, 메인페이지로 돌아가게 처리
+    if (data.allDay.length === data.day) {
+      dispatch(saveDayData(result));
+      toast.success("모든 일정을 저장했습니다.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      navigation("/main");
+    } else {
+      dispatch(saveDayData(result));
+    }
+  }, [result]);
 
   return (
     <div className={styels.worksWrap}>
       <h2>
         우리들의 "<span className={styels.workDay}>{data.day}일차</span>" 일정
       </h2>
-
       {data.pin
         .filter((item) => item.day === data.day)
         .map((item, index) => {
@@ -67,8 +79,15 @@ const ScheduleCard = ({ data }) => {
             </div>
           );
         })}
-
-      <Btn onClick={onSaveStorage}>{data.day}일차 전체 일정 저장</Btn>
+      <Btn
+        color="#fffff"
+        width="100%"
+        backgroundColor="#ffc51c"
+        onClick={onSaveStorage}
+      >
+        {data.day}일차 전체 일정 저장
+      </Btn>
+      <ToastContainer />
     </div>
   );
 };

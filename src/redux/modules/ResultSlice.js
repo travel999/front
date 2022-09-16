@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
+import { toast } from "react-toastify";
 
 // 초기 상태값
 const initialState = {
@@ -11,27 +12,53 @@ export const saveDayData = createAsyncThunk(
   "result/saveDayData",
   async (payload, thunkAPI) => {
     try {
-      let type = "";
       if (payload[0] === "1") {
-        type = "day1";
+        const res = await instance.put(`/post/${payload[2].postId}`, {
+          day1: payload[1],
+        });
+        if (res.data) {
+          toast("1일차가 저장되었습니다.", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+        return thunkAPI.fulfillWithValue(res.data);
       } else if (payload[0] === "2") {
-        type = "day2";
+        const res = await instance.put(`/post/${payload[2].postId}`, {
+          day2: payload[1],
+        });
+        return thunkAPI.fulfillWithValue(res.data);
       } else if (payload[0] === "3") {
-        type = "day3";
+        const res = await instance.put(`/post/${payload[2].postId}`, {
+          day3: payload[1],
+        });
+        return thunkAPI.fulfillWithValue(res.data);
       } else if (payload[0] === "4") {
-        type = "day4";
+        const res = await instance.put(`/post/${payload[2].postId}`, {
+          day4: payload[1],
+        });
+        return thunkAPI.fulfillWithValue(res.data);
       } else if (payload[0] === "5") {
-        type = "day5";
+        const res = await instance.put(`/post/${payload[2].postId}`, {
+          day5: payload[1],
+        });
+        return thunkAPI.fulfillWithValue(res.data);
       } else if (payload[0] === "6") {
-        type = "day6";
+        const res = await instance.put(`/post/${payload[2].postId}`, {
+          day6: payload[1],
+        });
+        return thunkAPI.fulfillWithValue(res.data);
       } else if (payload[0] === "7") {
-        type = "day7";
+        const res = await instance.put(`/post/${payload[2].postId}`, {
+          day7: payload[1],
+        });
+        return thunkAPI.fulfillWithValue(res.data);
       }
-      console.log(type);
-      const res = await instance.put(`/post/${payload[2]}`, {
-        type: payload[1],
-      });
-      return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -49,6 +76,7 @@ export const ResultSlice = createSlice({
     },
     [saveDayData.fulfilled]: (state, action) => {
       state.isLoading = false;
+
       // state.title = action.payload.title;
       // state.date = action.payload.date;
       // state.postId = action.payload.postId;

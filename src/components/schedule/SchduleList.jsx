@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 //style & elements
@@ -7,13 +7,11 @@ import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 import MemberAddModal from "./modal/MemberAddModal";
 import { getMapData } from "../../redux/modules/MapSlice";
-import { useEffect } from "react";
 
 const ScheduleList = ({ fixDay, id }) => {
   console.log("스케줄리스트");
   //Hook
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   //state
   const [index, setIndex] = useState();
@@ -45,18 +43,13 @@ const ScheduleList = ({ fixDay, id }) => {
             </li>
           ))}
         </ul>
-        {/* {dayArr
-          .filter((item, i) => index === i)
-          .map((item) => (
-            <ScheduleMap key={item} day={index} />
-          ))} */}
       </div>
     );
   };
 
-  const sendMapData = (day) => {
+  const sendMapData = (day, dayArr) => {
     setIndex(day);
-    dispatch(getMapData(day));
+    dispatch(getMapData({ day: day, allDay: dayArr }));
   };
 
   //이벤트 함수

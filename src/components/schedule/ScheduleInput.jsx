@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, memo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,8 +17,10 @@ const ScheduleInput = ({ room, day, index, content }) => {
   const [sendValue, setSendValue] = useState("");
   const [getShowing, setGetShowing] = useState("");
   const [conData, setConData] = useState({});
+
   const [sendResult, setSendResult] = useState(false);
   const inputRef = useRef(null);
+
 
   const dispatch = useDispatch();
 
@@ -55,8 +58,6 @@ const ScheduleInput = ({ room, day, index, content }) => {
       dispatch(getConData(conData));
     }
   };
-  console.log(conData);
-  console.log(sendResult);
 
   useEffect(() => {
     setConData({
@@ -66,7 +67,6 @@ const ScheduleInput = ({ room, day, index, content }) => {
     });
   }, [getShowing]);
 
-  console.log("input", content);
   //   setConData({ ...conData, day: day, [index]: sendValue, });
 
   return (
@@ -81,7 +81,9 @@ const ScheduleInput = ({ room, day, index, content }) => {
           onKeyDown={(e) => deleteLastText(e.keyCode)}
           required
         />
-        <Btn onClick={saveCard}>일정 저장</Btn>
+        <Btn color="#fffff" backgroundColor="#ffc51c" onClick={saveCard}>
+          일정 저장
+        </Btn>
       </>
     </div>
   );

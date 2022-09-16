@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const initialState = {
   email: "",
@@ -12,11 +12,10 @@ export const addLogin = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await instance.post("user/login", payload.login);
-      console.log(response);
       const token = response.data.token;
       localStorage.setItem("jwtToken", token);
-      console.log("로그인");
       if (response.status === 200) {
+
         toast.success('반갑습니다!', {
           position: "top-center",
           autoClose: 5000,
@@ -26,8 +25,9 @@ export const addLogin = createAsyncThunk(
           draggable: true,
           progress: undefined,
         },
+
           setTimeout(() => {
-            window.location.replace("/main")
+            window.location.replace("/main");
           }, 1000)
         );
       }

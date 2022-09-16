@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import ScheduleList from "./SchduleList";
-import { saveSchedule } from "../../redux/modules/ScheduleSlice";
+import {
+  saveSchedule,
+  modifySchedule,
+} from "../../redux/modules/ScheduleSlice";
 
 const ScheduleCreate = () => {
   //Hook
@@ -33,11 +38,7 @@ const ScheduleCreate = () => {
     } else if (name === "title") {
       setTitle(value);
     }
-    //payload생성
-    setScheduleSave({
-      title: title,
-      date: [startDate, endDate],
-    });
+
     //일차 차 구하는 함수 호출
     onGetDateDiff();
   };
@@ -50,7 +51,7 @@ const ScheduleCreate = () => {
     const diffDate = date1.getTime() - date2.getTime();
 
     const sum = Math.abs(diffDate / (1000 * 60 * 60 * 24));
-    const result = sum + 1
+    const result = sum + 1;
 
     setFixDay(result);
   };
@@ -58,12 +59,86 @@ const ScheduleCreate = () => {
   //일정생성하기
   const onSaveSchdule = () => {
     if (startDate === "" && endDate === "" && fixDay === undefined) {
-      alert("여행날짜가 비어있어 일정을 생성할 수 없습니다.");
+      toast.error("여행날짜가 비어있어 일정을 생성할 수 없습니다.!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else if (fixDay > 8) {
+      toast.error("최대 여행일정은 7일까지만 가능합니다.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
-      dispatch(saveSchedule(scheduleSave));
-      navigate("/write");
+      //payload생성
+      setScheduleSave({
+        title: title,
+        date: [startDate, endDate],
+      });
+      toast.success("일행 일정이 생성되었습니다.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
+  //일정수정하기
+  const onModifySchdule = () => {
+    if (startDate === "" && endDate === "" && fixDay === undefined) {
+      toast.error("여행날짜가 비어있어 일정을 수정할 수 없습니다.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      //payload생성
+      setScheduleSave({
+        title: title,
+        date: [startDate, endDate],
+      });
+      toast.success("일정제목 과 일자가 수정되었습니다.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+  //playload등록시 title 제일 끝에 형태소 안찍히는 오류 수정
+  useEffect(() => {
+    if (createData.postId === "") {
+      if (startDate !== "" && endDate !== "" && title !== "") {
+        dispatch(saveSchedule(scheduleSave));
+        navigate("/write");
+      }
+    } else {
+      dispatch(
+        modifySchedule({ data: scheduleSave, postId: createData.postId })
+      );
+      navigate("/write");
+    }
+  }, [scheduleSave]);
+
   return (
     <div className={styels.createWrap}>
       <input
@@ -88,7 +163,12 @@ const ScheduleCreate = () => {
         placeholder="일정의 제목을 입력해주세요"
       />
       {createData.title !== "" ? (
-        <Btn color="#fff" backgroundColor="#FF8C0A" height="36px">
+        <Btn
+          color="#fff"
+          backgroundColor="#ffc51c"
+          height="36px"
+          onClick={onModifySchdule}
+        >
           일정 수정
         </Btn>
       ) : (

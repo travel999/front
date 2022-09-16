@@ -35,12 +35,12 @@ const Schedule = () => {
       </div>
       {mapData.day !== "" ? (
         <div className={styels.wrapCenter}>
-          <ScheduleMap allDay={mapData.allDay} nowDay={mapData.day} />
+          <ScheduleMap nowDay={mapData.day} />
         </div>
       ) : (
         <div className={styels.wrapCenter}>
           <img src={NoDateDuckImg} alt="등록일정 없음 이미지" />
-          {/* <div>여행갈 날짜를 먼저 지정해주세요!</div> */}
+          <div>여행갈 날짜를 먼저 지정해주세요!</div>
         </div>
       )}
       <Chatting />
