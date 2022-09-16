@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, memo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,14 +12,13 @@ const socket = io.connect("http://52.78.142.77/", {
   transports: ["websocket"],
 });
 
-const ScheduleInput = ({ room, day, index, content }) => {
+const ScheduleInput = ({ room, day, index, content, value }) => {
   const [sendValue, setSendValue] = useState("");
-  const [getShowing, setGetShowing] = useState("");
+  const [getShowing, setGetShowing] = useState(value);
   const [conData, setConData] = useState({});
 
   const [sendResult, setSendResult] = useState(false);
   const inputRef = useRef(null);
-
 
   const dispatch = useDispatch();
 

@@ -11,7 +11,9 @@ import ScheduleCard from "./ScheduleCard";
 import ScheduleMap from "./ScheduleMap";
 import Chatting from "../chat/Chatting";
 
-import { getSchedule } from "../../redux/modules/detailSchedule/DetailScheduleSlice";
+// import { getSchedule } from "../../redux/modules/detailSchedule/DetailScheduleSlice";
+import { getSchedule } from "../../redux/modules/MapSlice";
+
 import { useLayoutEffect } from "react";
 
 const DetailSchedule = () => {
@@ -22,6 +24,7 @@ const DetailSchedule = () => {
 
   const createData = useSelector((state) => state.schedule);
   const mapData = useSelector((state) => state.kakaoMap);
+  console.log(mapData);
 
   //마운트 되기전에 저장된 DB 가져오기
   useLayoutEffect(() => {
@@ -32,16 +35,14 @@ const DetailSchedule = () => {
     }
   }, []);
 
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     makeDayArr();
+  //   }, 0)
+  // }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      makeDayArr();
-    }, 0)
-  }, []);
-
-
-  const dbData = useSelector((state) => state.detailSchedul);
-  console.log(dbData);
+  // const dbData = useSelector((state) => state.detailSchedul);
+  // console.log(dbData);
   // let dayData;
 
   // const makeDayArr = () => {
@@ -57,9 +58,7 @@ const DetailSchedule = () => {
   return (
     <div className={styels.wrap}>
       <div className={styels.wrapLeft}>
-        {dbData.data.data !== undefined ? (
-          <DetailScheduleCreate dbData={dbData} />
-        ) : null}
+        {mapData.date !== "" ? <DetailScheduleCreate data={mapData} /> : null}
         {mapData.pin.length !== 0 ? (
           <ScheduleCard data={mapData} postId={id} />
         ) : null}
@@ -75,7 +74,7 @@ const DetailSchedule = () => {
         </div>
       )}
       <Chatting />
-      <div className={styels.wrapRight}></div>
+      {/* <div className={styels.wrapRight}></div> */}
     </div>
   );
 };
