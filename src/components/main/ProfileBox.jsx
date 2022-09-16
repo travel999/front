@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Main.module.css";
 import PostBtn from "./PostBtn";
 import { useSelector } from "react-redux";
+import duckprofile from "../../res/img/duck/duckprofile.png";
 
 const ProfileBox = () => {
   const postnumber = useSelector((state) => state.main.MyPostCards);
@@ -16,12 +17,16 @@ const ProfileBox = () => {
       <div className={`${styles.profile}`}>
         {frofileImg === "" ? (
           <img
-            alt="img"
+            src={duckprofile}
+            alt="profileImg"
             className={styles.profileimg}
-            src="https://forfiles.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2022-09-03+%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB+12.56.41.png"
           />
         ) : (
-          <img src={frofileImg} className={styles.profileimg} alt="img" />
+          <img
+            src={frofileImg}
+            className={styles.profileimg}
+            alt="profileImg"
+          />
         )}
         <div className={styles.profilename}>
           <b style={{ fontWeight: "600" }}>{nickname}</b>의 여행
