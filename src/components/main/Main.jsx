@@ -76,43 +76,41 @@ const Main = () => {
     loadpost();
   }, [page, searchPage]);
 
-  // const loadpost = useCallback(() => {
-  //   setPrevent(true);
-  //   setLoad(true);
-  //   if (searched === false) {
-  //     dispatch(getCards(page));
-  //   } else if (searched === true) {
-  //     if (
-  //       beforeSearched === null ||
-  //       beforeSearched == input_ref.current.value
-  //     ) {
-  //       // 첫 검색
-  //       console.log("11111");
-  //       setBeforeSearched(input_ref.current.value);
-  //       OneSearch();
-  //     } else {
-  //       // 검색 후 다른것을 검색할때
-  //       console.log("2222");
-  //       setBeforeSearched(input_ref.current.value);
-  //       setSearchPage(1);
-  //       twoSearch();
-  //     }
-  //   }
-  //   setLoad(false);
-  //   setPrevent(false);
-  // }, [page, searchPage]);
-
-  const loadpost = async () => {
+  const loadpost = useCallback(() => {
     setPrevent(true);
     setLoad(true);
     if (searched === false) {
-      await dispatch(getCards(page));
+      dispatch(getCards(page));
     } else if (searched === true) {
-      await OneSearch();
+      if (
+        beforeSearched === null ||
+        beforeSearched == input_ref.current.value
+      ) {
+        // 첫 검색
+        setBeforeSearched(input_ref.current.value);
+        OneSearch();
+      } else {
+        // 검색 후 다른것을 검색할때
+        setBeforeSearched(input_ref.current.value);
+        setSearchPage(1);
+        twoSearch();
+      }
     }
     setLoad(false);
     setPrevent(false);
-  };
+  }, [page, searchPage, searched]);
+
+  // const loadpost = async () => {
+  //   setPrevent(true);
+  //   setLoad(true);
+  //   if (searched === false) {
+  //     await dispatch(getCards(page));
+  //   } else if (searched === true) {
+  //     await OneSearch();
+  //   }
+  //   setLoad(false);
+  //   setPrevent(false);
+  // };
 
   // 처음 검색하고, 계속 볼때 실행됌. 한번만.
   const OneSearch = () => {

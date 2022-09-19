@@ -27,13 +27,13 @@ const SearchBar = ({
     // dispatch(refreshSearch());
     // setShowrecommend(true);
     // input_ref.current.value = "";
+    // onHomeClick();
+    // setSearchPage(1);
     window.location.reload();
   };
 
   const OnTosearch = (input) => {
     if (beforeSearched !== input) {
-      console.log("첫검색");
-      // window.scrollTo({ top: 0, behavior: "smooth" });
       onHomeClick();
       setBeforeSearched(input);
       dispatch(firstsearch([input, 1]));

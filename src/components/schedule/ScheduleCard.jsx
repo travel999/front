@@ -21,7 +21,7 @@ const ScheduleCard = ({ data, postId }) => {
 
   //이벤트 함수
   console.log(data.allDay.length, data.day);
-  //일정의 컨텐츠 저장
+  //일정의 컨텐츠 저장.
   const onSaveStorage = () => {
     let filterPinData = data.pin.filter((item) => item.day === data.day);
     let filterContentData = data.content.filter(
@@ -33,7 +33,7 @@ const ScheduleCard = ({ data, postId }) => {
       { postId },
     ]);
   };
-  //저장 버튼 눌렀을때만 dispatch 동작하기
+  //저장 버튼 눌렀을때만 dispatch 동작하기.
   useEffect(() => {
     //마지막 일정 일때, 메인페이지로 돌아가게 처리
     if (data.allDay.length === data.day) {
@@ -47,9 +47,9 @@ const ScheduleCard = ({ data, postId }) => {
         draggable: true,
         progress: undefined,
       });
-      setTimeout(()=> {
+      setTimeout(() => {
         window.location.replace("/main");
-      }, 2000)
+      }, 2000);
     } else {
       dispatch(saveDayData(result));
     }
