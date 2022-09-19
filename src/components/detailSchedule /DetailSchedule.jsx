@@ -20,7 +20,6 @@ const DetailSchedule = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const [chage, setChange] = useState(false);
   //마운트 되기전에 저장된 DB 가져오기
   useLayoutEffect(() => {
     if (!tokenValue) {
