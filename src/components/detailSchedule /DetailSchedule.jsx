@@ -1,16 +1,11 @@
-
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
 
 import styels from "./Schedule.module.css";
-
-import Btn from "../elements/Btn";
-import NoDateDuckImg from "../../res/img/duck/noDateDuck.png";
-import { toast, ToastContainer } from "react-toastify";
-
+import { toast } from "react-toastify";
 
 import DetailScheduleCreate from "./DetailScheduleCreate";
 import ScheduleCard from "./ScheduleCard";
@@ -30,16 +25,15 @@ const DetailSchedule = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
+
   const nickname = localStorage.getItem("nickname");
   const [meaningless, setMeaningless] = useState(0);
-
 
   const createData = useSelector((state) => state.schedule);
   const mapData = useSelector((state) => state.kakaoMap);
 
   //DB 가져오기
   useEffect(() => {
-
     if (!tokenValue) {
       navigate("/");
     } else {
@@ -47,6 +41,32 @@ const DetailSchedule = () => {
     }
   }, []);
 
+  const SendOtherPeople = () => {
+    // 카드마다 달려있는 버튼이랑 연결 일정저장버튼 누르면 실행됌.
+    setMeaningless((prev) => prev + 1);
+    const data = {
+      room: "123",
+      author: nickname,
+    };
+
+    socket.emit("SaveDone_data", data);
+  };
+
+  useEffect(() => {
+    socket.on("SaveGet_data", (data) => {
+      setMeaningless((prev) => prev + 1);
+      toast.success(`${data.author} 님이 저장하였습니다.`, {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    });
+  }, [socket]);
+  // chatting에 필요한것들 >> 초대된사람들 리스트, 게시글 id.
 
   return (
     <div className={styels.wrap}>
