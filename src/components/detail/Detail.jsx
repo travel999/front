@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCards } from "../../redux/modules/MainSlice";
 import styles from "./Detail.module.css";
 import duckfoot from "../../res/img/duck/duckfoot-1.png";
+import Chatting from "../chat/Chatting";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const Detail = () => {
             </div>
           );
         })}
+        <Chatting />
       </div>
     </>
   );

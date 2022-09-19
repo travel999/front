@@ -70,7 +70,6 @@ export const mainSlice = createSlice({
     refreshSearch(state, action) {
       state.searched = false;
       state.otherPeopleCards = [];
-      console.log(current(state));
     },
   },
   extraReducers: {
@@ -105,14 +104,13 @@ export const mainSlice = createSlice({
       }
     },
     [getCards.rejected]: (state, action) => {
-      console.log(state, action);
       state.error = true;
     },
 
     [searchText.fulfilled]: (state, action) => {
-      console.log("검색한게 여전히 똑같거나 처음이야");
+      // console.log("검색한게 여전히 똑같거나 처음이야");
       if (action.payload?.data?.message === "검색 결과가 존재하지 않습니다.") {
-        console.log("더이상 데이터가 존재하지 않습니다.");
+        // console.log("더이상 데이터가 존재하지 않습니다.");
       } else {
         state.searched = true;
         const mydata = [];
@@ -135,15 +133,17 @@ export const mainSlice = createSlice({
       }
     },
     [searchText.rejected]: (state, action) => {
+      state.error = true;
       console.log("더이상 자료가 없습니다.");
     },
 
     [firstsearch.fulfilled]: (state, action) => {
-      console.log("첫검색이던가 검색한게 달라졌어!!!");
+      // console.log("첫검색이던가 검색한게 달라졌어!!!");
       state.searched = true;
       state.otherPeopleCards = action.payload.data;
     },
     [firstsearch.rejected]: (state, action) => {
+      state.error = true;
       console.log(action.payload);
     },
 
@@ -151,6 +151,7 @@ export const mainSlice = createSlice({
       console.log(current(state), action);
     },
     [toOpenPublic.rejected]: (state, action) => {
+      state.error = true;
       console.log(action.payload);
     },
 
@@ -158,7 +159,6 @@ export const mainSlice = createSlice({
       // 검색한 파일중 좋아요------------------------------
       if (state.searched === true) {
         if (action.payload.isLike.message === "일정에 좋아요를 취소했습니다") {
-          console.log("취소");
           const actionData = action.payload.isLike.existLikes;
           let otherPeopleCards2 = {};
           const filtered = state.MyPostCards.data2.filter(
@@ -166,13 +166,11 @@ export const mainSlice = createSlice({
           );
           otherPeopleCards2.data = state.otherPeopleCards.map((value) => {
             if (value._id === actionData._id) {
-              console.log("결러짐", value);
               value.isLiked = false;
               value.like -= 1;
             }
             return value;
           });
-          console.log(filtered);
           state.MyPostCards.data2 = filtered;
           state.otherPeopleCards = otherPeopleCards2.data;
         } else if (
@@ -245,7 +243,6 @@ export const mainSlice = createSlice({
       }
     },
     [toLike.rejected]: (state, action) => {
-      console.log(state, action);
       state.error = true;
     },
   },

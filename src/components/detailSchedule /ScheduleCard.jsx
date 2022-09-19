@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //style & elements
 import styels from "./Schedule.module.css";
@@ -11,7 +11,7 @@ import ScheduleInput from "./ScheduleInput";
 import { saveDayData } from "../../redux/modules/ResultSlice";
 import { useNavigate } from "react-router-dom";
 
-const ScheduleCard = ({ data, postId }) => {
+const ScheduleCard = ({ data, postId, SendOtherPeople, socket }) => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const room = useSelector((state) => state?.schedule?.postId);
@@ -20,7 +20,7 @@ const ScheduleCard = ({ data, postId }) => {
   //함수
 
   //이벤트 함수
-  console.log(data.allDay.length, data.day);
+
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
     let filterPinData = data.pin.filter((item) => item.day === data.day);
@@ -52,7 +52,7 @@ const ScheduleCard = ({ data, postId }) => {
       dispatch(saveDayData(result));
     }
   }, [result]);
-  console.log("data", data.day);
+
   return (
     <div className={styels.worksWrap}>
       <h2>
@@ -75,6 +75,8 @@ const ScheduleCard = ({ data, postId }) => {
                 day={item.day}
                 content={data.content}
                 index={index + 1}
+                SendOtherPeople={SendOtherPeople}
+                socket={socket}
                 value={data.content
                   .filter((item) => item.day === data.day)
                   .map((item) => item.cardMemo)}
@@ -95,4 +97,4 @@ const ScheduleCard = ({ data, postId }) => {
   );
 };
 
-export default ScheduleCard;
+export default memo(ScheduleCard);

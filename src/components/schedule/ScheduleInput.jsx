@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, memo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -20,7 +19,6 @@ const ScheduleInput = ({ room, day, index, content }) => {
 
   const [sendResult, setSendResult] = useState(false);
   const inputRef = useRef(null);
-
 
   const dispatch = useDispatch();
 

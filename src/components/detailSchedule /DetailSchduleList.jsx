@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 //style & elements
@@ -7,29 +7,40 @@ import Btn from "../elements/Btn";
 import MemberAddModal from "./modal/MemberAddModal";
 import { getMapData } from "../../redux/modules/MapSlice";
 
-const DetailScheduleList = ({ fixDay, id }) => {
+const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
   console.log("fixDay", fixDay);
 
   //Hook
   const dispatch = useDispatch();
 
   //state
-  const [index, setIndex] = useState();
+  const [index, setIndex] = useState(defalutDay);
   const [modalOpen, setModalOpen] = useState(false);
 
   //함수
   const openModal = () => {
     setModalOpen(true);
   };
+
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  useEffect(() => {
+    const dayArr = [];
+    for (let i = 1; i <= fixDay; i++) {
+      dayArr.push(i);
+    }
+    sendMapData(defalutDay, dayArr);
+  }, []);
+
   const showSchedule = () => {
     //반복문 내에서 state를 사용할 수 없으므로 대체함
     const dayArr = [];
     for (let i = 1; i <= fixDay; i++) {
       dayArr.push(i);
     }
+
     return (
       <div className={styels.dayWrap}>
         <ul>
