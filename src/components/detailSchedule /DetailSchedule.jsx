@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import io from "socket.io-client";
 
 import styels from "./Schedule.module.css";
 import { toast } from "react-toastify";
@@ -14,11 +12,6 @@ import Chatting from "../chat/Chatting";
 
 // import { getSchedule } from "../../redux/modules/detailSchedule/DetailScheduleSlice";
 import { getSchedule } from "../../redux/modules/MapSlice";
-
-const socket = io.connect("http://52.78.142.77/", {
-  path: "/socket.io",
-  transports: ["websocket"],
-});
 
 const DetailSchedule = () => {
   const tokenValue = localStorage.getItem("jwtToken"); // 토크없으면 로그인 페이지로
@@ -72,12 +65,7 @@ const DetailSchedule = () => {
     <div className={styels.wrap}>
       <div className={styels.wrapLeft}>
         <DetailScheduleCreate data={mapData} />
-        <ScheduleCard
-          data={mapData}
-          postId={id}
-          socket={socket}
-          SendOtherPeople={SendOtherPeople}
-        />
+        <ScheduleCard data={mapData} postId={id} />
       </div>
       <div className={styels.wrapCenter}>
         <ScheduleMap nowDay={mapData.day} data={mapData} />
