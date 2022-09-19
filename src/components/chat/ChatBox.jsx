@@ -7,7 +7,7 @@ const ChatBox = ({ socket, room, nickname }) => {
   const [messageList, setMessageList] = useState([]);
   const CurrentMessageRef = useRef("");
 
-  const OnsendMsg = async () => {
+  const OnsendMsg = () => {
     if (CurrentMessageRef.current.value !== "") {
       const messageData = {
         room: room,
@@ -19,7 +19,7 @@ const ChatBox = ({ socket, room, nickname }) => {
           new Date(Date.now()).getMinutes(),
       };
 
-      await socket.emit("send_message", messageData);
+      socket.emit("send_message", messageData);
       setMessageList((list) => [...list, messageData]);
       CurrentMessageRef.current.value = "";
     }
@@ -27,49 +27,9 @@ const ChatBox = ({ socket, room, nickname }) => {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      console.log(data);
       setMessageList((list) => [...list, data]);
     });
   }, [socket]);
-
-  // 실시간ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-  // const [sendValue, setSendValue] = useState("");
-  // const [getShowing, setGetShowing] = useState("");
-  // const liveRef = useRef(null);
-
-  // const [msg, setMsg] = useState({ msg: sendValue, room });
-
-  // useEffect(() => {
-  //   socket.on("test_receive", (data) => {
-  //     console.log("받음:" + data.msg);
-  //     setGetShowing(data.msg);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   if (sendValue !== "") {
-  //     console.log("보내짐");
-  //     const msg = { msg: sendValue, room };
-  //     setGetShowing(sendValue);
-  //     socket.emit("test_send", msg);
-  //   }
-  // }, [sendValue]);
-
-  // const deleteLastText = (key) => {
-  //   if (key == 8 && getShowing.length == 1) {
-  //     const resetmsg = { msg: "", room };
-  //     setGetShowing("");
-  //     socket.emit("test_send", resetmsg);
-  //   }
-  // };
-  // <div>{getShowing}</div>
-  // <input
-  //   onChange={(e) => setSendValue(e.target.value)}
-  //   ref={liveRef}
-  //   onKeyDown={(e) => deleteLastText(e.keyCode)}
-  // />
-
-  // 실시간테스트버전 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
   return (
     <div>
