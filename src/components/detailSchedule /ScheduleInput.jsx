@@ -17,10 +17,12 @@ const ScheduleInput = ({ room, day, index, content, value }) => {
   const [getShowing, setGetShowing] = useState(value);
   const [conData, setConData] = useState({});
 
-  const [sendResult, setSendResult] = useState(false);
   const inputRef = useRef(null);
 
   const dispatch = useDispatch();
+  useEffect(() => {
+    setGetShowing(value);
+  }, [value]);
 
   useEffect(() => {
     socket.on("test_receive", (data) => {

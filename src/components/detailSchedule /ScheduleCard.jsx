@@ -20,7 +20,7 @@ const ScheduleCard = ({ data, postId }) => {
   //함수
 
   //이벤트 함수
-  console.log(data.allDay.length, data.day);
+
   //일정의 컨텐츠 저장
   const onSaveStorage = () => {
     let filterPinData = data.pin.filter((item) => item.day === data.day);
@@ -52,7 +52,7 @@ const ScheduleCard = ({ data, postId }) => {
       dispatch(saveDayData(result));
     }
   }, [result]);
-  console.log("data", data.day);
+
   return (
     <div className={styels.worksWrap}>
       <h2>

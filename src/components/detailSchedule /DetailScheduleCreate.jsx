@@ -14,7 +14,6 @@ import {
 } from "../../redux/modules/ScheduleSlice";
 
 const DetailScheduleCreate = ({ data }) => {
-  console.log(data.title);
   //Hook
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,6 +44,9 @@ const DetailScheduleCreate = ({ data }) => {
     onGetDateDiff();
   };
   useEffect(() => {
+    setTitle(data.title);
+    setSartDate(data.date[0]);
+    setEndDate(data.date[1]);
     onGetDateDiff();
   }, []);
 
@@ -136,7 +138,7 @@ const DetailScheduleCreate = ({ data }) => {
       >
         일정 수정
       </Btn>
-      <DetailSchduleList fixDay={fixDay} id={id} />
+      <DetailSchduleList fixDay={fixDay} id={id} defalutDay={1} />
     </div>
   );
 };

@@ -8,7 +8,8 @@ import MapSearchNav from "./MapSearchNav";
 const { kakao } = window;
 
 //placeX : lat , placeY : lng >> 기억하기
-const ScheduleMap = ({ nowDay }) => {
+const ScheduleMap = ({ nowDay, data }) => {
+  console.log(data.pin);
   const searchInit = {
     keyWord: null,
     pgn: null,
@@ -28,7 +29,7 @@ const ScheduleMap = ({ nowDay }) => {
   useEffect(() => {
     const container = document.getElementById("map");
     const options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
+      center: new kakao.maps.LatLng(data.pin[0].lat, data.pin[0].lng),
       level: 3,
     };
     const kakaoMap = new kakao.maps.Map(container, options);
@@ -46,6 +47,12 @@ const ScheduleMap = ({ nowDay }) => {
     map.panTo(moveLatLon);
   };
   //마커 찍기
+  useEffect(() => {
+    setPin(data.pin);
+    // const moveLatLon = new kakao.maps.LatLng(data.pin[0].lng, data.pin[0].lng);
+    // map.panTo(moveLatLon);
+  }, []);
+
   useEffect(() => {
     pin.map((item) => {
       let marker = new kakao.maps.Marker({
