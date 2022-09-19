@@ -1,10 +1,9 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import styels from "./Schedule.module.css";
-import Btn from "../elements/Btn";
-import NoDateDuckImg from "../../res/img/duck/noDateDuck.png";
+import { toast } from "react-toastify";
 
 import DetailScheduleCreate from "./DetailScheduleCreate";
 import ScheduleCard from "./ScheduleCard";
@@ -20,8 +19,14 @@ const DetailSchedule = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  //마운트 되기전에 저장된 DB 가져오기
-  useLayoutEffect(() => {
+  const nickname = localStorage.getItem("nickname");
+  const [meaningless, setMeaningless] = useState(0);
+
+  const createData = useSelector((state) => state.schedule);
+  const mapData = useSelector((state) => state.kakaoMap);
+
+  //DB 가져오기
+  useEffect(() => {
     if (!tokenValue) {
       navigate("/");
     } else {
@@ -29,27 +34,32 @@ const DetailSchedule = () => {
     }
   }, []);
 
-  const createData = useSelector((state) => state.schedule);
-  const mapData = useSelector((state) => state.kakaoMap);
-  console.log(mapData);
+  const SendOtherPeople = () => {
+    // 카드마다 달려있는 버튼이랑 연결 일정저장버튼 누르면 실행됌.
+    setMeaningless((prev) => prev + 1);
+    const data = {
+      room: "123",
+      author: nickname,
+    };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     makeDayArr();
-  //   }, 0)
-  // }, []);
+    socket.emit("SaveDone_data", data);
+  };
 
-  // let dayData;
-
-  // const makeDayArr = () => {
-  //   const newData = [];
-  //   for (let i = 1; i <= 7; i++) {
-  //     //dbData에서 key값 동적할당
-  //     let days = "day" + i;
-  //     newData.push(dbData.data.data[days]);
-  //   }
-  //   return (dayData = newData.filter((item) => item !== undefined));
-  // };
+  useEffect(() => {
+    socket.on("SaveGet_data", (data) => {
+      setMeaningless((prev) => prev + 1);
+      toast.success(`${data.author} 님이 저장하였습니다.`, {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    });
+  }, [socket]);
+  // chatting에 필요한것들 >> 초대된사람들 리스트, 게시글 id.
 
   return (
     <div className={styels.wrap}>
