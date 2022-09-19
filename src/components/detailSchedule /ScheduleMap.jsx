@@ -27,13 +27,15 @@ const ScheduleMap = ({ nowDay, data }) => {
 
   //처음 지도 그리기
   useEffect(() => {
-    const container = document.getElementById("map");
-    const options = {
-      center: new kakao.maps.LatLng(data.pin[0].lat, data.pin[0].lng),
-      level: 3,
-    };
-    const kakaoMap = new kakao.maps.Map(container, options);
-    setMap(kakaoMap);
+    if (data.pin.length !== 0) {
+      const container = document.getElementById("map");
+      const options = {
+        center: new kakao.maps.LatLng(data.pin[0].lat, data.pin[0].lng),
+        level: 3,
+      };
+      const kakaoMap = new kakao.maps.Map(container, options);
+      setMap(kakaoMap);
+    }
   }, []);
 
   //마커 생성을 위한 배열 만들기

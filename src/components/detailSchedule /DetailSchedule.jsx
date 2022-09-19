@@ -1,10 +1,8 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import styels from "./Schedule.module.css";
-import Btn from "../elements/Btn";
-import NoDateDuckImg from "../../res/img/duck/noDateDuck.png";
 
 import DetailScheduleCreate from "./DetailScheduleCreate";
 import ScheduleCard from "./ScheduleCard";
@@ -20,36 +18,17 @@ const DetailSchedule = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  //마운트 되기전에 저장된 DB 가져오기
-  useLayoutEffect(() => {
+  const createData = useSelector((state) => state.schedule);
+  const mapData = useSelector((state) => state.kakaoMap);
+
+  //DB 가져오기
+  useEffect(() => {
     if (!tokenValue) {
       navigate("/");
     } else {
       dispatch(getSchedule(id));
     }
   }, []);
-
-  const createData = useSelector((state) => state.schedule);
-  const mapData = useSelector((state) => state.kakaoMap);
-  console.log(mapData);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     makeDayArr();
-  //   }, 0)
-  // }, []);
-
-  // let dayData;
-
-  // const makeDayArr = () => {
-  //   const newData = [];
-  //   for (let i = 1; i <= 7; i++) {
-  //     //dbData에서 key값 동적할당
-  //     let days = "day" + i;
-  //     newData.push(dbData.data.data[days]);
-  //   }
-  //   return (dayData = newData.filter((item) => item !== undefined));
-  // };
 
   return (
     <div className={styels.wrap}>

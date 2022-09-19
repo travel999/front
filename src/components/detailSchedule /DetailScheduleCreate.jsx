@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -26,6 +26,13 @@ const DetailScheduleCreate = ({ data }) => {
   const [scheduleSave, setScheduleSave] = useState({});
   const [fixDay, setFixDay] = useState();
 
+  useEffect(() => {
+    setTitle(data.title);
+    setSartDate(data.date[0]);
+    setEndDate(data.date[1]);
+    onGetDateDiff();
+  }, [data]);
+
   const createData = useSelector((state) => state.schedule);
 
   //시작일-종료일-타이틀 지정
@@ -43,12 +50,6 @@ const DetailScheduleCreate = ({ data }) => {
     //일차 차 구하는 함수 호출
     onGetDateDiff();
   };
-  useEffect(() => {
-    setTitle(data.title);
-    setSartDate(data.date[0]);
-    setEndDate(data.date[1]);
-    onGetDateDiff();
-  }, []);
 
   //일차 차이 구하는 함수
   const onGetDateDiff = () => {
