@@ -1,5 +1,5 @@
 import React, { useState, useEffect, memo, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
@@ -12,12 +12,13 @@ const ScheduleInput = ({
   day,
   index,
   content,
-  value,
+  dayMemo,
   SendOtherPeople,
   socket,
 }) => {
+  console.log(dayMemo);
   const [sendValue, setSendValue] = useState("");
-  const [getShowing, setGetShowing] = useState(value);
+  const [getShowing, setGetShowing] = useState(dayMemo);
   const [conData, setConData] = useState({});
 
   const inputRef = useRef(null);
@@ -25,11 +26,10 @@ const ScheduleInput = ({
   const { id } = useParams();
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    setGetShowing(value);
-  }, [value]);
 
-  console.log(day, index);
+  useEffect(() => {
+    setGetShowing(dayMemo);
+  }, [dayMemo]);
 
   useEffect(() => {
     socket.emit("join_box", `${id}${day}${index}`);
@@ -42,6 +42,7 @@ const ScheduleInput = ({
       //   setConData({ day: day, memo: getShowing });
     });
   }, [socket]);
+
   console.log(`${id}${day}${index}`);
 
   useEffect(() => {
@@ -54,6 +55,15 @@ const ScheduleInput = ({
     }
   }, [sendValue]);
 
+  useEffect(() => {
+    setConData({
+      day: day,
+      cardNum: `${day}_${index}`,
+      cardMemo: getShowing,
+    });
+  }, [getShowing]);
+
+  //함수
   const deleteLastText = (key) => {
     if (key == 8 && getShowing.length == 1) {
       const resetmsg = { msg: "", room: `${id}${day}${index}` };
@@ -70,14 +80,6 @@ const ScheduleInput = ({
       dispatch(getConData(conData));
     }
   };
-
-  useEffect(() => {
-    setConData({
-      day: day,
-      cardNum: `${day}_${index}`,
-      cardMemo: getShowing,
-    });
-  }, [getShowing]);
 
   //   setConData({ ...conData, day: day, [index]: sendValue, });
 
