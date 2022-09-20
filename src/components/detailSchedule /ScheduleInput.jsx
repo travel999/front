@@ -1,11 +1,11 @@
 import React, { useState, useEffect, memo, useRef } from "react";
 import { useDispatch } from "react-redux";
 
-import io from "socket.io-client";
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 
 import { getConData } from "../../redux/modules/MapSlice";
+import { useParams } from "react-router-dom";
 
 const ScheduleInput = ({
   room,
@@ -16,12 +16,13 @@ const ScheduleInput = ({
   SendOtherPeople,
   socket,
 }) => {
-  console.log(dayMemo);
   const [sendValue, setSendValue] = useState("");
   const [getShowing, setGetShowing] = useState(dayMemo);
   const [conData, setConData] = useState({});
 
   const inputRef = useRef(null);
+
+  const { id } = useParams();
 
   const dispatch = useDispatch();
 
@@ -30,7 +31,11 @@ const ScheduleInput = ({
   }, [dayMemo]);
 
   useEffect(() => {
-    socket.on("test_receive", (data) => {
+    socket.emit("join_box", `${id}${day}${index}`);
+  }, []);
+
+  useEffect(() => {
+    socket.on("liveText_receive", (data) => {
       console.log("받음:" + data.msg);
       setGetShowing(data.msg);
       //   setConData({ day: day, memo: getShowing });
@@ -41,12 +46,11 @@ const ScheduleInput = ({
 
   useEffect(() => {
     if (sendValue !== "") {
-      console.log("보내짐");
-      const msg = { msg: sendValue, room: `${room}${day}${index}` };
+      const msg = { msg: sendValue, room: `${id}${day}${index}` };
       setGetShowing(sendValue);
       // slice
       //   setConData([...conData, { day: day, index: index, memo: getShowing }]);
-      socket.emit("test_send", msg);
+      socket.emit("liveText_send", msg);
     }
   }, [sendValue]);
 
@@ -61,13 +65,14 @@ const ScheduleInput = ({
   //함수
   const deleteLastText = (key) => {
     if (key == 8 && getShowing.length == 1) {
-      const resetmsg = { msg: "", room: `${room}${day}${index}` };
+      const resetmsg = { msg: "", room: `${id}${day}${index}` };
       setGetShowing("");
-      socket.emit("test_send", resetmsg);
+      socket.emit("liveText_send", resetmsg);
     }
   };
 
   const saveCard = () => {
+    SendOtherPeople();
     if (inputRef.current.value == "") {
       alert("일정을 넣어주세요.");
     } else {
