@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -40,32 +40,27 @@ const DetailSchedule = () => {
     }
   }, []);
 
-  const SendOtherPeople = () => {
-    // 카드마다 달려있는 버튼이랑 연결 일정저장버튼 누르면 실행됌.
-    setMeaningless((prev) => prev + 1);
-    const data = {
-      room: "123",
-      author: nickname,
-    };
+  const createData = useSelector((state) => state.schedule);
+  const mapData = useSelector((state) => state.kakaoMap);
+  console.log(mapData);
 
-    socket.emit("SaveDone_data", data);
-  };
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     makeDayArr();
+  //   }, 0)
+  // }, []);
 
-  useEffect(() => {
-    socket.on("SaveGet_data", (data) => {
-      setMeaningless((prev) => prev + 1);
-      toast.success(`${data.author} 님이 저장하였습니다.`, {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    });
-  }, [socket]);
-  // chatting에 필요한것들 >> 초대된사람들 리스트, 게시글 id.
+  // let dayData;
+
+  // const makeDayArr = () => {
+  //   const newData = [];
+  //   for (let i = 1; i <= 7; i++) {
+  //     //dbData에서 key값 동적할당
+  //     let days = "day" + i;
+  //     newData.push(dbData.data.data[days]);
+  //   }
+  //   return (dayData = newData.filter((item) => item !== undefined));
+  // };
 
   return (
     <div className={styels.wrap}>
