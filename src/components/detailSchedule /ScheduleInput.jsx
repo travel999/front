@@ -1,5 +1,5 @@
 import React, { useState, useEffect, memo, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import io from "socket.io-client";
 import styels from "./Schedule.module.css";
@@ -7,22 +7,27 @@ import Btn from "../elements/Btn";
 
 import { getConData } from "../../redux/modules/MapSlice";
 
-const socket = io.connect("http://52.78.142.77/", {
-  path: "/socket.io",
-  transports: ["websocket"],
-});
-
-const ScheduleInput = ({ room, day, index, content, value }) => {
+const ScheduleInput = ({
+  room,
+  day,
+  index,
+  content,
+  dayMemo,
+  SendOtherPeople,
+  socket,
+}) => {
+  console.log(dayMemo);
   const [sendValue, setSendValue] = useState("");
-  const [getShowing, setGetShowing] = useState(value);
+  const [getShowing, setGetShowing] = useState(dayMemo);
   const [conData, setConData] = useState({});
 
   const inputRef = useRef(null);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
-    setGetShowing(value);
-  }, [value]);
+    setGetShowing(dayMemo);
+  }, [dayMemo]);
 
   useEffect(() => {
     socket.on("test_receive", (data) => {
@@ -30,7 +35,9 @@ const ScheduleInput = ({ room, day, index, content, value }) => {
       setGetShowing(data.msg);
       //   setConData({ day: day, memo: getShowing });
     });
-  }, []);
+  }, [socket]);
+
+  console.log(`${id}${day}${index}`);
 
   useEffect(() => {
     if (sendValue !== "") {
@@ -43,6 +50,15 @@ const ScheduleInput = ({ room, day, index, content, value }) => {
     }
   }, [sendValue]);
 
+  useEffect(() => {
+    setConData({
+      day: day,
+      cardNum: `${day}_${index}`,
+      cardMemo: getShowing,
+    });
+  }, [getShowing]);
+
+  //함수
   const deleteLastText = (key) => {
     if (key == 8 && getShowing.length == 1) {
       const resetmsg = { msg: "", room: `${room}${day}${index}` };
@@ -58,14 +74,6 @@ const ScheduleInput = ({ room, day, index, content, value }) => {
       dispatch(getConData(conData));
     }
   };
-
-  useEffect(() => {
-    setConData({
-      day: day,
-      cardNum: `${day}_${index}`,
-      cardMemo: getShowing,
-    });
-  }, [getShowing]);
 
   //   setConData({ ...conData, day: day, [index]: sendValue, });
 
