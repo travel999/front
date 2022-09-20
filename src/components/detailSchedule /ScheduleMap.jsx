@@ -56,6 +56,7 @@ const ScheduleMap = ({ nowDay, data }) => {
   }, []);
 
   useEffect(() => {
+    console.log(pin);
     pin.map((item) => {
       let marker = new kakao.maps.Marker({
         map: map, // 마커를 표시할 지도

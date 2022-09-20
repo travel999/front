@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import styels from "./Schedule.module.css";
 import { toast } from "react-toastify";
+import io from "socket.io-client";
 
 import DetailScheduleCreate from "./DetailScheduleCreate";
 import ScheduleCard from "./ScheduleCard";
@@ -24,6 +25,11 @@ const DetailSchedule = () => {
 
   const createData = useSelector((state) => state.schedule);
   const mapData = useSelector((state) => state.kakaoMap);
+
+  const socket = io.connect("http://52.78.142.77/", {
+    path: "/socket.io",
+    transports: ["websocket"],
+  });
 
   //DB 가져오기
   useEffect(() => {
@@ -65,7 +71,12 @@ const DetailSchedule = () => {
     <div className={styels.wrap}>
       <div className={styels.wrapLeft}>
         <DetailScheduleCreate data={mapData} />
-        <ScheduleCard data={mapData} postId={id} />
+        <ScheduleCard
+          data={mapData}
+          postId={id}
+          socket={socket}
+          SendOtherPeople={SendOtherPeople}
+        />
       </div>
       <div className={styels.wrapCenter}>
         <ScheduleMap nowDay={mapData.day} data={mapData} />
