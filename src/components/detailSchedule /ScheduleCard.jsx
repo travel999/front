@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //style & elements
 import styels from "./Schedule.module.css";
@@ -11,7 +11,7 @@ import ScheduleInput from "./ScheduleInput";
 import { saveDayData } from "../../redux/modules/ResultSlice";
 import { useNavigate } from "react-router-dom";
 
-const ScheduleCard = ({ data, postId, SendOtherPeople, socket }) => {
+const ScheduleCard = ({ data, postId }) => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const room = useSelector((state) => state?.schedule?.postId);
@@ -75,8 +75,6 @@ const ScheduleCard = ({ data, postId, SendOtherPeople, socket }) => {
                 day={item.day}
                 content={data.content}
                 index={index + 1}
-                SendOtherPeople={SendOtherPeople}
-                socket={socket}
                 value={data.content
                   .filter((item) => item.day === data.day)
                   .map((item) => item.cardMemo)}
@@ -97,4 +95,4 @@ const ScheduleCard = ({ data, postId, SendOtherPeople, socket }) => {
   );
 };
 
-export default memo(ScheduleCard);
+export default ScheduleCard;
