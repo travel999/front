@@ -81,7 +81,7 @@ const ScheduleCard = ({ data, postId, SendOtherPeople, socket }) => {
                 socket={socket}
                 dayMemo={
                   data.content.filter((item) => item.day === data.day)[index]
-                    .cardMemo
+                    ?.cardMemo
                 }
               />
             </div>

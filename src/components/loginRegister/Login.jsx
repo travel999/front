@@ -10,9 +10,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import Background from "../../res/img/background.png"
 import cloud from "../../res/img/cloud.png"
 import cloud1 from "../../res/img/cloud1.png"
+
 const Login = () => {
-  const user = useSelector((state) => state)
-  console.log(user)
+  const nickname = localStorage.getItem("nickname");
+  const image = localStorage.getItem("image");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [login, setLogin] = useState({

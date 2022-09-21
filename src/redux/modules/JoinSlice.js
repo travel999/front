@@ -28,7 +28,8 @@ export const addJoin = createAsyncThunk(
           progress: undefined,
         },
           setTimeout(() => {
-            window.location.replace("/login")
+            // window.location.replace("/login")
+            payload.navigate("/login")
           }, 1000)
         );
       }

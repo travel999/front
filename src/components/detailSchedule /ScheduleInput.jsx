@@ -79,6 +79,7 @@ const ScheduleInput = ({
       dispatch(getConData(conData));
     }
   };
+    console.log(getShowing)
 
   //   setConData({ ...conData, day: day, [index]: sendValue, });
 
