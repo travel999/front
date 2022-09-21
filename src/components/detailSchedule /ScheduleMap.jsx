@@ -9,7 +9,6 @@ const { kakao } = window;
 
 //placeX : lat , placeY : lng >> 기억하기
 const ScheduleMap = ({ nowDay, data }) => {
-  console.log(data.pin);
   const searchInit = {
     keyWord: null,
     pgn: null,
@@ -53,7 +52,7 @@ const ScheduleMap = ({ nowDay, data }) => {
     setPin(data.pin);
     // const moveLatLon = new kakao.maps.LatLng(data.pin[0].lng, data.pin[0].lng);
     // map.panTo(moveLatLon);
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     console.log(pin);

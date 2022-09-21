@@ -87,9 +87,9 @@ export const MapSlice = createSlice({
         });
         // 넣어줌
         newArr.push(action.payload);
-        newArr.sort(
-          (a, b) => a.action.payload.cardNum - b.action.payload.cardNum
-        );
+        // newArr.sort(
+        //   (a, b) => a.action.payload.cardNum - b.action.payload.cardNum
+        // );
         // 씌워주기
         state.content = newArr;
       }

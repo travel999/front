@@ -23,6 +23,13 @@
   position: relative;
   top: 20rem;
 }
+.noDate {
+  position: relative;
+  top: 57px;
+  text-align: center;
+  left: 14px;
+  font-size: 22px;
+}
 
 /* SchduleCreate */
 .createWrap {

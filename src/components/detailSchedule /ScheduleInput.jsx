@@ -15,7 +15,15 @@ const socket = io.connect("http://52.78.142.77/", {
   transports: ["websocket"],
 });
 
-const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => {
+const ScheduleInput = ({
+  room,
+  day,
+  index,
+  content,
+  value,
+  title,
+  dayMemo,
+}) => {
   const [sendValue, setSendValue] = useState("");
   const [getShowing, setGetShowing] = useState(dayMemo);
   const [conData, setConData] = useState({});
@@ -25,9 +33,20 @@ const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => 
 
   const dispatch = useDispatch();
 
+  //최초로 상세보기 들어왔을때 저장된 내용 보여주기
+  // useEffect(() => {
+  //   console.log(dayMemo);
+  //   setGetShowing(dayMemo);
+  // }, [dayMemo]);
+
   useEffect(() => {
-    setGetShowing(dayMemo);
-  }, [dayMemo]);
+    console.log("Geee", getShowing);
+    setConData({
+      day: day,
+      cardNum: `${day}_${index}`,
+      cardMemo: getShowing,
+    });
+  }, [sendValue]);
 
   useEffect(() => {
     socket.emit("join_box", `${id}${day}${index}`);
@@ -35,7 +54,6 @@ const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => 
   }, []);
 
   useEffect(() => {
-
     socket.on("liveText_receive", (data) => {
       console.log("받음:" + data.msg);
       setGetShowing(data.msg);
@@ -57,8 +75,6 @@ const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => 
   }, [sendValue]);
 
   useEffect(() => {
-
-
     socket.on("liveText_receive", (data) => {
       // setGetShowing(data.msg);
       //   setConData({ day: day, memo: getShowing });
@@ -79,15 +95,6 @@ const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => 
     });
   }, [socket]);
 
-
-  useEffect(() => {
-    setConData({
-      day: day,
-      cardNum: `${day}_${index}`,
-      cardMemo: getShowing,
-    });
-  }, [getShowing]);
-
   //함수
 
   const deleteLastText = (key) => {
@@ -106,8 +113,6 @@ const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => 
       SendOtherPeople();
     }
   };
-    console.log(getShowing)
-
   //   setConData({ ...conData, day: day, [index]: sendValue, });
 
   const SendOtherPeople = () => {
