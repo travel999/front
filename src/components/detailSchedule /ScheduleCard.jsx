@@ -52,7 +52,7 @@ const ScheduleCard = ({ data, postId }) => {
       dispatch(saveDayData(result));
     }
   }, [result]);
-  console.log(data);
+  console.log(data.content);
 
   return (
     <div className={styels.worksWrap}>

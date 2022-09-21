@@ -6,13 +6,12 @@ import styled from "styled-components";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { getChatMemory } from "../../redux/modules/chatSlice";
 
-const ChatBox = ({ socket, room, nickname }) => {
+const ChatBox = ({ socket, room, nickname, id }) => {
   const dispatch = useDispatch();
 
   const chatData = useSelector((state) => state.Chat.chatMemory);
   const [messageList, setMessageList] = useState([]);
   const CurrentMessageRef = useRef("");
-  const { id } = useParams();
 
   const OnsendMsg = () => {
     if (CurrentMessageRef.current.value !== "") {
@@ -27,7 +26,7 @@ const ChatBox = ({ socket, room, nickname }) => {
         postId: id || null,
       };
 
-      socket.emit("p", messageData);
+      socket.emit("send_message", messageData);
       setMessageList((list) => [...list, messageData]);
       CurrentMessageRef.current.value = "";
     }

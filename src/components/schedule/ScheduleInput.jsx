@@ -60,7 +60,7 @@ const ScheduleInput = ({ room, day, index, content }) => {
   useEffect(() => {
     setConData({
       day: day,
-      cardNum: `${day}_${index}`,
+      cardNum: `${day}${index}`,
       cardMemo: getShowing,
     });
   }, [getShowing]);
