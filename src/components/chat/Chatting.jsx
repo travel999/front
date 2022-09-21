@@ -33,7 +33,7 @@ const Chatting = ({ id, members }) => {
             setShowChat(!showChat);
           }}
         >
-          _
+          ㅡ
         </HideBtn>
       </HeadText>
       {showChat ? (

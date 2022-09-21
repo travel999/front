@@ -6,8 +6,9 @@ import styles from "./Main.module.css";
 import SearchBar from "./SearchBar";
 import duckfoot from "../../res/img/duck/duckfoot-4.png";
 import duckfootDark from "../../res/img/duck/duckfoot-3.png";
+import duckfootDark2 from "../../res/img/duck/duckfoot-2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRotate } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { RandomPic } from "./RandomPicture";
 
 const ThirdBox = ({
@@ -21,9 +22,10 @@ const ThirdBox = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const searchdata = useSelector((state) => state.main.otherPeopleCards);
-  const recommendData = useSelector((state) => state.main.MyPostCards.data3);
+  const searchdata = useSelector((state) => state.main?.otherPeopleCards);
+  const recommendData = useSelector((state) => state.main.MyPostCards?.data3);
   const searched = useSelector((state) => state.main.searched); // true false
+  console.log(recommendData);
 
   const [showRecommend, setShowrecommend] = useState(true);
   const topRef = useRef(null);
@@ -101,6 +103,37 @@ const ThirdBox = ({
                         </div>
                       )}
                     </div>
+                    <div
+                      className={`${styles.traveldate} ${styles.traveldate2}`}
+                    >
+                      {value.date[0] + "~" + value.date[1]}
+                    </div>
+                    <div>
+                      {value?.day1?.pin ? (
+                        <div style={{ display: "flex", margin: "5px 0px" }}>
+                          <img
+                            src={duckfootDark2}
+                            className={styles.darkduckfoot}
+                            alt="duckfoot"
+                          />
+                          <div className={styles.travelplace}>
+                            {value.day1.pin[0].title}
+                          </div>
+                        </div>
+                      ) : null}
+                      {value?.day2?.pin ? (
+                        <div style={{ display: "flex" }}>
+                          <img
+                            src={duckfootDark2}
+                            className={styles.darkduckfoot}
+                            alt="duckfoot"
+                          />
+                          <div className={styles.travelplace}>
+                            {value.day2.pin[0].title}
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
               );
@@ -156,16 +189,46 @@ const ThirdBox = ({
                         </div>
                       )}
                     </div>
+                    <div
+                      className={`${styles.traveldate} ${styles.traveldate2}`}
+                    >
+                      {value.date[0] + "~" + value.date[1]}
+                    </div>
+                    <div>
+                      {value?.day1?.pin ? (
+                        <div style={{ display: "flex", margin: "5px 0px" }}>
+                          <img
+                            src={duckfootDark2}
+                            className={styles.darkduckfoot}
+                            alt="duckfoot"
+                          />
+                          <div className={styles.travelplace}>
+                            {value.day1.pin[0].title}
+                          </div>
+                        </div>
+                      ) : null}
+                      {value?.day2?.pin ? (
+                        <div style={{ display: "flex" }}>
+                          <img
+                            src={duckfootDark2}
+                            className={styles.darkduckfoot}
+                            alt="duckfoot"
+                          />
+                          <div className={styles.travelplace}>
+                            {value.day2.pin[0].title}
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
               );
             })}
         {load ? (
-          <FontAwesomeIcon icon={faRotate} className={styles.spinner} />
-        ) : // <div className={styles.notexist}>
-        //   더이상 자료가 존재하지 않습니다.
-        // </div>
-        null}
+          <FontAwesomeIcon icon={faSpinner} className={styles.spinner} />
+        ) : (
+          <div className={styles.notexist}>자료가 존재하지 않습니다.</div>
+        )}
         <div className={styles.bottom} ref={obsRef}>
           바닥
         </div>

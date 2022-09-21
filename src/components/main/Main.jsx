@@ -92,7 +92,9 @@ const Main = () => {
         twoSearch();
       }
     }
-    setLoad(false);
+    setTimeout(() => {
+      setLoad(false);
+    }, 1500);
     setPrevent(false);
   }, [page, searchPage, searched]);
 

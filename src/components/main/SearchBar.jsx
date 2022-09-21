@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { firstsearch } from "../../redux/modules/MainSlice";
+import { firstsearch, refreshSearch } from "../../redux/modules/MainSlice";
 import styles from "./Main.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,12 +19,12 @@ const SearchBar = ({
   const dispatch = useDispatch();
 
   const OnRefresh = () => {
-    // dispatch(refreshSearch());
-    // setShowrecommend(true);
-    // input_ref.current.value = "";
-    // onHomeClick();
-    // setSearchPage(1);
-    window.location.reload();
+    dispatch(refreshSearch());
+    setShowrecommend(true);
+    input_ref.current.value = "";
+    onHomeClick();
+    setSearchPage(1);
+    // window.location.reload();
   };
 
   const OnTosearch = (input) => {
