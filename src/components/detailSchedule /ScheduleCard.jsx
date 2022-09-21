@@ -52,6 +52,7 @@ const ScheduleCard = ({ data, postId, SendOtherPeople, socket }) => {
       dispatch(saveDayData(result));
     }
   }, [result]);
+  console.log(data.content);
 
   return (
     <div className={styels.worksWrap}>
@@ -70,7 +71,6 @@ const ScheduleCard = ({ data, postId, SendOtherPeople, socket }) => {
               <div className={styels.workIndex}>
                 {index + 1}.{item.title}
               </div>
-              <div>{}</div>
 
               <ScheduleInput
                 room={room}
@@ -81,7 +81,7 @@ const ScheduleCard = ({ data, postId, SendOtherPeople, socket }) => {
                 socket={socket}
                 dayMemo={
                   data.content.filter((item) => item.day === data.day)[index]
-                    .cardMemo
+                    ?.cardMemo
                 }
               />
             </div>
