@@ -36,7 +36,7 @@ const ScheduleMap = ({ nowDay, data }) => {
       const kakaoMap = new kakao.maps.Map(container, options);
       setMap(kakaoMap);
     }
-  }, []);
+  }, [data]);
 
   //마커 생성을 위한 배열 만들기
   const onMakeMarker = (placeName, placeX, palceY) => {
