@@ -63,22 +63,24 @@ const ScheduleCard = ({ data, postId }) => {
         .map((item, index) => {
           return (
             <div
-              id={`${item.day}-${index}`}
+              id={`${item.day}-${index + 1}`}
               className={styels.work}
               key={index}
             >
               <div className={styels.workIndex}>
                 {index + 1}.{item.title}
               </div>
+              <div>{}</div>
+
               <ScheduleInput
                 room={room}
                 day={item.day}
                 content={data.content}
                 index={index + 1}
-                title={item.title + item.day + item.index}
-                value={data.content
-                  .filter((item) => item.day === data.day)
-                  .map((item) => item.cardMemo)}
+                dayMemo={
+                  data.content.filter((item) => item.day === data.day)[index]
+                    .cardMemo
+                }
               />
             </div>
           );

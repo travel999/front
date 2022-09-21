@@ -32,7 +32,6 @@ const Profile = () => {
   const [passWord, setPassWord] = useState("")
   const [confirm, setConfirm] = useState("");
   const [newImage, setNewImage] = useState("")
-  // const [nick, setNickname] = useState(nickname)
 
   // 비밀번호 
   const [pwMsg, setPwMsg] = useState("");

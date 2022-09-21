@@ -15,10 +15,9 @@ const socket = io.connect("http://52.78.142.77/", {
   transports: ["websocket"],
 });
 
-// room 안들어옴.
-const ScheduleInput = ({ room, day, index, content, value, title }) => {
+const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => {
   const [sendValue, setSendValue] = useState("");
-  const [getShowing, setGetShowing] = useState(value);
+  const [getShowing, setGetShowing] = useState(dayMemo);
   const [conData, setConData] = useState({});
   const inputRef = useRef(null);
   const { id } = useParams();
@@ -27,13 +26,24 @@ const ScheduleInput = ({ room, day, index, content, value, title }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setGetShowing(value);
-  }, [value]);
+    setGetShowing(dayMemo);
+  }, [dayMemo]);
 
   useEffect(() => {
     socket.emit("join_box", `${id}${day}${index}`);
     socket.emit("join_save", `${id}${day}${index}save`);
   }, []);
+
+  useEffect(() => {
+
+    socket.on("liveText_receive", (data) => {
+      console.log("받음:" + data.msg);
+      setGetShowing(data.msg);
+      //   setConData({ day: day, memo: getShowing });
+    });
+  }, [socket]);
+
+  console.log(`${id}${day}${index}`);
 
   useEffect(() => {
     if (sendValue !== "") {
@@ -47,6 +57,8 @@ const ScheduleInput = ({ room, day, index, content, value, title }) => {
   }, [sendValue]);
 
   useEffect(() => {
+
+
     socket.on("liveText_receive", (data) => {
       // setGetShowing(data.msg);
       //   setConData({ day: day, memo: getShowing });
@@ -67,6 +79,17 @@ const ScheduleInput = ({ room, day, index, content, value, title }) => {
     });
   }, [socket]);
 
+
+  useEffect(() => {
+    setConData({
+      day: day,
+      cardNum: `${day}_${index}`,
+      cardMemo: getShowing,
+    });
+  }, [getShowing]);
+
+  //함수
+
   const deleteLastText = (key) => {
     if (key == 8 && getShowing.length == 1) {
       const resetmsg = { msg: "", room: `${id}${day}${index}` };
@@ -83,14 +106,6 @@ const ScheduleInput = ({ room, day, index, content, value, title }) => {
       SendOtherPeople();
     }
   };
-
-  useEffect(() => {
-    setConData({
-      day: day,
-      cardNum: `${day}_${index}`,
-      cardMemo: getShowing,
-    });
-  }, [getShowing]);
 
   //   setConData({ ...conData, day: day, [index]: sendValue, });
 
