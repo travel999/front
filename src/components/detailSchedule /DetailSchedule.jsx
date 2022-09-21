@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -25,6 +25,9 @@ const DetailSchedule = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
+
+  const createData = useSelector((state) => state.schedule);
+  const mapData = useSelector((state) => state.kakaoMap);
 
   //DB 가져오기
   useEffect(() => {

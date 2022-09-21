@@ -121,7 +121,7 @@ const ScheduleInput = ({
       room: `${id}${day}${index}save`,
       author: nickname,
     };
-
+    console.log(data)
     socket.emit("SaveDone_data", data);
     toast.success(`${data.author} 님이 저장하였습니다.`, {
       position: "top-right",
@@ -140,6 +140,7 @@ const ScheduleInput = ({
     <div className={styels.inputWrap}>
       <>
         <p id={`${id}${day}${index}`}></p>
+        {/* <div>{getShowing}</div> */}
         <input
           ref={inputRef}
           key={index}
