@@ -138,7 +138,6 @@ export const mainSlice = createSlice({
     },
 
     [firstsearch.fulfilled]: (state, action) => {
-      // console.log("첫검색이던가 검색한게 달라졌어!!!");
       state.searched = true;
       state.otherPeopleCards = action.payload.data;
     },

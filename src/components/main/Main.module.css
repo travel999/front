@@ -46,11 +46,13 @@
 .duckfoot2 {
   width: 25px;
   height: 25px;
+  padding: 0px 0px 0px 5px;
 }
 
 .duckfoot2:hover {
   width: 30px;
   height: 30px;
+  margin: -2.5px;
 }
 
 .darkfoot {
@@ -179,7 +181,6 @@
 }
 .card:hover {
   box-shadow: 1px 2px 4px rgba(14, 25, 46, 0.2);
-  cursor: pointer;
 }
 
 .img {
@@ -188,6 +189,7 @@
   border-radius: 45px;
   margin: 12px 0px 10px 10px;
   background-color: rgb(207, 239, 207);
+  cursor: pointer;
 }
 
 .openNor {
@@ -275,7 +277,6 @@
 }
 .contentbox:hover {
   box-shadow: 1px 2px 4px rgba(14, 25, 46, 0.2);
-  cursor: pointer;
 }
 
 .bicimg {

@@ -9,11 +9,7 @@ import FirstBox from "./FirstBox";
 import SecondBox from "./SecondBox";
 import ThirdBox from "./ThirdBox";
 import ProfileBox from "./ProfileBox";
-import {
-  firstsearch,
-  getCards,
-  searchText,
-} from "../../redux/modules/MainSlice";
+import { getCards, searchText } from "../../redux/modules/MainSlice";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -120,7 +116,6 @@ const Main = () => {
   // 첫검색과 다를때 실행되야 할것. 한번만 실행되어야 한다.
   const twoSearch = () => {
     dispatch(searchText([input_ref.current.value, searchPage]));
-    // dispatch(firstsearch([input_ref.current.value, searchPage]));
   };
 
   return (

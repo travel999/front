@@ -11,7 +11,7 @@ import ScheduleInput from "./ScheduleInput";
 import { saveDayData } from "../../redux/modules/ResultSlice";
 import { useNavigate } from "react-router-dom";
 
-const ScheduleCard = ({ data, postId }) => {
+const ScheduleCard = ({ data, postId, SendOtherPeople }) => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const room = useSelector((state) => state?.schedule?.postId);
@@ -76,6 +76,7 @@ const ScheduleCard = ({ data, postId }) => {
                 room={room}
                 day={item.day}
                 content={data.content}
+                SendOtherPeople={SendOtherPeople}
                 index={index + 1}
               />
             </div>

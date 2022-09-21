@@ -15,7 +15,7 @@ const ProfileBox = () => {
   return (
     <div style={{ zIndex: "2" }}>
       <div className={`${styles.profile}`}>
-        {frofileImg === "" ? (
+        {frofileImg === "" || frofileImg === undefined ? (
           <img
             src={duckprofile}
             alt="profileImg"
@@ -28,9 +28,15 @@ const ProfileBox = () => {
             alt="profileImg"
           />
         )}
-        <div className={styles.profilename}>
-          <b style={{ fontWeight: "600" }}>{nickname}</b>의 여행
-        </div>
+        {nickname === "" || nickname === undefined ? (
+          <div className={styles.profilename}>
+            <b style={{ fontWeight: "600" }}>오리가치</b>의 여행
+          </div>
+        ) : (
+          <div className={styles.profilename}>
+            <b style={{ fontWeight: "600" }}>{nickname}</b>의 여행
+          </div>
+        )}
         <div className={styles.profiltext}>
           <div className={styles.profilefont}>여행 일정</div>
           <div className={styles.profilefont}>찜한 일정</div>

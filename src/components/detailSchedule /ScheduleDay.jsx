@@ -9,7 +9,7 @@ import ScheduleCard from "./ScheduleCard";
 import ScheduleMap from "./ScheduleMap";
 
 const ScheduleDay = () => {
-  console.log("스케줄데이")
+  console.log("스케줄데이");
   //state
   const [index, setIndex] = useState();
   const [dayNum, setDayNum] = useState([true]);
