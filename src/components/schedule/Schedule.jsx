@@ -40,7 +40,7 @@ const Schedule = () => {
       ) : (
         <div className={styels.wrapCenter}>
           <img src={NoDateDuckImg} alt="등록일정 없음 이미지" />
-          <div>여행갈 날짜를 먼저 지정해주세요!</div>
+          <div className={styels.noDate}>여행갈 날짜를 먼저 지정해주세요!</div>
         </div>
       )}
       <Chatting />

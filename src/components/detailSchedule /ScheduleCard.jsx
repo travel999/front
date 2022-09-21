@@ -49,10 +49,10 @@ const ScheduleCard = ({ data, postId }) => {
       });
       navigation("/main");
     } else {
+      console.log("result", result);
       dispatch(saveDayData(result));
     }
   }, [result]);
-  console.log(data.content);
 
   return (
     <div className={styels.worksWrap}>

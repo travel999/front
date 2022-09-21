@@ -89,8 +89,10 @@ export const MapSlice = createSlice({
         });
         // 넣어줌
         newArr.push(action.payload);
+
         console.log("여기까지는 됌", newArr);
         newArr.sort((a, b) => a.cardNum - b.cardNum);
+
         // 씌워주기
         state.content = newArr;
       }

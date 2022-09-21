@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import styels from "./Schedule.module.css";
 
-import Btn from "../elements/Btn";
-import NoDateDuckImg from "../../res/img/duck/noDateDuck.png";
-import { toast } from "react-toastify";
 
 import DetailScheduleCreate from "./DetailScheduleCreate";
 import ScheduleCard from "./ScheduleCard";
