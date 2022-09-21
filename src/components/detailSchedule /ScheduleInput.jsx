@@ -102,6 +102,7 @@ const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => 
     if (inputRef.current.value == "") {
       alert("일정을 넣어주세요.");
     } else {
+      console.log("conData",conData)
       dispatch(getConData(conData));
       SendOtherPeople();
     }
@@ -116,7 +117,7 @@ const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => 
       room: `${id}${day}${index}save`,
       author: nickname,
     };
-
+    console.log(data)
     socket.emit("SaveDone_data", data);
     toast.success(`${data.author} 님이 저장하였습니다.`, {
       position: "top-right",
@@ -136,6 +137,7 @@ const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => 
     <div className={styels.inputWrap}>
       <>
         <p id={`${id}${day}${index}`}></p>
+        {/* <div>{getShowing}</div> */}
         <input
           ref={inputRef}
           key={index}

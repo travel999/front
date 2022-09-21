@@ -79,7 +79,9 @@ export const MapSlice = createSlice({
       console.log("action", action.payload);
       if (state.content.length == 0) {
         state.content = [...state.content, action.payload];
+        console.log("if안")
       } else {
+        console.log("else안")
         let newArr = [];
         // 겹치는거 빼줌.
         newArr = state.content.filter((item) => {

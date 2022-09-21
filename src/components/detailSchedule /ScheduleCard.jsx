@@ -52,7 +52,7 @@ const ScheduleCard = ({ data, postId }) => {
       dispatch(saveDayData(result));
     }
   }, [result]);
-  console.log(data.content);
+  console.log(data);
 
   return (
     <div className={styels.worksWrap}>
@@ -71,7 +71,6 @@ const ScheduleCard = ({ data, postId }) => {
               <div className={styels.workIndex}>
                 {index + 1}.{item.title}
               </div>
-
               <ScheduleInput
                 room={room}
                 day={item.day}
