@@ -9,7 +9,7 @@ import JoinPage from "../pages/JoinPage";
 import ProfilePage from "../pages/ProfilePage";
 import DetailPage from "../pages/DetailPage";
 import ScheduleDetailPage from "../pages/ScheduleDetailPage";
-import NotFoundPage from "../pages/NotFound";
+import NotFoundPage from "../pages/NotFoundPage";
 
 const Router = () => {
   return (

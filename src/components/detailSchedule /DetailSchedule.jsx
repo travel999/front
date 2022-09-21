@@ -23,9 +23,6 @@ const DetailSchedule = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const createData = useSelector((state) => state.schedule);
-  const mapData = useSelector((state) => state.kakaoMap);
-
   //DB 가져오기
   useEffect(() => {
     if (!tokenValue) {

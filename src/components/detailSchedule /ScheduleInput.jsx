@@ -60,28 +60,28 @@ const ScheduleInput = ({
       //   setConData([...conData, { day: day, index: index, memo: getShowing }]);
       socket.emit("liveText_send", msg);
     }
-  }, [sendValue]);
+  }, [sendValue]); // 의존성 배열에 어떤 값을 넣어야 렌더링 될지.. 애매해서 렌더링 될 때마다 useEffect 실행되게 배열 빼놨슴다. 
 
   // 소켓에서 실시간 데이터를 받아온다.
   useEffect(() => {
     socket.on("liveText_receive", (data) => {
       // setGetShowing(data.msg);
-      //   setConData({ day: day, memo: getShowing });
+        // setConData({ day: day, memo: getShowing });
       $(`#${data.room}`).text(data.msg); // 받아온 id에다가 값을 준다.
     });
 
-    socket.on("SaveGet_data", (data) => {
-      toast.success(`${data.author} 님이 저장하였습니다.`, {
-        position: "top-right",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        limit: 1,
-      });
-    });
+    // socket.on("SaveGet_data", (data) => {
+    //   toast.success(`${data.author} 님이 저장하였습니다.`, {
+    //     position: "top-right",
+    //     autoClose: 1500,
+    //     hideProgressBar: true,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     limit: 1,
+    //   });
+    // });
   }, [socket]);
 
 
@@ -117,7 +117,6 @@ const ScheduleInput = ({
       SendOtherPeople();
     }
   };
-
   //   setConData({ ...conData, day: day, [index]: sendValue, });
 
   // 완료를 누르면 다른사람들에게도 토스트가 간다.
