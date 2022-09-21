@@ -6,7 +6,7 @@ import { RandomSpic } from "./RandomPicture";
 
 const FirstBox = () => {
   const navigate = useNavigate();
-  const myPosts = useSelector((state) => state.main.MyPostCards.data1);
+  const myPosts = useSelector((state) => state.main.MyPostCards?.data1);
 
   const onGoDetailPage = (postId) => {
     navigate(`/schedulDetail/${postId}`);

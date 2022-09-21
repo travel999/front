@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import styels from "./Schedule.module.css";
 
-
 import DetailScheduleCreate from "./DetailScheduleCreate";
 import ScheduleCard from "./ScheduleCard";
 import ScheduleMap from "./ScheduleMap";
@@ -22,9 +21,6 @@ const DetailSchedule = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
-
-  const createData = useSelector((state) => state.schedule);
-  const mapData = useSelector((state) => state.kakaoMap);
 
   //DB 가져오기
   useEffect(() => {

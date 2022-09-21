@@ -36,9 +36,21 @@ export const firstsearch = createAsyncThunk(
 
 export const toOpenPublic = createAsyncThunk(
   "main/open",
-  async (value, thunkAPI) => {
+  async (id, thunkAPI) => {
     try {
-      const res = await instance.patch(`post/public/${value}`);
+      const res = await instance.patch(`post/public/${id}`);
+      return thunkAPI.fulfillWithValue(res.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const DeletePost = createAsyncThunk(
+  "main/delete",
+  async (id, thunkAPI) => {
+    try {
+      const res = await instance.delete(`post/${id}`);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -150,6 +162,14 @@ export const mainSlice = createSlice({
       console.log(current(state), action);
     },
     [toOpenPublic.rejected]: (state, action) => {
+      state.error = true;
+      console.log(action.payload);
+    },
+
+    [DeletePost.fulfilled]: (state, action) => {
+      console.log(current(state), action);
+    },
+    [DeletePost.rejected]: (state, action) => {
       state.error = true;
       console.log(action.payload);
     },

@@ -10,7 +10,7 @@ import { RandomSpic2 } from "./RandomPicture";
 const SecondBox = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const likePosts = useSelector((state) => state.main.MyPostCards.data2);
+  const likePosts = useSelector((state) => state.main.MyPostCards?.data2);
 
   const Onlike = (value) => {
     dispatch(toLike(value));
