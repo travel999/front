@@ -34,20 +34,17 @@ const ScheduleInput = ({
   const dispatch = useDispatch();
   const liveText = $(`#${id}${day}${index}`).text();
 
-
   // 받아온 day마다의 카드에 값을 넣어준다.
   useEffect(() => {
     // setGetShowing(dayMemo);
     $(`#${id}${day}${index}`).text(dayMemo);
   }, [dayMemo]);
 
-
   // socket 방 입장.
   useEffect(() => {
     socket.emit("join_box", `${id}${day}${index}`);
     socket.emit("join_save", `${id}${day}${index}save`);
   }, []);
-
 
   // 실시간으로 바뀌는 값을 소켓에 보낸다.
 
@@ -84,7 +81,6 @@ const ScheduleInput = ({
     // });
   }, [socket]);
 
-
   // 콘데이터가 만들어지는곳
   useEffect(() => {
     setConData({
@@ -93,7 +89,6 @@ const ScheduleInput = ({
       cardMemo: liveText,
     });
   }, [liveText]);
-
 
   //함수
 
@@ -126,7 +121,7 @@ const ScheduleInput = ({
       room: `${id}${day}${index}save`,
       author: nickname,
     };
-    console.log(data)
+    console.log(data);
     socket.emit("SaveDone_data", data);
     toast.success(`${data.author} 님이 저장하였습니다.`, {
       position: "top-right",

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -10,19 +10,23 @@ const Header = () => {
   const removeToken = async () => {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("nickname");
-    localStorage.removeItem("image");
-    localStorage.removeItem("kakaoName")
-    toast.success('로그아웃이 완료되었습니다.', {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    }, setTimeout(() => {
-      navigate("/")
-    }, 1000))
+    localStorage.removeItem("profileImage");
+    localStorage.removeItem("kakaoName");
+    toast.success(
+      "로그아웃이 완료되었습니다.",
+      {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      },
+      setTimeout(() => {
+        navigate("/");
+      }, 1000)
+    );
   };
 
   const OntoHome = () => {
@@ -80,7 +84,6 @@ const Header = () => {
         >
           LOGOUT
         </LogOutBtn>
-
       }
       <ToastContainer />
     </HeaderBox>
@@ -88,6 +91,7 @@ const Header = () => {
 };
 
 const HeaderBox = styled.div`
+  /* background-color: yellow; */
   height: 3vh;
   padding: 2vh 2vw;
   display: flex;
@@ -117,7 +121,7 @@ const LogOutBtn = styled.div`
 
 const Topcontent = styled.div`
   display: flex;
-  margin-left: 35vw;
+  margin: 0px 15vw 0px 48vw;
   z-index: 5;
   div {
     margin-left: 40px;
