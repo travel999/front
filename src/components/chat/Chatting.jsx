@@ -11,8 +11,7 @@ const socket = io.connect("http://52.78.142.77/", {
 
 const Chatting = ({ id }) => {
   const nickname = localStorage.getItem("nickname");
-  // const room = useSelector((state) => state?.schedule?.postId);
-  const room = "123";
+  const room = "roomId" + id;
   const [users, setUsers] = useState(["익명", "익명이", "타타타"]); // 닉네임, 리덕스에서 구해옴, 누구누구 초대했는지 필요.
   const [showChat, setShowChat] = useState(true);
 
@@ -45,6 +44,7 @@ const Chatting = ({ id }) => {
           users={users}
           room={room}
           nickname={nickname}
+          id={id}
         />
       ) : null}
     </BicBox>

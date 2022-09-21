@@ -1,11 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Chatting.module.css";
 import styled from "styled-components";
 import ScrollToBottom from "react-scroll-to-bottom";
+import { getChatMemory } from "../../redux/modules/chatSlice";
 
 const ChatBox = ({ socket, room, nickname }) => {
+  const dispatch = useDispatch();
+
+  const chatData = useSelector((state) => state.Chat.chatMemory);
   const [messageList, setMessageList] = useState([]);
   const CurrentMessageRef = useRef("");
+  const { id } = useParams();
 
   const OnsendMsg = () => {
     if (CurrentMessageRef.current.value !== "") {
@@ -17,9 +24,10 @@ const ChatBox = ({ socket, room, nickname }) => {
           new Date(Date.now()).getHours() +
           ":" +
           new Date(Date.now()).getMinutes(),
+        postId: id || null,
       };
 
-      socket.emit("send_message", messageData);
+      socket.emit("p", messageData);
       setMessageList((list) => [...list, messageData]);
       CurrentMessageRef.current.value = "";
     }
@@ -31,10 +39,29 @@ const ChatBox = ({ socket, room, nickname }) => {
     });
   }, [socket]);
 
+  useEffect(() => {
+    dispatch(getChatMemory(id));
+  }, []);
+
   return (
     <div>
       <div>
         <ScrollToBottom className={styles.scrollBottom}>
+          {chatData?.map((value) => {
+            return (
+              <div>
+                <MegWrap justify={value.author == nickname ? true : false}>
+                  <Message border={value.author == nickname ? true : false}>
+                    <p>{value.message}</p>
+                  </Message>
+                  <Time>{value.time}</Time>
+                </MegWrap>
+                <AuthorWrap author={value.author == nickname ? true : false}>
+                  <Author>{value.author}</Author>
+                </AuthorWrap>
+              </div>
+            );
+          })}
           {messageList?.map((value) => {
             return (
               <div>
@@ -84,7 +111,10 @@ const Message = styled.div`
   margin: 7px;
   border: ${(prop) =>
     prop.border ? "1px solid #ffc51c" : "1px solid #595cff"};
-  border-radius: 15px;
+  border-top-left-radius: ${(prop) => (prop.border ? "0px" : "15px")};
+  border-top-right-radius: ${(prop) => (prop.border ? "15px" : "0px")};
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
   overflow-wrap: break-word;
   word-break: break-word;
 `;

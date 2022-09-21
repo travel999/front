@@ -11,7 +11,7 @@ import ScheduleInput from "./ScheduleInput";
 import { saveDayData } from "../../redux/modules/ResultSlice";
 import { useNavigate } from "react-router-dom";
 
-const ScheduleCard = ({ data, postId, SendOtherPeople, socket }) => {
+const ScheduleCard = ({ data, postId }) => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const room = useSelector((state) => state?.schedule?.postId);
@@ -77,8 +77,6 @@ const ScheduleCard = ({ data, postId, SendOtherPeople, socket }) => {
                 day={item.day}
                 content={data.content}
                 index={index + 1}
-                SendOtherPeople={SendOtherPeople}
-                socket={socket}
                 dayMemo={
                   data.content.filter((item) => item.day === data.day)[index]
                     .cardMemo

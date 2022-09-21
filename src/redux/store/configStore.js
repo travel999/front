@@ -9,6 +9,7 @@ import InviteSlice from "../modules/InviteSlice";
 import MapSlice from "../modules/MapSlice";
 import ResultSlice from "../modules/ResultSlice";
 import DeatilScheduleSlice from "../modules/detailSchedule/DetailScheduleSlice";
+import chatSlice from "../modules/chatSlice";
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     invite: InviteSlice,
     kakaoMap: MapSlice,
     result: ResultSlice,
+    Chat: chatSlice,
   },
   // 배포 환경일때, devTools가 false가 됩니다.
   devTools: process.env.NODE_ENV !== "production",

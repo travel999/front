@@ -1,10 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import {
-  searchText,
-  refreshSearch,
-  firstsearch,
-} from "../../redux/modules/MainSlice";
+import { firstsearch } from "../../redux/modules/MainSlice";
 import styles from "./Main.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,7 +11,6 @@ import {
 const SearchBar = ({
   input_ref,
   setShowrecommend,
-  searchPage,
   setSearchPage,
   beforeSearched,
   setBeforeSearched,
@@ -40,10 +35,6 @@ const SearchBar = ({
       setShowrecommend(false);
       setSearchPage(1);
     }
-  };
-
-  const executeScroll = () => {
-    window.scrollTo({ top: topRef.current.offsetTop, behavior: "smooth" });
   };
 
   const onHomeClick = () => {
