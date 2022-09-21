@@ -9,6 +9,7 @@ const initialState = {
   content: [],
   title: "",
   date: [],
+  members: [],
 };
 //액션
 
@@ -29,6 +30,7 @@ export const getSchedule = createAsyncThunk(
       response.date = res.data.data.date;
       response.__v = res.data.data.__v;
       response._id = res.data.data._id;
+      response.nickname = res.data?.data.nickname;
 
       let dayData;
       const newData = [];
@@ -54,8 +56,6 @@ export const getSchedule = createAsyncThunk(
       });
       response.pin = pin;
       response.con = con;
-      console.log("rest", response);
-
       return thunkAPI.fulfillWithValue(response);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -79,7 +79,9 @@ export const MapSlice = createSlice({
       console.log("action", action.payload);
       if (state.content.length == 0) {
         state.content = [...state.content, action.payload];
+        console.log("if안")
       } else {
+        console.log("else안")
         let newArr = [];
         // 겹치는거 빼줌.
         newArr = state.content.filter((item) => {
@@ -87,9 +89,10 @@ export const MapSlice = createSlice({
         });
         // 넣어줌
         newArr.push(action.payload);
-        // newArr.sort(
-        //   (a, b) => a.action.payload.cardNum - b.action.payload.cardNum
-        // );
+
+        console.log("여기까지는 됌", newArr);
+        newArr.sort((a, b) => a.cardNum - b.cardNum);
+
         // 씌워주기
         state.content = newArr;
       }
@@ -105,6 +108,7 @@ export const MapSlice = createSlice({
       state.content = action.payload.con;
       state.date = action.payload.date;
       state.title = action.payload.title;
+      state.members = action.payload.nickname;
     },
     [getSchedule.rejected]: (state, action) => {
       console.log(current(state), action);

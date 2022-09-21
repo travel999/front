@@ -1,5 +1,5 @@
-import one from "../../res/img/LsizeBackG/back0.jpg";
-import two from "../../res/img/LsizeBackG/back01.jpg";
+import one from "../../res/img/LsizeBackG/back01.jpg";
+import two from "../../res/img/LsizeBackG/back02.jpg";
 import three from "../../res/img/LsizeBackG/back03.jpg";
 import four from "../../res/img/LsizeBackG/back04.jpg";
 import five from "../../res/img/LsizeBackG/back05.jpg";

@@ -71,7 +71,6 @@ const ScheduleCard = ({ data, postId }) => {
               <div className={styels.workIndex}>
                 {index + 1}.{item.title}
               </div>
-
               <ScheduleInput
                 room={room}
                 day={item.day}

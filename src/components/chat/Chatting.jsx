@@ -9,16 +9,14 @@ const socket = io.connect("http://52.78.142.77/", {
   transports: ["websocket"],
 });
 
-const Chatting = ({ id }) => {
+const Chatting = ({ id, members }) => {
   const nickname = localStorage.getItem("nickname");
   const room = "roomId" + id;
-  const [users, setUsers] = useState(["익명", "익명이", "타타타"]); // 닉네임, 리덕스에서 구해옴, 누구누구 초대했는지 필요.
   const [showChat, setShowChat] = useState(true);
 
   // 해당 게시글의 닉네임이 없으면, 채팅에 들어갈수 없음. 여기서 차단해야함.
-  // && users.includes(nickname)
   useEffect(() => {
-    if (nickname !== "" && room !== "") {
+    if (nickname !== "" && room !== "" && members?.includes(nickname)) {
       socket.emit("join_room", room);
       // setShowChat(true);
     } else {
@@ -39,13 +37,7 @@ const Chatting = ({ id }) => {
         </HideBtn>
       </HeadText>
       {showChat ? (
-        <ChatBox
-          socket={socket}
-          users={users}
-          room={room}
-          nickname={nickname}
-          id={id}
-        />
+        <ChatBox socket={socket} room={room} nickname={nickname} id={id} />
       ) : null}
     </BicBox>
   );
