@@ -66,7 +66,7 @@ const Join = () => {
   }
 
   // 유효성 검사
-  const onChangeHandler = (e) => {
+  const onValidation = (e) => {
     const { name, value } = e.target;
 
     // 이메일 유효성
@@ -178,7 +178,7 @@ const Join = () => {
         <img className={styles.backgroundImg} src={logo} alt="" />
         <input
           className={styles.inputNickname}
-          onChange={onChangeHandler}
+          onChange={onValidation}
           type="text"
           id="nickname"
           name="nickname"
@@ -187,7 +187,7 @@ const Join = () => {
         />
         <input
           className={styles.inputEmail}
-          onChange={onChangeHandler}
+          onChange={onValidation}
           type="mail"
           id="email"
           name="email"
@@ -196,7 +196,7 @@ const Join = () => {
         />
         <input
           className={styles.inputPassword}
-          onChange={onChangeHandler}
+          onChange={onValidation}
           type="password"
           name="password"
           id="password"
@@ -206,7 +206,7 @@ const Join = () => {
         />
         <input
           className={styles.inputConfirm}
-          onChange={onChangeHandler}
+          onChange={onValidation}
           type="password"
           name="confirm"
           minLength="6"

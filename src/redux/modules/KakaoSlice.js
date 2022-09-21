@@ -18,8 +18,8 @@ export const kakaoLogin = createAsyncThunk(
             const nickname = response.data.user.userInfo.nickname // 닉네임
             const profileImage = response.data.user.userInfo.profile_image // 프로필 이미지
             localStorage.setItem('jwtToken', token);
-            localStorage.setItem('kakaoName', nickname);
-            localStorage.setItem('profileImage', profileImage);
+            localStorage.setItem('nickname', nickname);
+            localStorage.setItem('image', profileImage);
             if (response) {
                 toast.success('반갑습니다!', {
                     position: "top-center",

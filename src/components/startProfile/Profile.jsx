@@ -45,22 +45,22 @@ const Profile = () => {
   const [preImg, setPreImg] = useState([]);
 
   // 토큰 없거나 카카오 소셜 회원일 경우 마이페이지 이용 불가능
-  const kakaoLogin = localStorage.getItem("kakaoName")
-  useEffect(() => {
-    if (kakaoLogin !== null) {
-      toast.warn(
-        "소셜로그인 회원은 프로필을 사용할 수 없어요!",
-        {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }, navigate("/main"));
-    }
-  }, []);
+  // const kakaoLogin = localStorage.getItem("kakaoName")
+  // useEffect(() => {
+  //   if (kakaoLogin !== null) {
+  //     toast.warn(
+  //       "소셜로그인 회원은 프로필을 사용할 수 없어요!",
+  //       {
+  //         position: "top-center",
+  //         autoClose: 5000,
+  //         hideProgressBar: true,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //       }, navigate("/main"));
+  //   }
+  // }, []);
 
   // 닉네임 불러오기
   useEffect(() => {
@@ -180,6 +180,7 @@ const Profile = () => {
           autoFocus
           autoComplete="new-password"
           placeholder="6자 이상 12자 이하로 입력해주세요."
+          onFocus=""
         />
         <input
           className={styles.inputConfirm}
