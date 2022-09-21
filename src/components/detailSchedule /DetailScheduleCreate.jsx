@@ -31,8 +31,8 @@ const DetailScheduleCreate = ({ data }) => {
     setSartDate(data.date[0]);
     setEndDate(data.date[1]);
     onGetDateDiff();
-  }, [data]);
-
+  });
+  console.log(data)
   const createData = useSelector((state) => state.schedule);
 
   //시작일-종료일-타이틀 지정

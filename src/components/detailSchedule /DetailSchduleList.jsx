@@ -38,7 +38,7 @@ const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
     for (let i = 1; i <= fixDay; i++) {
       dayArr.push(i);
     }
-
+    console.log(dayArr)
     return (
       <div className={styels.dayWrap}>
         <ul>

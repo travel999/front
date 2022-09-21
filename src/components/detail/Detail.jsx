@@ -20,11 +20,8 @@ const Detail = () => {
         {likecard?.map((value) => {
           return (
             <div key={value._id} className={styles.cardbox}>
-              <div className={styles.title}>{value.title}</div>
-              <div className={styles.space}>
-                <span>
-                  <div>{value.date[0] + "~ " + value.date[1]}</div>
-                </span>
+              <div className={styles.daypin}>
+                <div className={styles.title}>{value.title}</div>
                 <span>
                   <img
                     src={duckfoot}
@@ -34,6 +31,46 @@ const Detail = () => {
                   {value.like}
                 </span>
               </div>
+              <div className={styles.space}>
+                <span>
+                  <div>{value.date[0] + "~ " + value.date[1]}</div>
+                </span>
+              </div>
+              <div className={styles.daypin}>
+                <div className={styles.bicspaceleft}>
+                  {value?.day1 ? (
+                    <div className={styles.whatday}>DAY 1</div>
+                  ) : null}
+                  {value?.day1?.pin.map((value) => {
+                    return (
+                      <div key={value.day + value.lat}>
+                        <div
+                          className={`${styles.fontsize} ${styles.spaceleft}`}
+                        >
+                          {value.title}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className={styles.bicspaceleft}>
+                  {value?.day2 ? (
+                    <div className={styles.whatday}>DAY 2</div>
+                  ) : null}
+                  {value?.day2?.pin.map((value) => {
+                    return (
+                      <div key={value.day + value.lat}>
+                        <div
+                          className={`${styles.fontsize} ${styles.spaceleft}`}
+                        >
+                          {value.title}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              {value?.day1 ? <div className={styles.dotdot}>...</div> : null}
             </div>
           );
         })}

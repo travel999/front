@@ -91,6 +91,7 @@ export const MapSlice = createSlice({
 
         // 씌워주기
         state.content = newArr;
+        console.log(newArr)
       }
     },
   },

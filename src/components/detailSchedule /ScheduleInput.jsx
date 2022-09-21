@@ -44,7 +44,7 @@ const ScheduleInput = ({ day, index, dayMemo }) => {
       $(`#${id}${day}${index}`).text(msg.msg);
       socket.emit("liveText_send", msg);
     }
-  }, [sendValue]);
+  }, [sendValue]); // 의존성 배열에 어떤 값을 넣어야 렌더링 될지.. 애매해서 렌더링 될 때마다 useEffect 실행되게 배열 빼놨슴다. 
 
   // 소켓에서 실시간 데이터를 받아온다.
   useEffect(() => {
@@ -97,6 +97,7 @@ const ScheduleInput = ({ day, index, dayMemo }) => {
       SendOtherPeople();
     }
   };
+
 
   // 완료를 누르면 다른사람들에게도 토스트가 간다.
   const SendOtherPeople = () => {
