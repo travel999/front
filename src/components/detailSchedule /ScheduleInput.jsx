@@ -15,17 +15,8 @@ const socket = io.connect("http://52.78.142.77/", {
   transports: ["websocket"],
 });
 
-const ScheduleInput = ({
-  room,
-  day,
-  index,
-  content,
-  value,
-  title,
-  dayMemo,
-}) => {
+const ScheduleInput = ({ day, index, dayMemo }) => {
   const [sendValue, setSendValue] = useState("");
-  const [getShowing, setGetShowing] = useState(dayMemo);
   const [conData, setConData] = useState({});
   const inputRef = useRef(null);
   const { id } = useParams();
@@ -34,13 +25,10 @@ const ScheduleInput = ({
   const dispatch = useDispatch();
   const liveText = $(`#${id}${day}${index}`).text();
 
-
   // 받아온 day마다의 카드에 값을 넣어준다.
   useEffect(() => {
-    // setGetShowing(dayMemo);
     $(`#${id}${day}${index}`).text(dayMemo);
   }, [dayMemo]);
-
 
   // socket 방 입장.
   useEffect(() => {
@@ -48,16 +36,12 @@ const ScheduleInput = ({
     socket.emit("join_save", `${id}${day}${index}save`);
   }, []);
 
-
   // 실시간으로 바뀌는 값을 소켓에 보낸다.
 
   useEffect(() => {
     if (sendValue !== "") {
       const msg = { msg: sendValue, room: `${id}${day}${index}` };
-      // setGetShowing(sendValue);
       $(`#${id}${day}${index}`).text(msg.msg);
-      // slice
-      //   setConData([...conData, { day: day, index: index, memo: getShowing }]);
       socket.emit("liveText_send", msg);
     }
   }, [sendValue]);
@@ -65,25 +49,22 @@ const ScheduleInput = ({
   // 소켓에서 실시간 데이터를 받아온다.
   useEffect(() => {
     socket.on("liveText_receive", (data) => {
-      // setGetShowing(data.msg);
-      //   setConData({ day: day, memo: getShowing });
       $(`#${data.room}`).text(data.msg); // 받아온 id에다가 값을 준다.
     });
 
-    socket.on("SaveGet_data", (data) => {
-      toast.success(`${data.author} 님이 저장하였습니다.`, {
-        position: "top-right",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        limit: 1,
-      });
-    });
+    // socket.on("SaveGet_data", (data) => {
+    //   toast.success(`${data.author} 님이 저장하였습니다.`, {
+    //     position: "top-right",
+    //     autoClose: 1500,
+    //     hideProgressBar: true,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     limit: 1,
+    //   });
+    // });
   }, [socket]);
-
 
   // 콘데이터가 만들어지는곳
   useEffect(() => {
@@ -93,7 +74,6 @@ const ScheduleInput = ({
       cardMemo: liveText,
     });
   }, [liveText]);
-
 
   //함수
 
@@ -118,8 +98,6 @@ const ScheduleInput = ({
     }
   };
 
-  //   setConData({ ...conData, day: day, [index]: sendValue, });
-
   // 완료를 누르면 다른사람들에게도 토스트가 간다.
   const SendOtherPeople = () => {
     // 카드마다 달려있는 버튼이랑 연결 일정저장버튼 누르면 실행됌.
@@ -127,7 +105,7 @@ const ScheduleInput = ({
       room: `${id}${day}${index}save`,
       author: nickname,
     };
-    console.log(data)
+    console.log(data);
     socket.emit("SaveDone_data", data);
     toast.success(`${data.author} 님이 저장하였습니다.`, {
       position: "top-right",
@@ -139,8 +117,6 @@ const ScheduleInput = ({
       progress: undefined,
     });
   };
-
-  // console.log($(`#${id}${day}${index}`).text());
 
   return (
     <div className={styels.inputWrap}>

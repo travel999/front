@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import styels from "./Schedule.module.css";
-import Btn from "../elements/Btn";
 import NoDateDuckImg from "../../res/img/duck/noDateDuck.png";
 
 import ScheduleCreate from "./ScheduleCreate";
@@ -16,8 +15,6 @@ const Schedule = () => {
   const navigate = useNavigate();
   const createData = useSelector((state) => state.schedule);
   const mapData = useSelector((state) => state.kakaoMap);
-
-  console.log("맵데이터", mapData);
 
   useEffect(() => {
     if (!tokenValue) {
@@ -44,7 +41,6 @@ const Schedule = () => {
         </div>
       )}
       <Chatting />
-      {/* <div className={styels.wrapRight}></div> */}
     </div>
   );
 };

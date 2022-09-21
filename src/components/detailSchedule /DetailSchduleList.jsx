@@ -8,8 +8,6 @@ import MemberAddModal from "./modal/MemberAddModal";
 import { getMapData } from "../../redux/modules/MapSlice";
 
 const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
-  console.log("fixDay", fixDay);
-
   //Hook
   const dispatch = useDispatch();
 
