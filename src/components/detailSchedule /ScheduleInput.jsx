@@ -15,17 +15,8 @@ const socket = io.connect("http://52.78.142.77/", {
   transports: ["websocket"],
 });
 
-const ScheduleInput = ({
-  room,
-  day,
-  index,
-  content,
-  value,
-  title,
-  dayMemo,
-}) => {
+const ScheduleInput = ({ day, index, dayMemo }) => {
   const [sendValue, setSendValue] = useState("");
-  const [getShowing, setGetShowing] = useState(dayMemo);
   const [conData, setConData] = useState({});
   const inputRef = useRef(null);
   const { id } = useParams();
@@ -36,7 +27,6 @@ const ScheduleInput = ({
 
   // 받아온 day마다의 카드에 값을 넣어준다.
   useEffect(() => {
-    // setGetShowing(dayMemo);
     $(`#${id}${day}${index}`).text(dayMemo);
   }, [dayMemo]);
 
@@ -51,10 +41,7 @@ const ScheduleInput = ({
   useEffect(() => {
     if (sendValue !== "") {
       const msg = { msg: sendValue, room: `${id}${day}${index}` };
-      // setGetShowing(sendValue);
       $(`#${id}${day}${index}`).text(msg.msg);
-      // slice
-      //   setConData([...conData, { day: day, index: index, memo: getShowing }]);
       socket.emit("liveText_send", msg);
     }
   }, [sendValue]); // 의존성 배열에 어떤 값을 넣어야 렌더링 될지.. 애매해서 렌더링 될 때마다 useEffect 실행되게 배열 빼놨슴다. 
@@ -62,8 +49,6 @@ const ScheduleInput = ({
   // 소켓에서 실시간 데이터를 받아온다.
   useEffect(() => {
     socket.on("liveText_receive", (data) => {
-      // setGetShowing(data.msg);
-        // setConData({ day: day, memo: getShowing });
       $(`#${data.room}`).text(data.msg); // 받아온 id에다가 값을 준다.
     });
 
@@ -112,7 +97,7 @@ const ScheduleInput = ({
       SendOtherPeople();
     }
   };
-  //   setConData({ ...conData, day: day, [index]: sendValue, });
+
 
   // 완료를 누르면 다른사람들에게도 토스트가 간다.
   const SendOtherPeople = () => {
@@ -133,8 +118,6 @@ const ScheduleInput = ({
       progress: undefined,
     });
   };
-
-  // console.log($(`#${id}${day}${index}`).text());
 
   return (
     <div className={styels.inputWrap}>

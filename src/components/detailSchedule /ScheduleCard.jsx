@@ -22,7 +22,7 @@ const ScheduleCard = ({ data, postId }) => {
   //이벤트 함수
 
   //일정의 컨텐츠 저장
-  const onSaveStorage = () => {
+  const onSaveAllSchedule = () => {
     let filterPinData = data.pin.filter((item) => item.day === data.day);
     let filterContentData = data.content.filter(
       (item) => item.day === data.day
@@ -88,7 +88,7 @@ const ScheduleCard = ({ data, postId }) => {
         color="#fffff"
         width="100%"
         backgroundColor="#ffc51c"
-        onClick={onSaveStorage}
+        onClick={onSaveAllSchedule}
       >
         {data.day}일차 전체 일정 저장
       </Btn>

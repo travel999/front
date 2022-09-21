@@ -9,7 +9,6 @@ import ScheduleCard from "./ScheduleCard";
 import ScheduleMap from "./ScheduleMap";
 import Chatting from "../chat/Chatting";
 
-// import { getSchedule } from "../../redux/modules/detailSchedule/DetailScheduleSlice";
 import { getSchedule } from "../../redux/modules/MapSlice";
 
 const DetailSchedule = () => {
@@ -41,7 +40,6 @@ const DetailSchedule = () => {
         <ScheduleMap nowDay={mapData.day} data={mapData} />
       </div>
       <Chatting id={id} members={members} />
-      {/* <div className={styels.wrapRight}></div> */}
     </div>
   );
 };

@@ -79,9 +79,7 @@ export const MapSlice = createSlice({
       console.log("action", action.payload);
       if (state.content.length == 0) {
         state.content = [...state.content, action.payload];
-        console.log("if안")
       } else {
-        console.log("else안")
         let newArr = [];
         // 겹치는거 빼줌.
         newArr = state.content.filter((item) => {
@@ -89,8 +87,6 @@ export const MapSlice = createSlice({
         });
         // 넣어줌
         newArr.push(action.payload);
-
-        console.log("여기까지는 됌", newArr);
         newArr.sort((a, b) => a.cardNum - b.cardNum);
 
         // 씌워주기
