@@ -52,6 +52,7 @@ const ScheduleCard = ({ data, postId }) => {
       dispatch(saveDayData(result));
     }
   }, [result]);
+
   console.log(data.content);
 
   return (

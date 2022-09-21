@@ -114,20 +114,20 @@ const DetailScheduleCreate = ({ data }) => {
         type="date"
         id="startDay"
         name="startDay"
-        value={startDate}
+        value={startDate || " "}
         onChange={onSetData}
       />
       <input
         type="date"
         id="endDay"
         name="endDay"
-        value={endDate}
+        value={endDate || " "}
         onChange={onSetData}
       />
       <input
         type="text"
         name="title"
-        value={title}
+        value={title || " "}
         onChange={onSetData}
         placeholder="일정의 제목을 입력해주세요"
       />

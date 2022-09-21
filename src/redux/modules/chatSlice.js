@@ -25,7 +25,6 @@ export const chatSlice = createSlice({
   extraReducers: {
     [getChatMemory.fulfilled]: (state, action) => {
       const forChatArr = [];
-      console.log(action.payload?.chatRoom?.chatLog);
       if (action.payload?.chatRoom?.chatLog !== undefined) {
         const chatLog = action.payload.chatRoom.chatLog;
         const chatTime = action.payload.chatRoom.chatTime;

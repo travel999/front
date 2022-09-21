@@ -15,7 +15,15 @@ const socket = io.connect("http://52.78.142.77/", {
   transports: ["websocket"],
 });
 
-const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => {
+const ScheduleInput = ({
+  room,
+  day,
+  index,
+  content,
+  value,
+  title,
+  dayMemo,
+}) => {
   const [sendValue, setSendValue] = useState("");
   const [getShowing, setGetShowing] = useState(dayMemo);
   const [conData, setConData] = useState({});
@@ -24,45 +32,38 @@ const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => 
   const nickname = localStorage.getItem("nickname");
 
   const dispatch = useDispatch();
+  const liveText = $(`#${id}${day}${index}`).text();
 
+  // 받아온 day마다의 카드에 값을 넣어준다.
   useEffect(() => {
-    setGetShowing(dayMemo);
+    // setGetShowing(dayMemo);
+    $(`#${id}${day}${index}`).text(dayMemo);
   }, [dayMemo]);
 
+  // socket 방 입장.
   useEffect(() => {
     socket.emit("join_box", `${id}${day}${index}`);
     socket.emit("join_save", `${id}${day}${index}save`);
   }, []);
 
-  useEffect(() => {
-
-    socket.on("liveText_receive", (data) => {
-      console.log("받음:" + data.msg);
-      setGetShowing(data.msg);
-      //   setConData({ day: day, memo: getShowing });
-    });
-  }, [socket]);
-
-  console.log(`${id}${day}${index}`);
-
+  // 실시간으로 바뀌는 값을 소켓에 보낸다.
   useEffect(() => {
     if (sendValue !== "") {
       const msg = { msg: sendValue, room: `${id}${day}${index}` };
-      // setGetShowing(sendValue); ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-      $(`#${id}${day}${index}`).text(msg.msg); //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+      // setGetShowing(sendValue);
+      $(`#${id}${day}${index}`).text(msg.msg);
       // slice
       //   setConData([...conData, { day: day, index: index, memo: getShowing }]);
       socket.emit("liveText_send", msg);
     }
   }, [sendValue]);
 
+  // 소켓에서 실시간 데이터를 받아온다.
   useEffect(() => {
-
-
     socket.on("liveText_receive", (data) => {
       // setGetShowing(data.msg);
       //   setConData({ day: day, memo: getShowing });
-      $(`#${data.room}`).text(data.msg); //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+      $(`#${data.room}`).text(data.msg); // 받아온 id에다가 값을 준다.
     });
 
     socket.on("SaveGet_data", (data) => {
@@ -79,37 +80,41 @@ const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => 
     });
   }, [socket]);
 
-
+  // 콘데이터가 만들어지는곳
   useEffect(() => {
     setConData({
       day: day,
-      cardNum: `${day}_${index}`,
-      cardMemo: getShowing,
+      cardNum: `${day}${index}`,
+      cardMemo: liveText,
     });
-  }, [getShowing]);
+  }, [liveText]);
 
   //함수
 
+  // 마지막 한글자 지워주는 함수
   const deleteLastText = (key) => {
-    if (key == 8 && getShowing.length == 1) {
+    if (key == 8 && liveText.length == 1) {
       const resetmsg = { msg: "", room: `${id}${day}${index}` };
-      setGetShowing("");
+      $(`#${id}${day}${index}`).text(" ");
       socket.emit("liveText_send", resetmsg);
     }
   };
 
+  // 카드 일정 저장
   const saveCard = () => {
     if (inputRef.current.value == "") {
       alert("일정을 넣어주세요.");
     } else {
+      // 콘데이터 전송.
       dispatch(getConData(conData));
+      // 다른사람들에게도 토스트가 간다.
       SendOtherPeople();
     }
   };
-    console.log(getShowing)
 
   //   setConData({ ...conData, day: day, [index]: sendValue, });
 
+  // 완료를 누르면 다른사람들에게도 토스트가 간다.
   const SendOtherPeople = () => {
     // 카드마다 달려있는 버튼이랑 연결 일정저장버튼 누르면 실행됌.
     const data = {
@@ -129,8 +134,7 @@ const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => 
     });
   };
 
-  // const getValue = document.getElementById(`${title}`);
-  // getValue.innerHTML = `<div>${getShowing}</div>`;
+  // console.log($(`#${id}${day}${index}`).text());
 
   return (
     <div className={styels.inputWrap}>

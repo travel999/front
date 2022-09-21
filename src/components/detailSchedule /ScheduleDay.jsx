@@ -80,7 +80,7 @@ const ScheduleDay = () => {
           <input
             type="date"
             name="startDay"
-            value={startDate}
+            value={startDate || " "}
             onChange={onSetDate}
             onBlur={onGetDateDiff}
           />
@@ -88,7 +88,7 @@ const ScheduleDay = () => {
           <input
             type="date"
             name="endDay"
-            value={endDate}
+            value={endDate || " "}
             onChange={onSetDate}
             onBlur={onGetDateDiff}
           />

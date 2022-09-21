@@ -29,11 +29,12 @@ const SearchBar = ({
 
   const OnTosearch = (input) => {
     if (beforeSearched !== input) {
-      onHomeClick();
-      setBeforeSearched(input);
-      dispatch(firstsearch([input, 1]));
-      setShowrecommend(false);
-      setSearchPage(1);
+      // 기존 검색과 다를때
+      onHomeClick(); // 맨위로 스크롤링
+      setBeforeSearched(input); // input값 기록
+      dispatch(firstsearch([input, 1])); // 다시검색
+      setShowrecommend(false); // 검색창으로 변환
+      setSearchPage(1); // 무한스크롤 페이지 1로
     }
   };
 
