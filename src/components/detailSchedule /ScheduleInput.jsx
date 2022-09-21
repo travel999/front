@@ -106,6 +106,7 @@ const ScheduleInput = ({ room, day, index, content, value, title, dayMemo }) => 
       SendOtherPeople();
     }
   };
+    console.log(getShowing)
 
   //   setConData({ ...conData, day: day, [index]: sendValue, });
 

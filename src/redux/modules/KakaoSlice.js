@@ -31,7 +31,8 @@ export const kakaoLogin = createAsyncThunk(
                     progress: undefined,
                 },
                     setTimeout(() => {
-                        window.location.replace("/main")
+                        // window.location.replace("/main")
+                        code.navigate("/main")
                     }, 1000)
                 );
             }

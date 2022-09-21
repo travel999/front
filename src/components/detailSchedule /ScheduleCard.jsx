@@ -79,7 +79,7 @@ const ScheduleCard = ({ data, postId }) => {
                 index={index + 1}
                 dayMemo={
                   data.content.filter((item) => item.day === data.day)[index]
-                    .cardMemo
+                    ?.cardMemo
                 }
               />
             </div>
