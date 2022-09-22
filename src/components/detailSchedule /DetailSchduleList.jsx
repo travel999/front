@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //style & elements
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 import MemberAddModal from "./modal/MemberAddModal";
 import { getMapData } from "../../redux/modules/MapSlice";
+import { toast } from "react-toastify";
 
 const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
   //Hook
@@ -15,9 +16,24 @@ const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
   const [index, setIndex] = useState(defalutDay);
   const [modalOpen, setModalOpen] = useState(false);
 
+  const nickname = localStorage.getItem("nickname");
+  const members = useSelector((state) => state.kakaoMap.members);
+
   //함수
   const openModal = () => {
-    setModalOpen(true);
+    if (members?.includes(nickname)) {
+      setModalOpen(true);
+    } else {
+      toast.success(`권한이 없습니다.`, {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   const closeModal = () => {
@@ -38,7 +54,7 @@ const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
     for (let i = 1; i <= fixDay; i++) {
       dayArr.push(i);
     }
-    console.log(dayArr)
+    console.log(dayArr);
     return (
       <div className={styels.dayWrap}>
         <ul>

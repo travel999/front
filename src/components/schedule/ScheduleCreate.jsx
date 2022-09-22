@@ -26,6 +26,7 @@ const ScheduleCreate = () => {
   const [fixDay, setFixDay] = useState();
 
   const createData = useSelector((state) => state.schedule);
+  console.log(createData);
 
   //시작일-종료일-타이틀 지정
   const onSetData = (e) => {

@@ -10,6 +10,7 @@ const initialState = {
   title: "",
   date: [],
   members: [],
+  openPublic: null,
 };
 //액션
 
@@ -91,7 +92,7 @@ export const MapSlice = createSlice({
 
         // 씌워주기
         state.content = newArr;
-        console.log(newArr)
+        console.log(newArr);
       }
     },
   },
@@ -106,6 +107,7 @@ export const MapSlice = createSlice({
       state.date = action.payload.date;
       state.title = action.payload.title;
       state.members = action.payload.nickname;
+      state.openPublic = action.payload.openPublic;
     },
     [getSchedule.rejected]: (state, action) => {
       console.log(current(state), action);
