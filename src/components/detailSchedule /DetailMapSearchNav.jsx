@@ -7,7 +7,7 @@ import styels from "./Schedule.module.css";
 import { getDayPlaceData } from "../../redux/modules/MapSlice";
 import { useEffect } from "react";
 
-const MapSearchNav = ({
+const DetailMapSearchNav = ({
   visible,
   menu,
   searchPlaces,
@@ -62,7 +62,7 @@ const MapSearchNav = ({
   );
 };
 
-export default MapSearchNav;
+export default DetailMapSearchNav;
 
 const MapSearchDiv = styled.div`
   visibility: visible;

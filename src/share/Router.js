@@ -10,6 +10,7 @@ import ProfilePage from "../pages/ProfilePage";
 import DetailPage from "../pages/DetailPage";
 import ScheduleDetailPage from "../pages/ScheduleDetailPage";
 import NotFoundPage from "../pages/NotFoundPage";
+import MapArea from "../components/detailSchedule /MapArea";
 
 const Router = () => {
   return (

@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import styels from "./Schedule.module.css";
 
 import DetailScheduleCreate from "./DetailScheduleCreate";
-import ScheduleCard from "./ScheduleCard";
-import ScheduleMap from "./ScheduleMap";
+import DetailScheduleCard from "./DetailScheduleCard";
+import DetailScheduleMap from "./DetailScheduleMap";
 import Chatting from "../chat/Chatting";
 
 import { getSchedule } from "../../redux/modules/MapSlice";
@@ -34,10 +34,10 @@ const DetailSchedule = () => {
     <div className={styels.wrap}>
       <div className={styels.wrapLeft}>
         <DetailScheduleCreate data={mapData} />
-        <ScheduleCard data={mapData} postId={id} />
+        <DetailScheduleCard data={mapData} postId={id} />
       </div>
       <div className={styels.wrapCenter}>
-        <ScheduleMap nowDay={mapData.day} data={mapData} />
+        <DetailScheduleMap nowDay={mapData.day} data={mapData} />
       </div>
       <Chatting id={id} members={members} />
     </div>

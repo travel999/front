@@ -15,7 +15,7 @@ const socket = io.connect("http://52.78.142.77/", {
   transports: ["websocket"],
 });
 
-const ScheduleInput = ({ day, index, dayMemo }) => {
+const DetailScheduleInput = ({ day, index, dayMemo }) => {
   const dispatch = useDispatch();
   const members = useSelector((state) => state.kakaoMap.members);
   const [sendValue, setSendValue] = useState("");
@@ -156,4 +156,4 @@ const ScheduleInput = ({ day, index, dayMemo }) => {
   );
 };
 
-export default memo(ScheduleInput);
+export default memo(DetailScheduleInput);

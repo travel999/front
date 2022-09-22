@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -18,6 +18,10 @@ const DetailScheduleCreate = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+  const members = useSelector((state) => state.kakaoMap.members);
+  const createData = useSelector((state) => state.schedule);
+
+  const nickname = localStorage.getItem("nickname");
 
   //State
   const [title, setTitle] = useState(data.title);
@@ -26,17 +30,27 @@ const DetailScheduleCreate = ({ data }) => {
   const [scheduleSave, setScheduleSave] = useState({});
   const [fixDay, setFixDay] = useState();
 
-  const members = useSelector((state) => state.kakaoMap.members);
-  const nickname = localStorage.getItem("nickname");
-
   useEffect(() => {
     setTitle(data.title);
     setSartDate(data.date[0]);
     setEndDate(data.date[1]);
     onGetDateDiff();
   });
-  console.log(data);
-  const createData = useSelector((state) => state.schedule);
+
+  //playload등록시 title 제일 끝에 형태소 안찍히는 오류 수정
+  useEffect(() => {
+    if (createData.postId === "") {
+      if (startDate !== "" && endDate !== "" && title !== "") {
+        dispatch(saveSchedule(scheduleSave));
+        navigate(`/schedulDetail/${id}`);
+      }
+    } else {
+      dispatch(
+        modifySchedule({ data: scheduleSave, postId: createData.postId })
+      );
+      navigate(`/schedulDetail/${id}`);
+    }
+  }, [scheduleSave]);
 
   //시작일-종료일-타이틀 지정
   const onSetData = (e) => {
@@ -108,21 +122,6 @@ const DetailScheduleCreate = ({ data }) => {
       });
     }
   };
-
-  //playload등록시 title 제일 끝에 형태소 안찍히는 오류 수정
-  useEffect(() => {
-    if (createData.postId === "") {
-      if (startDate !== "" && endDate !== "" && title !== "") {
-        dispatch(saveSchedule(scheduleSave));
-        navigate(`/schedulDetail/${id}`);
-      }
-    } else {
-      dispatch(
-        modifySchedule({ data: scheduleSave, postId: createData.postId })
-      );
-      navigate(`/schedulDetail/${id}`);
-    }
-  }, [scheduleSave]);
 
   return (
     <div className={styels.createWrap}>

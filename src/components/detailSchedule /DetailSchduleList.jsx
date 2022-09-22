@@ -11,13 +11,21 @@ import { toast } from "react-toastify";
 const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
   //Hook
   const dispatch = useDispatch();
+  const members = useSelector((state) => state.kakaoMap.members);
+
+  const nickname = localStorage.getItem("nickname");
 
   //state
   const [index, setIndex] = useState(defalutDay);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const nickname = localStorage.getItem("nickname");
-  const members = useSelector((state) => state.kakaoMap.members);
+  useEffect(() => {
+    const dayArr = [];
+    for (let i = 1; i <= fixDay; i++) {
+      dayArr.push(i);
+    }
+    sendMapData(defalutDay, dayArr);
+  }, []);
 
   //함수
   const openModal = () => {
@@ -39,14 +47,6 @@ const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
-
-  useEffect(() => {
-    const dayArr = [];
-    for (let i = 1; i <= fixDay; i++) {
-      dayArr.push(i);
-    }
-    sendMapData(defalutDay, dayArr);
-  }, []);
 
   const showSchedule = () => {
     //반복문 내에서 state를 사용할 수 없으므로 대체함

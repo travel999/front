@@ -7,11 +7,12 @@ import Btn from "../elements/Btn";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import ScheduleInput from "./ScheduleInput";
+import DetailScheduleInput from "./DetailScheduleInput";
 import { saveDayData } from "../../redux/modules/ResultSlice";
 import { useNavigate } from "react-router-dom";
 
-const ScheduleCard = ({ data, postId }) => {
+const DetailScheduleCard = ({ data, postId }) => {
+  //Hook
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const room = useSelector((state) => state?.schedule?.postId);
@@ -19,7 +20,27 @@ const ScheduleCard = ({ data, postId }) => {
   const nickname = localStorage.getItem("nickname");
   //state
   const [result, setResult] = useState([]);
-  //함수
+
+  //저장 버튼 눌렀을때만 dispatch 동작하기
+  useEffect(() => {
+    //마지막 일정 일때, 메인페이지로 돌아가게 처리
+    if (data.allDay.length === data.day) {
+      dispatch(saveDayData(result));
+      toast.success("모든 일정을 저장했습니다.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      navigation("/main");
+    } else {
+      console.log("result", result);
+      dispatch(saveDayData(result));
+    }
+  }, [result]);
 
   //이벤트 함수
 
@@ -48,27 +69,6 @@ const ScheduleCard = ({ data, postId }) => {
     }
   };
 
-  //저장 버튼 눌렀을때만 dispatch 동작하기
-  useEffect(() => {
-    //마지막 일정 일때, 메인페이지로 돌아가게 처리
-    if (data.allDay.length === data.day) {
-      dispatch(saveDayData(result));
-      toast.success("모든 일정을 저장했습니다.", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      navigation("/main");
-    } else {
-      console.log("result", result);
-      dispatch(saveDayData(result));
-    }
-  }, [result]);
-
   return (
     <div className={styels.worksWrap}>
       <h2>
@@ -86,7 +86,7 @@ const ScheduleCard = ({ data, postId }) => {
               <div className={styels.workIndex}>
                 {index + 1}.{item.title}
               </div>
-              <ScheduleInput
+              <DetailScheduleInput
                 room={room}
                 day={item.day}
                 content={data.content}
@@ -112,4 +112,4 @@ const ScheduleCard = ({ data, postId }) => {
   );
 };
 
-export default memo(ScheduleCard);
+export default memo(DetailScheduleCard);
