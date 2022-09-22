@@ -10,7 +10,6 @@ const socket = io.connect("http://52.78.142.77/", {
 });
 
 const Chatting = ({ id, members }) => {
-  console.log(id);
   const nickname = localStorage.getItem("nickname");
   const room = "roomId" + id;
   const [showChat, setShowChat] = useState(true);
