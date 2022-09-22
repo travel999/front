@@ -1,16 +1,18 @@
 import axios from "axios";
 
-console.log("인스턴스");
-
 const instance = axios.create({
-  baseURL: "http://52.78.142.77/",
+  baseURL: process.env.REACT_APP_SURVER,
   // headers: { token: localStorage.getItem("jwtToken") },
+  // Authorization: `Bearer ${localStorage.getItem("jwtToken")}`
   withCredentials: true,
 });
 
 instance.interceptors.request.use(
   function (config) {
-    config.headers = { token : localStorage.getItem("jwtToken") };
+    config.headers["Authorization"] = `Bearer ${localStorage.getItem(
+      "jwtToken"
+    )}`;
+    // config.headers = { bearer : localStorage.getItem("jwtToken") };
     return config;
   },
   function (error) {

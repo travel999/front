@@ -8,10 +8,10 @@ const Header = () => {
   const tokenValue = localStorage.getItem("jwtToken");
 
   const removeToken = async () => {
+    localStorage.removeItem("provider");
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("nickname");
-    localStorage.removeItem("profileImage");
-    localStorage.removeItem("kakaoName");
+    localStorage.removeItem("image");
     toast.success(
       "로그아웃이 완료되었습니다.",
       {
