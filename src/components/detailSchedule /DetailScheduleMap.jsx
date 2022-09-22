@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 
 import DetailMapSearchNav from "./DetailMapSearchNav";
+import PublicDeleteBtn from "../elements/PublicDeleteBtn";
 
 const { kakao } = window;
 
@@ -15,6 +17,7 @@ const DetailScheduleMap = ({ nowDay, data }) => {
     result: [],
   };
   //HooK
+  const { id } = useParams();
 
   //State
   const [map, setMap] = useState(null);
@@ -30,7 +33,7 @@ const DetailScheduleMap = ({ nowDay, data }) => {
       const container = document.getElementById("map");
       const newData = data.pin.filter((item) => item.day === nowDay);
       const options = {
-        center: new kakao.maps.LatLng(newData[0].lat, newData[0].lng),
+        center: new kakao.maps.LatLng(newData[0]?.lat, newData[0]?.lng),
         level: 3,
       };
       const kakaoMap = new kakao.maps.Map(container, options);
@@ -113,6 +116,8 @@ const DetailScheduleMap = ({ nowDay, data }) => {
       >
         =
       </Btn>
+
+      <PublicDeleteBtn postId={id} />
       <DetailMapSearchNav
         visible={visible}
         menu={menu}

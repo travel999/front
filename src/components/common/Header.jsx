@@ -8,10 +8,10 @@ const Header = () => {
   const tokenValue = localStorage.getItem("jwtToken");
 
   const removeToken = async () => {
+    localStorage.removeItem("provider");
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("nickname");
-    localStorage.removeItem("profileImage");
-    localStorage.removeItem("kakaoName");
+    localStorage.removeItem("image");
     toast.success(
       "로그아웃이 완료되었습니다.",
       {
@@ -76,22 +76,23 @@ const Header = () => {
           PROFILE
         </ContentBtn>
       </Topcontent>
-      {
-        <LogOutBtn
-          onClick={() => {
-            removeToken();
-          }}
-        >
-          LOGOUT
-        </LogOutBtn>
-      }
-      <ToastContainer />
+      <div>
+        {
+          <LogOutBtn
+            onClick={() => {
+              removeToken();
+            }}
+          >
+            LOGOUT
+          </LogOutBtn>
+        }
+        <ToastContainer />
+      </div>
     </HeaderBox>
   );
 };
 
 const HeaderBox = styled.div`
-  /* background-color: yellow; */
   height: 3vh;
   padding: 2vh 2vw;
   display: flex;
@@ -103,6 +104,7 @@ const HomBtn = styled.div`
   cursor: pointer;
   margin-left: 10px;
   margin-top: 3px;
+  font-weight: 500;
   :hover {
     border-bottom: 1px solid black;
     margin-bottom: -1px;
@@ -113,6 +115,7 @@ const LogOutBtn = styled.div`
   cursor: pointer;
   margin-right: 10px;
   margin-top: 3px;
+  font-weight: 500;
   :hover {
     border-bottom: 1px solid black;
     margin-bottom: -1px;
@@ -121,8 +124,9 @@ const LogOutBtn = styled.div`
 
 const Topcontent = styled.div`
   display: flex;
-  margin: 0px 15vw 0px 48vw;
+  margin: 0px 0vw 0px 35vw;
   z-index: 5;
+  font-weight: 500;
   div {
     margin-left: 40px;
     margin-top: 3px;

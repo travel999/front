@@ -15,7 +15,7 @@ const Schedule = () => {
   const navigate = useNavigate();
   const createData = useSelector((state) => state.schedule);
   const mapData = useSelector((state) => state.kakaoMap);
-  const members = useSelector((state) => state.kakaoMap?.members);
+  const postid = useSelector((state) => state.schedule.postId);
 
   useEffect(() => {
     if (!tokenValue) {
@@ -41,7 +41,8 @@ const Schedule = () => {
           <div className={styels.noDate}>여행갈 날짜를 먼저 지정해주세요!</div>
         </div>
       )}
-      <Chatting id={createData.postId} members={members} />
+
+      <Chatting id={postid} />
     </div>
   );
 };

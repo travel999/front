@@ -16,10 +16,11 @@ const DetailScheduleCard = ({ data, postId }) => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const room = useSelector((state) => state?.schedule?.postId);
+  const members = useSelector((state) => state.kakaoMap.members);
+  const nickname = localStorage.getItem("nickname");
   //state
   const [result, setResult] = useState([]);
 
-  //useEffect
   //저장 버튼 눌렀을때만 dispatch 동작하기
   useEffect(() => {
     //마지막 일정 일때, 메인페이지로 돌아가게 처리
@@ -41,21 +42,31 @@ const DetailScheduleCard = ({ data, postId }) => {
     }
   }, [result]);
 
-  //함수
-
   //이벤트 함수
 
   //일정의 컨텐츠 저장
   const onSaveAllSchedule = () => {
-    let filterPinData = data.pin.filter((item) => item.day === data.day);
-    let filterContentData = data.content.filter(
-      (item) => item.day === data.day
-    );
-    setResult([
-      `${data.day}`,
-      { pin: filterPinData, con: filterContentData },
-      { postId },
-    ]);
+    if (members?.includes(nickname)) {
+      let filterPinData = data.pin.filter((item) => item.day === data.day);
+      let filterContentData = data.content.filter(
+        (item) => item.day === data.day
+      );
+      setResult([
+        `${data.day}`,
+        { pin: filterPinData, con: filterContentData },
+        { postId },
+      ]);
+    } else {
+      toast.success("권한이 없습니다.", {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   return (

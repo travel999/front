@@ -18,6 +18,10 @@ const DetailScheduleCreate = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+  const members = useSelector((state) => state.kakaoMap.members);
+  const createData = useSelector((state) => state.schedule);
+
+  const nickname = localStorage.getItem("nickname");
 
   //State
   const [title, setTitle] = useState(data.title);
@@ -33,7 +37,20 @@ const DetailScheduleCreate = ({ data }) => {
     onGetDateDiff();
   });
 
-  const createData = useSelector((state) => state.schedule);
+  //playload등록시 title 제일 끝에 형태소 안찍히는 오류 수정
+  useEffect(() => {
+    if (createData.postId === "") {
+      if (startDate !== "" && endDate !== "" && title !== "") {
+        dispatch(saveSchedule(scheduleSave));
+        navigate(`/schedulDetail/${id}`);
+      }
+    } else {
+      dispatch(
+        modifySchedule({ data: scheduleSave, postId: createData.postId })
+      );
+      navigate(`/schedulDetail/${id}`);
+    }
+  }, [scheduleSave]);
 
   //시작일-종료일-타이틀 지정
   const onSetData = (e) => {
@@ -66,25 +83,37 @@ const DetailScheduleCreate = ({ data }) => {
 
   //일정수정하기
   const onModifySchdule = () => {
-    if (startDate === "" && endDate === "" && fixDay === undefined) {
-      toast.error("여행날짜가 비어있어 일정을 수정할 수 없습니다.", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+    if (members.includes(nickname)) {
+      if (startDate === "" && endDate === "" && fixDay === undefined) {
+        toast.error("여행날짜가 비어있어 일정을 수정할 수 없습니다.", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        //payload생성
+        setScheduleSave({
+          title: title,
+          date: [startDate, endDate],
+        });
+        toast.success("일정제목 과 일자가 수정되었습니다.", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     } else {
-      //payload생성
-      setScheduleSave({
-        title: title,
-        date: [startDate, endDate],
-      });
-      toast.success("일정제목 과 일자가 수정되었습니다.", {
+      toast.success("권한이 업습니다.", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 1500,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
@@ -93,20 +122,6 @@ const DetailScheduleCreate = ({ data }) => {
       });
     }
   };
-  //playload등록시 title 제일 끝에 형태소 안찍히는 오류 수정
-  useEffect(() => {
-    if (createData.postId === "") {
-      if (startDate !== "" && endDate !== "" && title !== "") {
-        dispatch(saveSchedule(scheduleSave));
-        navigate(`/schedulDetail/${id}`);
-      }
-    } else {
-      dispatch(
-        modifySchedule({ data: scheduleSave, postId: createData.postId })
-      );
-      navigate(`/schedulDetail/${id}`);
-    }
-  }, [scheduleSave]);
 
   return (
     <div className={styels.createWrap}>
