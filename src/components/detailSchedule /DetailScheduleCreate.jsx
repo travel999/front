@@ -26,13 +26,16 @@ const DetailScheduleCreate = ({ data }) => {
   const [scheduleSave, setScheduleSave] = useState({});
   const [fixDay, setFixDay] = useState();
 
+  const members = useSelector((state) => state.kakaoMap.members);
+  const nickname = localStorage.getItem("nickname");
+
   useEffect(() => {
     setTitle(data.title);
     setSartDate(data.date[0]);
     setEndDate(data.date[1]);
     onGetDateDiff();
   });
-  console.log(data)
+  console.log(data);
   const createData = useSelector((state) => state.schedule);
 
   //시작일-종료일-타이틀 지정
@@ -66,25 +69,37 @@ const DetailScheduleCreate = ({ data }) => {
 
   //일정수정하기
   const onModifySchdule = () => {
-    if (startDate === "" && endDate === "" && fixDay === undefined) {
-      toast.error("여행날짜가 비어있어 일정을 수정할 수 없습니다.", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+    if (members.includes(nickname)) {
+      if (startDate === "" && endDate === "" && fixDay === undefined) {
+        toast.error("여행날짜가 비어있어 일정을 수정할 수 없습니다.", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        //payload생성
+        setScheduleSave({
+          title: title,
+          date: [startDate, endDate],
+        });
+        toast.success("일정제목 과 일자가 수정되었습니다.", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     } else {
-      //payload생성
-      setScheduleSave({
-        title: title,
-        date: [startDate, endDate],
-      });
-      toast.success("일정제목 과 일자가 수정되었습니다.", {
+      toast.success("권한이 업습니다.", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 1500,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
@@ -93,6 +108,7 @@ const DetailScheduleCreate = ({ data }) => {
       });
     }
   };
+
   //playload등록시 title 제일 끝에 형태소 안찍히는 오류 수정
   useEffect(() => {
     if (createData.postId === "") {

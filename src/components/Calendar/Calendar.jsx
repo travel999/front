@@ -5,12 +5,12 @@ import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Calendar = () => {
   const today = {
-    year: new Date().getFullYear(), //오늘 연도
-    month: new Date().getMonth() + 1, //오늘 월
-    date: new Date().getDate(), //오늘 날짜
-    day: new Date().getDay(), //오늘 요일
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
+    date: new Date().getDate(),
+    day: new Date().getDay(),
   };
-  const week = ["일", "월", "화", "수", "목", "금", "토"]; //일주일
+  const week = ["일", "월", "화", "수", "목", "금", "토"];
   const [selectedYear, setSelectedYear] = useState(today.year); //현재 선택된 연도
   const [selectedMonth, setSelectedMonth] = useState(today.month); //현재 선택된 달
   const dateTotalCount = new Date(selectedYear, selectedMonth, 0).getDate(); //선택된 연도, 달의 마지막 날짜

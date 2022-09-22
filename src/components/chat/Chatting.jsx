@@ -1,28 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import io from "socket.io-client";
 import styled from "styled-components";
 import ChatBox from "./ChatBox";
-import { useSelector } from "react-redux";
 
 const socket = io.connect("http://52.78.142.77/", {
   path: "/socket.io",
   transports: ["websocket"],
 });
 
-const Chatting = ({ id, members }) => {
-  const nickname = localStorage.getItem("nickname");
-  const room = "roomId" + id;
-  const [showChat, setShowChat] = useState(true);
+// const socket = io.connect("http://localhost:3001/");
 
-  // 해당 게시글의 닉네임이 없으면, 채팅에 들어갈수 없음. 여기서 차단해야함.
-  useEffect(() => {
-    if (nickname !== "" && room !== "" && members?.includes(nickname)) {
-      socket.emit("join_room", room);
-      // setShowChat(true);
-    } else {
-      // setShowChat(false);
-    }
-  }, []);
+const Chatting = ({ id }) => {
+  const [showChat, setShowChat] = useState(true);
 
   return (
     <BicBox Bsize={showChat}>
@@ -36,9 +25,7 @@ const Chatting = ({ id, members }) => {
           ㅡ
         </HideBtn>
       </HeadText>
-      {showChat ? (
-        <ChatBox socket={socket} room={room} nickname={nickname} id={id} />
-      ) : null}
+      {showChat ? <ChatBox socket={socket} id={id} /> : null}
     </BicBox>
   );
 };

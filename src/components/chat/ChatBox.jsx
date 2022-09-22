@@ -1,36 +1,29 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Chatting.module.css";
 import styled from "styled-components";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { getChatMemory } from "../../redux/modules/chatSlice";
 
-const ChatBox = ({ socket, room, nickname, id }) => {
+const ChatBox = ({ socket, id }) => {
   const dispatch = useDispatch();
 
+  const members = useSelector((state) => state.kakaoMap.members) || [null];
   const chatData = useSelector((state) => state.Chat.chatMemory);
+
   const [messageList, setMessageList] = useState([]);
+
   const CurrentMessageRef = useRef("");
 
-  const OnsendMsg = () => {
-    if (CurrentMessageRef.current.value !== "") {
-      const messageData = {
-        room: room,
-        author: nickname,
-        message: CurrentMessageRef.current.value,
-        time:
-          new Date(Date.now()).getHours() +
-          ":" +
-          new Date(Date.now()).getMinutes(),
-        postId: id || null,
-      };
+  const nickname = localStorage.getItem("nickname");
+  const room = "roomIdIs" + id;
 
-      socket.emit("send_message", messageData);
-      setMessageList((list) => [...list, messageData]);
-      CurrentMessageRef.current.value = "";
+  useEffect(() => {
+    if (nickname !== "" && room !== "" && members?.includes(nickname)) {
+      socket.emit("join_room", room);
+      dispatch(getChatMemory(id));
     }
-  };
+  }, []);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
@@ -38,9 +31,25 @@ const ChatBox = ({ socket, room, nickname, id }) => {
     });
   }, [socket]);
 
-  useEffect(() => {
-    dispatch(getChatMemory(id));
-  }, []);
+  const OnsendMsg = () => {
+    if (members?.includes(nickname)) {
+      if (CurrentMessageRef.current.value !== "") {
+        const messageData = {
+          room: room,
+          author: nickname,
+          message: CurrentMessageRef.current.value,
+          time:
+            new Date(Date.now()).getHours() +
+            ":" +
+            new Date(Date.now()).getMinutes(),
+          postId: id,
+        };
+        socket.emit("send_message", messageData);
+        setMessageList((list) => [...list, messageData]);
+        CurrentMessageRef.current.value = "";
+      }
+    }
+  };
 
   return (
     <div>

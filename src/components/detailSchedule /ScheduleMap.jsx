@@ -5,6 +5,9 @@ import Btn from "../elements/Btn";
 
 import MapSearchNav from "./MapSearchNav";
 import { now } from "jquery";
+import PublicDeleteBtn from "../elements/PublicDeleteBtn";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const { kakao } = window;
 
@@ -16,6 +19,7 @@ const ScheduleMap = ({ nowDay, data }) => {
     result: [],
   };
   //HooK
+  const { id } = useParams();
 
   //State
   const [map, setMap] = useState(null);
@@ -31,7 +35,7 @@ const ScheduleMap = ({ nowDay, data }) => {
       const container = document.getElementById("map");
       const newData = data.pin.filter((item) => item.day === nowDay);
       const options = {
-        center: new kakao.maps.LatLng(newData[0].lat, newData[0].lng),
+        center: new kakao.maps.LatLng(newData[0]?.lat, newData[0]?.lng),
         level: 3,
       };
       const kakaoMap = new kakao.maps.Map(container, options);
@@ -114,6 +118,7 @@ const ScheduleMap = ({ nowDay, data }) => {
       >
         =
       </Btn>
+      <PublicDeleteBtn postId={id} />
       <MapSearchNav
         visible={visible}
         menu={menu}
