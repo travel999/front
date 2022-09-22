@@ -14,9 +14,11 @@ export const kakaoLogin = createAsyncThunk(
     async (code, thunkAPI) => {
         try {
             const response = await instance.get(`kakao/callback?code=${code.code}`, code.code);
+            const provider = response.data.user.provider 
             const token = response.data.user.token // accessToken
             const nickname = response.data.user.userInfo.nickname // 닉네임
             const profileImage = response.data.user.userInfo.profile_image // 프로필 이미지
+            localStorage.setItem('provider', provider);
             localStorage.setItem('jwtToken', token);
             localStorage.setItem('nickname', nickname);
             localStorage.setItem('image', profileImage);
