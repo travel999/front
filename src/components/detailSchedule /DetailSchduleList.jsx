@@ -15,6 +15,15 @@ const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
   const [index, setIndex] = useState(defalutDay);
   const [modalOpen, setModalOpen] = useState(false);
 
+  //useEffect
+  useEffect(() => {
+    const dayArr = [];
+    for (let i = 1; i <= fixDay; i++) {
+      dayArr.push(i);
+    }
+    sendMapData(defalutDay, dayArr);
+  }, []);
+
   //함수
   const openModal = () => {
     setModalOpen(true);
@@ -24,21 +33,13 @@ const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
     setModalOpen(false);
   };
 
-  useEffect(() => {
-    const dayArr = [];
-    for (let i = 1; i <= fixDay; i++) {
-      dayArr.push(i);
-    }
-    sendMapData(defalutDay, dayArr);
-  }, []);
-
   const showSchedule = () => {
     //반복문 내에서 state를 사용할 수 없으므로 대체함
     const dayArr = [];
     for (let i = 1; i <= fixDay; i++) {
       dayArr.push(i);
     }
-    console.log(dayArr)
+    console.log(dayArr);
     return (
       <div className={styels.dayWrap}>
         <ul>
@@ -61,7 +62,6 @@ const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
     dispatch(getMapData({ day: day, allDay: dayArr }));
   };
 
-  //이벤트 함수
   return (
     <div className={styels.dayWrap2}>
       <div className={styels.invite}>

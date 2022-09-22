@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -32,7 +32,7 @@ const DetailScheduleCreate = ({ data }) => {
     setEndDate(data.date[1]);
     onGetDateDiff();
   });
-  console.log(data)
+
   const createData = useSelector((state) => state.schedule);
 
   //시작일-종료일-타이틀 지정

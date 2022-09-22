@@ -3,13 +3,12 @@ import React, { useEffect, useState } from "react";
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 
-import MapSearchNav from "./MapSearchNav";
-import { now } from "jquery";
+import DetailMapSearchNav from "./DetailMapSearchNav";
 
 const { kakao } = window;
 
 //placeX : lat , placeY : lng >> 기억하기
-const ScheduleMap = ({ nowDay, data }) => {
+const DetailScheduleMap = ({ nowDay, data }) => {
   const searchInit = {
     keyWord: null,
     pgn: null,
@@ -114,7 +113,7 @@ const ScheduleMap = ({ nowDay, data }) => {
       >
         =
       </Btn>
-      <MapSearchNav
+      <DetailMapSearchNav
         visible={visible}
         menu={menu}
         onMakeMarker={onMakeMarker}
@@ -128,4 +127,4 @@ const ScheduleMap = ({ nowDay, data }) => {
   );
 };
 
-export default ScheduleMap;
+export default DetailScheduleMap;

@@ -15,7 +15,7 @@ const socket = io.connect("http://52.78.142.77/", {
   transports: ["websocket"],
 });
 
-const ScheduleInput = ({ day, index, dayMemo }) => {
+const DetailScheduleInput = ({ day, index, dayMemo }) => {
   const [sendValue, setSendValue] = useState("");
   const [conData, setConData] = useState({});
   const inputRef = useRef(null);
@@ -44,7 +44,7 @@ const ScheduleInput = ({ day, index, dayMemo }) => {
       $(`#${id}${day}${index}`).text(msg.msg);
       socket.emit("liveText_send", msg);
     }
-  }, [sendValue]); // 의존성 배열에 어떤 값을 넣어야 렌더링 될지.. 애매해서 렌더링 될 때마다 useEffect 실행되게 배열 빼놨슴다. 
+  }, [sendValue]); // 의존성 배열에 어떤 값을 넣어야 렌더링 될지.. 애매해서 렌더링 될 때마다 useEffect 실행되게 배열 빼놨슴다.
 
   // 소켓에서 실시간 데이터를 받아온다.
   useEffect(() => {
@@ -98,7 +98,6 @@ const ScheduleInput = ({ day, index, dayMemo }) => {
     }
   };
 
-
   // 완료를 누르면 다른사람들에게도 토스트가 간다.
   const SendOtherPeople = () => {
     // 카드마다 달려있는 버튼이랑 연결 일정저장버튼 누르면 실행됌.
@@ -141,4 +140,4 @@ const ScheduleInput = ({ day, index, dayMemo }) => {
   );
 };
 
-export default memo(ScheduleInput);
+export default memo(DetailScheduleInput);
