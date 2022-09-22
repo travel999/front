@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCards } from "../../redux/modules/MainSlice";
 import styles from "./Detail.module.css";
 import duckfoot from "../../res/img/duck/duckfoot-1.png";
+import PublicDeleteBtn from "../elements/PublicDeleteBtn";
 
 const Detail = () => {
   const dispatch = useDispatch();
   const likecard = useSelector((state) => state.main.MyPostCards.data2);
-  console.log(likecard);
 
   useEffect(() => {
     dispatch(getCards());
@@ -17,26 +17,27 @@ const Detail = () => {
     <>
       <div className={styles.headtitle}>내가 찜한 여행 일정</div>
       <div className={styles.bicbox}>
-        {likecard?.map((value) => {
-          return (
-            <div key={value._id} className={styles.cardbox}>
-              <div className={styles.daypin}>
-                <div className={styles.title}>{value.title}</div>
-                <span>
-                  <img
-                    src={duckfoot}
-                    alt="duckfoot"
-                    className={styles.duckfoot}
-                  />{" "}
-                  {value.like}
-                </span>
-              </div>
-              <div className={styles.space}>
-                <span>
-                  <div>{value.date[0] + "~ " + value.date[1]}</div>
-                </span>
-              </div>
-              <div className={styles.daypin}>
+        {likecard?.length &&
+          likecard?.map((value) => {
+            return (
+              <div key={value._id} className={styles.cardbox}>
+                <div className={styles.daypin}>
+                  <div className={styles.title}>{value.title}</div>
+                  <span>
+                    <img
+                      src={duckfoot}
+                      alt="duckfoot"
+                      className={styles.duckfoot}
+                    />{" "}
+                    {value.like}
+                  </span>
+                </div>
+                <div className={styles.space}>
+                  <span>
+                    <div>{value.date[0] + "~ " + value.date[1]}</div>
+                  </span>
+                </div>
+                {/* <div className={styles.daypin}>
                 <div className={styles.bicspaceleft}>
                   {value?.day1 ? (
                     <div className={styles.whatday}>DAY 1</div>
@@ -70,10 +71,10 @@ const Detail = () => {
                   })}
                 </div>
               </div>
-              {value?.day1 ? <div className={styles.dotdot}>...</div> : null}
-            </div>
-          );
-        })}
+              {value?.day1 ? <div className={styles.dotdot}>...</div> : null} */}
+              </div>
+            );
+          })}
       </div>
     </>
   );

@@ -25,7 +25,6 @@ const ThirdBox = ({
   const searchdata = useSelector((state) => state.main?.otherPeopleCards);
   const recommendData = useSelector((state) => state.main.MyPostCards?.data3);
   const searched = useSelector((state) => state.main.searched); // true false
-  console.log(recommendData);
 
   const [showRecommend, setShowrecommend] = useState(true);
   const topRef = useRef(null);
@@ -103,14 +102,19 @@ const ThirdBox = ({
                         </div>
                       )}
                     </div>
-                    <div
+                    {/* <div
                       className={`${styles.traveldate} ${styles.traveldate2}`}
                     >
-                      {value.date[0] + "~" + value.date[1]}
-                    </div>
+                      {value.date[0].slice(5) + " ~ " + value.date[1].slice(5)}
+                    </div> */}
                     <div>
                       {value?.day1?.pin ? (
-                        <div style={{ display: "flex", margin: "5px 0px" }}>
+                        <div
+                          style={{
+                            display: "flex",
+                            margin: "7px 0px 7px 0px",
+                          }}
+                        >
                           <img
                             src={duckfootDark2}
                             className={styles.darkduckfoot}
@@ -130,6 +134,18 @@ const ThirdBox = ({
                           />
                           <div className={styles.travelplace}>
                             {value.day2.pin[0].title}
+                          </div>
+                        </div>
+                      ) : null}
+                      {value?.day3?.pin ? (
+                        <div style={{ display: "flex" }}>
+                          <img
+                            src={duckfootDark2}
+                            className={styles.darkduckfoot}
+                            alt="duckfoot"
+                          />
+                          <div className={styles.travelplace}>
+                            {value.day3.pin[0].title}
                           </div>
                         </div>
                       ) : null}
@@ -189,11 +205,11 @@ const ThirdBox = ({
                         </div>
                       )}
                     </div>
-                    <div
+                    {/* <div
                       className={`${styles.traveldate} ${styles.traveldate2}`}
                     >
                       {value.date[0] + "~" + value.date[1]}
-                    </div>
+                    </div> */}
                     <div>
                       {value?.day1?.pin ? (
                         <div style={{ display: "flex", margin: "5px 0px" }}>
@@ -216,6 +232,18 @@ const ThirdBox = ({
                           />
                           <div className={styles.travelplace}>
                             {value.day2.pin[0].title}
+                          </div>
+                        </div>
+                      ) : null}
+                      {value?.day3?.pin ? (
+                        <div style={{ display: "flex" }}>
+                          <img
+                            src={duckfootDark2}
+                            className={styles.darkduckfoot}
+                            alt="duckfoot"
+                          />
+                          <div className={styles.travelplace}>
+                            {value.day3.pin[0].title}
                           </div>
                         </div>
                       ) : null}

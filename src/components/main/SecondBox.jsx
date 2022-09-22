@@ -48,7 +48,7 @@ const SecondBox = () => {
                         onClick={() => {
                           onGoDetailPage(value._id);
                         }}
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: "pointer", fontWeight: "500" }}
                       >
                         {value.title}
                       </div>

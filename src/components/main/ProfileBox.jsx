@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Main.module.css";
 import PostBtn from "./PostBtn";
 import { useSelector } from "react-redux";
@@ -9,13 +9,21 @@ const ProfileBox = () => {
   const mypostNum = postnumber?.data1?.length;
   const likepostNum = postnumber?.data2?.length;
 
-  const nickname = localStorage.getItem("nickname");
+  const getnickname = localStorage.getItem("nickname");
   const frofileImg = localStorage.getItem("image");
+
+  let nickname = "우리가치";
+
+  useEffect(() => {
+    if (getnickname !== undefined) {
+      nickname = getnickname;
+    }
+  }, []);
 
   return (
     <div style={{ zIndex: "2" }}>
       <div className={`${styles.profile}`}>
-        {frofileImg === "" || frofileImg === undefined ? (
+        {frofileImg === undefined ? (
           <img
             src={duckprofile}
             alt="profileImg"
@@ -28,15 +36,9 @@ const ProfileBox = () => {
             alt="profileImg"
           />
         )}
-        {nickname === "" || nickname === undefined ? (
-          <div className={styles.profilename}>
-            <b style={{ fontWeight: "600" }}>오리가치</b>의 여행
-          </div>
-        ) : (
-          <div className={styles.profilename}>
-            <b style={{ fontWeight: "600" }}>{nickname}</b>의 여행
-          </div>
-        )}
+        <div className={styles.profilename}>
+          <b style={{ fontWeight: "600" }}>{nickname}</b>의 여행
+        </div>
         <div className={styles.profiltext}>
           <div className={styles.profilefont}>여행 일정</div>
           <div className={styles.profilefont}>찜한 일정</div>

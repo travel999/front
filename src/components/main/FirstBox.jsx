@@ -27,7 +27,7 @@ const FirstBox = () => {
               >
                 <img className={styles.img} src={RandomSpic(idx)} alt="img" />
                 <div className={styles.content}>
-                  <div>{value.title}</div>
+                  <div style={{ fontWeight: "500" }}>{value.title}</div>
                   <div className={styles.traveldate}>
                     {value.date[0] + "~ " + value.date[1]}
                   </div>

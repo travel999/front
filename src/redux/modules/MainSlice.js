@@ -167,7 +167,7 @@ export const mainSlice = createSlice({
     },
 
     [DeletePost.fulfilled]: (state, action) => {
-      console.log(current(state), action);
+      window.location.replace("/main");
     },
     [DeletePost.rejected]: (state, action) => {
       state.error = true;
