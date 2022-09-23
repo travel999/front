@@ -22,6 +22,3 @@ instance.interceptors.request.use(
 );
 
 export default instance;
-
-// 소켓 : "http://13.209.12.128:3000/"
-// http://52.78.142.77/
