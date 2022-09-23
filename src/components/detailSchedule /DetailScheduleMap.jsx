@@ -7,19 +7,31 @@ import socket from "../../res/socket";
 
 import DetailMapSearchNav from "./DetailMapSearchNav";
 import PublicDeleteBtn from "../elements/PublicDeleteBtn";
+import { useDispatch, useSelector } from "react-redux";
+import { getSchedule } from "../../redux/modules/MapSlice";
 
 const { kakao } = window;
 
 //placeX : lat , placeY : lng >> 기억하기
 const DetailScheduleMap = ({ nowDay, data }) => {
+  const dispatch = useDispatch();
+
   const searchInit = {
     keyWord: null,
     pgn: null,
     result: [],
   };
+
   //HooK
   const { id } = useParams();
   const room = `formark${id}`;
+
+  const existPins = useSelector((state) => state.kakaoMap.pin);
+  console.log(existPins);
+
+  useEffect(() => {
+    dispatch(getSchedule(id));
+  }, []);
 
   //State
   const [map, setMap] = useState(null);
@@ -120,22 +132,30 @@ const DetailScheduleMap = ({ nowDay, data }) => {
     }
   };
 
-  //ㅡsocketㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-  // 방에 입장
+  // socketㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   useEffect(() => {
     socket.emit("join_marker", room);
   }, []);
 
   const sendMarker = (name, x, y) => {
-    socket.emit("send_marker", name, x, y, room);
+    socket.emit("send_marker", name, x, y, nowDay, existPins, room);
   };
 
-  // 받은 마커 표시해주는 부분
   useEffect(() => {
-    socket.on("receive_marker", (name, x, y) => {
-      onMakeMarker(name, x, y);
+    socket.on("receive_marker", (name, x, y, nowDay, pins) => {
+      forsocketMakeMarker(name, x, y, nowDay, pins);
     });
   }, [socket]);
+
+  const forsocketMakeMarker = (placeName, placeX, palceY, nowday2, pins) => {
+    console.log(pins);
+    setPin([
+      ...pins,
+      { day: nowday2, title: placeName, lat: palceY, lng: placeX },
+    ]);
+    const moveLatLon = new kakao.maps.LatLng(palceY, placeX);
+    map.panTo(moveLatLon);
+  };
 
   return (
     <div className={styels.mapWrap}>
