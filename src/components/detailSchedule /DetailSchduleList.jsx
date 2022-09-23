@@ -94,7 +94,7 @@ const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
           open={modalOpen}
           close={closeModal}
           postId={id}
-          header={"이 일정에 맴버 추가하기"}
+          header={"이 일정에 멤버 추가하기"}
         />
       </div>
       {showSchedule()}

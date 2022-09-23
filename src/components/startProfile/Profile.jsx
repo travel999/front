@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import S3upload from "react-aws-s3";
-import { getUser, putImage, putPassword, deleteUser } from "../../redux/modules/ProfileSlice";
+import { getUser, putImage, putPassword } from "../../redux/modules/ProfileSlice";
+import DeleteModal from "./modal/DeleteModal"
 import { ToastContainer, toast } from 'react-toastify';
+import S3upload from "react-aws-s3";
 
 import profilelogo from "../../res/img/profilelogo.png"
 import styles from "./profile.module.css"
@@ -51,6 +52,7 @@ const Profile = () => {
   const [preImg, setPreImg] = useState([]);
   const imgVal = useRef(null);
 
+  const [modalOpen, setModalOpen] = useState(false);
   // 토큰 없거나 카카오 소셜 회원일 경우 마이페이지 이용 불가능
   useEffect(() => {
     if (provider !== null) {
@@ -142,7 +144,7 @@ const Profile = () => {
 
     let file = imgVal.current.files[0];
     let newFileName = imgVal.current.files[0].name;
-    
+
     const s3Client = new S3upload(config);
     s3Client.uploadFile(file, newFileName).then(async (data) => {
       if (data.status === 204) {
@@ -156,20 +158,34 @@ const Profile = () => {
   // 비밀번호 수정
   const onEditProfile = (e) => {
     if (passWord === "" || confirm === "") {
+      return toast.warn(
+        "비밀번호를 확인해주세요!",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
     } else {
       dispatch(putPassword(edit))
     }
   }
-  // 회원 탈퇴
-  const onDeleteProfile = (e) => {
-    dispatch(deleteUser({ navigate, edit }))
-  }
 
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   return (
     <div className={styles.background}>
       <div className={styles.inputWrap}>
         <img className={styles.backgroundImg} src={profilelogo} alt="" />
-        <input value={nickname} type="text" onMouseDown={onEditNickName} className={styles.inputNickname} readOnly />
+        <input value={nickname || ""} type="text" onMouseDown={onEditNickName} className={styles.inputNickname} readOnly />
         <input
           className={styles.inputPassword}
           onChange={onChangeHandler}
@@ -178,6 +194,7 @@ const Profile = () => {
           id="newPassword"
           minLength="6"
           maxLength="12"
+          required
           autoFocus
           autoComplete="new-password"
           placeholder="6자 이상 12자 이하로 입력해주세요."
@@ -222,10 +239,15 @@ const Profile = () => {
           />
         </form>
       </div>
-      <button onClick={onEditProfile} className={styles.button}>저장</button>
-      <ToastContainer />
-      <button onClick={onDeleteProfile} className={styles.button2}>회원 탈퇴</button>
-      <ToastContainer />
+        <button onClick={onEditProfile} className={styles.button}>저장</button>
+        <ToastContainer />
+        <button onClick={openModal} className={styles.button2}>회원 탈퇴</button>
+        <DeleteModal
+          open={modalOpen}
+          close={closeModal}
+          edit={edit}
+          text={"정말로 탈퇴하시겠어요?🥲"}
+        />
     </div>
   );
 };
