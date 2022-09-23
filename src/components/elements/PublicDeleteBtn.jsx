@@ -6,8 +6,8 @@ import { DeletePost, toOpenPublic } from "../../redux/modules/MainSlice";
 
 const PublicDeleteBtn = (props) => {
   const dispatch = useDispatch();
-  const openPublic = useSelector((state) => state.kakaoMap.openPublic);
-  const members = useSelector((state) => state.kakaoMap.members);
+  const openPublic = useSelector((state) => state.kakaoMap?.openPublic);
+  const members = useSelector((state) => state.kakaoMap?.members);
   const nickname = localStorage.getItem("nickname");
 
   const onToPublic = () => {
@@ -15,12 +15,12 @@ const PublicDeleteBtn = (props) => {
       if (openPublic) {
         const getConfirm = window.confirm("게시글 공개를 취소하시겠습니까?");
         if (getConfirm) {
-          dispatch(toOpenPublic(props.postId));
+          dispatch(toOpenPublic({ id: props.postId, value: openPublic }));
         }
       } else {
         const getConfirm = window.confirm("게시글을 공개하시겠습니까?");
         if (getConfirm) {
-          dispatch(toOpenPublic(props.postId));
+          dispatch(toOpenPublic({ id: props.postId, value: openPublic }));
         }
       }
     } else {
@@ -57,8 +57,8 @@ const PublicDeleteBtn = (props) => {
 
   return (
     <>
-      {props.open ? (
-        <>
+      {openPublic ? (
+        <div style={{ float: "right", display: "flex" }}>
           <Pbtn
             public={false}
             onClick={() => {
@@ -74,9 +74,9 @@ const PublicDeleteBtn = (props) => {
           >
             삭제
           </Dbtn>
-        </>
+        </div>
       ) : (
-        <>
+        <div style={{ float: "right", display: "flex" }}>
           <Pbtn
             public={true}
             onClick={() => {
@@ -92,31 +92,35 @@ const PublicDeleteBtn = (props) => {
           >
             삭제
           </Dbtn>
-        </>
+        </div>
       )}
     </>
   );
 };
 
-const Pbtn = styled.button`
-  background-color: white;
-  border: ${(props) => (props.public ? "1px solid blue" : "1px solid green")};
-  color: ${(props) => (props.public ? "blue" : "green")};
-  padding: 1px 1px;
-  font-weight: 600;
+const Pbtn = styled.div`
+  background-color: ${(props) => (props.public ? "#9AB9FF;;" : "#8ae084")};
+  border: ${(props) =>
+    props.public ? "1px solid #a1ff9a;;" : "1px solid #8ae084"};
+  color: ${(props) => (props.public ? "white" : "white")};
+  font-weight: 500;
   margin-right: 20px;
   cursor: pointer;
+  margin-top: 3px;
+  padding: 3px 5px;
+  border-radius: 6px;
 `;
 
-const Dbtn = styled.button`
-  padding: 1px 1px;
-  background-color: #ffffff;
-  color: #ff4343;
-  border: 1px solid #ff4343;
+const Dbtn = styled.div`
+  background-color: #ff6e6e;
+  color: #ffffff;
+  border: 1px solid #ff6e6e;
   margin-right: 20px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
-  border-radius: 0px;
+  margin-top: 3px;
+  padding: 3px 5px;
+  border-radius: 6px;
 `;
 
 export default PublicDeleteBtn;

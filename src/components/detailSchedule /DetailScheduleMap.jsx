@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
+import socket from "../../res/socket";
 
 import DetailMapSearchNav from "./DetailMapSearchNav";
 import PublicDeleteBtn from "../elements/PublicDeleteBtn";
@@ -18,6 +19,7 @@ const DetailScheduleMap = ({ nowDay, data }) => {
   };
   //HooK
   const { id } = useParams();
+  const room = `formark${id}`;
 
   //State
   const [map, setMap] = useState(null);
@@ -118,6 +120,23 @@ const DetailScheduleMap = ({ nowDay, data }) => {
     }
   };
 
+  //ㅡsocketㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  // 방에 입장
+  useEffect(() => {
+    socket.emit("join_marker", room);
+  }, []);
+
+  const sendMarker = (name, x, y) => {
+    socket.emit("send_marker", name, x, y, room);
+  };
+
+  // 받은 마커 표시해주는 부분
+  useEffect(() => {
+    socket.on("receive_marker", (name, x, y) => {
+      onMakeMarker(name, x, y);
+    });
+  }, [socket]);
+
   return (
     <div className={styels.mapWrap}>
       <Btn
@@ -135,6 +154,7 @@ const DetailScheduleMap = ({ nowDay, data }) => {
         visible={visible}
         menu={menu}
         onMakeMarker={onMakeMarker}
+        sendMarker={sendMarker}
         searchPlaces={searchPlaces}
         searchData={search}
         day={nowDay}

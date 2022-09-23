@@ -36,9 +36,12 @@ export const firstsearch = createAsyncThunk(
 
 export const toOpenPublic = createAsyncThunk(
   "main/open",
-  async (id, thunkAPI) => {
+  async (request, thunkAPI) => {
     try {
-      const res = await instance.patch(`post/public/${id}`);
+      console.log(request.id, request.value);
+      const res = await instance.patch(`post/public/${request.id}`, {
+        openPublic: !request.value,
+      });
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -159,7 +162,7 @@ export const mainSlice = createSlice({
     },
 
     [toOpenPublic.fulfilled]: (state, action) => {
-      console.log(current(state), action);
+      window.location.reload();
     },
     [toOpenPublic.rejected]: (state, action) => {
       state.error = true;

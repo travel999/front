@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import DetailScheduleInput from "./DetailScheduleInput";
 import { saveDayData } from "../../redux/modules/ResultSlice";
 import { useNavigate } from "react-router-dom";
+import socket from "../../res/socket";
 
 const DetailScheduleCard = ({ data, postId }) => {
   //Hook
@@ -67,7 +68,36 @@ const DetailScheduleCard = ({ data, postId }) => {
         progress: undefined,
       });
     }
+
+    // socket
+    sendMarker();
   };
+
+  //소켓ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  const dayRoom = `dayDone${postId}`;
+
+  useEffect(() => {
+    socket.emit("join_dayDone", dayRoom);
+  }, []);
+
+  const sendMarker = () => {
+    socket.emit("send_dayDone", dayRoom, "일차");
+  };
+
+  // 받은 마커 표시해주는 부분
+  useEffect(() => {
+    socket.on("receive_dayDone", (person) => {
+      toast.success(`${person}가 저장되었습니다.`, {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    });
+  }, [socket]);
 
   return (
     <div className={styels.worksWrap}>

@@ -12,14 +12,6 @@ const ProfileBox = () => {
   const getnickname = localStorage.getItem("nickname");
   const frofileImg = localStorage.getItem("image");
 
-  let nickname = "우리가치";
-
-  useEffect(() => {
-    if (getnickname !== undefined) {
-      nickname = getnickname;
-    }
-  }, []);
-
   return (
     <div style={{ zIndex: "2" }}>
       <div className={`${styles.profile}`}>
@@ -36,9 +28,15 @@ const ProfileBox = () => {
             alt="profileImg"
           />
         )}
-        <div className={styles.profilename}>
-          <b style={{ fontWeight: "600" }}>{nickname}</b>의 여행
-        </div>
+        {getnickname ? (
+          <div className={styles.profilename}>
+            <b style={{ fontWeight: "600" }}>{getnickname}</b>의 여행
+          </div>
+        ) : (
+          <div className={styles.profilename}>
+            <b style={{ fontWeight: "600" }}>우리가치</b>의 여행
+          </div>
+        )}
         <div className={styles.profiltext}>
           <div className={styles.profilefont}>여행 일정</div>
           <div className={styles.profilefont}>찜한 일정</div>

@@ -112,7 +112,7 @@ const ThirdBox = ({
                         <div
                           style={{
                             display: "flex",
-                            margin: "7px 0px 7px 0px",
+                            margin: "7px 0px 5px 0px",
                           }}
                         >
                           <img
@@ -138,7 +138,7 @@ const ThirdBox = ({
                         </div>
                       ) : null}
                       {value?.day3?.pin ? (
-                        <div style={{ display: "flex" }}>
+                        <div style={{ display: "flex", marginTop: "5px" }}>
                           <img
                             src={duckfootDark2}
                             className={styles.darkduckfoot}

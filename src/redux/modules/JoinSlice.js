@@ -16,7 +16,7 @@ export const addJoin = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       console.log(payload)
-      const response = await instance.post("user/signup", payload);
+      const response = await instance.post("user/signup", payload)
       if (response) {
         toast.success('회원가입을 축하드립니다!', {
           position: "top-center",
@@ -31,9 +31,9 @@ export const addJoin = createAsyncThunk(
             // window.location.replace("/login")
             payload.navigate("/login")
           }, 1000)
-        );
+        )
       }
-      return response;
+      return response.data;
     } catch (error) {
       if (error) {
         toast.error('내용을 확인해 주세요.', {
@@ -44,9 +44,9 @@ export const addJoin = createAsyncThunk(
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          });
+          })
       }
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error)
     }
   }
 );
@@ -59,17 +59,17 @@ export const doubleCheckEmail = createAsyncThunk(
       console.log(payload);
       const response = await instance.post("user/checkEmail", {
         signUp: payload,
-      });
+      })
       if (response) {
-        payload.setEmailMsg(response.data.message);
+        payload.setEmailMsg(response.data.message)
       }
-      return thunkAPI.fulfillWithValue(response.result);
+      return thunkAPI.fulfillWithValue(response.result)
     } catch (error) {
       if (error) {
-        payload.setEmailMsg(error.response.data.message);
+        payload.setEmailMsg(error.response.data.message)
         // 중복된 이메일입니다.
       }
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error)
     }
   }
 );
@@ -84,14 +84,14 @@ export const doubleCheckNickName = createAsyncThunk(
         signUp: payload,
       });
       if (response) {
-        payload.setNickNameMsg(response.data.message);
+        payload.setNickNameMsg(response.data.message)
       }
-      return thunkAPI.fulfillWithValue(response.result);
+      return thunkAPI.fulfillWithValue(response.result)
     } catch (error) {
       if (error) {
-        payload.setNickNameMsg(error.response.data.message);
+        payload.setNickNameMsg(error.response.data.message)
       }
-      return thunkAPI.rejectWithValue("");
+      return thunkAPI.rejectWithValue("")
     }
   }
 );

@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import io from "socket.io-client";
+import socket from "../../res/socket";
 import styled from "styled-components";
 import ChatBox from "./ChatBox";
 
-const socket = io.connect("http://52.78.142.77/", {
-  path: "/socket.io",
-  transports: ["websocket"],
-});
 
 const Chatting = ({ id }) => {
   const [showChat, setShowChat] = useState(true);

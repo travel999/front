@@ -1,6 +1,6 @@
-import React, { useState, useEffect, memo, useRef } from "react";
+import React, { useState, useEffect, memo, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import io from "socket.io-client";
+import socket from "../../res/socket";
 import $ from "jquery";
 
 import styels from "./Schedule.module.css";
@@ -9,11 +9,6 @@ import { toast, ToastContainer } from "react-toastify";
 
 import { getConData } from "../../redux/modules/MapSlice";
 import { useParams } from "react-router-dom";
-
-const socket = io.connect("http://52.78.142.77/", {
-  path: "/socket.io",
-  transports: ["websocket"],
-});
 
 const DetailScheduleInput = ({ day, index, dayMemo }) => {
   const dispatch = useDispatch();
@@ -57,6 +52,9 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
       $(`#${data.room}`).text(data.msg); // 받아온 id에다가 값을 준다.
     });
 
+    socket.on("SaveGet_data", (data) => {
+      console.log(data);
+    });
     // socket.on("SaveGet_data", (data) => {
     //   toast.success(`${data.author} 님이 저장하였습니다.`, {
     //     position: "top-right",
@@ -66,7 +64,6 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
     //     pauseOnHover: true,
     //     draggable: true,
     //     progress: undefined,
-    //     limit: 1,
     //   });
     // });
   }, [socket]);
