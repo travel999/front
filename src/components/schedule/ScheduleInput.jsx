@@ -1,16 +1,11 @@
 import React, { useState, useEffect, memo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import io from "socket.io-client";
+import socket from "../../res/socket";
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
 
 import { getConData } from "../../redux/modules/MapSlice";
-
-const socket = io.connect("http://52.78.142.77/", {
-  path: "/socket.io",
-  transports: ["websocket"],
-});
 
 const ScheduleInput = ({ room, day, index, content }) => {
   const [sendValue, setSendValue] = useState("");
@@ -24,23 +19,22 @@ const ScheduleInput = ({ room, day, index, content }) => {
 
   useEffect(() => {
     socket.on("test_receive", (data) => {
-      console.log("받음:" + data.msg);
       setGetShowing(data.msg);
-      //   setConData({ day: day, memo: getShowing });
     });
   }, []);
 
+  // live부분
   useEffect(() => {
-    if (sendValue !== "") {
-      console.log("보내짐");
+    if (sendValue !== "" || room !== undefined) {
       const msg = { msg: sendValue, room: `${room}${day}${index}` };
       setGetShowing(sendValue);
-      // slice
-      //   setConData([...conData, { day: day, index: index, memo: getShowing }]);
       socket.emit("test_send", msg);
+    } else {
+      alert("메인페이지에");
     }
   }, [sendValue]);
 
+  // live부분
   const deleteLastText = (key) => {
     if (key == 8 && getShowing.length == 1) {
       const resetmsg = { msg: "", room: `${room}${day}${index}` };
@@ -64,8 +58,6 @@ const ScheduleInput = ({ room, day, index, content }) => {
       cardMemo: getShowing,
     });
   }, [getShowing]);
-
-  //   setConData({ ...conData, day: day, [index]: sendValue, });
 
   return (
     <div className={styels.inputWrap}>

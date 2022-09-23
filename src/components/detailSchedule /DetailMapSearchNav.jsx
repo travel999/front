@@ -6,12 +6,15 @@ import styels from "./Schedule.module.css";
 
 import { getDayPlaceData } from "../../redux/modules/MapSlice";
 import { useEffect } from "react";
+import socket from "../../res/socket";
+import { useParams } from "react-router-dom";
 
 const DetailMapSearchNav = ({
   visible,
   menu,
   searchPlaces,
   onMakeMarker,
+  sendMarker,
   searchData,
   day,
   pin,
@@ -21,6 +24,12 @@ const DetailMapSearchNav = ({
   useEffect(() => {
     dispatch(getDayPlaceData(pin));
   }, [pin]);
+
+  // 마커 보내는 부분
+  const OnMakeMarkers = (name, x, y) => {
+    onMakeMarker(name, x, y);
+    sendMarker(name, x, y);
+  };
 
   return (
     <MapSearchDiv>
@@ -49,7 +58,7 @@ const DetailMapSearchNav = ({
                   name={day}
                   value={item.x}
                   // onClick={(e) => console.log(e.target.name)}
-                  onClick={() => onMakeMarker(item.place_name, item.x, item.y)}
+                  onClick={() => OnMakeMarkers(item.place_name, item.x, item.y)}
                 >
                   선택
                 </button>
