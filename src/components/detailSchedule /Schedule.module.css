@@ -112,7 +112,12 @@
 }
 .mapWrap button {
   z-index: 999;
-  /* height: 26px; */
+  line-height: 2rem;
+  color: #ffc51c;
+}
+.mapWrap button:hover {
+  cursor: pointer;
+  color: #4386ff;
 }
 /* ScheduleCard */
 .worksWrap button {

@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 import socket from "../../res/socket";
 
 import DetailMapSearchNav from "./DetailMapSearchNav";
@@ -146,7 +149,7 @@ const DetailScheduleMap = ({ nowDay, data }) => {
           Setvisible((prev) => !prev);
         }}
       >
-        =
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
       </Btn>
 
       <PublicDeleteBtn postId={id} />
