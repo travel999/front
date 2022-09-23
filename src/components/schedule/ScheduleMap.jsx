@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-
-import styels from "./Schedule.module.css";
+import MapSearchNav from "./MapSearchNav";
 import Btn from "../elements/Btn";
+import styles from "./Schedule.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
-import MapSearchNav from "./MapSearchNav";
 
 const { kakao } = window;
 
@@ -16,9 +14,7 @@ const ScheduleMap = ({ nowDay }) => {
     pgn: null,
     result: [],
   };
-  //HooK
 
-  //State
   const [map, setMap] = useState(null);
   const [inputVal, setInputVal] = useState("");
   const [search, setSearch] = useState(searchInit);
@@ -61,7 +57,7 @@ const ScheduleMap = ({ nowDay }) => {
   };
 
   // 키워드 검색을 요청하는 함수입니다
-  const searchPlaces = (e) => {
+  const onSearchPlaces = (e) => {
     if (e.key === "Enter") {
       setInputVal(e.target.value);
       const keyWord = inputVal.trim();
@@ -83,9 +79,9 @@ const ScheduleMap = ({ nowDay }) => {
   };
 
   return (
-    <div className={styels.mapWrap}>
+    <div className={styles.mapWrap}>
       <Btn
-        className={styels.searchBtn}
+        className={styles.searchBtn}
         onClick={() => {
           Setmenu((prev) => !prev);
           Setvisible((prev) => !prev);
@@ -97,7 +93,7 @@ const ScheduleMap = ({ nowDay }) => {
         visible={visible}
         menu={menu}
         onMakeMarker={onMakeMarker}
-        searchPlaces={searchPlaces}
+        onSearchPlaces={onSearchPlaces}
         searchData={search}
         day={nowDay}
         pin={pin}

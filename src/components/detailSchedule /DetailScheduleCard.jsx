@@ -1,26 +1,24 @@
 import React, { useState, useEffect, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//style & elements
-import styels from "./Schedule.module.css";
-import Btn from "../elements/Btn";
-
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import DetailScheduleInput from "./DetailScheduleInput";
-import { saveDayData } from "../../redux/modules/ResultSlice";
 import { useNavigate } from "react-router-dom";
+import { saveDayData } from "../../redux/modules/ResultSlice";
+import DetailScheduleInput from "./DetailScheduleInput";
 import socket from "../../res/socket";
+import Btn from "../elements/Btn";
+import styles from "./Schedule.module.css";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const DetailScheduleCard = ({ data, postId }) => {
-  //Hook
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const room = useSelector((state) => state?.schedule?.postId);
   const members = useSelector((state) => state.kakaoMap.members);
-  const nickname = localStorage.getItem("nickname");
-  //state
+
   const [result, setResult] = useState([]);
+
+  const nickname = localStorage.getItem("nickname");
+  const dayRoom = `dayDone${postId}`; //소켓
 
   //저장 버튼 눌렀을때만 dispatch 동작하기
   useEffect(() => {
@@ -43,7 +41,25 @@ const DetailScheduleCard = ({ data, postId }) => {
     }
   }, [result]);
 
-  //이벤트 함수
+  //소켓 통신용
+  useEffect(() => {
+    socket.emit("join_dayDone", dayRoom);
+  }, []);
+
+  // 받은 마커 표시해주는 부분
+  useEffect(() => {
+    socket.on("receive_dayDone", (person) => {
+      toast.success(`${person}가 저장되었습니다.`, {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    });
+  }, [socket]);
 
   //일정의 컨텐츠 저장
   const onSaveAllSchedule = () => {
@@ -73,36 +89,15 @@ const DetailScheduleCard = ({ data, postId }) => {
     sendMarker();
   };
 
-  //소켓ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-  const dayRoom = `dayDone${postId}`;
-
-  useEffect(() => {
-    socket.emit("join_dayDone", dayRoom);
-  }, []);
-
+  //소켓에 마커보내기
   const sendMarker = () => {
     socket.emit("send_dayDone", dayRoom, "일차");
   };
 
-  // 받은 마커 표시해주는 부분
-  useEffect(() => {
-    socket.on("receive_dayDone", (person) => {
-      toast.success(`${person}가 저장되었습니다.`, {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    });
-  }, [socket]);
-
   return (
-    <div className={styels.worksWrap}>
+    <div className={styles.worksWrap}>
       <h2>
-        우리들의 "<span className={styels.workDay}>{data.day}일차</span>" 일정
+        우리들의 "<span className={styles.workDay}>{data.day}일차</span>" 일정
       </h2>
       {data.pin
         .filter((item) => item.day === data.day)
@@ -110,10 +105,10 @@ const DetailScheduleCard = ({ data, postId }) => {
           return (
             <div
               id={`${item.day}-${index + 1}`}
-              className={styels.work}
+              className={styles.work}
               key={index}
             >
-              <div className={styels.workIndex}>
+              <div className={styles.workIndex}>
                 {index + 1}.{item.title}
               </div>
               <DetailScheduleInput

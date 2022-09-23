@@ -1,13 +1,7 @@
 import React from "react";
-import Footer from "./Footer";
 
 const NoHeaderLayout = ({ children }) => {
-    return (
-        <>
-            {children}
-            <Footer />
-        </>
-    );
+  return <>{children}</>;
 };
 
 export default NoHeaderLayout;

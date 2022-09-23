@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCards } from "../../redux/modules/MainSlice";
-import styles from "./Detail.module.css";
+import styles from "./Liked.module.css";
 import duckfoot from "../../res/img/duck/duckfoot-1.png";
-import PublicDeleteBtn from "../elements/PublicDeleteBtn";
 
-const Detail = () => {
+const Liked = () => {
   const dispatch = useDispatch();
   const likecard = useSelector((state) => state.main.MyPostCards.data2);
 
@@ -80,4 +79,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default Liked;

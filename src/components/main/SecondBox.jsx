@@ -2,17 +2,17 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toLike } from "../../redux/modules/MainSlice";
-import styles from "./Main.module.css";
 import SecondMiniBox from "./SecondMiniBox";
+import styles from "./Main.module.css";
 import duckfoot from "../../res/img/duck/duckfoot-4.png";
-import { RandomSpic2 } from "./RandomPicture";
+import { randomSpic2 } from "../../res/randomPicture";
 
 const SecondBox = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const likePosts = useSelector((state) => state.main.MyPostCards?.data2);
 
-  const Onlike = (value) => {
+  const onlike = (value) => {
     dispatch(toLike(value));
   };
 
@@ -31,7 +31,7 @@ const SecondBox = () => {
                 <div className={styles.card} key={"SB" + value._id}>
                   <img
                     className={styles.img}
-                    src={RandomSpic2(idx)}
+                    src={randomSpic2(idx)}
                     alt="img"
                     onClick={() => {
                       onGoDetailPage(value._id);
@@ -54,7 +54,7 @@ const SecondBox = () => {
                       </div>
                       <div
                         onClick={() => {
-                          Onlike(value._id);
+                          onlike(value._id);
                         }}
                         className={`${styles.cursor} ${styles.heart}`}
                         style={{ marginTop: "-7px" }}

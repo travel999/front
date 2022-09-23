@@ -1,13 +1,13 @@
 import React from "react";
 import Layout from "../components/common/Layout";
-import Detail from "../components/detail/Detail";
+import Liked from "../components/liked/Liked";
 
-const DetailPage = () => {
+const LikedPage = () => {
   return (
     <Layout>
-      <Detail />
+      <Liked />
     </Layout>
   );
 };
 
-export default DetailPage;
+export default LikedPage;

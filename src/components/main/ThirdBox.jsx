@@ -2,18 +2,18 @@ import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toLike } from "../../redux/modules/MainSlice";
-import styles from "./Main.module.css";
 import SearchBar from "./SearchBar";
+import { randomPic } from "../../res/randomPicture";
+import styles from "./Main.module.css";
 import duckfoot from "../../res/img/duck/duckfoot-4.png";
 import duckfootDark from "../../res/img/duck/duckfoot-3.png";
 import duckfootDark2 from "../../res/img/duck/duckfoot-2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { RandomPic } from "./RandomPicture";
 
 const ThirdBox = ({
   obsRef,
-  input_ref,
+  inputRef,
   searchPage,
   setSearchPage,
   load,
@@ -25,11 +25,11 @@ const ThirdBox = ({
   const searchdata = useSelector((state) => state.main?.otherPeopleCards);
   const recommendData = useSelector((state) => state.main.MyPostCards?.data3);
   const searched = useSelector((state) => state.main.searched); // true false
-
-  const [showRecommend, setShowrecommend] = useState(true);
   const topRef = useRef(null);
 
-  const Onlike = (value) => {
+  const [showRecommend, setShowRecommend] = useState(true);
+
+  const onLike = (value) => {
     dispatch(toLike(value));
   };
 
@@ -40,9 +40,9 @@ const ThirdBox = ({
   return (
     <div className={styles.bicbox}>
       <SearchBar
-        input_ref={input_ref}
+        inputRef={inputRef}
         searchPage={searchPage}
-        setShowrecommend={setShowrecommend}
+        setShowrecommend={setShowRecommend}
         setSearchPage={setSearchPage}
         beforeSearched={beforeSearched}
         setBeforeSearched={setBeforeSearched}
@@ -56,7 +56,7 @@ const ThirdBox = ({
               return (
                 <div className={styles.contentbox} key={"TB" + value._id}>
                   <img
-                    src={RandomPic(idx)}
+                    src={randomPic(idx)}
                     className={`${styles.bicimg} ${styles.refresh}`}
                     alt="img"
                     onClick={() => {
@@ -75,7 +75,7 @@ const ThirdBox = ({
                       {value.isLiked ? (
                         <div
                           onClick={() => {
-                            Onlike(value._id);
+                            onLike(value._id);
                           }}
                           className={`${styles.cursor} ${styles.duckfootpart}`}
                         >
@@ -89,7 +89,7 @@ const ThirdBox = ({
                       ) : (
                         <div
                           onClick={() => {
-                            Onlike(value._id);
+                            onLike(value._id);
                           }}
                           className={`${styles.cursor} ${styles.duckfootpart}`}
                         >
@@ -159,7 +159,7 @@ const ThirdBox = ({
               return (
                 <div className={styles.contentbox} key={value._id}>
                   <img
-                    src={RandomPic(idx)}
+                    src={randomPic(idx)}
                     className={`${styles.bicimg} ${styles.refresh}`}
                     alt="img"
                     onClick={() => {
@@ -178,7 +178,7 @@ const ThirdBox = ({
                       {value.isLiked ? (
                         <div
                           onClick={() => {
-                            Onlike(value._id);
+                            onLike(value._id);
                           }}
                           className={`${styles.cursor} ${styles.duckfootpart}`}
                         >
@@ -192,7 +192,7 @@ const ThirdBox = ({
                       ) : (
                         <div
                           onClick={() => {
-                            Onlike(value._id);
+                            onLike(value._id);
                           }}
                           className={`${styles.cursor} ${styles.duckfootpart}`}
                         >

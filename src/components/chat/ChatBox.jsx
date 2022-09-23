@@ -1,20 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { deleteMemory, getChatMemory } from "../../redux/modules/ChatSlice";
 import styles from "./Chatting.module.css";
 import styled from "styled-components";
 import ScrollToBottom from "react-scroll-to-bottom";
-import { deleteMemory, getChatMemory } from "../../redux/modules/chatSlice";
-import { useParams } from "react-router-dom";
 
 const ChatBox = ({ socket, id }) => {
   const dispatch = useDispatch();
-
   const members = useSelector((state) => state.kakaoMap.members) || [null];
-  const chatData = useSelector((state) => state.Chat.chatMemory);
-
+  const chatData = useSelector((state) => state.chat.chatMemory);
   const address = useParams();
-  const CurrentMessageRef = useRef("");
+  const currentMessageRef = useRef("");
+
   const [messageList, setMessageList] = useState([]);
+
   const nickname = localStorage.getItem("nickname");
   const room = "roomIdIs" + id;
 
@@ -34,13 +34,13 @@ const ChatBox = ({ socket, id }) => {
     });
   }, [socket]);
 
-  const OnsendMsg = () => {
+  const onSendMsg = () => {
     if (members?.includes(nickname)) {
-      if (CurrentMessageRef.current.value !== "") {
+      if (currentMessageRef.current.value !== "") {
         const messageData = {
           room: room,
           author: nickname,
-          message: CurrentMessageRef.current.value,
+          message: currentMessageRef.current.value,
           time:
             new Date(Date.now()).getHours() +
             ":" +
@@ -49,7 +49,7 @@ const ChatBox = ({ socket, id }) => {
         };
         socket.emit("send_message", messageData);
         setMessageList((list) => [...list, messageData]);
-        CurrentMessageRef.current.value = "";
+        currentMessageRef.current.value = "";
       }
     }
   };
@@ -92,12 +92,12 @@ const ChatBox = ({ socket, id }) => {
         <ChatInput>
           <InputBox
             type="text"
-            ref={CurrentMessageRef}
+            ref={currentMessageRef}
             onKeyPress={(e) => {
-              if (e.key === "Enter") OnsendMsg();
+              if (e.key === "Enter") onSendMsg();
             }}
           />
-          <PushBtn onClick={OnsendMsg}>전송</PushBtn>
+          <PushBtn onClick={onSendMsg}>전송</PushBtn>
         </ChatInput>
       </div>
     </div>

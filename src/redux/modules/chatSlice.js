@@ -1,6 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
 
+const initialState = {
+  chatMemory: [],
+  error: false,
+};
+
 export const getChatMemory = createAsyncThunk(
   "chat/getMemory",
   async (id, thunkAPI) => {
@@ -14,13 +19,9 @@ export const getChatMemory = createAsyncThunk(
   }
 );
 
-const initialState = {
-  chatMemory: [],
-  error: false,
-};
-
-export const chatSlice = createSlice({
-  name: "chatSlice",
+// 리듀서
+export const ChatSlice = createSlice({
+  name: "ChatSlice",
   initialState,
   reducers: {
     deleteMemory(state, action) {
@@ -59,5 +60,5 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { deleteMemory } = chatSlice.actions;
-export default chatSlice.reducer;
+export const { deleteMemory } = ChatSlice.actions;
+export default ChatSlice.reducer;

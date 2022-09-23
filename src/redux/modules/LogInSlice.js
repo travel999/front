@@ -13,11 +13,9 @@ export const addLogin = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await instance.post("user/login", payload.login);
-      console.log(response);
       const token = response.data.token;
       const nickname = response.data.nickname;
       const image = response.data.image;
-      console.log(nickname)
       localStorage.setItem("jwtToken", token);
       localStorage.setItem("nickname", nickname);
       localStorage.setItem("image", image);
@@ -35,7 +33,7 @@ export const addLogin = createAsyncThunk(
           },
           setTimeout(() => {
             // window.location.replace("/main");
-            payload.navigate("/main")
+            payload.navigate("/main");
           }, 1000)
         );
       }

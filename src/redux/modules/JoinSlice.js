@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const initialState = {
   email: "",
@@ -15,28 +15,28 @@ export const addJoin = createAsyncThunk(
   "signUpSlice/addJoin",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload)
-      const response = await instance.post("user/signup", payload)
+      const response = await instance.post("user/signup", payload);
       if (response) {
-        toast.success('회원가입을 축하드립니다!', {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        },
+        toast.success(
+          "회원가입을 축하드립니다!",
+          {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          },
           setTimeout(() => {
-            // window.location.replace("/login")
-            payload.navigate("/login")
+            payload.navigate("/login");
           }, 1000)
-        )
+        );
       }
       return response.data;
     } catch (error) {
       if (error) {
-        toast.error('내용을 확인해 주세요.', {
+        toast.error("내용을 확인해 주세요.", {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: true,
@@ -44,9 +44,9 @@ export const addJoin = createAsyncThunk(
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          })
+        });
       }
-      return thunkAPI.rejectWithValue(error)
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -56,20 +56,19 @@ export const doubleCheckEmail = createAsyncThunk(
   "signUpSlice/doubleCheckEmail",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload);
       const response = await instance.post("user/checkEmail", {
         signUp: payload,
-      })
+      });
       if (response) {
-        payload.setEmailMsg(response.data.message)
+        payload.setEmailMsg(response.data.message);
       }
-      return thunkAPI.fulfillWithValue(response.result)
+      return thunkAPI.fulfillWithValue(response.result);
     } catch (error) {
       if (error) {
-        payload.setEmailMsg(error.response.data.message)
+        payload.setEmailMsg(error.response.data.message);
         // 중복된 이메일입니다.
       }
-      return thunkAPI.rejectWithValue(error)
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -79,19 +78,18 @@ export const doubleCheckNickName = createAsyncThunk(
   "signUpSlice/doubleCheckNickName",
   async (payload, thunkAPI) => {
     try {
-      // console.log(payload);
       const response = await instance.post("user/checkNickname", {
         signUp: payload,
       });
       if (response) {
-        payload.setNickNameMsg(response.data.message)
+        payload.setNickNameMsg(response.data.message);
       }
-      return thunkAPI.fulfillWithValue(response.result)
+      return thunkAPI.fulfillWithValue(response.result);
     } catch (error) {
       if (error) {
-        payload.setNickNameMsg(error.response.data.message)
+        payload.setNickNameMsg(error.response.data.message);
       }
-      return thunkAPI.rejectWithValue("")
+      return thunkAPI.rejectWithValue("");
     }
   }
 );

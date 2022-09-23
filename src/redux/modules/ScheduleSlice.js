@@ -7,11 +7,7 @@ const initialState = {
   date: [],
   postId: "",
 };
-//액션
 
-//액션 함수
-
-//청크
 export const saveSchedule = createAsyncThunk(
   "schedule/saveSchedule",
   async (payload, thunkAPI) => {
@@ -38,7 +34,7 @@ export const modifySchedule = createAsyncThunk(
   }
 );
 
-//슬라이스
+//리듀서
 export const ScheduleSlice = createSlice({
   name: "schedule",
   initialState,

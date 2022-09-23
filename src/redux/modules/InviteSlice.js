@@ -6,9 +6,6 @@ const initialState = {
   result: "",
   message: "",
 };
-//액션
-
-//액션 함수
 
 //청크
 export const saveNickName = createAsyncThunk(
@@ -29,7 +26,7 @@ export const saveNickName = createAsyncThunk(
   }
 );
 
-//슬라이스
+// 리듀서
 export const InviteSlice = createSlice({
   name: "invite",
   initialState,

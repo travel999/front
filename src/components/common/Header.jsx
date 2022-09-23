@@ -63,7 +63,7 @@ const Header = () => {
         </ContentBtn>
         <ContentBtn
           onClick={() => {
-            navigate("/detail");
+            navigate("/liked");
           }}
         >
           LIKE

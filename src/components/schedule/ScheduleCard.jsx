@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//style & elements
-import styels from "./Schedule.module.css";
-import Btn from "../elements/Btn";
-
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import ScheduleInput from "./ScheduleInput";
 import { saveDayData } from "../../redux/modules/ResultSlice";
-import { useNavigate } from "react-router-dom";
+import ScheduleInput from "./ScheduleInput";
+import Btn from "../elements/Btn";
+import styles from "./Schedule.module.css";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const ScheduleCard = ({ data, postId, SendOtherPeople }) => {
   const dispatch = useDispatch();
-  const navigation = useNavigate();
   const room = useSelector((state) => state?.schedule?.postId);
-  //state
+
   const [result, setResult] = useState([]);
 
   //저장 버튼 눌렀을때만 dispatch 동작하기.
@@ -40,8 +35,6 @@ const ScheduleCard = ({ data, postId, SendOtherPeople }) => {
     }
   }, [result]);
 
-  //이벤트 함수
-
   //일정의 컨텐츠 저장.
   const onSaveAllSchedule = () => {
     let filterPinData = data.pin.filter((item) => item.day === data.day);
@@ -56,9 +49,9 @@ const ScheduleCard = ({ data, postId, SendOtherPeople }) => {
   };
 
   return (
-    <div className={styels.worksWrap}>
+    <div className={styles.worksWrap}>
       <h2>
-        우리들의 "<span className={styels.workDay}>{data.day}일차</span>" 일정
+        우리들의 "<span className={styles.workDay}>{data.day}일차</span>" 일정
       </h2>
       {data.pin
         .filter((item) => item.day === data.day)
@@ -66,10 +59,10 @@ const ScheduleCard = ({ data, postId, SendOtherPeople }) => {
           return (
             <div
               id={`${item.day}-${index}`}
-              className={styels.work}
+              className={styles.work}
               key={index}
             >
-              <div className={styels.workIndex}>
+              <div className={styles.workIndex}>
                 {index + 1}.{item.title}
               </div>
               <ScheduleInput

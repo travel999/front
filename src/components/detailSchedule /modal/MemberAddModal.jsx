@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-
+import { saveNickName } from "../../../redux/modules/InviteSlice";
 import "./MemberAddModal.css";
 
-import { saveNickName } from "../../../redux/modules/InviteSlice";
-
 const MemberAddModal = (props) => {
-  //Hook
   const dispatch = useDispatch();
-  //State
+
   const [nickName, setNickName] = useState("");
   const [message, setMessage] = useState("");
 
-  //함수
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
   const { open, close, header, postId } = props;
-  //이벤트 함수
+
   const onGetNickName = (e) => {
     setNickName(e.target.value);
   };

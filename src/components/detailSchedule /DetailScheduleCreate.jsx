@@ -1,34 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-
-import styels from "./Schedule.module.css";
-import Btn from "../elements/Btn";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import DetailSchduleList from "./DetailSchduleList";
-import {
-  saveSchedule,
-  modifySchedule,
-} from "../../redux/modules/ScheduleSlice";
+import { modifySchedule } from "../../redux/modules/ScheduleSlice";
+import Btn from "../elements/Btn";
+import styles from "./Schedule.module.css";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const DetailScheduleCreate = ({ data }) => {
-  //Hook
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const members = useSelector((state) => state.kakaoMap.members);
   const createData = useSelector((state) => state.schedule);
 
-  const nickname = localStorage.getItem("nickname");
-
-  //State
   const [title, setTitle] = useState(data.title);
   const [startDate, setSartDate] = useState(data.date[0]);
   const [endDate, setEndDate] = useState(data.date[1]);
   const [scheduleSave, setScheduleSave] = useState({});
   const [fixDay, setFixDay] = useState();
+
+  const nickname = localStorage.getItem("nickname");
 
   useEffect(() => {
     setTitle(data.title);
@@ -115,7 +108,7 @@ const DetailScheduleCreate = ({ data }) => {
   };
 
   return (
-    <div className={styels.createWrap}>
+    <div className={styles.createWrap}>
       <input
         type="date"
         id="startDay"

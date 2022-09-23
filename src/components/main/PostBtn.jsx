@@ -4,6 +4,7 @@ import styles from "./Main.module.css";
 
 const PostBtn = () => {
   const navigate = useNavigate();
+
   return (
     <div
       onClick={() => {
