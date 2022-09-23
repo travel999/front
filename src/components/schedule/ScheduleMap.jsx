@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import styels from "./Schedule.module.css";
 import Btn from "../elements/Btn";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import MapSearchNav from "./MapSearchNav";
 
@@ -89,7 +91,7 @@ const ScheduleMap = ({ nowDay }) => {
           Setvisible((prev) => !prev);
         }}
       >
-        =
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
       </Btn>
       <MapSearchNav
         visible={visible}
