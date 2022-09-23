@@ -76,9 +76,6 @@
     position: absolute;
     left: 40%;
     width: 130px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 600;
     font-size: 16px;
     line-height: 63px;
     text-align: left;
@@ -122,9 +119,6 @@
 .inputHidden {
     position: absolute;
     display: none;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 600;
     font-size: 16px;
     line-height: 40px;
 

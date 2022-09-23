@@ -9,9 +9,8 @@ import profilelogo from "../../res/img/profilelogo.png"
 import styles from "./profile.module.css"
 import profile from "../../res/img/profile.png"
 
-window.Buffer = window.Buffer || require("buffer").Buffer;
+// window.Buffer = window.Buffer || require("buffer").Buffer;
 
-console.log("프로필")
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,13 +18,20 @@ const Profile = () => {
   const user = useSelector((state) => state.profile.result)
   const nickname = user.nickname
   const profileImg = user.userImage
+  const image = localStorage.getItem("image")
+  const provider = localStorage.getItem("provider")
+  const config = {
+    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+    bucketName: process.env.REACT_APP_BUCKET_NAME,
+    region: process.env.REACT_APP_REGION,
+  };
 
   const initialState = {
     newImage: "",
     newPassword: "",
     confirm: ""
   }
-  const imgVal = useRef(null);
 
   // 기존 값도 가져와서 state로 만들기(이미지, 닉네임 보여줄 때, 회원탈퇴시 사용)
   const [edit, setEdit] = useState(initialState)
@@ -43,29 +49,39 @@ const Profile = () => {
   // 이미지 미리보기
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
+  const imgVal = useRef(null);
 
   // 토큰 없거나 카카오 소셜 회원일 경우 마이페이지 이용 불가능
-  // const kakaoLogin = localStorage.getItem("kakaoName")
-  // useEffect(() => {
-  //   if (kakaoLogin !== null) {
-  //     toast.warn(
-  //       "소셜로그인 회원은 프로필을 사용할 수 없어요!",
-  //       {
-  //         position: "top-center",
-  //         autoClose: 5000,
-  //         hideProgressBar: true,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //       }, navigate("/main"));
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (provider !== null) {
+      toast.warn(
+        "소셜로그인 회원은 프로필을 사용할 수 없어요!",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }, setTimeout(() => {
+          navigate("/main");
+        }, 2000));
+    }
+  }, []);
 
   // 닉네임 불러오기
   useEffect(() => {
     dispatch(getUser());
   }, []);
+
+  // 프로필 이미지 변경 
+  useEffect(() => {
+    if (newImage) {
+      setEdit({ ...edit, newImage })
+      dispatch(putImage(edit))
+    }
+  }, [newImage])
 
   // 닉네임 수정 불가 마우스오버 이벤트
   const onEditNickName = () => {
@@ -100,7 +116,7 @@ const Profile = () => {
         setConfirmMsg("비밀번호가 일치합니다.");
       }
     }
-    // 확인 비밀번호 유효성 검사
+    // 비밀번호 확인 유효성 검사
     else if (name === "confirm") {
       if (edit.newPassword !== "" && edit.newPassword !== value) {
         setConfirmMsg("비밀번호가 다릅니다.");
@@ -126,14 +142,7 @@ const Profile = () => {
 
     let file = imgVal.current.files[0];
     let newFileName = imgVal.current.files[0].name;
-
-    const config = {
-      accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
-      bucketName: process.env.REACT_APP_BUCKET_NAME,
-      region: process.env.REACT_APP_REGION,
-    };
-    //aws 서버에 등록
+    
     const s3Client = new S3upload(config);
     s3Client.uploadFile(file, newFileName).then(async (data) => {
       if (data.status === 204) {
@@ -144,15 +153,7 @@ const Profile = () => {
     });
   }
 
-  // 프로필 이미지 변경 
-  useEffect(() => {
-    if (newImage) {
-      setEdit({ ...edit, newImage })
-      dispatch(putImage(edit))
-    }
-  }, [newImage])
-
-  // 프로필 수정
+  // 비밀번호 수정
   const onEditProfile = (e) => {
     if (passWord === "" || confirm === "") {
     } else {
@@ -161,7 +162,7 @@ const Profile = () => {
   }
   // 회원 탈퇴
   const onDeleteProfile = (e) => {
-    dispatch(deleteUser(edit))
+    dispatch(deleteUser({ navigate, edit }))
   }
 
   return (
@@ -180,7 +181,6 @@ const Profile = () => {
           autoFocus
           autoComplete="new-password"
           placeholder="6자 이상 12자 이하로 입력해주세요."
-          onFocus=""
         />
         <input
           className={styles.inputConfirm}
@@ -205,9 +205,7 @@ const Profile = () => {
         </div>
         <div className={styles.profile}>
           <label htmlFor="newImage">
-            {{ profileImg } ? (<img src={profileImg} alt="" />) :
-              preImg[0] ? (<img src={preImg} alt="" />) :
-                <img src={profile} alt="" />}
+            {{ profileImg } ? (<img src={profileImg} alt="" />) : preImg[0] ? (<img src={preImg} alt="" />) : (<img src={profile} alt="" />)}
           </label>
           {/* 여기 기본이미지 안보인다.. 하 */}
           <h4>프로필 이미지</h4>

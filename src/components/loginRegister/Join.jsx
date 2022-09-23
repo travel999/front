@@ -184,6 +184,7 @@ const Join = () => {
           name="nickname"
           maxLength="10"
           placeholder="오리가치"
+          autoFocus
         />
         <input
           className={styles.inputEmail}
@@ -192,7 +193,6 @@ const Join = () => {
           id="email"
           name="email"
           placeholder="oorigachi@email.com"
-          autoFocus
         />
         <input
           className={styles.inputPassword}
@@ -233,11 +233,8 @@ const Join = () => {
       <div>
         <div className={styles.profile}>
           <label htmlFor="userImage">
-            {!preImg[0] ? (
-              <img src={profile} alt=""></img>
-            ) : (
-              <img src={preImg} alt="" />
-            )}</label>
+            {!preImg[0] ? (<img src={profile} alt=""></img>) : (<img src={preImg} alt="" />)}
+          </label>
           <h4>프로필 이미지</h4>
         </div>
         <form onChange={onSubmitHandler}>
