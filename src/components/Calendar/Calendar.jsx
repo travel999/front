@@ -1,4 +1,4 @@
-import React, { useCallback, useState, memo, useEffect } from "react";
+import React, { useCallback, useState, memo } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
@@ -11,16 +11,17 @@ const Calendar = () => {
     day: new Date().getDay(),
   };
   const week = ["일", "월", "화", "수", "목", "금", "토"];
+
   const [selectedYear, setSelectedYear] = useState(today.year); //현재 선택된 연도
   const [selectedMonth, setSelectedMonth] = useState(today.month); //현재 선택된 달
-  const dateTotalCount = new Date(selectedYear, selectedMonth, 0).getDate(); //선택된 연도, 달의 마지막 날짜
-
   const [clickcount, setClickCount] = useState(0);
   const [travelDay, setTravelDay] = useState({
     start: "0000-00-00",
     end: "0000-00-00",
   });
 
+  //state에서 이름을 가져와 사용함으로 이곳에 배치함
+  const dateTotalCount = new Date(selectedYear, selectedMonth, 0).getDate(); //선택된 연도, 달의 마지막 날짜
   const startSchedule = travelDay?.start?.split("-");
   const endSchedule = travelDay?.end?.split("-");
 
@@ -82,14 +83,14 @@ const Calendar = () => {
       );
     }
     return (
-      <Selectbox onChange={changeSelectMonth} value={selectedMonth}>
+      <Selectbox onChange={onchangeSelectMonth} value={selectedMonth}>
         {monthArr}
       </Selectbox>
     );
   }, [selectedMonth, clickcount]);
 
   // onchange로 선택하면 월 바꿔줌
-  const changeSelectMonth = (e) => {
+  const onchangeSelectMonth = (e) => {
     setSelectedMonth(Number(e.target.value));
   };
 
@@ -106,14 +107,14 @@ const Calendar = () => {
       );
     }
     return (
-      <Selectbox onChange={changeSelectYear} value={selectedYear}>
+      <Selectbox onChange={onchangeSelectYear} value={selectedYear}>
         {yearArr}
       </Selectbox>
     );
   }, [selectedYear, clickcount]);
 
   // onchange로 선택하면 연도 바뀜
-  const changeSelectYear = (e) => {
+  const onchangeSelectYear = (e) => {
     setSelectedYear(Number(e.target.value));
   };
 

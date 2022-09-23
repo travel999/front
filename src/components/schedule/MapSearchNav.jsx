@@ -1,22 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-
-import styled from "styled-components";
-import styels from "./Schedule.module.css";
-
 import { getDayPlaceData } from "../../redux/modules/MapSlice";
-import { useEffect } from "react";
+import styled from "styled-components";
+import styles from "./Schedule.module.css";
 
 const MapSearchNav = ({
   visible,
   menu,
-  searchPlaces,
+  onSearchPlaces,
   onMakeMarker,
   searchData,
   day,
   pin,
 }) => {
   const dispatch = useDispatch();
+
   //좌표 전역 스테이지로 올려주기
   useEffect(() => {
     dispatch(getDayPlaceData(pin));
@@ -33,8 +31,8 @@ const MapSearchNav = ({
             id="keyword"
             size="15"
             autoComplete="off"
-            onKeyUp={searchPlaces}
-            className={styels.title}
+            onKeyUp={onSearchPlaces}
+            className={styles.title}
             placeholder="장소 선택"
             required
           />

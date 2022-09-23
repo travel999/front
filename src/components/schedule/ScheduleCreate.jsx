@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-import styels from "./Schedule.module.css";
-import Btn from "../elements/Btn";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import ScheduleList from "./SchduleList";
 import {
   saveSchedule,
   modifySchedule,
 } from "../../redux/modules/ScheduleSlice";
+import ScheduleList from "./SchduleList";
+import Btn from "../elements/Btn";
+import styles from "./Schedule.module.css";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const ScheduleCreate = () => {
-  //Hook
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const createData = useSelector((state) => state.schedule);
-  console.log(createData);
 
-  //State
   const [title, setTitle] = useState("");
   const [startDate, setSartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -141,7 +136,7 @@ const ScheduleCreate = () => {
   };
 
   return (
-    <div className={styels.createWrap}>
+    <div className={styles.createWrap}>
       <input
         type="date"
         id="startDay"

@@ -14,7 +14,6 @@ export const getUser = createAsyncThunk(
   "profileSlice/getUser",
   async (payload, thunkAPI) => {
     try {
-      console.log("유저 정보 조회");
       const response = await instance.get("user/me", payload);
       return thunkAPI.fulfillWithValue(response.data.data.userInfo);
     } catch (error) {
@@ -27,11 +26,9 @@ export const putImage = createAsyncThunk(
   "profileSlice/putImage",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload);
       const response = await instance.put("user/me/image", payload);
-      const image = response.data.updateUser.userImage
+      const image = response.data.updateUser.userImage;
       localStorage.setItem("image", image);
-      // console.log(response.data.updateUser.userImage);
       if (response) {
         toast.success(
           "이미지가 변경되었습니다!",
@@ -60,25 +57,23 @@ export const putPassword = createAsyncThunk(
   "profileSlice/putPassword",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload);
       const response = await instance.put("user/me/password", payload);
-      console.log(response);
       if (response.status === 200) {
         toast.success(
-            "비밀번호가 변경되었습니다!",
-            {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            },
-            setTimeout(() => {
-              window.location.replace("/login")
-            }, 1000)
-          );
+          "비밀번호가 변경되었습니다!",
+          {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          },
+          setTimeout(() => {
+            window.location.replace("/login");
+          }, 1000)
+        );
         // await window.location.replace("/login")
       }
       return thunkAPI.fulfillWithValue(response.data);
@@ -92,31 +87,29 @@ export const deleteUser = createAsyncThunk(
   "profileSlice/deleteUser",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload);
       const response = await instance.delete("user/me/delete", payload);
-      console.log(response);
       if (response) {
         localStorage.removeItem("jwtToken");
         toast.success(
-            "탈퇴가 완료되었습니다!",
-            {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            },
-            setTimeout(() => {
-              payload.navigate("/");
-            }, 1000)
-          );
+          "탈퇴가 완료되었습니다!",
+          {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          },
+          setTimeout(() => {
+            payload.navigate("/");
+          }, 1000)
+        );
       }
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       if (error) {
-        toast.error('회원 탈퇴에 실패했어요. 관리자에게 문의해 주세요.', {
+        toast.error("회원 탈퇴에 실패했어요. 관리자에게 문의해 주세요.", {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: true,
@@ -124,7 +117,7 @@ export const deleteUser = createAsyncThunk(
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          });
+        });
       }
       return thunkAPI.rejectWithValue(error);
     }

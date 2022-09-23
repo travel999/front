@@ -8,8 +8,7 @@ import ScheduleSlice from "../modules/ScheduleSlice";
 import InviteSlice from "../modules/InviteSlice";
 import MapSlice from "../modules/MapSlice";
 import ResultSlice from "../modules/ResultSlice";
-import DeatilScheduleSlice from "../modules/detailSchedule/DetailScheduleSlice";
-import chatSlice from "../modules/chatSlice";
+import ChatSlice from "../modules/ChatSlice";
 
 const store = configureStore({
   reducer: {
@@ -19,11 +18,10 @@ const store = configureStore({
     kakao: KakaoSlice,
     profile: ProfileSlice,
     schedule: ScheduleSlice,
-    detailSchedul: DeatilScheduleSlice,
     invite: InviteSlice,
     kakaoMap: MapSlice,
     result: ResultSlice,
-    Chat: chatSlice,
+    chat: ChatSlice,
   },
   // 배포 환경일때, devTools가 false가 됩니다.
   devTools: process.env.NODE_ENV !== "production",

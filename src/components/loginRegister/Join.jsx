@@ -1,19 +1,43 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addJoin, doubleCheckEmail, doubleCheckNickName } from "../../redux/modules/JoinSlice";
+import {
+  addJoin,
+  doubleCheckEmail,
+  doubleCheckNickName,
+} from "../../redux/modules/JoinSlice";
 import S3upload from "react-aws-s3";
-
-import logo from "../../res/img/logo.png"
-import styles from "./join.module.css"
-import profile from "../../res/img/profile.png"
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import styles from "./Join.module.css";
+import logo from "../../res/img/logo.png";
+import profile from "../../res/img/profile.png";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const Join = () => {
   const dispatch = useDispatch();
+  const imgVal = useRef(null);
+  const navigate = useNavigate();
+
+  const [checkEmail, setCheckEmail] = useState(false);
+  const [checkNickName, setCheckNickName] = useState(false);
+  // 회원가입
+  const [signUp, setSignUp] = useState(initialState);
+  const [emailData, setEmailData] = useState("");
+  const [nicknNameData, setNickNameData] = useState("");
+  const [passData, setPassData] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [userImage, setUserImage] = useState("");
+  // img
+  const [img, setImg] = useState([]);
+  const [preImg, setPreImg] = useState([]);
+  //유효성 확인 메세지
+  const [emailMsg, setEmailMsg] = useState("");
+  const [nickNameMsg, setNickNameMsg] = useState("");
+  const [pwMsg, setPwMsg] = useState("");
+  const [confirmMsg, setConfirmMsg] = useState("");
+
   const initialState = {
     email: "",
     nickname: "",
@@ -21,28 +45,10 @@ const Join = () => {
     password: "",
     confirm: "",
   };
-  const imgVal = useRef(null);
-  const navigate = useNavigate();
 
-  const [checkEmail, setCheckEmail] = useState(false);
-  const [checkNickName, setCheckNickName] = useState(false)
-  // 회원가입 
-  const [signUp, setSignUp] = useState(initialState);
-  const [emailData, setEmailData] = useState("");
-  const [nicknNameData, setNickNameData] = useState("")
-  const [passData, setPassData] = useState("");
-  const [confirm, setConfirm] = useState("");
-  const [userImage, setUserImage] = useState("")
-  // img 
-  const [img, setImg] = useState([]);
-  const [preImg, setPreImg] = useState([]);
-  //유효성 확인 메세지
-  const [emailMsg, setEmailMsg] = useState("");
-  const [nickNameMsg, setNickNameMsg] = useState("")
-  const [pwMsg, setPwMsg] = useState("");
-  const [confirmMsg, setConfirmMsg] = useState("");
   // 정규식 리스트
-  const emailRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+  const emailRule =
+    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwRule = /^[a-zA-Z0-9]{6,12}$/;
   const nickNameRule = /^[ㄱ-ㅎ가-힣ㅏ-ㅣa-zA-Z0-9]{2,10}$/;
 
@@ -56,14 +62,14 @@ const Join = () => {
   // 닉네임 중복 확인
   useEffect(() => {
     if (checkNickName) {
-      dispatch(doubleCheckNickName({ nickname: nicknNameData, setNickNameMsg }));
+      dispatch(
+        doubleCheckNickName({ nickname: nicknNameData, setNickNameMsg })
+      );
     }
   }, [nicknNameData]);
 
-  // 유효 이메일 인증 
-  const onCertifyEmail = () => {
-
-  }
+  // 유효 이메일 인증
+  const onCertifyEmail = () => {};
 
   // 유효성 검사
   const onValidation = (e) => {
@@ -150,12 +156,12 @@ const Join = () => {
     s3Client.uploadFile(file, newFileName).then(async (data) => {
       if (data.status === 204) {
         let userImage = data.location;
-        setUserImage(userImage)
-        console.log(userImage)
-        setSignUp({ ...signUp, userImage })
+        setUserImage(userImage);
+        console.log(userImage);
+        setSignUp({ ...signUp, userImage });
       }
     });
-  }
+  };
   // 버튼 클릭시 빈칸 확인
   const onJoin = (e) => {
     if (
@@ -169,7 +175,7 @@ const Join = () => {
       dispatch(addJoin({ navigate, signUp }));
     }
     dispatch(addJoin({ navigate, signUp }));
-  }
+  };
 
   return (
     <div className={styles.background}>
@@ -233,7 +239,11 @@ const Join = () => {
       <div>
         <div className={styles.profile}>
           <label htmlFor="userImage">
-            {!preImg[0] ? (<img src={profile} alt=""></img>) : (<img src={preImg} alt="" />)}
+            {!preImg[0] ? (
+              <img src={profile} alt=""></img>
+            ) : (
+              <img src={preImg} alt="" />
+            )}
           </label>
           <h4>프로필 이미지</h4>
         </div>
@@ -251,9 +261,13 @@ const Join = () => {
         </form>
       </div>
       {/* 이메일 인증 버튼 */}
-      <button className={styles.certifyButton} onClick={onCertifyEmail}>인증</button>
+      <button className={styles.certifyButton} onClick={onCertifyEmail}>
+        인증
+      </button>
       {/* 회원가입 버튼 */}
-      <button className={styles.button} onClick={onJoin}>회원가입</button>
+      <button className={styles.button} onClick={onJoin}>
+        회원가입
+      </button>
       <ToastContainer />
     </div>
   );

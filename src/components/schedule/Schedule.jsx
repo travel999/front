@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-import styels from "./Schedule.module.css";
-import NoDateDuckImg from "../../res/img/duck/noDateDuck.png";
-
 import ScheduleCreate from "./ScheduleCreate";
 import ScheduleCard from "./ScheduleCard";
 import ScheduleMap from "./ScheduleMap";
 import Chatting from "../chat/Chatting";
+import styels from "./Schedule.module.css";
+import NoDateDuckImg from "../../res/img/duck/noDateDuck.png";
 
 const Schedule = () => {
   const navigate = useNavigate();

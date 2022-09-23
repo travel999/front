@@ -22,7 +22,7 @@ export const searchText = createAsyncThunk(
   }
 );
 
-export const firstsearch = createAsyncThunk(
+export const firstSearch = createAsyncThunk(
   "main/search/first",
   async (value, thunkAPI) => {
     try {
@@ -152,11 +152,11 @@ export const mainSlice = createSlice({
       console.log("더이상 자료가 없습니다.");
     },
 
-    [firstsearch.fulfilled]: (state, action) => {
+    [firstSearch.fulfilled]: (state, action) => {
       state.searched = true;
       state.otherPeopleCards = action.payload.data;
     },
-    [firstsearch.rejected]: (state, action) => {
+    [firstSearch.rejected]: (state, action) => {
       state.error = true;
       console.log(action.payload);
     },

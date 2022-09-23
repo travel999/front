@@ -142,10 +142,6 @@ export const ResultSlice = createSlice({
     },
     [saveDayData.fulfilled]: (state, action) => {
       state.isLoading = false;
-
-      // state.title = action.payload.title;
-      // state.date = action.payload.date;
-      // state.postId = action.payload.postId;
     },
     [saveDayData.rejected]: (state, action) => {
       console.log(current(state), action);

@@ -1,13 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import { toast, ToastContainer } from "react-toastify";
 import { DeletePost, toOpenPublic } from "../../redux/modules/MainSlice";
+import styled from "styled-components";
+import { toast } from "react-toastify";
 
 const PublicDeleteBtn = (props) => {
   const dispatch = useDispatch();
   const openPublic = useSelector((state) => state.kakaoMap?.openPublic);
   const members = useSelector((state) => state.kakaoMap?.members);
+
   const nickname = localStorage.getItem("nickname");
 
   const onToPublic = () => {

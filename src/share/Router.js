@@ -7,10 +7,9 @@ import LoginPage from "../pages/LoginPage";
 import LoadingPage from "../pages/LoadingPage";
 import JoinPage from "../pages/JoinPage";
 import ProfilePage from "../pages/ProfilePage";
-import DetailPage from "../pages/DetailPage";
+import LikedPage from "../pages/LikedPage";
 import ScheduleDetailPage from "../pages/ScheduleDetailPage";
 import NotFoundPage from "../pages/NotFoundPage";
-import MapArea from "../components/detailSchedule /MapArea";
 
 const Router = () => {
   return (
@@ -23,7 +22,7 @@ const Router = () => {
         <Route path="/kakao/callback" element={<LoadingPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/write" element={<SchedulePage />} />
-        <Route path="/detail" element={<DetailPage />} />
+        <Route path="/liked" element={<LikedPage />} />
         <Route path="/schedulDetail/:id" element={<ScheduleDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

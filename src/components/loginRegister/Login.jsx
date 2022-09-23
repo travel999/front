@@ -1,28 +1,24 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addLogin } from "../../redux/modules/LogInSlice";
-
-import styles from "./login.module.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
+import styles from "./Login.module.css";
+// import "react-toastify/dist/ReactToastify.css";
 import Background from "../../res/img/background.png";
 import cloud from "../../res/img/cloud.png";
 import cloud1 from "../../res/img/cloud1.png";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
-  const nickname = localStorage.getItem("nickname");
-  const image = localStorage.getItem("image");
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [login, setLogin] = useState({
     email: "",
     password: "",
   });
 
-  const onChange = (e) => {
+  const onChangeData = (e) => {
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
   };
@@ -60,7 +56,7 @@ const Login = () => {
               className={styles.input}
               name="email"
               value={login.email}
-              onChange={onChange}
+              onChange={onChangeData}
               autoFocus
             ></input>
           </div>
@@ -72,7 +68,7 @@ const Login = () => {
               type="password"
               defaultChecked=""
               value={login.password}
-              onChange={onChange}
+              onChange={onChangeData}
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
                   onLogin();

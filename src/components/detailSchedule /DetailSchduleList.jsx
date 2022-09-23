@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-//style & elements
-import styels from "./Schedule.module.css";
-import Btn from "../elements/Btn";
-import MemberAddModal from "./modal/MemberAddModal";
 import { getMapData } from "../../redux/modules/MapSlice";
+import MemberAddModal from "./modal/MemberAddModal";
+import Btn from "../elements/Btn";
+import styles from "./Schedule.module.css";
 import { toast } from "react-toastify";
 
 const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
-  //Hook
   const dispatch = useDispatch();
   const members = useSelector((state) => state.kakaoMap.members);
 
-  const nickname = localStorage.getItem("nickname");
-
-  //state
   const [index, setIndex] = useState(defalutDay);
   const [modalOpen, setModalOpen] = useState(false);
+
+  const nickname = localStorage.getItem("nickname");
 
   useEffect(() => {
     const dayArr = [];
@@ -27,7 +23,7 @@ const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
     sendMapData(defalutDay, dayArr);
   }, []);
 
-  //함수
+  //모달 열기
   const openModal = () => {
     if (members?.includes(nickname)) {
       setModalOpen(true);
@@ -44,24 +40,25 @@ const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
     }
   };
 
+  //모달 닫기
   const closeModal = () => {
     setModalOpen(false);
   };
 
+  //일정보여주기
   const showSchedule = () => {
     //반복문 내에서 state를 사용할 수 없으므로 대체함
     const dayArr = [];
     for (let i = 1; i <= fixDay; i++) {
       dayArr.push(i);
     }
-    console.log(dayArr);
     return (
-      <div className={styels.dayWrap}>
+      <div className={styles.dayWrap}>
         <ul>
           {dayArr.map((item) => (
             <li
               key={item}
-              className={index === item ? styels.active : styels.noActive}
+              className={index === item ? styles.active : styles.noActive}
               onClick={() => sendMapData(item, dayArr)}
             >
               {item}일
@@ -71,16 +68,15 @@ const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
       </div>
     );
   };
-
+  //일수 dispatch에 올려보내기
   const sendMapData = (day, dayArr) => {
     setIndex(day);
     dispatch(getMapData({ day: day, allDay: dayArr }));
   };
 
-  //이벤트 함수
   return (
-    <div className={styels.dayWrap2}>
-      <div className={styels.invite}>
+    <div className={styles.dayWrap2}>
+      <div className={styles.invite}>
         <Btn
           color="#ffff"
           backgroundColor="#9AB9FF"

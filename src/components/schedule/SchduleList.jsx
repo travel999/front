@@ -1,29 +1,25 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
-//style & elements
-import styels from "./Schedule.module.css";
-import Btn from "../elements/Btn";
-import MemberAddModal from "./modal/MemberAddModal";
 import { getMapData } from "../../redux/modules/MapSlice";
+import MemberAddModal from "./modal/MemberAddModal";
+import Btn from "../elements/Btn";
+import styles from "./Schedule.module.css";
 
 const ScheduleList = ({ fixDay, id }) => {
-  console.log("스케줄리스트");
-  //Hook
   const dispatch = useDispatch();
 
-  //state
   const [index, setIndex] = useState();
   const [modalOpen, setModalOpen] = useState(false);
 
-  //함수
-  const openModal = () => {
+  //모달 열기
+  const onOpenModal = () => {
     setModalOpen(true);
   };
+  //모달닫기
   const closeModal = () => {
     setModalOpen(false);
   };
+  //일정보여주기
   const showSchedule = () => {
     //반복문 내에서 state를 사용할 수 없으므로 대체함
     const dayArr = [];
@@ -31,13 +27,13 @@ const ScheduleList = ({ fixDay, id }) => {
       dayArr.push(i);
     }
     return (
-      <div className={styels.dayWrap}>
+      <div className={styles.dayWrap}>
         <ul>
           {dayArr.map((item) => (
             <li
               key={item}
-              className={index === item ? styels.active : styels.noActive}
-              onClick={() => sendMapData(item, dayArr)}
+              className={index === item ? styles.active : styles.noActive}
+              onClick={() => onSendMapData(item, dayArr)}
             >
               {item}일
             </li>
@@ -47,21 +43,21 @@ const ScheduleList = ({ fixDay, id }) => {
     );
   };
 
-  const sendMapData = (day, dayArr) => {
+  const onSendMapData = (day, dayArr) => {
     setIndex(day);
     dispatch(getMapData({ day: day, allDay: dayArr }));
   };
 
   //이벤트 함수
   return (
-    <div className={styels.dayWrap2}>
-      <div className={styels.invite}>
+    <div className={styles.dayWrap2}>
+      <div className={styles.invite}>
         <Btn
           color="#ffff"
           backgroundColor="#9AB9FF"
           width="300px"
           height="36px"
-          onClick={openModal}
+          onClick={onOpenModal}
         >
           일행 초대하기
         </Btn>

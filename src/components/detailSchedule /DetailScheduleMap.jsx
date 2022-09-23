@@ -1,48 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-import styels from "./Schedule.module.css";
-import Btn from "../elements/Btn";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
-import socket from "../../res/socket";
-
-import DetailMapSearchNav from "./DetailMapSearchNav";
-import PublicDeleteBtn from "../elements/PublicDeleteBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { getSchedule } from "../../redux/modules/MapSlice";
+import DetailMapSearchNav from "./DetailMapSearchNav";
+import PublicDeleteBtn from "../elements/PublicDeleteBtn";
+import socket from "../../res/socket";
+import Btn from "../elements/Btn";
+import styles from "./Schedule.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const { kakao } = window;
 
 //placeX : lat , placeY : lng >> 기억하기
 const DetailScheduleMap = ({ nowDay, data }) => {
   const dispatch = useDispatch();
+  const { id } = useParams();
+  const existPins = useSelector((state) => state.kakaoMap.pin);
 
+  //state 초기화 값
   const searchInit = {
     keyWord: null,
     pgn: null,
     result: [],
   };
 
-  //HooK
-  const { id } = useParams();
-  const room = `formark${id}`;
-
-  const existPins = useSelector((state) => state.kakaoMap.pin);
-  console.log(existPins);
-
-  useEffect(() => {
-    dispatch(getSchedule(id));
-  }, []);
-
-  //State
   const [map, setMap] = useState(null);
   const [inputVal, setInputVal] = useState("");
   const [search, setSearch] = useState(searchInit);
   const [pin, setPin] = useState([]);
   const [menu, Setmenu] = useState(false);
   const [visible, Setvisible] = useState(false);
+
+  const room = `formark${id}`;
+  const sendMarker = (name, x, y) => {
+    socket.emit("send_marker", name, x, y, nowDay, existPins, room);
+  };
+
+  //일정 정보 가져오기
+  useEffect(() => {
+    dispatch(getSchedule(id));
+  }, []);
 
   //처음 지도 와 좌표 데이터 핀 같이 찍기
   useEffect(() => {
@@ -97,10 +95,17 @@ const DetailScheduleMap = ({ nowDay, data }) => {
     });
   }, [pin]);
 
-  // 2022.09.22 -> 안쓰지만 혹시 모르니 남겨둔다.
-  // useEffect(() => {
-  //   setPin(data.pin);
-  // }, [data]);
+  // socket useEffectㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  useEffect(() => {
+    socket.emit("join_marker", room);
+  }, []);
+
+  useEffect(() => {
+    socket.on("receive_marker", (name, x, y, nowDay, pins) => {
+      forsocketMakeMarker(name, x, y, nowDay, pins);
+    });
+  }, [socket]);
+  // -------------------------------------------------
 
   //마커 생성을 위한 배열 만들기
   const onMakeMarker = (placeName, placeX, palceY) => {
@@ -135,23 +140,7 @@ const DetailScheduleMap = ({ nowDay, data }) => {
     }
   };
 
-  // socketㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-  useEffect(() => {
-    socket.emit("join_marker", room);
-  }, []);
-
-  const sendMarker = (name, x, y) => {
-    socket.emit("send_marker", name, x, y, nowDay, existPins, room);
-  };
-
-  useEffect(() => {
-    socket.on("receive_marker", (name, x, y, nowDay, pins) => {
-      forsocketMakeMarker(name, x, y, nowDay, pins);
-    });
-  }, [socket]);
-
   const forsocketMakeMarker = (placeName, placeX, palceY, nowday2, pins) => {
-    console.log(pins);
     setPin([
       ...pins,
       { day: nowday2, title: placeName, lat: palceY, lng: placeX },
@@ -161,9 +150,9 @@ const DetailScheduleMap = ({ nowDay, data }) => {
   };
 
   return (
-    <div className={styels.mapWrap}>
+    <div className={styles.mapWrap}>
       <Btn
-        className={styels.searchBtn}
+        className={styles.searchBtn}
         onClick={() => {
           Setmenu((prev) => !prev);
           Setvisible((prev) => !prev);

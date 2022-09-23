@@ -1,11 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./start.module.css";
 import { KAKAO_AUTH_URL } from "../loginRegister/KakaoLogIn";
-
-import Background from "../../res/img/background.png"
-import cloud from "../../res/img/cloud.png"
-import cloud1 from "../../res/img/cloud1.png"
+import styles from "./Start.module.css";
+import Background from "../../res/img/background.png";
+import cloud from "../../res/img/cloud.png";
+import cloud1 from "../../res/img/cloud1.png";
 
 const Start = () => {
   const navigate = useNavigate();

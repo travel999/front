@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
-import styles from "./Main.module.css";
-import PostBtn from "./PostBtn";
+import React from "react";
 import { useSelector } from "react-redux";
+import PostBtn from "./PostBtn";
+import styles from "./Main.module.css";
 import duckprofile from "../../res/img/duck/duckprofile.png";
 
 const ProfileBox = () => {
   const postnumber = useSelector((state) => state.main.MyPostCards);
+
   const mypostNum = postnumber?.data1?.length;
   const likepostNum = postnumber?.data2?.length;
-
   const getnickname = localStorage.getItem("nickname");
   const frofileImg = localStorage.getItem("image");
 

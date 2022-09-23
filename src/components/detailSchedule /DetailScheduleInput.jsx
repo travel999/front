@@ -1,14 +1,12 @@
-import React, { useState, useEffect, memo, useRef, useCallback } from "react";
+import React, { useState, useEffect, memo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import socket from "../../res/socket";
-import $ from "jquery";
-
-import styels from "./Schedule.module.css";
-import Btn from "../elements/Btn";
-import { toast, ToastContainer } from "react-toastify";
-
-import { getConData } from "../../redux/modules/MapSlice";
 import { useParams } from "react-router-dom";
+import { getConData } from "../../redux/modules/MapSlice";
+import socket from "../../res/socket";
+import Btn from "../elements/Btn";
+import styles from "./Schedule.module.css";
+import { toast, ToastContainer } from "react-toastify";
+import $ from "jquery";
 
 const DetailScheduleInput = ({ day, index, dayMemo }) => {
   const dispatch = useDispatch();
@@ -16,11 +14,11 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
   const inputRef = useRef(null);
   const { id } = useParams();
 
+  const [sendValue, onSetSendValue] = useState("");
+  const [conData, setConData] = useState({});
+
   const nickname = localStorage.getItem("nickname");
   const liveText = $(`#${id}${day}${index}`).text();
-
-  const [sendValue, setSendValue] = useState("");
-  const [conData, setConData] = useState({});
 
   // 받아온 day마다의 카드에 값을 넣어준다.
   useEffect(() => {
@@ -55,17 +53,6 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
     socket.on("SaveGet_data", (data) => {
       console.log(data);
     });
-    // socket.on("SaveGet_data", (data) => {
-    //   toast.success(`${data.author} 님이 저장하였습니다.`, {
-    //     position: "top-right",
-    //     autoClose: 1500,
-    //     hideProgressBar: true,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //   });
-    // });
   }, [socket]);
 
   // 콘데이터가 만들어지는곳
@@ -77,10 +64,8 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
     });
   }, [liveText]);
 
-  //함수
-
   // 마지막 한글자 지워주는 함수
-  const deleteLastText = (key) => {
+  const onDeleteLastText = (key) => {
     if (members?.includes(nickname)) {
       if (key == 8 && liveText.length == 1) {
         const resetmsg = { msg: "", room: `${id}${day}${index}` };
@@ -91,7 +76,7 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
   };
 
   // 카드 일정 저장
-  const saveCard = () => {
+  const onSaveCard = () => {
     if (members?.includes(nickname)) {
       if (inputRef.current.value == "") {
         alert("일정을 넣어주세요.");
@@ -99,7 +84,7 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
         // 콘데이터 전송.
         dispatch(getConData(conData));
         // 다른사람들에게도 토스트가 간다.
-        SendOtherPeople();
+        sendOtherPeople();
       }
     } else {
       toast.success(`권한이 없습니다.`, {
@@ -114,7 +99,7 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
     }
   };
 
-  const SendOtherPeople = () => {
+  const sendOtherPeople = () => {
     const data = {
       room: `${id}${day}${index}save`,
       author: nickname,
@@ -133,24 +118,22 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
   };
 
   return (
-    <div className={styels.inputWrap}>
-      <>
-        <p id={`${id}${day}${index}`}></p>
-        {/* <div>{getShowing}</div> */}
-        <input
-          ref={inputRef}
-          key={index}
-          name={`${id}${day}${index}input`}
-          placeholder="일정 입력"
-          onChange={(e) => setSendValue(e.target.value)}
-          onKeyDown={(e) => deleteLastText(e.keyCode)}
-          required
-        />
-        <Btn color="#fffff" backgroundColor="#ffc51c" onClick={saveCard}>
-          일정 저장
-        </Btn>
-        <ToastContainer />
-      </>
+    <div className={styles.inputWrap}>
+      <p id={`${id}${day}${index}`}></p>
+
+      <input
+        ref={inputRef}
+        key={index}
+        name={`${id}${day}${index}input`}
+        placeholder="일정 입력"
+        onChange={(e) => onSetSendValue(e.target.value)}
+        onKeyDown={(e) => onDeleteLastText(e.keyCode)}
+        required
+      />
+      <Btn color="#fffff" backgroundColor="#ffc51c" onClick={onSaveCard}>
+        일정 저장
+      </Btn>
+      <ToastContainer />
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Main.module.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RandomSpic } from "./RandomPicture";
+import { randomSpic } from "../../res/randomPicture";
+import styles from "./Main.module.css";
 
 const FirstBox = () => {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const FirstBox = () => {
                 onClick={() => onGoDetailPage(value._id)}
                 style={{ cursor: "pointer" }}
               >
-                <img className={styles.img} src={RandomSpic(idx)} alt="img" />
+                <img className={styles.img} src={randomSpic(idx)} alt="img" />
                 <div className={styles.content}>
                   <div style={{ fontWeight: "500" }}>{value.title}</div>
                   <div className={styles.traveldate}>
@@ -41,25 +41,3 @@ const FirstBox = () => {
 };
 
 export default FirstBox;
-
-{
-  /* {value.openPublic ? (
-                  <div
-                    onClick={() => {
-                      OnOpenPublic(value._id);
-                    }}
-                    className={styles.openNor}
-                  >
-                    🔒
-                  </div>
-                ) : (
-                  <div
-                    onClick={() => {
-                      OnOpenPublic(value._id);
-                    }}
-                    className={styles.openNor}
-                  >
-                    🔓
-                  </div>
-                )} */
-}

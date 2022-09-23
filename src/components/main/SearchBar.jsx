@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { firstsearch, refreshSearch } from "../../redux/modules/MainSlice";
+import { firstSearch, refreshSearch } from "../../redux/modules/MainSlice";
 import styles from "./Main.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,8 +9,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const SearchBar = ({
-  input_ref,
-  setShowrecommend,
+  inputRef,
+  setShowRecommend,
   setSearchPage,
   beforeSearched,
   setBeforeSearched,
@@ -18,22 +18,22 @@ const SearchBar = ({
 }) => {
   const dispatch = useDispatch();
 
-  const OnRefresh = () => {
+  const onRefresh = () => {
     dispatch(refreshSearch());
-    setShowrecommend(true);
-    input_ref.current.value = "";
+    setShowRecommend(true);
+    inputRef.current.value = "";
     onHomeClick();
     setSearchPage(1);
     // window.location.reload();
   };
 
-  const OnTosearch = (input) => {
+  const onTosearch = (input) => {
     if (beforeSearched !== input) {
       // 기존 검색과 다를때
       onHomeClick(); // 맨위로 스크롤링
       setBeforeSearched(input); // input값 기록
-      dispatch(firstsearch([input, 1])); // 다시검색
-      setShowrecommend(false); // 검색창으로 변환
+      dispatch(firstSearch([input, 1])); // 다시검색
+      setShowRecommend(false); // 검색창으로 변환
       setSearchPage(1); // 무한스크롤 페이지 1로
     }
   };
@@ -46,15 +46,15 @@ const SearchBar = ({
     <div className={styles.searchbox}>
       <input
         className={styles.searchinputbox}
-        ref={input_ref}
+        ref={inputRef}
         onKeyPress={(e) => {
-          if (e.key === "Enter") OnTosearch(input_ref.current.value);
+          if (e.key === "Enter") onTosearch(inputRef.current.value);
         }}
       />
       <button
         className={styles.searchbtn}
         onClick={() => {
-          OnTosearch(input_ref.current.value);
+          onTosearch(inputRef.current.value);
         }}
       >
         <FontAwesomeIcon icon={faMagnifyingGlass} />
@@ -62,7 +62,7 @@ const SearchBar = ({
       <button
         className={styles.refreshbtn}
         onClick={() => {
-          OnRefresh();
+          onRefresh();
         }}
       >
         <FontAwesomeIcon icon={faRotateRight} />

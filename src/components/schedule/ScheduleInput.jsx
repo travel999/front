@@ -1,19 +1,17 @@
 import React, { useState, useEffect, memo, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import socket from "../../res/socket";
-import styels from "./Schedule.module.css";
-import Btn from "../elements/Btn";
-
+import { useDispatch } from "react-redux";
 import { getConData } from "../../redux/modules/MapSlice";
+import socket from "../../res/socket";
+import Btn from "../elements/Btn";
+import styles from "./Schedule.module.css";
 
-const ScheduleInput = ({ room, day, index, content }) => {
+const ScheduleInput = ({ room, day, index }) => {
   const dispatch = useDispatch();
+  const inputRef = useRef(null);
 
   const [sendValue, setSendValue] = useState("");
   const [getShowing, setGetShowing] = useState("");
   const [conData, setConData] = useState({});
-  const inputRef = useRef(null);
 
   useEffect(() => {
     socket.on("test_receive", (data) => {
@@ -32,7 +30,6 @@ const ScheduleInput = ({ room, day, index, content }) => {
     }
   }, [sendValue]);
 
-
   useEffect(() => {
     setConData({
       day: day,
@@ -41,8 +38,7 @@ const ScheduleInput = ({ room, day, index, content }) => {
     });
   }, [getShowing]);
 
-
-  const deleteLastText = (key) => {
+  const onDeleteLastText = (key) => {
     if (key == 8 && getShowing.length == 1) {
       const resetmsg = { msg: "", room: `${room}${day}${index}` };
       setGetShowing("");
@@ -50,7 +46,7 @@ const ScheduleInput = ({ room, day, index, content }) => {
     }
   };
 
-  const saveCard = () => {
+  const onSaveCard = () => {
     if (inputRef.current.value == "") {
       alert("일정을 넣어주세요.");
     } else {
@@ -58,9 +54,8 @@ const ScheduleInput = ({ room, day, index, content }) => {
     }
   };
 
-
   return (
-    <div className={styels.inputWrap}>
+    <div className={styles.inputWrap}>
       <>
         <div>{getShowing}</div>
         <input
@@ -68,10 +63,10 @@ const ScheduleInput = ({ room, day, index, content }) => {
           key={index}
           placeholder="일정 입력"
           onChange={(e) => setSendValue(e.target.value)}
-          onKeyDown={(e) => deleteLastText(e.keyCode)}
+          onKeyDown={(e) => onDeleteLastText(e.keyCode)}
           required
         />
-        <Btn color="#fffff" backgroundColor="#ffc51c" onClick={saveCard}>
+        <Btn color="#fffff" backgroundColor="#ffc51c" onClick={onSaveCard}>
           일정 저장
         </Btn>
       </>

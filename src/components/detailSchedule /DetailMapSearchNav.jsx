@@ -1,18 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-
-import styled from "styled-components";
-import styels from "./Schedule.module.css";
-
 import { getDayPlaceData } from "../../redux/modules/MapSlice";
-import { useEffect } from "react";
-import socket from "../../res/socket";
-import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import styles from "./Schedule.module.css";
 
 const DetailMapSearchNav = ({
   visible,
   menu,
-  searchPlaces,
+  searchPlaces: onSearchPlaces,
   onMakeMarker,
   sendMarker,
   searchData,
@@ -20,7 +15,7 @@ const DetailMapSearchNav = ({
   pin,
 }) => {
   const dispatch = useDispatch();
-  //좌표 전역 스테이지로 올려주기~~~
+  //좌표 전역 스테이지로 올려주기
   useEffect(() => {
     dispatch(getDayPlaceData(pin));
   }, [pin]);
@@ -42,8 +37,8 @@ const DetailMapSearchNav = ({
             id="keyword"
             size="15"
             autoComplete="off"
-            onKeyUp={searchPlaces}
-            className={styels.title}
+            onKeyUp={onSearchPlaces}
+            className={styles.title}
             placeholder="장소 선택"
             required
           />
@@ -57,7 +52,6 @@ const DetailMapSearchNav = ({
                 <button
                   name={day}
                   value={item.x}
-                  // onClick={(e) => console.log(e.target.name)}
                   onClick={() => OnMakeMarkers(item.place_name, item.x, item.y)}
                 >
                   선택
