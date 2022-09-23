@@ -29,8 +29,9 @@ export const putImage = createAsyncThunk(
     try {
       console.log(payload);
       const response = await instance.put("user/me/image", payload);
-      console.log(response);
-      console.log(response.data.updateUser.nickname);
+      const image = response.data.updateUser.userImage
+      localStorage.setItem("image", image);
+      // console.log(response.data.updateUser.userImage);
       if (response) {
         toast.success(
           "이미지가 변경되었습니다!",
@@ -48,7 +49,7 @@ export const putImage = createAsyncThunk(
           }, 1000)
         );
       }
-      return thunkAPI.fulfillWithValue(response);
+      return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -75,12 +76,12 @@ export const putPassword = createAsyncThunk(
               progress: undefined,
             },
             setTimeout(() => {
-              window.location.replace("/login");
+              window.location.replace("/login")
             }, 1000)
           );
         // await window.location.replace("/login")
       }
-      return thunkAPI.fulfillWithValue(response);
+      return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -108,11 +109,11 @@ export const deleteUser = createAsyncThunk(
               progress: undefined,
             },
             setTimeout(() => {
-              window.location.replace("/");
+              payload.navigate("/");
             }, 1000)
           );
       }
-      return thunkAPI.fulfillWithValue(response);
+      return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       if (error) {
         toast.error('회원 탈퇴에 실패했어요. 관리자에게 문의해 주세요.', {
