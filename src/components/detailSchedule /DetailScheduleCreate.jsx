@@ -35,21 +35,12 @@ const DetailScheduleCreate = ({ data }) => {
     setSartDate(data.date[0]);
     setEndDate(data.date[1]);
     onGetDateDiff();
-  });
+  }, [data]);
 
   //playload등록시 title 제일 끝에 형태소 안찍히는 오류 수정
   useEffect(() => {
-    if (createData.postId === "") {
-      if (startDate !== "" && endDate !== "" && title !== "") {
-        dispatch(saveSchedule(scheduleSave));
-        navigate(`/schedulDetail/${id}`);
-      }
-    } else {
-      dispatch(
-        modifySchedule({ data: scheduleSave, postId: createData.postId })
-      );
-      navigate(`/schedulDetail/${id}`);
-    }
+    dispatch(modifySchedule({ data: scheduleSave, postId: id }));
+    navigate(`/schedulDetail/${id}`);
   }, [scheduleSave]);
 
   //시작일-종료일-타이틀 지정

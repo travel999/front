@@ -8,14 +8,12 @@ import Btn from "../elements/Btn";
 import { getConData } from "../../redux/modules/MapSlice";
 
 const ScheduleInput = ({ room, day, index, content }) => {
+  const dispatch = useDispatch();
+
   const [sendValue, setSendValue] = useState("");
   const [getShowing, setGetShowing] = useState("");
   const [conData, setConData] = useState({});
-
-  const [sendResult, setSendResult] = useState(false);
   const inputRef = useRef(null);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     socket.on("test_receive", (data) => {
@@ -34,7 +32,16 @@ const ScheduleInput = ({ room, day, index, content }) => {
     }
   }, [sendValue]);
 
-  // live부분
+
+  useEffect(() => {
+    setConData({
+      day: day,
+      cardNum: `${day}${index}`,
+      cardMemo: getShowing,
+    });
+  }, [getShowing]);
+
+
   const deleteLastText = (key) => {
     if (key == 8 && getShowing.length == 1) {
       const resetmsg = { msg: "", room: `${room}${day}${index}` };
@@ -51,13 +58,6 @@ const ScheduleInput = ({ room, day, index, content }) => {
     }
   };
 
-  useEffect(() => {
-    setConData({
-      day: day,
-      cardNum: `${day}${index}`,
-      cardMemo: getShowing,
-    });
-  }, [getShowing]);
 
   return (
     <div className={styels.inputWrap}>

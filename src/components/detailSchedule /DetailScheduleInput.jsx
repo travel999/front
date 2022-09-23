@@ -13,13 +13,14 @@ import { useParams } from "react-router-dom";
 const DetailScheduleInput = ({ day, index, dayMemo }) => {
   const dispatch = useDispatch();
   const members = useSelector((state) => state.kakaoMap.members);
-  const [sendValue, setSendValue] = useState("");
-  const [conData, setConData] = useState({});
   const inputRef = useRef(null);
   const { id } = useParams();
-  const nickname = localStorage.getItem("nickname");
 
+  const nickname = localStorage.getItem("nickname");
   const liveText = $(`#${id}${day}${index}`).text();
+
+  const [sendValue, setSendValue] = useState("");
+  const [conData, setConData] = useState({});
 
   // 받아온 day마다의 카드에 값을 넣어준다.
   useEffect(() => {
@@ -139,6 +140,7 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
         <input
           ref={inputRef}
           key={index}
+          name={`${id}${day}${index}input`}
           placeholder="일정 입력"
           onChange={(e) => setSendValue(e.target.value)}
           onKeyDown={(e) => deleteLastText(e.keyCode)}

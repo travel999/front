@@ -35,7 +35,10 @@ const DetailScheduleMap = ({ nowDay, data }) => {
       const container = document.getElementById("map");
       const newData = data.pin.filter((item) => item.day === nowDay);
       const options = {
-        center: new kakao.maps.LatLng(newData[0]?.lat, newData[0]?.lng),
+        center: new kakao.maps.LatLng(
+          newData[newData.length - 1]?.lat,
+          newData[newData.length - 1]?.lng
+        ),
         level: 3,
       };
       const kakaoMap = new kakao.maps.Map(container, options);
@@ -50,10 +53,34 @@ const DetailScheduleMap = ({ nowDay, data }) => {
           //마커에 hover시 나타날 title
           title: el.title,
         });
-        marker.setMap(kakaoMap);
+        setMap(kakaoMap);
       });
     }
   }, [data]);
+
+  //상세보기에서 데이터가 하나도 없을때
+  useEffect(() => {
+    if (data.pin.length === 0) {
+      const container = document.getElementById("map");
+      const options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3,
+      };
+      const kakaoMap = new kakao.maps.Map(container, options);
+      setMap(kakaoMap);
+    }
+  }, []);
+
+  //신규 추가된 장소 마커 찍기
+  useEffect(() => {
+    pin.map((item) => {
+      let marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: new kakao.maps.LatLng(item.lat, item.lng), // 마커를 표시할 위치
+        title: item.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+      });
+    });
+  }, [pin]);
 
   // 2022.09.22 -> 안쓰지만 혹시 모르니 남겨둔다.
   // useEffect(() => {
@@ -70,20 +97,6 @@ const DetailScheduleMap = ({ nowDay, data }) => {
     //마커 위치로 지도 화면 포커싱
     map.panTo(moveLatLon);
   };
-
-  //신규 추가된 장소 마커 찍기
-  useEffect(() => {
-    pin
-      // .filter((item) => item.day === nowDay)
-      .map((item) => {
-        let marker = new kakao.maps.Marker({
-          map: map, // 마커를 표시할 지도
-          position: new kakao.maps.LatLng(item.lat, item.lng), // 마커를 표시할 위치
-          title: item.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        });
-        setMap(map);
-      });
-  }, [pin]);
 
   // 키워드 검색을 요청하는 함수입니다
   const searchPlaces = (e) => {

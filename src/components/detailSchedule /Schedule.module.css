@@ -106,13 +106,13 @@
 }
 /* ScheduleMap */
 .mapWrap {
-  width: "100%";
-  display: "inline-block";
+  width: 100%;
+  display: inline-block;
+  background-color: #ffff;
 }
 .mapWrap button {
   z-index: 999;
   /* height: 26px; */
-  background-color: #ffff;
 }
 /* ScheduleCard */
 .worksWrap button {

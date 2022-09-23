@@ -3,6 +3,7 @@ import socket from "../../res/socket";
 import styled from "styled-components";
 import ChatBox from "./ChatBox";
 
+
 const Chatting = ({ id }) => {
   const [showChat, setShowChat] = useState(true);
 

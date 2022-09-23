@@ -15,11 +15,11 @@ const DetailSchedule = () => {
   const createData = useSelector((state) => state.schedule);
   const mapData = useSelector((state) => state.kakaoMap);
   const members = useSelector((state) => state.kakaoMap?.members);
-
-  const tokenValue = localStorage.getItem("jwtToken"); // 토크없으면 로그인 페이지로
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
+
+  const tokenValue = localStorage.getItem("jwtToken"); // 토크없으면 로그인 페이지로
 
   //DB 가져오기
   useEffect(() => {

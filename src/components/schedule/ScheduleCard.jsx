@@ -17,22 +17,7 @@ const ScheduleCard = ({ data, postId, SendOtherPeople }) => {
   const room = useSelector((state) => state?.schedule?.postId);
   //state
   const [result, setResult] = useState([]);
-  //함수
 
-  //이벤트 함수
-  console.log(data.allDay.length, data.day);
-  //일정의 컨텐츠 저장.
-  const onSaveStorage = () => {
-    let filterPinData = data.pin.filter((item) => item.day === data.day);
-    let filterContentData = data.content.filter(
-      (item) => item.day === data.day
-    );
-    setResult([
-      `${data.day}`,
-      { pin: filterPinData, con: filterContentData },
-      { postId },
-    ]);
-  };
   //저장 버튼 눌렀을때만 dispatch 동작하기.
   useEffect(() => {
     //마지막 일정 일때, 메인페이지로 돌아가게 처리
@@ -54,6 +39,21 @@ const ScheduleCard = ({ data, postId, SendOtherPeople }) => {
       dispatch(saveDayData(result));
     }
   }, [result]);
+
+  //이벤트 함수
+
+  //일정의 컨텐츠 저장.
+  const onSaveAllSchedule = () => {
+    let filterPinData = data.pin.filter((item) => item.day === data.day);
+    let filterContentData = data.content.filter(
+      (item) => item.day === data.day
+    );
+    setResult([
+      `${data.day}`,
+      { pin: filterPinData, con: filterContentData },
+      { postId },
+    ]);
+  };
 
   return (
     <div className={styels.worksWrap}>
@@ -86,7 +86,7 @@ const ScheduleCard = ({ data, postId, SendOtherPeople }) => {
         color="#fffff"
         width="100%"
         backgroundColor="#ffc51c"
-        onClick={onSaveStorage}
+        onClick={onSaveAllSchedule}
       >
         {data.day}일차 전체 일정 저장
       </Btn>
