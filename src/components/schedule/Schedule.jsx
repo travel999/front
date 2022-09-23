@@ -11,11 +11,12 @@ import ScheduleMap from "./ScheduleMap";
 import Chatting from "../chat/Chatting";
 
 const Schedule = () => {
-  const tokenValue = localStorage.getItem("jwtToken"); // 토크없으면 로그인 페이지로
   const navigate = useNavigate();
   const createData = useSelector((state) => state.schedule);
   const mapData = useSelector((state) => state.kakaoMap);
   const postid = useSelector((state) => state.schedule.postId);
+
+  const tokenValue = localStorage.getItem("jwtToken"); // 토크없으면 로그인 페이지로
 
   useEffect(() => {
     if (!tokenValue) {

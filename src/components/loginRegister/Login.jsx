@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addLogin } from "../../redux/modules/LogInSlice";
 
-import styles from "./login.module.css"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import styles from "./login.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import Background from "../../res/img/background.png"
-import cloud from "../../res/img/cloud.png"
-import cloud1 from "../../res/img/cloud1.png"
+import Background from "../../res/img/background.png";
+import cloud from "../../res/img/cloud.png";
+import cloud1 from "../../res/img/cloud1.png";
 
 const Login = () => {
   const nickname = localStorage.getItem("nickname");
@@ -28,9 +28,9 @@ const Login = () => {
   };
 
   const onLogin = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     if (login.email.trim() === "" || login.password.trim() === "") {
-      return toast.warn('모든 항목을 입력해주세요!', {
+      return toast.warn("모든 항목을 입력해주세요!", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: true,
@@ -56,14 +56,34 @@ const Login = () => {
         <form className={styles.inputWrap}>
           <div className={styles.inputBox}>
             <div className={styles.inputName}>이메일</div>
-            <input className={styles.input} name="email" value={login.email} onChange={onChange} autoFocus></input>
+            <input
+              className={styles.input}
+              name="email"
+              value={login.email}
+              onChange={onChange}
+              autoFocus
+            ></input>
           </div>
           <div className={styles.inputBox1}>
             <div className={styles.inputName}>비밀번호</div>
-            <input className={styles.input} name="password" type="password" defaultChecked="" value={login.password} onChange={onChange}></input>
+            <input
+              className={styles.input}
+              name="password"
+              type="password"
+              defaultChecked=""
+              value={login.password}
+              onChange={onChange}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  onLogin();
+                }
+              }}
+            ></input>
           </div>
         </form>
-        <button className={styles.button} onClick={onLogin}>로그인</button>
+        <button className={styles.button} onClick={onLogin}>
+          로그인
+        </button>
         <ToastContainer />
       </div>
     </div>

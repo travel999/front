@@ -13,14 +13,12 @@ const socket = io.connect("http://52.78.142.77/", {
 });
 
 const ScheduleInput = ({ room, day, index, content }) => {
+  const dispatch = useDispatch();
+
   const [sendValue, setSendValue] = useState("");
   const [getShowing, setGetShowing] = useState("");
   const [conData, setConData] = useState({});
-
-  const [sendResult, setSendResult] = useState(false);
   const inputRef = useRef(null);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     socket.on("test_receive", (data) => {
@@ -41,6 +39,14 @@ const ScheduleInput = ({ room, day, index, content }) => {
     }
   }, [sendValue]);
 
+  useEffect(() => {
+    setConData({
+      day: day,
+      cardNum: `${day}${index}`,
+      cardMemo: getShowing,
+    });
+  }, [getShowing]);
+
   const deleteLastText = (key) => {
     if (key == 8 && getShowing.length == 1) {
       const resetmsg = { msg: "", room: `${room}${day}${index}` };
@@ -56,16 +62,6 @@ const ScheduleInput = ({ room, day, index, content }) => {
       dispatch(getConData(conData));
     }
   };
-
-  useEffect(() => {
-    setConData({
-      day: day,
-      cardNum: `${day}${index}`,
-      cardMemo: getShowing,
-    });
-  }, [getShowing]);
-
-  //   setConData({ ...conData, day: day, [index]: sendValue, });
 
   return (
     <div className={styels.inputWrap}>

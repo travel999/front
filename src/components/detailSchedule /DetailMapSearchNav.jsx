@@ -17,7 +17,7 @@ const DetailMapSearchNav = ({
   pin,
 }) => {
   const dispatch = useDispatch();
-  //좌표 전역 스테이지로 올려주기
+  //좌표 전역 스테이지로 올려주기~~~
   useEffect(() => {
     dispatch(getDayPlaceData(pin));
   }, [pin]);

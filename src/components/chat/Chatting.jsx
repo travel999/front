@@ -8,8 +8,6 @@ const socket = io.connect("http://52.78.142.77/", {
   transports: ["websocket"],
 });
 
-// const socket = io.connect("http://localhost:3001/");
-
 const Chatting = ({ id }) => {
   const [showChat, setShowChat] = useState(true);
 

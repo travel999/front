@@ -17,6 +17,8 @@ const ScheduleCreate = () => {
   //Hook
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const createData = useSelector((state) => state.schedule);
+  console.log(createData);
 
   //State
   const [title, setTitle] = useState("");
@@ -25,8 +27,20 @@ const ScheduleCreate = () => {
   const [scheduleSave, setScheduleSave] = useState({});
   const [fixDay, setFixDay] = useState();
 
-  const createData = useSelector((state) => state.schedule);
-  console.log(createData);
+  //playload등록시 title 제일 끝에 형태소 안찍히는 오류 수정
+  useEffect(() => {
+    if (createData.postId === "") {
+      if (startDate !== "" && endDate !== "" && title !== "") {
+        dispatch(saveSchedule(scheduleSave));
+        navigate("/write");
+      }
+    } else {
+      dispatch(
+        modifySchedule({ data: scheduleSave, postId: createData.postId })
+      );
+      navigate("/write");
+    }
+  }, [scheduleSave]);
 
   //시작일-종료일-타이틀 지정
   const onSetData = (e) => {
@@ -125,20 +139,6 @@ const ScheduleCreate = () => {
       });
     }
   };
-  //playload등록시 title 제일 끝에 형태소 안찍히는 오류 수정
-  useEffect(() => {
-    if (createData.postId === "") {
-      if (startDate !== "" && endDate !== "" && title !== "") {
-        dispatch(saveSchedule(scheduleSave));
-        navigate("/write");
-      }
-    } else {
-      dispatch(
-        modifySchedule({ data: scheduleSave, postId: createData.postId })
-      );
-      navigate("/write");
-    }
-  }, [scheduleSave]);
 
   return (
     <div className={styels.createWrap}>

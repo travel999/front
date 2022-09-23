@@ -35,16 +35,6 @@ const ScheduleMap = ({ nowDay }) => {
     setMap(kakaoMap);
   }, []);
 
-  //마커 생성을 위한 배열 만들기
-  const onMakeMarker = (placeName, placeX, palceY) => {
-    setPin([
-      ...pin,
-      { day: nowDay, title: placeName, lat: palceY, lng: placeX },
-    ]);
-    const moveLatLon = new kakao.maps.LatLng(palceY, placeX);
-    //마커 위치로 지도 화면 포커싱
-    map.panTo(moveLatLon);
-  };
   //마커 찍기
   useEffect(() => {
     pin.map((item) => {
@@ -56,6 +46,17 @@ const ScheduleMap = ({ nowDay }) => {
       setMap(map);
     });
   }, [pin]);
+
+  //마커 생성을 위한 배열 만들기
+  const onMakeMarker = (placeName, placeX, palceY) => {
+    setPin([
+      ...pin,
+      { day: nowDay, title: placeName, lat: palceY, lng: placeX },
+    ]);
+    const moveLatLon = new kakao.maps.LatLng(palceY, placeX);
+    //마커 위치로 지도 화면 포커싱
+    map.panTo(moveLatLon);
+  };
 
   // 키워드 검색을 요청하는 함수입니다
   const searchPlaces = (e) => {
