@@ -32,7 +32,6 @@ export const addLogin = createAsyncThunk(
             progress: undefined,
           },
           setTimeout(() => {
-            // window.location.replace("/main");
             payload.navigate("/main");
           }, 1000)
         );
