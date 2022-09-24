@@ -19,9 +19,18 @@ const Join = () => {
   const dispatch = useDispatch();
   const imgVal = useRef(null);
   const navigate = useNavigate();
-
+  const initialState = {
+    email: "",
+    nickname: "",
+    userImage: "",
+    password: "",
+    confirm: "",
+  };
+  // 닉네임, 이메일 중복확인
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNickName, setCheckNickName] = useState(false);
+  // 이메일 인증코드 발송 및 확인
+  const [invalidEmail, setInvalidEmail] = useState()
   // 회원가입
   const [signUp, setSignUp] = useState(initialState);
   const [emailData, setEmailData] = useState("");
@@ -37,14 +46,6 @@ const Join = () => {
   const [nickNameMsg, setNickNameMsg] = useState("");
   const [pwMsg, setPwMsg] = useState("");
   const [confirmMsg, setConfirmMsg] = useState("");
-
-  const initialState = {
-    email: "",
-    nickname: "",
-    userImage: "",
-    password: "",
-    confirm: "",
-  };
 
   // 정규식 리스트
   const emailRule =
@@ -69,7 +70,9 @@ const Join = () => {
   }, [nicknNameData]);
 
   // 유효 이메일 인증
-  const onCertifyEmail = () => {};
+  const onCertifyEmail = (e) => {
+    
+  };
 
   // 유효성 검사
   const onValidation = (e) => {
