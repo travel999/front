@@ -35,8 +35,19 @@ export const addJoin = createAsyncThunk(
       }
       return response.data;
     } catch (error) {
-      if (error) {
-        toast.error("내용을 확인해 주세요.", {
+      console.log(error)
+      if (error.response.status === 415) {
+        toast.error("이메일을 인증해주세요.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        toast.error("내용을 확인해 주세요!", {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: true,
@@ -100,6 +111,17 @@ export const invalidEmail = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await instance.post("user/sendEmail", payload);
+      if (response.result === true) {
+        toast.success("이메일이 전송되었습니다!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
       return thunkAPI.fulfillWithValue(response.data)
     }
     catch (error) {
@@ -111,13 +133,15 @@ export const invalidEmail = createAsyncThunk(
   }
 )
 
-// 유효 이메일 인증 메일 발송 청크
+// 유효 이메일 인증 
 export const invalidEmailCheck = createAsyncThunk(
   "signUpSilce/invalidEmailCheck",
   async (payload, thunkAPI) => {
     try {
       const response = await instance.post("user/checkCode", payload);
-      if (response.result === true ) {
+      console.log("try")
+      console.log(response)
+      if (response) {
         toast.info("이메일이 인증되었습니다!", {
           position: "top-center",
           autoClose: 3000,
@@ -131,6 +155,7 @@ export const invalidEmailCheck = createAsyncThunk(
       return thunkAPI.fulfillWithValue(response.data)
     }
     catch (error) {
+      console.log("error")
       if (error) {
         toast.warn("이메일 인증에 실패했습니다!", {
           position: "top-center",
@@ -157,7 +182,6 @@ export const JoinSlice = createSlice({
       state.isLoading = true;
     },
     [addJoin.fulfilled]: (state, action) => {
-      state.result = action.payload;
       state.isLoading = false;
     },
     [addJoin.rejected]: (state) => {

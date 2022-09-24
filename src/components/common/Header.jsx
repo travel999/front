@@ -32,9 +32,6 @@ const Header = () => {
       }, 1000)
     );
   };
-  useLayoutEffect(() => {
-    navigate("/main");
-  }, []);
   const OntoHome = () => {
     dispatch(deleteMemory());
     if (!tokenValue) {
