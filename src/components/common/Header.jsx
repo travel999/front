@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
 import { deleteMemory } from "../../redux/modules/chatSlice";
 
+
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,13 +32,16 @@ const Header = () => {
       }, 1000)
     );
   };
-
+  useLayoutEffect(() => {
+    navigate("/main");
+  }, []);
   const OntoHome = () => {
     dispatch(deleteMemory());
     if (!tokenValue) {
       navigate("/");
     } else {
-      navigate("/main");
+      // navigate("/main");
+      window.location.replace("/main");
     }
   };
 

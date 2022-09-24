@@ -28,6 +28,7 @@ const Join = () => {
     confirm: "",
   };
 
+
   // 닉네임, 이메일 중복확인
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNickName, setCheckNickName] = useState(false);
