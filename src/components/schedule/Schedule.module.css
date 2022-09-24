@@ -143,3 +143,27 @@
   position: relative;
   left: 9rem;
 }
+
+/* 모바일 반응형 430 x 844 : 아이폰 pro 도 접근할 수 있도록 처리함*/
+@media only screen and (max-width: 430px) {
+  .wrap {
+    display: block;
+  }
+  .wrapLeft {
+    width: 100%;
+    background-color: #ffff;
+  }
+  .wrapCenter {
+    width: 100%;
+    height: 100%;
+  }
+  .createWrap input[type="date"] {
+    width: 95%;
+  }
+  .createWrap input[type="text"] {
+    width: 95%;
+  }
+  .createWrap button {
+    width: 95%;
+  }
+}

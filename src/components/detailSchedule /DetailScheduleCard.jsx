@@ -23,21 +23,24 @@ const DetailScheduleCard = ({ data, postId, key }) => {
   //저장 버튼 눌렀을때만 dispatch 동작하기
   useEffect(() => {
     //마지막 일정 일때, 메인페이지로 돌아가게 처리
-    if (data.allDay.length === data.day) {
-      dispatch(saveDayData(result));
-      toast.success("모든 일정을 저장했습니다.", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      // navigation("/main");
-    } else {
-      console.log("result", result);
-      dispatch(saveDayData(result));
+    if (result.length !== 0) {
+      if (data.allDay.length === data.day) {
+        dispatch(saveDayData(result));
+        toast.success("모든 일정을 저장했습니다.", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          navigation("/main");
+        });
+      } else {
+        dispatch(saveDayData(result));
+      }
     }
   }, [result]);
 

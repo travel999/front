@@ -7,7 +7,7 @@ import styles from "./Schedule.module.css";
 const DetailMapSearchNav = ({
   visible,
   menu,
-  searchPlaces: onSearchPlaces,
+  onSearchPlaces,
   onMakeMarker,
   sendMarker,
   searchData,
@@ -96,6 +96,12 @@ const SearchDiv = styled.div`
   padding: 0 0 40px 0;
   display: flex;
   flex-direction: column;
+  /* 모바일 반응형 430 x 844 : 아이폰 pro 도 접근할 수 있도록 처리함*/
+  @media only screen and (max-width: 430px) {
+    position: absolute;
+    top: 30px;
+    left: 19.7rem;
+  }
 
   div.searchArea {
     display: flex;
