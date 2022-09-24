@@ -15,7 +15,7 @@ const Start = () => {
         <img src={Background} alt="title" id="Frame" className={styles.title} />
         <label htmlFor="Frame">
           <div className={styles.description}>
-            같이 의견을 공유하고 여행 플랜을 확인하며 <br />
+          &nbsp;&nbsp;&nbsp;같이 의견을 공유하고 여행 플랜을 확인하며 <br />
             오리 같이, 알차고 재미있는 여행 일정 세워봐요!
           </div>
         </label>
