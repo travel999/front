@@ -8,7 +8,7 @@ import ScheduleSlice from "../modules/ScheduleSlice";
 import InviteSlice from "../modules/InviteSlice";
 import MapSlice from "../modules/MapSlice";
 import ResultSlice from "../modules/ResultSlice";
-import ChatSlice from "../modules/ChatSlice";
+import ChatSlice from "../modules/chatSlice";
 
 const store = configureStore({
   reducer: {

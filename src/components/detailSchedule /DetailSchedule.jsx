@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import DetailScheduleCreate from "./DetailScheduleCreate";
@@ -16,6 +16,8 @@ const DetailSchedule = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  const [key, setKey] = useState(0);
+
   const tokenValue = localStorage.getItem("jwtToken"); // 토크없으면 로그인 페이지로
 
   //토큰값 여부로 get 요청 진행하기
@@ -30,11 +32,15 @@ const DetailSchedule = () => {
   return (
     <div className={styles.wrap}>
       <div className={styles.wrapLeft}>
-        <DetailScheduleCreate data={mapData} />
-        <DetailScheduleCard data={mapData} postId={id} />
+        <DetailScheduleCreate data={mapData} setKey={setKey} />
+        <DetailScheduleCard data={mapData} postId={id} key={key} />
       </div>
       <div className={styles.wrapCenter}>
-        <DetailScheduleMap nowDay={mapData.day} data={mapData} />
+        <DetailScheduleMap
+          nowDay={mapData.day}
+          data={mapData}
+          setKey={setKey}
+        />
       </div>
       <Chatting id={id} members={members} />
     </div>

@@ -7,7 +7,7 @@ import {
   doubleCheckNickName,
 } from "../../redux/modules/JoinSlice";
 import S3upload from "react-aws-s3";
-import styles from "./Join.module.css";
+import styles from "./join.module.css";
 import logo from "../../res/img/logo.png";
 import profile from "../../res/img/profile.png";
 import { ToastContainer } from "react-toastify";
@@ -19,6 +19,14 @@ const Join = () => {
   const dispatch = useDispatch();
   const imgVal = useRef(null);
   const navigate = useNavigate();
+
+  const initialState = {
+    email: "",
+    nickname: "",
+    userImage: "",
+    password: "",
+    confirm: "",
+  };
 
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNickName, setCheckNickName] = useState(false);
@@ -37,14 +45,6 @@ const Join = () => {
   const [nickNameMsg, setNickNameMsg] = useState("");
   const [pwMsg, setPwMsg] = useState("");
   const [confirmMsg, setConfirmMsg] = useState("");
-
-  const initialState = {
-    email: "",
-    nickname: "",
-    userImage: "",
-    password: "",
-    confirm: "",
-  };
 
   // 정규식 리스트
   const emailRule =

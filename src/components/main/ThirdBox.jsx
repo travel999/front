@@ -112,7 +112,7 @@ const ThirdBox = ({
                         <div
                           style={{
                             display: "flex",
-                            margin: "7px 0px 5px 0px",
+                            margin: "4px 0px 4px 0px",
                           }}
                         >
                           <img
@@ -138,7 +138,7 @@ const ThirdBox = ({
                         </div>
                       ) : null}
                       {value?.day3?.pin ? (
-                        <div style={{ display: "flex", marginTop: "5px" }}>
+                        <div style={{ display: "flex", marginTop: "4px" }}>
                           <img
                             src={duckfootDark2}
                             className={styles.darkduckfoot}
@@ -212,7 +212,12 @@ const ThirdBox = ({
                     </div> */}
                     <div>
                       {value?.day1?.pin ? (
-                        <div style={{ display: "flex", margin: "5px 0px" }}>
+                        <div
+                          style={{
+                            display: "flex",
+                            margin: "4px 0px 4px 0px",
+                          }}
+                        >
                           <img
                             src={duckfootDark2}
                             className={styles.darkduckfoot}
@@ -236,7 +241,7 @@ const ThirdBox = ({
                         </div>
                       ) : null}
                       {value?.day3?.pin ? (
-                        <div style={{ display: "flex" }}>
+                        <div style={{ display: "flex", marginTop: "4px" }}>
                           <img
                             src={duckfootDark2}
                             className={styles.darkduckfoot}

@@ -9,7 +9,7 @@ import styles from "./Schedule.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 
-const DetailScheduleCard = ({ data, postId }) => {
+const DetailScheduleCard = ({ data, postId, key }) => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const room = useSelector((state) => state?.schedule?.postId);
@@ -34,7 +34,7 @@ const DetailScheduleCard = ({ data, postId }) => {
         draggable: true,
         progress: undefined,
       });
-      navigation("/main");
+      // navigation("/main");
     } else {
       console.log("result", result);
       dispatch(saveDayData(result));
@@ -116,6 +116,7 @@ const DetailScheduleCard = ({ data, postId }) => {
                 day={item.day}
                 content={data.content}
                 index={index + 1}
+                key={key}
                 dayMemo={
                   data.content.filter((item) => item.day === data.day)[index]
                     ?.cardMemo

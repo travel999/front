@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
 
 const initialState = {
@@ -11,7 +11,6 @@ export const getChatMemory = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const res = await instance.get(`chat/${id}`);
-      console.log(res.data);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -31,7 +30,6 @@ export const ChatSlice = createSlice({
   extraReducers: {
     [getChatMemory.fulfilled]: (state, action) => {
       const forChatArr = [];
-      console.log(forChatArr);
       if (action.payload?.chatRoom?.chatLog !== undefined) {
         const chatLog = action.payload.chatRoom.chatLog;
         const chatTime = action.payload.chatRoom.chatTime;
