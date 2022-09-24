@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
 import { deleteMemory } from "../../redux/modules/chatSlice";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
@@ -40,7 +41,7 @@ const Header = () => {
       }, 1000)
     );
   };
-  
+
   const OntoHome = () => {
     dispatch(deleteMemory());
     if (!tokenValue) {

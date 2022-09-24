@@ -139,4 +139,4 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
   );
 };
 
-export default DetailScheduleInput;
+export default memo(DetailScheduleInput);

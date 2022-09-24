@@ -28,9 +28,11 @@ const Join = () => {
   // 닉네임, 이메일 중복확인
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNickName, setCheckNickName] = useState(false);
+
   // 모달
   const [modalOpen, setModalOpen] = useState(false);
   const [clickButton, setClickButton] = useState(false)
+
   // 회원가입
   const [signUp, setSignUp] = useState(initialState);
   const [emailData, setEmailData] = useState("");
@@ -70,6 +72,7 @@ const Join = () => {
       );
     }
   }, [nicknNameData]);
+
 
   // 유효성 검사
   const onValidation = (e) => {

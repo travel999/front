@@ -55,6 +55,7 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
         level: 3,
       };
       const kakaoMap = new kakao.maps.Map(container, options);
+      kakaoMap.setZoomable(false);
       //처음 들어오는 저장된 마커 찍기
       newData.forEach((el) => {
         // 마커를 생성합니다
@@ -120,7 +121,7 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
   };
 
   // 키워드 검색을 요청하는 함수입니다
-  const searchPlaces = (e) => {
+  const onSearchPlaces = (e) => {
     if (e.key === "Enter") {
       setInputVal(e.target.value);
       const keyWord = inputVal.trim();
@@ -169,7 +170,7 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
         menu={menu}
         onMakeMarker={onMakeMarker}
         sendMarker={sendMarker}
-        searchPlaces={searchPlaces}
+        onSearchPlaces={onSearchPlaces}
         searchData={search}
         day={nowDay}
         pin={pin}
