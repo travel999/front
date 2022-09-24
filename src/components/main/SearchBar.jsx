@@ -44,29 +44,31 @@ const SearchBar = ({
 
   return (
     <div className={styles.searchbox}>
-      <input
-        className={styles.searchinputbox}
-        ref={inputRef}
-        onKeyPress={(e) => {
-          if (e.key === "Enter") onTosearch(inputRef.current.value);
-        }}
-      />
-      <button
-        className={styles.searchbtn}
-        onClick={() => {
-          onTosearch(inputRef.current.value);
-        }}
-      >
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
-      </button>
-      <button
-        className={styles.refreshbtn}
-        onClick={() => {
-          onRefresh();
-        }}
-      >
-        <FontAwesomeIcon icon={faRotateRight} />
-      </button>
+      <div className={styles.threeSearch}>
+        <input
+          className={styles.searchinputbox}
+          ref={inputRef}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") onTosearch(inputRef.current.value);
+          }}
+        />
+        <button
+          className={styles.searchbtn}
+          onClick={() => {
+            onTosearch(inputRef.current.value);
+          }}
+        >
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
+        <button
+          className={styles.refreshbtn}
+          onClick={() => {
+            onRefresh();
+          }}
+        >
+          <FontAwesomeIcon icon={faRotateRight} />
+        </button>
+      </div>
     </div>
   );
 };

@@ -71,7 +71,7 @@ const SecondBox = () => {
                       className={styles.traveldate}
                       style={{ marginTop: "0.3vh" }}
                     >
-                      {value.date[0] + "~ " + value.date[1]}
+                      {value.date[0].slice(2) + "~ " + value.date[1].slice(2)}
                     </div>
                   </div>
                 </div>
