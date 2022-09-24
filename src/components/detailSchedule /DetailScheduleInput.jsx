@@ -8,13 +8,13 @@ import styles from "./Schedule.module.css";
 import { toast, ToastContainer } from "react-toastify";
 import $ from "jquery";
 
-const DetailScheduleInput = ({ day, index, dayMemo }) => {
+const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
   const dispatch = useDispatch();
   const members = useSelector((state) => state.kakaoMap.members);
   const inputRef = useRef(null);
   const { id } = useParams();
 
-  const [sendValue, onSetSendValue] = useState("");
+  const [sendValue, setSendValue] = useState("");
   const [conData, setConData] = useState({});
 
   const nickname = localStorage.getItem("nickname");
@@ -30,7 +30,10 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
     if (members?.includes(nickname)) {
       socket.emit("join_box", `${id}${day}${index}`);
       socket.emit("join_save", `${id}${day}${index}save`);
+      inputRef.current.value = " ";
     }
+    console.log(`${id}${day}${index}`);
+    console.log("입장");
   }, []);
 
   // 실시간으로 바뀌는 값을 소켓에 보낸다.
@@ -51,7 +54,7 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
     });
 
     socket.on("SaveGet_data", (data) => {
-      console.log(data);
+      // console.log(data);
     });
   }, [socket]);
 
@@ -85,6 +88,7 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
         dispatch(getConData(conData));
         // 다른사람들에게도 토스트가 간다.
         sendOtherPeople();
+        inputRef.current.value = " ";
       }
     } else {
       toast.success(`권한이 없습니다.`, {
@@ -120,13 +124,12 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
   return (
     <div className={styles.inputWrap}>
       <p id={`${id}${day}${index}`}></p>
-
       <input
         ref={inputRef}
         key={index}
         name={`${id}${day}${index}input`}
         placeholder="일정 입력"
-        onChange={(e) => onSetSendValue(e.target.value)}
+        onChange={(e) => setSendValue(e.target.value)}
         onKeyDown={(e) => onDeleteLastText(e.keyCode)}
         required
       />
@@ -138,4 +141,4 @@ const DetailScheduleInput = ({ day, index, dayMemo }) => {
   );
 };
 
-export default memo(DetailScheduleInput);
+export default DetailScheduleInput;

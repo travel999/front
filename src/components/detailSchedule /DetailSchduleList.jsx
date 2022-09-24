@@ -6,7 +6,7 @@ import Btn from "../elements/Btn";
 import styles from "./Schedule.module.css";
 import { toast } from "react-toastify";
 
-const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
+const DetailScheduleList = ({ fixDay, id, defalutDay, setKey }) => {
   const dispatch = useDispatch();
   const members = useSelector((state) => state.kakaoMap.members);
 
@@ -72,6 +72,7 @@ const DetailScheduleList = ({ fixDay, id, defalutDay }) => {
   const sendMapData = (day, dayArr) => {
     setIndex(day);
     dispatch(getMapData({ day: day, allDay: dayArr }));
+    setKey((prev) => (prev += 1));
   };
 
   return (

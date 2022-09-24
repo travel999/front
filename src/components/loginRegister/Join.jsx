@@ -7,7 +7,7 @@ import {
   doubleCheckNickName,
 } from "../../redux/modules/JoinSlice";
 import S3upload from "react-aws-s3";
-import styles from "./Join.module.css";
+import styles from "./join.module.css";
 import logo from "../../res/img/logo.png";
 import profile from "../../res/img/profile.png";
 import { ToastContainer } from "react-toastify";
@@ -19,7 +19,7 @@ const Join = () => {
   const dispatch = useDispatch();
   const imgVal = useRef(null);
   const navigate = useNavigate();
-
+  
   const initialState = {
     email: "",
     nickname: "",
@@ -28,8 +28,12 @@ const Join = () => {
     confirm: "",
   };
 
+
+  // 닉네임, 이메일 중복확인
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNickName, setCheckNickName] = useState(false);
+  // 이메일 인증코드 발송 및 확인
+  const [invalidEmail, setInvalidEmail] = useState()
   // 회원가입
   const [signUp, setSignUp] = useState(initialState);
   const [emailData, setEmailData] = useState("");
@@ -69,7 +73,9 @@ const Join = () => {
   }, [nicknNameData]);
 
   // 유효 이메일 인증
-  const onCertifyEmail = () => {};
+  const onCertifyEmail = (e) => {
+    
+  };
 
   // 유효성 검사
   const onValidation = (e) => {

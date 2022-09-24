@@ -13,7 +13,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 const { kakao } = window;
 
 //placeX : lat , placeY : lng >> 기억하기
-const DetailScheduleMap = ({ nowDay, data }) => {
+const DetailScheduleMap = ({ nowDay, data, setKey }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const existPins = useSelector((state) => state.kakaoMap.pin);
@@ -102,6 +102,7 @@ const DetailScheduleMap = ({ nowDay, data }) => {
 
   useEffect(() => {
     socket.on("receive_marker", (name, x, y, nowDay, pins) => {
+      console.log(name, x, y, nowDay, pins);
       forsocketMakeMarker(name, x, y, nowDay, pins);
     });
   }, [socket]);
@@ -141,6 +142,7 @@ const DetailScheduleMap = ({ nowDay, data }) => {
   };
 
   const forsocketMakeMarker = (placeName, placeX, palceY, nowday2, pins) => {
+    setKey((prev) => (prev += 1));
     setPin([
       ...pins,
       { day: nowday2, title: placeName, lat: palceY, lng: placeX },

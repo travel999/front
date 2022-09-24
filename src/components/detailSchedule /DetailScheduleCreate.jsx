@@ -8,7 +8,7 @@ import styles from "./Schedule.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
-const DetailScheduleCreate = ({ data }) => {
+const DetailScheduleCreate = ({ data, setKey }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -138,7 +138,12 @@ const DetailScheduleCreate = ({ data }) => {
       >
         일정 수정
       </Btn>
-      <DetailSchduleList fixDay={fixDay} id={id} defalutDay={1} />
+      <DetailSchduleList
+        fixDay={fixDay}
+        id={id}
+        defalutDay={1}
+        setKey={setKey}
+      />
     </div>
   );
 };

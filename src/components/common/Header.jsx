@@ -1,10 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
-import { useLayoutEffect } from "react";
+import { deleteMemory } from "../../redux/modules/chatSlice";
+
 
 const Header = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const tokenValue = localStorage.getItem("jwtToken");
 
@@ -33,6 +36,7 @@ const Header = () => {
     navigate("/main");
   }, []);
   const OntoHome = () => {
+    dispatch(deleteMemory());
     if (!tokenValue) {
       navigate("/");
     } else {
