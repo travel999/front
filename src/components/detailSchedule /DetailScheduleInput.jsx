@@ -32,8 +32,6 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
       socket.emit("join_save", `${id}${day}${index}save`);
       inputRef.current.value = " ";
     }
-    console.log(`${id}${day}${index}`);
-    console.log("입장");
   }, []);
 
   // 실시간으로 바뀌는 값을 소켓에 보낸다.

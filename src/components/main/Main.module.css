@@ -200,11 +200,14 @@
 
 .content {
   width: 160px;
-  margin: 8px 20px 5px 0px;
+  margin: 10px 20px 5px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .traveldate {
-  margin-top: 1.3vh;
+  margin-top: 0.5vh;
   font-size: 0.8em;
 }
 
@@ -443,5 +446,181 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .backcolor {
+    height: 100vh;
+    background-color: #f2f7ff;
+  }
+
+  .mainbox {
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .profile {
+    width: 95%;
+    margin: 20px auto;
+    height: 40px;
+  }
+
+  .profileimg {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: -9px 0px -9px 20px;
+    padding: 3px;
+  }
+
+  .profilename {
+    margin-top: -11px;
+    font-size: 1.1em;
+  }
+
+  .profilefont {
+    margin-top: -10px;
+    font-size: 0.9em;
+  }
+
+  .profiltext {
+    margin-top: -5px;
+    margin-left: 20%;
+  }
+
+  .postbtn {
+    width: 35vw;
+    font-size: 0.8em;
+  }
+
+  .toptext {
+    margin-top: -9px;
+  }
+
+  .bicbox {
+    width: 95%;
+    margin: 10px auto;
+    height: 145px;
+  }
+
+  .card {
+    min-width: 240px;
+    width: 60vw;
+    margin-top: -2px;
+  }
+
+  .firstboxscroll {
+    display: flex;
+    overflow-x: auto;
+    border-radius: 0px;
+    height: 11.5vh;
+  }
+
+  .firstboxscroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .content {
+    width: 220px;
+    padding-left: 10px;
+    margin-top: 15px;
+  }
+
+  /* box 2 */
+
+  .bicbox2 {
+    width: 95%;
+    margin: 10px auto;
+    height: 145px;
+  }
+
+  .searchboxscroll {
+    display: flex;
+    height: 90px;
+  }
+
+  .searchboxscroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* calendar */
+
+  .smallbox {
+    display: none;
+  }
+
+  /* search box */
+
+  .searchbox {
+    width: 50%;
+    padding: 20px 0px 0px 0px;
+  }
+
+  .searchinputbox {
+    width: 50%;
+    margin: auto;
+  }
+
+  .onlyscroll {
+    height: 160px;
+  }
+
+  .onlyscroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* third box */
+
+  .contentbox {
+    display: flex;
+    min-width: 260px;
+    width: 260px;
+  }
+
+  .thirdBicBox {
+    height: 25vh;
+    max-height: 25vh;
+  }
+
+  .onlyscroll {
+    display: flex;
+    overflow-y: none;
+    border-radius: 0px;
+    overflow-y: auto;
+  }
+
+  .notexist {
+    min-width: 120px;
+    height: 100px;
+    margin-right: 20px;
+    margin-left: 30px;
+  }
+
+  .spinner {
+    margin-left: 30px;
+    margin-top: 50px;
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  /* picture */
+
+  .miniduck {
+    bottom: -25%;
+    background-color: #f2f7ff;
+    padding: 10px 175px 0px 40px;
+    margin-left: -30px;
+  }
+
+  .bottomcloud {
+    display: none;
+  }
+
+  .topcloud {
+    display: none;
   }
 }

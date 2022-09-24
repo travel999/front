@@ -38,7 +38,7 @@ const ThirdBox = ({
   };
 
   return (
-    <div className={styles.bicbox}>
+    <div className={`${styles.bicbox} ${styles.thirdBicBox}`}>
       <SearchBar
         inputRef={inputRef}
         searchPage={searchPage}
