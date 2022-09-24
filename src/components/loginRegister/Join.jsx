@@ -7,7 +7,7 @@ import {
   doubleCheckNickName,
 } from "../../redux/modules/JoinSlice";
 import S3upload from "react-aws-s3";
-import styles from "./Join.module.css";
+import styles from "./join.module.css";
 import logo from "../../res/img/logo.png";
 import profile from "../../res/img/profile.png";
 import { ToastContainer } from "react-toastify";
@@ -19,6 +19,7 @@ const Join = () => {
   const dispatch = useDispatch();
   const imgVal = useRef(null);
   const navigate = useNavigate();
+  
   const initialState = {
     email: "",
     nickname: "",
@@ -26,6 +27,7 @@ const Join = () => {
     password: "",
     confirm: "",
   };
+
   // 닉네임, 이메일 중복확인
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNickName, setCheckNickName] = useState(false);
