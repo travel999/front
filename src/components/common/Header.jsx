@@ -1,15 +1,23 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
 import { deleteMemory } from "../../redux/modules/chatSlice";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import duckfoot from "../../res/img/duck/duckfoot-5.png";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const tokenValue = localStorage.getItem("jwtToken");
+
+  const MobileSize = useMediaQuery({ maxWidth: 430 });
 
   const removeToken = async () => {
     localStorage.removeItem("provider");
@@ -32,9 +40,7 @@ const Header = () => {
       }, 1000)
     );
   };
-  useLayoutEffect(() => {
-    navigate("/main");
-  }, []);
+
   const OntoHome = () => {
     dispatch(deleteMemory());
     if (!tokenValue) {
@@ -46,59 +52,116 @@ const Header = () => {
   };
 
   return (
-    <HeaderBox>
-      <HomBtn
-        onClick={() => {
-          OntoHome();
-        }}
-      >
-        HOME
-      </HomBtn>
-      <Topcontent>
-        <ContentBtn
-          onClick={() => {
-            navigate("/main");
-          }}
-        >
-          MAIN
-        </ContentBtn>
-        <ContentBtn
-          onClick={() => {
-            navigate("/write");
-          }}
-        >
-          WRITE
-        </ContentBtn>
-        <ContentBtn
-          onClick={() => {
-            navigate("/liked");
-          }}
-        >
-          LIKE
-        </ContentBtn>
-        <ContentBtn
-          onClick={() => {
-            navigate("/profile");
-          }}
-        >
-          PROFILE
-        </ContentBtn>
-      </Topcontent>
-      <div>
-        {
-          <LogOutBtn
+    <div>
+      {MobileSize ? (
+        <MobileHeader>
+          <div>
+            {" "}
+            <FontAwesomeIcon
+              icon={faHouse}
+              onClick={() => {
+                OntoHome();
+              }}
+            />
+          </div>
+          <div>
+            <Duckfoot
+              src={duckfoot}
+              alt="duckfoot"
+              onClick={() => {
+                navigate("/liked");
+              }}
+            />
+          </div>
+          <div>
+            <FontAwesomeIcon
+              icon={faUser}
+              onClick={() => {
+                navigate("/profile");
+              }}
+            />
+          </div>
+          <div>
+            <FontAwesomeIcon
+              icon={faArrowRightFromBracket}
+              onClick={() => {
+                removeToken();
+              }}
+            />
+          </div>
+        </MobileHeader>
+      ) : (
+        <HeaderBox>
+          <HomBtn
             onClick={() => {
-              removeToken();
+              OntoHome();
             }}
           >
-            LOGOUT
-          </LogOutBtn>
-        }
-        <ToastContainer />
-      </div>
-    </HeaderBox>
+            HOME
+          </HomBtn>
+          <Topcontent>
+            <ContentBtn
+              onClick={() => {
+                navigate("/main");
+              }}
+            >
+              MAIN
+            </ContentBtn>
+            <ContentBtn
+              onClick={() => {
+                navigate("/write");
+              }}
+            >
+              WRITE
+            </ContentBtn>
+            <ContentBtn
+              onClick={() => {
+                navigate("/liked");
+              }}
+            >
+              LIKE
+            </ContentBtn>
+            <ContentBtn
+              onClick={() => {
+                navigate("/profile");
+              }}
+            >
+              PROFILE
+            </ContentBtn>
+          </Topcontent>
+          <div>
+            {
+              <LogOutBtn
+                onClick={() => {
+                  removeToken();
+                }}
+              >
+                LOGOUT
+              </LogOutBtn>
+            }
+            <ToastContainer />
+          </div>
+        </HeaderBox>
+      )}
+    </div>
   );
 };
+
+const MobileHeader = styled.div`
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 15px 10px 15px;
+  div {
+    font-size: 1.2em;
+    font-weight: 500;
+    cursor: pointer;
+  }
+`;
+
+const Duckfoot = styled.img`
+  width: 21px;
+`;
 
 const HeaderBox = styled.div`
   height: 3vh;

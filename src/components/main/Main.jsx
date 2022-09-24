@@ -96,18 +96,6 @@ const Main = () => {
     setPrevent(false);
   }, [page, searchPage, searched]);
 
-  // const loadpost = async () => {
-  //   setPrevent(true);
-  //   setLoad(true);
-  //   if (searched === false) {
-  //     await dispatch(getCards(page));
-  //   } else if (searched === true) {
-  //     await OneSearch();
-  //   }
-  //   setLoad(false);
-  //   setPrevent(false);
-  // };
-
   // 처음 검색하고, 계속 볼때 실행됌. 한번만.
   const oneSearch = () => {
     dispatch(searchText([inputRef.current.value, searchPage]));
