@@ -40,7 +40,7 @@ const Header = () => {
       }, 1000)
     );
   };
-
+  
   const OntoHome = () => {
     dispatch(deleteMemory());
     if (!tokenValue) {
