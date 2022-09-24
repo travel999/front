@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { deleteMemory, getChatMemory } from "../../redux/modules/ChatSlice";
+import { deleteMemory, getChatMemory } from "../../redux/modules/chatSlice";
 import styles from "./Chatting.module.css";
 import styled from "styled-components";
 import ScrollToBottom from "react-scroll-to-bottom";
@@ -20,19 +20,25 @@ const ChatBox = ({ socket, id }) => {
 
   useEffect(() => {
     if (members?.includes(nickname)) {
-      socket.emit("join_room", room);
-      dispatch(getChatMemory(id));
+      console.log("포함되서 실행");
+      if (room && members?.includes(nickname)) {
+        socket.emit("join_room", room);
+        dispatch(getChatMemory(id));
+      } else if (address.id && members?.includes(nickname)) {
+        socket.emit("join_room", address.id);
+        dispatch(getChatMemory(address.id));
+      }
     }
     if (address.id !== id) {
       dispatch(deleteMemory());
     }
-  }, [id, members]);
+  }, [id, members, address]);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessageList((list) => [...list, data]);
     });
-  }, [socket]);
+  }, [socket, id]);
 
   const onSendMsg = () => {
     if (members?.includes(nickname)) {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addLogin } from "../../redux/modules/LogInSlice";
-import styles from "./Login.module.css";
+import styles from "./login.module.css";
 // import "react-toastify/dist/ReactToastify.css";
 import Background from "../../res/img/background.png";
 import cloud from "../../res/img/cloud.png";

@@ -4,7 +4,7 @@ import socket from "../../res/socket";
 import styled from "styled-components";
 
 const Chatting = ({ id }) => {
-  const [showChat, setShowChat] = useState(true);
+  const [showChat, setShowChat] = useState(false);
 
   return (
     <BicBox Bsize={showChat}>
@@ -49,6 +49,9 @@ const ChatHaed = styled.div`
 
 const HideBtn = styled.div`
   cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-right: 4px;
 `;
 
 export default Chatting;
