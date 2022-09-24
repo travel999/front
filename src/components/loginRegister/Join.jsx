@@ -1,11 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  addJoin,
-  doubleCheckEmail,
-  doubleCheckNickName,
-} from "../../redux/modules/JoinSlice";
+import { addJoin, doubleCheckEmail, doubleCheckNickName, invalidEmail } from "../../redux/modules/JoinSlice";
+import InvalidCodeModal from "./joinModal/InvalidCodeModal";
 import S3upload from "react-aws-s3";
 import styles from "./Join.module.css";
 import logo from "../../res/img/logo.png";
@@ -13,7 +10,7 @@ import profile from "../../res/img/profile.png";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-window.Buffer = window.Buffer || require("buffer").Buffer;
+// window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const Join = () => {
   const dispatch = useDispatch();
@@ -31,8 +28,11 @@ const Join = () => {
   // 닉네임, 이메일 중복확인
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNickName, setCheckNickName] = useState(false);
-  // 이메일 인증코드 발송 및 확인
-  const [invalidEmail, setInvalidEmail] = useState();
+
+  // 모달
+  const [modalOpen, setModalOpen] = useState(false);
+  const [clickButton, setClickButton] = useState(false)
+
   // 회원가입
   const [signUp, setSignUp] = useState(initialState);
   const [emailData, setEmailData] = useState("");
@@ -59,6 +59,8 @@ const Join = () => {
   useEffect(() => {
     if (checkEmail) {
       dispatch(doubleCheckEmail({ email: emailData, setEmailMsg }));
+      dispatch(invalidEmail({ email: emailData }));
+      console.log(emailData)
     }
   }, [emailData]);
 
@@ -71,13 +73,10 @@ const Join = () => {
     }
   }, [nicknNameData]);
 
-  // 유효 이메일 인증
-  const onCertifyEmail = (e) => {};
 
   // 유효성 검사
   const onValidation = (e) => {
     const { name, value } = e.target;
-
     // 이메일 유효성
     if (name === "email") {
       if (emailRule.test(value) && value !== "") {
@@ -88,7 +87,6 @@ const Join = () => {
         setEmailData(value);
       }
     }
-
     // 닉네임 유효성
     else if (name === "nickname") {
       if (!nickNameRule.test(value)) {
@@ -102,7 +100,6 @@ const Join = () => {
         setNickNameData(value);
       }
     }
-
     // 비밀번호 유효성
     else if (name === "password") {
       if (!pwRule.test(value) && value !== "") {
@@ -111,7 +108,6 @@ const Join = () => {
         setPwMsg("사용가능한 비밀번호 입니다.");
         setPassData(value);
       }
-
       //2차 비밀번호 작성 후 비밀번호 작성 시 유효성 체크 로직
       if (value !== "" && signUp.confirm !== value) {
         setConfirmMsg("비밀번호가 다릅니다.");
@@ -128,7 +124,6 @@ const Join = () => {
         setConfirm(value);
       }
     }
-
     setSignUp({ ...signUp, [name]: value });
   };
 
@@ -165,6 +160,21 @@ const Join = () => {
       }
     });
   };
+  // 모달창 이메일 빈칸 아니고, 중복확인 됐을 때만 열림
+  const openModal = () => {
+    if (checkEmail === true) {
+      setModalOpen(true);
+    } else if (setClickButton(true)) {
+      openModal()
+    } else {
+      return null
+    }
+  };
+  // 모달창 닫힘
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   // 버튼 클릭시 빈칸 확인
   const onJoin = (e) => {
     if (
@@ -202,6 +212,7 @@ const Join = () => {
           id="email"
           name="email"
           placeholder="oorigachi@email.com"
+          autoComplete="new-password"
         />
         <input
           className={styles.inputPassword}
@@ -212,6 +223,7 @@ const Join = () => {
           minLength="6"
           maxLength="12"
           placeholder="6자 이상 12자 이하로 입력해주세요."
+          autoComplete="new-password"
         />
         <input
           className={styles.inputConfirm}
@@ -222,6 +234,7 @@ const Join = () => {
           maxLength="12"
           required
           placeholder="비밀번호를 확인해주세요."
+          autoComplete="new-password"
         />
         {/* 입력값 확인 메세지 모음 */}
         <div className={styles.message}>
@@ -264,9 +277,14 @@ const Join = () => {
         </form>
       </div>
       {/* 이메일 인증 버튼 */}
-      <button className={styles.certifyButton} onClick={onCertifyEmail}>
+      <button className={styles.certifyButton} onClick={openModal}>
         인증
       </button>
+      <InvalidCodeModal
+        open={modalOpen}
+        close={closeModal}
+        email={emailData}
+        text={"인증번호를 입력해주세요."} />
       {/* 회원가입 버튼 */}
       <button className={styles.button} onClick={onJoin}>
         회원가입

@@ -32,7 +32,6 @@ const Profile = () => {
   const [passWord, setPassWord] = useState("");
   const [confirm, setConfirm] = useState("");
   const [newImage, setNewImage] = useState("");
-
   // 비밀번호
   const [pwMsg, setPwMsg] = useState("");
   const [confirmMsg, setConfirmMsg] = useState("");
@@ -42,7 +41,7 @@ const Profile = () => {
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-
+  // 
   const nickname = user.nickname;
   const profileImg = user.userImage;
   const image = localStorage.getItem("image");
@@ -172,7 +171,7 @@ const Profile = () => {
       dispatch(putPassword(edit));
     }
   };
-
+  // 모달창 열림/닫힘
   const openModal = () => {
     setModalOpen(true);
   };

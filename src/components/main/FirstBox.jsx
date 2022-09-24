@@ -29,7 +29,7 @@ const FirstBox = () => {
                 <div className={styles.content}>
                   <div style={{ fontWeight: "500" }}>{value.title}</div>
                   <div className={styles.traveldate}>
-                    {value.date[0] + "~ " + value.date[1]}
+                    {value.date[0].slice(2) + "~ " + value.date[1].slice(2)}
                   </div>
                 </div>
               </div>

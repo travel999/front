@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { saveDayData } from "../../redux/modules/ResultSlice";
@@ -52,7 +52,7 @@ const DetailScheduleCard = ({ data, postId, key }) => {
   // 받은 마커 표시해주는 부분
   useEffect(() => {
     socket.on("receive_dayDone", (person) => {
-      toast.success(`${person}가 저장되었습니다.`, {
+      toast.success(`${person}님이 저장하었습니다.`, {
         position: "top-center",
         autoClose: 1500,
         hideProgressBar: true,
@@ -94,7 +94,7 @@ const DetailScheduleCard = ({ data, postId, key }) => {
 
   //소켓에 마커보내기
   const sendMarker = () => {
-    socket.emit("send_dayDone", dayRoom, "일차");
+    socket.emit("send_dayDone", dayRoom, nickname);
   };
 
   return (
