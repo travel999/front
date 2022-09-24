@@ -20,6 +20,14 @@ const Join = () => {
   const imgVal = useRef(null);
   const navigate = useNavigate();
 
+  const initialState = {
+    email: "",
+    nickname: "",
+    userImage: "",
+    password: "",
+    confirm: "",
+  };
+
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNickName, setCheckNickName] = useState(false);
   // 회원가입
@@ -37,14 +45,6 @@ const Join = () => {
   const [nickNameMsg, setNickNameMsg] = useState("");
   const [pwMsg, setPwMsg] = useState("");
   const [confirmMsg, setConfirmMsg] = useState("");
-
-  const initialState = {
-    email: "",
-    nickname: "",
-    userImage: "",
-    password: "",
-    confirm: "",
-  };
 
   // 정규식 리스트
   const emailRule =

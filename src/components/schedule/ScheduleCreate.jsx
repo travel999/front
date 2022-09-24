@@ -24,18 +24,18 @@ const ScheduleCreate = () => {
 
   //playload등록시 title 제일 끝에 형태소 안찍히는 오류 수정
   useEffect(() => {
-    if (createData.postId === "") {
+    if (createData.postId === undefined || createData.postId === "") {
       if (startDate !== "" && endDate !== "" && title !== "") {
         dispatch(saveSchedule(scheduleSave));
         navigate("/write");
       }
     } else {
-      dispatch(
-        modifySchedule({ data: scheduleSave, postId: createData.postId })
-      );
-      navigate("/write");
+      // dispatch(
+      //   modifySchedule({ data: scheduleSave, postId: createData.postId })
+      // );
+      navigate(`/schedulDetail/${createData.postId}`);
     }
-  }, [scheduleSave]);
+  }, [scheduleSave, createData.postId]);
 
   //시작일-종료일-타이틀 지정
   const onSetData = (e) => {

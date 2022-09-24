@@ -12,7 +12,7 @@ const Schedule = () => {
   const navigate = useNavigate();
   const createData = useSelector((state) => state.schedule);
   const mapData = useSelector((state) => state.kakaoMap);
-  const postid = useSelector((state) => state.schedule.postId);
+  const postId = useSelector((state) => state.schedule.postId);
 
   const tokenValue = localStorage.getItem("jwtToken"); // 토크없으면 로그인 페이지로
 
@@ -25,6 +25,7 @@ const Schedule = () => {
   return (
     <div className={styels.wrap}>
       <div className={styels.wrapLeft}>
+        {}
         <ScheduleCreate />
         {mapData.pin.length !== 0 ? (
           <ScheduleCard data={mapData} postId={createData.postId} />
@@ -41,7 +42,7 @@ const Schedule = () => {
         </div>
       )}
 
-      <Chatting id={postid} />
+      <Chatting id={postId} />
     </div>
   );
 };

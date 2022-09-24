@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
+import { useLayoutEffect } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -28,12 +29,15 @@ const Header = () => {
       }, 1000)
     );
   };
-
+  useLayoutEffect(() => {
+    navigate("/main");
+  }, []);
   const OntoHome = () => {
     if (!tokenValue) {
       navigate("/");
     } else {
-      navigate("/main");
+      // navigate("/main");
+      window.location.replace("/main");
     }
   };
 
