@@ -9,7 +9,8 @@ import {
 import DeleteModal from "./modal/DeleteModal";
 import S3upload from "react-aws-s3";
 import styles from "./Profile.module.css";
-import profilelogo from "../../res/img/profilelogo.png";
+import profileLogo from "../../res/img/profileLogo.png";
+import backgroundbox from "../../res/img/backgroundBox.png"
 import profile from "../../res/img/profile.png";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -101,7 +102,7 @@ const Profile = () => {
   };
 
   // 비밀번호 유효성 검사, 원래 사용하던 비밀번호 일 때 사용중인 비밀번호라고 띄워주기
-  const onChangeHandler = (e) => {
+  const onInvalidTest = (e) => {
     const { name, value } = e.target;
     // 비밀번호 유효성 검사
     if (name === "newPassword") {
@@ -182,7 +183,8 @@ const Profile = () => {
   return (
     <div className={styles.background}>
       <div className={styles.inputWrap}>
-        <img className={styles.backgroundImg} src={profilelogo} alt="" />
+        <img className={styles.profileLogo} src={profileLogo} alt="" onClick={()=> {navigate("/main")}} />
+        <img className={styles.backgroundImg} src={backgroundbox} alt="" />
         <input
           value={nickname || ""}
           type="text"
@@ -192,25 +194,22 @@ const Profile = () => {
         />
         <input
           className={styles.inputPassword}
-          onChange={onChangeHandler}
+          onChange={onInvalidTest}
           type="password"
           name="newPassword"
           id="newPassword"
           minLength="6"
           maxLength="12"
-          required
-          autoFocus
           autoComplete="new-password"
           placeholder="6자 이상 12자 이하로 입력해주세요."
         />
         <input
           className={styles.inputConfirm}
-          onChange={onChangeHandler}
+          onChange={onInvalidTest}
           type="password"
           name="confirm"
           minLength="6"
           maxLength="12"
-          required
           autoComplete="new-password"
           placeholder="비밀번호를 확인해주세요."
         />

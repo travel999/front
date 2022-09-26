@@ -5,13 +5,17 @@
     position: relative;
 }
 
-.backgroundImg {
+.profileLogo {
     position: absolute;
-    background-color: #F2F7FF;
+    width: 465px;
+    height: 112.37px;
+    margin: 70px auto auto auto;
+    cursor: pointer;
+}
+
+.backgroundImg {
     position: relative;
-    object-fit: cover;
-    /* width: 1070px; */
-    margin: 62px auto auto auto;
+    margin: 200px auto auto auto;
 }
 
 /* input 모음 */
@@ -79,6 +83,7 @@
     font-size: 16px;
     line-height: 63px;
     text-align: left;
+    font-weight: 600;
 }
 
 .nickname {
@@ -101,10 +106,12 @@
     position: absolute;
     left: 22.5%;
     top: 52%;
+    font-weight: 600;
 }
 
 .profile img {
     position: absolute;
+    object-fit: cover;
     border: 1px solid #E2E2E2;
     border-radius: 50%;
     height: 177px;
@@ -112,7 +119,6 @@
     cursor: pointer;
     left: 19%;
     top: 30%;
-
     background: #FFFFFF;
 }
 
@@ -132,7 +138,8 @@
     height: 54px;
     top: 70%;
     left: 50%;
-
+    font-size: 16px;
+    line-height: 40px;
     background: #FFC51C;
     border: 0;
     border-radius: 999px;
@@ -145,6 +152,8 @@
     margin: auto;
     width: 400px;
     height: 54px;
+    font-size: 16px;
+    line-height: 40px;
     top: 78%;
     left: 50%;
     color: #A3A3A3;

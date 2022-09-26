@@ -1,3 +1,7 @@
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px #FFFFFF inset;
+}
+
 .wrap {
   background-color: #F2F7FF;
   overflow: hidden;
@@ -25,8 +29,6 @@
   margin-right: 400px;
   position: absolute;
   top: 53%;
-
-
   display: flex;
 
 }
@@ -38,7 +40,6 @@
   margin-right: 400px;
   position: absolute;
   top: 63%;
-
   display: flex;
 }
 
@@ -47,37 +48,43 @@
   width: 80px;
   font-size: 16px;
   line-height: 40px;
+  font-weight: 600;
 }
 
 .input {
   background: #FFFFFF;
-
   border: 1px solid #E2E2E2;
   width: 300px;
   height: 54px;
   font-size: 15px;
-
   border-radius: 999px;
   outline: none;
   padding-left: 10px;
 
 }
 
+.yellowInput {
+  background: #FFFFFF;
+  border: 1px solid #FFC51C;
+  width: 300px;
+  height: 54px;
+  font-size: 15px;
+  border-radius: 999px;
+  outline: none;
+  padding-left: 10px;
+}
+
 .button {
-  /* position: absolute; */
   width: 400px;
   height: 54px;
-  
   margin-left: 400px;
   margin-right: 400px;
   position: absolute;
   top: 75%;
-
   background: #FFC51C;
   border: 0;
   border-radius: 999px;
   cursor: pointer;
-
   font-size: 18px;
   line-height: 40px;
 }
