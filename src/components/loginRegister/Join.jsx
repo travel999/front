@@ -16,7 +16,7 @@ import backgroundbox from "../../res/img/backgroundBox.png"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// window.Buffer = window.Buffer || require("buffer").Buffer;
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const Join = () => {
   const dispatch = useDispatch();

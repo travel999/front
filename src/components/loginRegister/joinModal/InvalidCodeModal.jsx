@@ -30,20 +30,20 @@ const InvalidCodeModal = (props) => {
   return (
     <div className={open ? "openModal modal" : "modal"}>
       {open ? (
-        <div>
-          <div>
+        <section>
+          <header>
             {text}
             <button className="close" onClick={close}>
               &times;
             </button>
-          </div>
-          <div>
+          </header>
+          <main>
             <input type="text" onChange={onCode} />
-          </div>
-          <div>
+          </main>
+          <footer>
             <button onClick={onCheckEmailCode}>인증하기</button>
-          </div>
-        </div>
+          </footer>
+        </section>
       ) : null}
     </div>
   );
