@@ -9,6 +9,7 @@ import {
 } from "../../redux/modules/JoinSlice";
 import InvalidCodeModal from "./joinModal/InvalidCodeModal";
 import S3upload from "react-aws-s3";
+
 import styles from "./Join.module.css";
 import profile from "../../res/img/profile.png";
 import joinLogo from "../../res/img/joinLogo.png";
@@ -16,7 +17,7 @@ import backgroundbox from "../../res/img/backgroundBox.png";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// window.Buffer = window.Buffer || require("buffer").Buffer;
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const Join = () => {
   const dispatch = useDispatch();

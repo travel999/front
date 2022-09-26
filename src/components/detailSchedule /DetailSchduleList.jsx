@@ -53,7 +53,7 @@ const DetailScheduleList = ({ fixDay, id, defalutDay, setKey }) => {
       dayArr.push(i);
     }
     return (
-      <div className={styles.dayWrap}>
+      <div className={`${styles.dayWrap}`}>
         <ul>
           {dayArr.map((item) => (
             <li

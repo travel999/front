@@ -82,14 +82,15 @@ const MapSearchDiv = styled.div`
 
 const SearchDiv = styled.div`
   width: 300px;
-  height: auto;
+  height: 98.5%;
+  overflow-y: auto;
   width: ${({ menu }) => (menu ? "300px" : null)};
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   transition: width 400ms ease-in-out;
-  background-color: white;
+  background-color: #ffffff;
   position: absolute;
-  top: 90px;
-  left: 19.7rem;
+  top: 5%;
+  margin-left: 0%;
   font-size: 15px;
   z-index: 99;
   text-align: center;

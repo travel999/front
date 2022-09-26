@@ -198,7 +198,7 @@ const PublicDeleteBtn = (props) => {
   return (
     <>
       {members?.includes(nickname) ? (
-        <div style={{ float: "right", display: "flex" }}>
+        <TwoBox>
           {openPublic ? (
             <Pbtn
               public={false}
@@ -225,7 +225,7 @@ const PublicDeleteBtn = (props) => {
           >
             삭제
           </Dbtn>
-        </div>
+        </TwoBox>
       ) : null}
       <PublicModal
         pModal={pModal}
@@ -237,6 +237,14 @@ const PublicDeleteBtn = (props) => {
     </>
   );
 };
+
+const TwoBox = styled.div`
+  display: flex;
+  position: fixed;
+  right: 0%;
+  top: 7.7%;
+  z-index: 4;
+`;
 
 const Pbtn = styled.div`
   background-color: ${(props) => (props.public ? "#9AB9FF;" : "#8ae084")};

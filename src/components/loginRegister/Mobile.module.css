@@ -12,6 +12,7 @@
     }
 
     .title img {
+        object-fit: cover;
         position: absolute;
         left: 4%;
     }
@@ -38,6 +39,7 @@
     }
 
     .profile img {
+        object-fit: cover;
         position: absolute;
         width: 100px;
         height: 100px;

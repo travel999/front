@@ -25,7 +25,7 @@ const Chatting = ({ id }) => {
 
 const BicBox = styled.div`
   position: fixed;
-  right: 1%;
+  right: 0%;
   bottom: 0;
   width: 17vw;
   min-width: 220px;
@@ -35,16 +35,14 @@ const BicBox = styled.div`
   z-index: 3;
   /* 모바일 반응형 430 x 844 : 아이폰 pro 도 접근할 수 있도록 처리함*/
   @media only screen and (max-width: 430px) {
-    position: absolute;
-    bottom: -32rem;
-    left: -0.3rem;
+    position: fixed;
+    bottom: 0;
   }
 `;
 
 const HeadText = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-right: 2vw;
   margin-right: 1vw;
 `;
 
