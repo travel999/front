@@ -20,7 +20,6 @@ const ChatBox = ({ socket, id }) => {
 
   useEffect(() => {
     if (members?.includes(nickname)) {
-      console.log("포함되서 실행");
       if (room && members?.includes(nickname)) {
         socket.emit("join_room", room);
         dispatch(getChatMemory(id));

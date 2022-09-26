@@ -178,7 +178,11 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
         day={nowDay}
         pin={pin}
       />
-      <div id="map" style={{ width: "100%", height: "900px" }}></div>
+      <div
+        id="map"
+        className={styles.mapDiv}
+        style={{ width: "100%", height: "900px" }}
+      ></div>
     </div>
   );
 };

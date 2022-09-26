@@ -45,8 +45,8 @@ const Header = () => {
     if (!tokenValue) {
       navigate("/");
     } else {
-      navigate("/main");
-      // window.location.replace("/main");
+      // navigate("/main");
+      window.location.replace("/main");
     }
   };
 
@@ -101,7 +101,7 @@ const Header = () => {
           <Topcontent>
             <ContentBtn
               onClick={() => {
-                navigate("/main");
+                OntoHome();
               }}
             >
               MAIN
