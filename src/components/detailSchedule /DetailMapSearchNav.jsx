@@ -82,7 +82,7 @@ const MapSearchDiv = styled.div`
 
 const SearchDiv = styled.div`
   width: 300px;
-  height: 100vh;
+  height: auto;
   width: ${({ menu }) => (menu ? "300px" : null)};
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   transition: width 400ms ease-in-out;
@@ -99,8 +99,8 @@ const SearchDiv = styled.div`
   /* 모바일 반응형 430 x 844 : 아이폰 pro 도 접근할 수 있도록 처리함*/
   @media only screen and (max-width: 430px) {
     position: absolute;
-    top: 32rem;
-    left: -0.3;
+    top: auto;
+    left: -0.3rem;
   }
 
   div.searchArea {
