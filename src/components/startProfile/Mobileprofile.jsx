@@ -13,7 +13,7 @@ import close from "../../res/img/close.png"
 import profile from "../../res/img/profile.png";
 import { ToastContainer, toast } from "react-toastify";
 
-// window.Buffer = window.Buffer || require("buffer").Buffer;
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const MobileProfile = () => {
     const dispatch = useDispatch();

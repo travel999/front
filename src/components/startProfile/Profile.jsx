@@ -14,7 +14,7 @@ import backgroundbox from "../../res/img/backgroundBox.png";
 import profile from "../../res/img/profile.png";
 import { ToastContainer, toast } from "react-toastify";
 
-// window.Buffer = window.Buffer || require("buffer").Buffer;
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const Profile = () => {
   const dispatch = useDispatch();

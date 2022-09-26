@@ -9,7 +9,7 @@ import profile from "../../res/img/profile.png"
 import prev from "../../res/img/prev.png";
 import { ToastContainer } from "react-toastify";
 
-// window.Buffer = window.Buffer || require("buffer").Buffer;
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const MobileJoin = () => {
     const dispatch = useDispatch();
