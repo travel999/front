@@ -8,9 +8,9 @@ import {
 } from "../../redux/modules/ProfileSlice";
 import DeleteModal from "./modal/DeleteModal";
 import S3upload from "react-aws-s3";
-import styles from "./Profile.module.css";
-import profileLogo from "../../res/img/profileLogo.png";
-import backgroundbox from "../../res/img/backgroundBox.png"
+import styles from "./profile.module.css";
+import profileLogo from "../../res/img/profilelogo.png";
+import backgroundbox from "../../res/img/backgroundBox.png";
 import profile from "../../res/img/profile.png";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -183,7 +183,14 @@ const Profile = () => {
   return (
     <div className={styles.background}>
       <div className={styles.inputWrap}>
-        <img className={styles.profileLogo} src={profileLogo} alt="" onClick={()=> {navigate("/main")}} />
+        <img
+          className={styles.profileLogo}
+          src={profileLogo}
+          alt=""
+          onClick={() => {
+            navigate("/main");
+          }}
+        />
         <img className={styles.backgroundImg} src={backgroundbox} alt="" />
         <input
           value={nickname || ""}
