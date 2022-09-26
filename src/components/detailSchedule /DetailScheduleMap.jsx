@@ -55,7 +55,8 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
         level: 3,
       };
       const kakaoMap = new kakao.maps.Map(container, options);
-      kakaoMap.setZoomable(false);
+      kakaoMap.setDraggable(false); //드래그 막기
+      kakaoMap.setZoomable(false); //줌 막기
       //처음 들어오는 저장된 마커 찍기
       newData.forEach((el) => {
         // 마커를 생성합니다
@@ -81,6 +82,8 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
         level: 3,
       };
       const kakaoMap = new kakao.maps.Map(container, options);
+      kakaoMap.setDraggable(false); //드래그 막기
+      kakaoMap.setZoomable(false); //줌 막기
       setMap(kakaoMap);
     }
   }, []);
