@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import PostBtn from "./PostBtn";
 import styles from "./Main.module.css";
 import duckprofile from "../../res/img/duck/duckprofile.png";
+import QuestionBtn from "./QuestionBtn";
 
 const ProfileBox = () => {
   const postnumber = useSelector((state) => state.main.MyPostCards);
@@ -48,7 +49,10 @@ const ProfileBox = () => {
           </div>
         </div>
       </div>
-      <PostBtn />
+      <div className={styles.PQBtn}>
+        <PostBtn />
+        <QuestionBtn />
+      </div>
     </div>
   );
 };

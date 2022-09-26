@@ -17,6 +17,13 @@ const DeleteModal = (props) => {
     localStorage.removeItem("nickname");
   };
 
+  window.addEventListener("mousedown", (e) => {
+    if (e.target.className === "openModal modal") {
+      e.stopPropagation();
+      close();
+    }
+  });
+
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? "openModal modal" : "modal"}>

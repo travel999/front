@@ -25,7 +25,7 @@ const Chatting = ({ id }) => {
 
 const BicBox = styled.div`
   position: fixed;
-  right: 0;
+  right: 1%;
   bottom: 0;
   width: 17vw;
   min-width: 220px;

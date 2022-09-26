@@ -6,10 +6,13 @@ import {
   modifySchedule,
 } from "../../redux/modules/ScheduleSlice";
 import ScheduleList from "./SchduleList";
+import AdviceModal from "../detailSchedule /modal/AdviceModal";
 import Btn from "../elements/Btn";
 import styles from "./Schedule.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 
 const ScheduleCreate = () => {
   const dispatch = useDispatch();
@@ -21,6 +24,7 @@ const ScheduleCreate = () => {
   const [endDate, setEndDate] = useState("");
   const [scheduleSave, setScheduleSave] = useState({});
   const [fixDay, setFixDay] = useState();
+  const [advModal, setAdvModal] = useState(false);
 
   //playload등록시 title 제일 끝에 형태소 안찍히는 오류 수정
   useEffect(() => {
@@ -135,6 +139,10 @@ const ScheduleCreate = () => {
     }
   };
 
+  const closeAdvModal = () => {
+    setAdvModal(false);
+  };
+
   return (
     <div className={styles.createWrap}>
       <input
@@ -177,6 +185,14 @@ const ScheduleCreate = () => {
           일정 생성
         </Btn>
       )}
+      <FontAwesomeIcon
+        icon={faCircleQuestion}
+        onClick={() => {
+          setAdvModal(true);
+        }}
+        className={styles.adviceBtn}
+      />
+      <AdviceModal advModal={advModal} close={closeAdvModal} />
       {createData.title !== "" ? (
         <ScheduleList fixDay={fixDay} id={createData.postId} />
       ) : null}

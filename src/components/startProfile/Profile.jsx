@@ -8,7 +8,7 @@ import {
 } from "../../redux/modules/ProfileSlice";
 import DeleteModal from "./modal/DeleteModal";
 import S3upload from "react-aws-s3";
-import styles from "./Profile.module.css";
+import styles from "./profile.module.css";
 import profilelogo from "../../res/img/profilelogo.png";
 import profile from "../../res/img/profile.png";
 import { ToastContainer, toast } from "react-toastify";
@@ -41,7 +41,7 @@ const Profile = () => {
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-  // 
+  //
   const nickname = user.nickname;
   const profileImg = user.userImage;
   const image = localStorage.getItem("image");

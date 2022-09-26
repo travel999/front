@@ -1,10 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addJoin, doubleCheckEmail, doubleCheckNickName, invalidEmail } from "../../redux/modules/JoinSlice";
+import {
+  addJoin,
+  doubleCheckEmail,
+  doubleCheckNickName,
+  invalidEmail,
+} from "../../redux/modules/JoinSlice";
 import InvalidCodeModal from "./joinModal/InvalidCodeModal";
 import S3upload from "react-aws-s3";
-import styles from "./Join.module.css";
+import styles from "./join.module.css";
 import logo from "../../res/img/logo.png";
 import profile from "../../res/img/profile.png";
 import { ToastContainer } from "react-toastify";
@@ -31,7 +36,7 @@ const Join = () => {
 
   // 모달
   const [modalOpen, setModalOpen] = useState(false);
-  const [clickButton, setClickButton] = useState(false)
+  const [clickButton, setClickButton] = useState(false);
 
   // 회원가입
   const [signUp, setSignUp] = useState(initialState);
@@ -60,7 +65,7 @@ const Join = () => {
     if (checkEmail) {
       dispatch(doubleCheckEmail({ email: emailData, setEmailMsg }));
       dispatch(invalidEmail({ email: emailData }));
-      console.log(emailData)
+      console.log(emailData);
     }
   }, [emailData]);
 
@@ -72,7 +77,6 @@ const Join = () => {
       );
     }
   }, [nicknNameData]);
-
 
   // 유효성 검사
   const onValidation = (e) => {
@@ -165,9 +169,9 @@ const Join = () => {
     if (checkEmail === true) {
       setModalOpen(true);
     } else if (setClickButton(true)) {
-      openModal()
+      openModal();
     } else {
-      return null
+      return null;
     }
   };
   // 모달창 닫힘
@@ -284,7 +288,8 @@ const Join = () => {
         open={modalOpen}
         close={closeModal}
         email={emailData}
-        text={"인증번호를 입력해주세요."} />
+        text={"인증번호를 입력해주세요."}
+      />
       {/* 회원가입 버튼 */}
       <button className={styles.button} onClick={onJoin}>
         회원가입
