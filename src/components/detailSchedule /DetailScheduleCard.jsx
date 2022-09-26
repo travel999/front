@@ -98,7 +98,7 @@ const DetailScheduleCard = ({ data, postId, key }) => {
   };
 
   return (
-    <div className={styles.worksWrap}>
+    <div className={`${styles.worksWrap} ${styles.forScroll}`}>
       <h2>
         우리들의 "<span className={styles.workDay}>{data.day}일차</span>" 일정
       </h2>
@@ -128,14 +128,16 @@ const DetailScheduleCard = ({ data, postId, key }) => {
             </div>
           );
         })}
-      <Btn
-        color="#fffff"
-        width="100%"
-        backgroundColor="#ffc51c"
-        onClick={onSaveAllSchedule}
-      >
-        {data.day}일차 전체 일정 저장
-      </Btn>
+      <div className={styles.daySave}>
+        <Btn
+          color="#fffff"
+          width="100%"
+          backgroundColor="#ffc51c"
+          onClick={onSaveAllSchedule}
+        >
+          {data.day}일차 전체 일정 저장
+        </Btn>
+      </div>
       <ToastContainer />
     </div>
   );

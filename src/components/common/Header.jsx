@@ -101,7 +101,7 @@ const Header = () => {
           <Topcontent>
             <ContentBtn
               onClick={() => {
-                navigate("/main");
+                OntoHome();
               }}
             >
               MAIN

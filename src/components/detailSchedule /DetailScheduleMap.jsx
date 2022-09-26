@@ -158,13 +158,15 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
   return (
     <div className={styles.mapWrap}>
       <Btn
-        className={styles.searchBtn}
         onClick={() => {
           Setmenu((prev) => !prev);
           Setvisible((prev) => !prev);
         }}
       >
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
+        <FontAwesomeIcon
+          icon={faMagnifyingGlass}
+          className={styles.searchBtn}
+        />
       </Btn>
 
       <PublicDeleteBtn postId={id} />
@@ -178,7 +180,7 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
         day={nowDay}
         pin={pin}
       />
-      <div id="map" style={{ width: "100%", height: "900px" }}></div>
+      <div id="map" className={styles.mapBox}></div>
     </div>
   );
 };
