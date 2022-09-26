@@ -1,11 +1,15 @@
 import React from "react";
 import NoHeaderLayout from "../components/common/NoHeaderLayout";
 import Join from "../components/loginRegister/Join";
+import MobileJoin from "../components/loginRegister/MobileJoin";
+import { useMediaQuery } from "react-responsive";
 
 const JoinPage = () => {
+  const MobileSize = useMediaQuery({ maxWidth: 430 });
+
   return (
     <NoHeaderLayout>
-      <Join />
+      { MobileSize ? <MobileJoin /> : <Join /> }
     </NoHeaderLayout>
   );
 };

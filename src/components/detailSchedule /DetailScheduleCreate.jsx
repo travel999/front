@@ -99,7 +99,7 @@ const DetailScheduleCreate = ({ data, setKey }) => {
         });
       }
     } else {
-      toast.success("권한이 업습니다.", {
+      toast.success("권한이 없습니다.", {
         position: "top-center",
         autoClose: 1500,
         hideProgressBar: true,

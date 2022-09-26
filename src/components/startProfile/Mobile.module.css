@@ -1,0 +1,81 @@
+/* 모바일 반응형 430 x 844 : 아이폰 pro 도 접근할 수 있도록 처리함*/
+@media only screen and (max-width: 430px) {
+    .startBox {
+        height: 844px;
+        position: relative;
+        background-color: #FFFFFF;
+    }
+
+    .logoImage {
+        position: absolute;
+        top: 15%;
+        left: 4%;
+    }
+
+    .mobileDescription {
+        position: absolute;
+        top: 41%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 40px;
+        text-align: center;
+    }
+
+    .mobileLogin {
+        position: absolute;
+        top: 58%;
+        left: 4%;
+        padding: 0;
+        width: 358px;
+        height: 54px;
+        background: #FFC51C;
+        border-radius: 999px;
+        border: 0;
+        outline: 0;
+        font-size: 18px;
+        line-height: 40px;
+        color: black;
+        text-decoration: none;
+    }
+
+    .kakaoLogin {
+        position: absolute;
+        top: 67%;
+        left: 4%;
+        padding: 0;
+        width: 358px;
+        height: 54px;
+        background: #FFFFFF;
+        border: 2px solid #FFC51C;
+        border-radius: 999px;
+        font-size: 18px;
+        line-height: 40px;
+        color: black;
+    }
+
+    .joinDescription {
+        position: absolute;
+        top: 75%;
+        margin-left: 0;
+        left: 20%;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 40px;
+        color: #727272;
+    }
+
+    .joinMobile {
+        padding: 0;
+        position: absolute;
+        top: 75%;
+        left: 65%;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 40px;
+        background-color: rgba(255, 255, 255, 0);
+        border: 0;
+        color: black;
+    }
+}

@@ -1,10 +1,13 @@
+body * {
+  font-family: "NanumSquareRound";
+}
+
 .startBox {
   -ms-overflow-style: none;
 }
 
 .startBox::-webkit-scrollbar {
-  display: none;
-
+  display: hidden;
 }
 
 .startBox {
@@ -34,7 +37,6 @@
   position: absolute;
   top: 57%;
   left: 50%;
-  /* margin-left: 366.5px; */
   transform: translate(-50%, -50%);
   font-size: 25px;
   line-height: 40px;
@@ -45,12 +47,27 @@
   position: absolute;
   left: 28%;
   top: 63%;
-
   border: 0;
   outline: 0;
   width: 240px;
   height: 54px;
   background: #ffc51c;
+  border-radius: 999px;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.login:hover {
+  padding: auto;
+  position: absolute;
+  left: 28%;
+  top: 63%;
+  border: 0;
+  outline: 0;
+  width: 240px;
+  height: 54px;
+  background: #ffc51c;
+  box-shadow: 0px 2px 8px rgba(255, 197, 28, 0.5);
   border-radius: 999px;
   cursor: pointer;
   font-size: 18px;
@@ -62,7 +79,6 @@
   position: absolute;
   left: 52%;
   top: 63%;
-
   border: 2px solid #ffc51c;
   outline: 0;
   width: 240px;
@@ -77,7 +93,6 @@
 .joinText {
   padding: auto;
   position: absolute;
-  /* left: 30%; */
   top: 73%;
   margin-left: 352px;
   font-size: 18px;
@@ -88,13 +103,13 @@
   padding: auto;
   position: absolute;
   left: 65%;
-  /* margin-left: 774px; */
   top: 73%;
   background-color: rgba(255, 255, 255, 0);
   border: 0;
   border-radius: 999px;
   cursor: pointer;
   font-size: 20px;
+  font-weight: 700;
   line-height: 40px;
 }
 

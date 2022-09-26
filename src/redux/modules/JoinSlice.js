@@ -77,7 +77,6 @@ export const doubleCheckEmail = createAsyncThunk(
     } catch (error) {
       if (error) {
         payload.setEmailMsg(error.response.data.message);
-        // 중복된 이메일입니다.
       }
       return thunkAPI.rejectWithValue(error);
     }
@@ -139,7 +138,6 @@ export const invalidEmailCheck = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await instance.post("user/checkCode", payload);
-      console.log("try")
       console.log(response)
       if (response) {
         toast.info("이메일이 인증되었습니다!", {
@@ -219,6 +217,8 @@ export const JoinSlice = createSlice({
     },
     [invalidEmailCheck.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.result = action.payload
+      
     },
     [invalidEmailCheck.rejected]: (state, action) => {
       state.isLoading = false;
