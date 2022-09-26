@@ -10,7 +10,7 @@ import {
 import InvalidCodeModal from "./joinModal/InvalidCodeModal";
 import S3upload from "react-aws-s3";
 
-import styles from "./Join.module.css";
+import styles from "./join.module.css";
 import profile from "../../res/img/profile.png";
 import joinLogo from "../../res/img/joinLogo.png";
 import backgroundbox from "../../res/img/backgroundBox.png";
