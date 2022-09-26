@@ -3,7 +3,9 @@ import styles from "./Main.module.css";
 
 const QuestionBtn = () => {
   const onQuestion = () => {
-    window.open("https://naver.com");
+    window.open(
+      "https://docs.google.com/forms/d/e/1FAIpQLSdNWhgZ5TpfGUB4Ikt0Ln1prGUSUYUeu486eBYW3g3t0-sdZQ/viewform?usp=pp_url"
+    );
   };
 
   return (

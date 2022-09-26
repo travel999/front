@@ -15,7 +15,7 @@ export const saveNickName = createAsyncThunk(
       const res = await instance.patch(`post/invite/${payload.postId}`, {
         nickname2: payload.nickname2,
       });
-      if (res.data.result) {
+      if (res.data) {
         payload.setMessage(res.data.message);
       }
       return thunkAPI.fulfillWithValue(res.data);

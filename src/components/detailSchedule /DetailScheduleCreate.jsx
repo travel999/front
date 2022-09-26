@@ -97,6 +97,7 @@ const DetailScheduleCreate = ({ data, setKey }) => {
           draggable: true,
           progress: undefined,
         });
+        window.location.reload(`/schedulDetail/${id}`);
       }
     } else {
       toast.success("권한이 없습니다.", {

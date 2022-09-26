@@ -77,8 +77,12 @@ const Login = () => {
                 name="email"
                 value={login.email}
                 onChange={onChangeData}
-                onFocus={() => { onFocusBorder('emailBorder') }}
-                onBlur={() => { onBlurBorder('emailBorder') }}
+                onFocus={() => {
+                  onFocusBorder("emailBorder");
+                }}
+                onBlur={() => {
+                  onBlurBorder("emailBorder");
+                }}
                 autoFocus
               ></input>
             </div>
@@ -91,8 +95,12 @@ const Login = () => {
                 defaultChecked=""
                 value={login.password}
                 onChange={onChangeData}
-                onFocus={() => { onFocusBorder('passwordBorder') }}
-                onBlur={() => { onBlurBorder('passwordBorder') }}
+                onFocus={() => {
+                  onFocusBorder("passwordBorder");
+                }}
+                onBlur={() => {
+                  onBlurBorder("passwordBorder");
+                }}
                 onKeyPress={(e) => {
                   if (e.key === "Enter") {
                     onLogin();
@@ -109,5 +117,5 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 export default Login;
