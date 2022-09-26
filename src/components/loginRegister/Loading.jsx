@@ -18,8 +18,8 @@ const Loading = () => {
   }, []);
 
   return (
-    <div className={styles.loading}>
-      <div>
+    <div className={styles.background}>
+      <div className={styles.loading}>
         <FadeLoader
           color="#4386FF"
           height={15}

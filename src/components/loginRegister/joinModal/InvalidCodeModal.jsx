@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { invalidEmailCheck } from "../../../redux/modules/JoinSlice";
+import "../../detailSchedule /modal/MemberAddModal.css"
 
 const InvalidCodeModal = (props) => {
     const dispatch = useDispatch();
@@ -12,31 +13,30 @@ const InvalidCodeModal = (props) => {
     const onCode = (e) => {
         setCode(e.target.value)
     }
-    console.log(code)
+    
     // 이메일 인증 코드 보내기
     const onCheckEmailCode = () => {
         dispatch(invalidEmailCheck({ email: email, code: code }))
-        console.log("emailData",email)
     }
     return (
         <div className={open ? "openModal modal" : "modal"}>
             {open ? (
-                <div>
-                    <div>
+                <section>
+                    <header>
                         {text}
-                        <button className="close" onClick={close}>
+                        <button className="open" onClick={close}>
                             &times;
                         </button>
-                    </div>
-                    <div>
+                    </header>
+                    <main>
                         <input type="text" onChange={onCode} />
-                    </div>
-                    <div>
+                    </main>
+                    <footer>
                         <button onClick={onCheckEmailCode}>
                             인증하기
                         </button>
-                    </div>
-                </div>
+                    </footer>
+                </section>
             ) : null}
         </div>
     );

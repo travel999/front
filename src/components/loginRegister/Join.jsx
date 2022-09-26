@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addJoin, doubleCheckEmail, doubleCheckNickName, invalidEmail } from "../../redux/modules/JoinSlice";
 import InvalidCodeModal from "./joinModal/InvalidCodeModal";
 import S3upload from "react-aws-s3";
 import styles from "./Join.module.css";
-import logo from "../../res/img/logo.png";
-import profile from "../../res/img/profile.png";
+import profile from "../../res/img/profile.png"
+import joinLogo from "../../res/img/joinLogo.png";
+import backgroundbox from "../../res/img/backgroundBox.png"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,6 +17,7 @@ const Join = () => {
   const dispatch = useDispatch();
   const imgVal = useRef(null);
   const navigate = useNavigate();
+  const hover = useSelector((state) => state.join?.result?.result)
 
   const initialState = {
     email: "",
@@ -73,7 +75,11 @@ const Join = () => {
     }
   }, [nicknNameData]);
 
-
+  useEffect(() => {
+    if (hover === true) {
+      navigate("/join")
+    }
+  }, [])
   // 유효성 검사
   const onValidation = (e) => {
     const { name, value } = e.target;
@@ -192,50 +198,83 @@ const Join = () => {
 
   return (
     <div className={styles.background}>
-      {/* Input 모음 */}
       <div className={styles.inputWrap}>
-        <img className={styles.backgroundImg} src={logo} alt="" />
-        <input
-          className={styles.inputNickname}
-          onChange={onValidation}
-          type="text"
-          id="nickname"
-          name="nickname"
-          maxLength="10"
-          placeholder="오리가치"
-          autoFocus
-        />
-        <input
-          className={styles.inputEmail}
-          onChange={onValidation}
-          type="mail"
-          id="email"
-          name="email"
-          placeholder="oorigachi@email.com"
-          autoComplete="new-password"
-        />
-        <input
-          className={styles.inputPassword}
-          onChange={onValidation}
-          type="password"
-          name="password"
-          id="password"
-          minLength="6"
-          maxLength="12"
-          placeholder="6자 이상 12자 이하로 입력해주세요."
-          autoComplete="new-password"
-        />
-        <input
-          className={styles.inputConfirm}
-          onChange={onValidation}
-          type="password"
-          name="confirm"
-          minLength="6"
-          maxLength="12"
-          required
-          placeholder="비밀번호를 확인해주세요."
-          autoComplete="new-password"
-        />
+        <img className={styles.joinLogo} src={joinLogo} alt="" onClick={() => { navigate("/") }} />
+        <img className={styles.backgroundImg} src={backgroundbox} alt="" />
+        {/* 프로필 이미지 */}
+        <div>
+          <div className={styles.profile}>
+            <label htmlFor="userImage">
+              {!preImg[0] ? (
+                <img src={profile} alt=""></img>
+              ) : (
+                <img src={preImg} alt="" />
+              )}
+            </label>
+            <h4>프로필 이미지</h4>
+          </div>
+          <form onChange={onSubmitHandler}>
+            <input
+              ref={imgVal}
+              className={styles.inputHidden}
+              onChange={onLoadImg}
+              placeholder="프로필 이미지"
+              type="file"
+              accept="image/*"
+              name="userImage"
+              id="userImage"
+            />
+          </form>
+        </div>
+          <input
+            className={styles.inputNickname}
+            onChange={onValidation}
+            type="text"
+            id="nickname"
+            name="nickname"
+            maxLength="10"
+            placeholder="오리가치"
+            autoFocus
+          />
+          <input
+            className={styles.inputEmail}
+            onChange={onValidation}
+            type="mail"
+            id="email"
+            name="email"
+            placeholder="oorigachi@email.com"
+            autoComplete="new-password"
+          />
+          <button className={hover === true ? styles.certifyButton : styles.notCertifyButton} onClick={openModal}>
+            {hover === true ? "완료" : "인증"}
+          </button>
+          <InvalidCodeModal
+            open={modalOpen}
+            close={closeModal}
+            email={emailData}
+            text={"인증번호를 입력해주세요."} />
+          <input
+            className={styles.inputPassword}
+            onChange={onValidation}
+            type="password"
+            name="password"
+            id="password"
+            placeholder="6자 이상 12자 이하로 입력해주세요."
+            minLength="6"
+            maxLength="12"
+            autoComplete="new-password"
+          />
+          <input
+            className={styles.inputConfirm}
+            onChange={onValidation}
+            type="password"
+            name="confirm"
+            placeholder="비밀번호를 확인해주세요."
+            minLength="6"
+            maxLength="12"
+            required
+            autoComplete="new-password"
+          />
         {/* 입력값 확인 메세지 모음 */}
         <div className={styles.message}>
           <div className={styles.emailMsg}>{emailMsg}</div>
@@ -243,53 +282,19 @@ const Join = () => {
           <div className={styles.pwMsg}>{pwMsg}</div>
           <div className={styles.confirmMsg}>{confirmMsg}</div>
         </div>
-      </div>
-      {/* inputName 모음 */}
-      <div className={styles.nameWrap}>
-        <div className={styles.email}>이메일</div>
-        <div className={styles.nickname}>닉네임</div>
-        <div className={styles.password}>비밀번호</div>
-        <div className={styles.confirm}>비밀번호 확인</div>
-      </div>
-      {/* 프로필 이미지 */}
-      <div>
-        <div className={styles.profile}>
-          <label htmlFor="userImage">
-            {!preImg[0] ? (
-              <img src={profile} alt=""></img>
-            ) : (
-              <img src={preImg} alt="" />
-            )}
-          </label>
-          <h4>프로필 이미지</h4>
+        {/* inputName 모음 */}
+        <div className={styles.nameWrap}>
+          <div className={styles.email}>이메일</div>
+          <div className={styles.nickname}>닉네임</div>
+          <div className={styles.password}>비밀번호</div>
+          <div className={styles.confirm}>비밀번호 확인</div>
         </div>
-        <form onChange={onSubmitHandler}>
-          <input
-            ref={imgVal}
-            className={styles.inputHidden}
-            onChange={onLoadImg}
-            placeholder="프로필 이미지"
-            type="file"
-            accept="image/*"
-            name="userImage"
-            id="userImage"
-          />
-        </form>
+        {/* 회원가입 버튼 */}
+        <button className={styles.button} onClick={onJoin}>
+          회원가입
+        </button>
+        <ToastContainer />
       </div>
-      {/* 이메일 인증 버튼 */}
-      <button className={styles.certifyButton} onClick={openModal}>
-        인증
-      </button>
-      <InvalidCodeModal
-        open={modalOpen}
-        close={closeModal}
-        email={emailData}
-        text={"인증번호를 입력해주세요."} />
-      {/* 회원가입 버튼 */}
-      <button className={styles.button} onClick={onJoin}>
-        회원가입
-      </button>
-      <ToastContainer />
     </div>
   );
 };

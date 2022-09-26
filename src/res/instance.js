@@ -2,8 +2,6 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_SURVER,
-  // headers: { token: localStorage.getItem("jwtToken") },
-  // Authorization: `Bearer ${localStorage.getItem("jwtToken")}`
   withCredentials: true,
 });
 
@@ -12,7 +10,6 @@ instance.interceptors.request.use(
     config.headers["Authorization"] = `Bearer ${localStorage.getItem(
       "jwtToken"
     )}`;
-    // config.headers = { bearer : localStorage.getItem("jwtToken") };
     return config;
   },
   function (error) {

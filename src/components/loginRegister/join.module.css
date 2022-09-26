@@ -5,13 +5,17 @@
     position: relative;
 }
 
-.backgroundImg {
+.joinLogo {
     position: absolute;
-    background-color: #F2F7FF;
+    width: 465px;
+    height: 112.37px;
+    margin: 70px auto auto auto;
+    cursor: pointer;
+}
+
+.backgroundImg {
     position: relative;
-    object-fit: cover;
-    /* width: 1070px; */
-    margin: 62px auto auto auto;
+    margin: 200px auto auto auto;
 }
 
 /* input style */
@@ -46,7 +50,7 @@
 .inputEmail {
     position: absolute;
     top: 41.5%;
-    width: 260px !important;
+    width: 265px !important;
 }
 
 .inputPassword {
@@ -68,32 +72,33 @@
 
 .nickNameMsg {
     position: absolute;
-    top: 37%;
+    top: 37.5%;
 }
 
 .emailMsg {
     position: absolute;
-    top: 48%;
+    top: 48.5%;
 }
 
 .pwMsg {
     position: absolute;
-    top: 59%;
+    top: 59.5%;
 }
 
 .confirmMsg {
     position: absolute;
-    top: 70%;
+    top: 70.5%;
 }
 
 /* inputName style */
 .nameWrap>div {
     position: absolute;
-    left: 43%;
+    left: 40%;
     width: 130px;
     font-size: 16px;
     line-height: 63px;
     text-align: left;
+    font-weight: 600;
 }
 
 .nickname {
@@ -119,8 +124,9 @@
 /* profile img */
 .profile h4 {
     position: absolute;
-    left: 30%;
+    left: 23%;
     top: 52%;
+    font-weight: 600;
 }
 
 .profile img {
@@ -129,9 +135,8 @@
     height: 177px;
     width: 177px;
     cursor: pointer;
-    left: 27%;
+    left: 19%;
     top: 30%;
-
     background: #FFFFFF;
 }
 
@@ -142,23 +147,55 @@
     line-height: 40px;
 
 }
-/* email 인증 */
+
+/* email 인증 버튼 */
+.notCertifyButton {
+    position: absolute;
+    padding: 0;
+    top: 41.8%;
+    left: 76%;
+    width: 96px;
+    height: 55px;
+    margin: auto;
+    background: #FFC51C;
+    border: 0;
+    border-radius: 999px;
+    font-size: 15px;
+    line-height: 40px;
+}
+
+.notCertifyButton:hover {
+    position: absolute;
+    padding: 0;
+    top: 41.8%;
+    left: 76%;
+    width: 96px;
+    height: 55px;
+    margin: auto;
+    background: #FFFFFF;
+    border: 1px solid #FFC51C;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 40px;
+}
+
 .certifyButton {
     position: absolute;
     padding: 0;
     top: 41.8%;
-    left: 70%;
+    left: 76%;
     width: 96px;
-    height: 54px;
+    height: 55px;
     margin: auto;
-
-    background: #FFC51C;
+    background: #4386FF;
     border: 0;
     border-radius: 999px;
-    cursor: pointer;
-
+    color: #FFFFFF;
+    font-weight: 700;
     font-size: 15px;
     line-height: 40px;
+    pointer-events: none;
 }
 
 /* 회원가입 버튼 */
