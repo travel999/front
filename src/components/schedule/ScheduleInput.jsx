@@ -25,8 +25,8 @@ const ScheduleInput = ({ room, day, index }) => {
       const msg = { msg: sendValue, room: `${room}${day}${index}` };
       setGetShowing(sendValue);
       socket.emit("test_send", msg);
-    } else {  
-      alert("메인페이지에");
+    } else {
+      // alert("메인페이지에");
     }
   }, [sendValue]);
 

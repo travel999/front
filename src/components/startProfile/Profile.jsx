@@ -42,7 +42,7 @@ const Profile = () => {
   const [img, setImg] = useState([]);
   const [preImg, setPreImg] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-  // 
+  //
   const nickname = user.nickname;
   const profileImg = user.userImage;
   const image = localStorage.getItem("image");

@@ -5,12 +5,10 @@ import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
 import { deleteMemory } from "../../redux/modules/chatSlice";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import duckfoot from "../../res/img/duck/duckfoot-5.png";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
@@ -47,8 +45,8 @@ const Header = () => {
     if (!tokenValue) {
       navigate("/");
     } else {
-      // navigate("/main");
-      window.location.replace("/main");
+      navigate("/main");
+      // window.location.replace("/main");
     }
   };
 
@@ -153,6 +151,7 @@ const MobileHeader = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 15px 15px 10px 15px;
+  border-bottom: 1px solid lightgray;
   div {
     font-size: 1.2em;
     font-weight: 500;

@@ -50,6 +50,12 @@
 .createWrap button {
   border-radius: 17px;
 }
+.adviceBtn {
+  color: #b4b4b4;
+  font-size: 1.6em;
+  margin-bottom: -5px;
+  cursor: pointer;
+}
 /* SchduleList */
 .dayWrap ul {
   display: flex;

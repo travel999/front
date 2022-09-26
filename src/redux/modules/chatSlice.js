@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../res/instance";
 
 const initialState = {
@@ -35,7 +35,7 @@ export const ChatSlice = createSlice({
         const chatTime = action.payload.chatRoom.chatTime;
         const chatName = action.payload.chatRoom.nickname;
 
-        chatLog.map((value, idx) => {
+        chatLog.map((value) => {
           let tempObj = {};
           tempObj.message = value;
           forChatArr.push(tempObj);

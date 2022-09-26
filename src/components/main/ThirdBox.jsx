@@ -42,7 +42,7 @@ const ThirdBox = ({
       <SearchBar
         inputRef={inputRef}
         searchPage={searchPage}
-        setShowrecommend={setShowRecommend}
+        setShowRecommend={setShowRecommend}
         setSearchPage={setSearchPage}
         beforeSearched={beforeSearched}
         setBeforeSearched={setBeforeSearched}

@@ -4,42 +4,49 @@ import { invalidEmailCheck } from "../../../redux/modules/JoinSlice";
 import "../../detailSchedule /modal/MemberAddModal.css"
 
 const InvalidCodeModal = (props) => {
-    const dispatch = useDispatch();
-    // 유효 코드
-    const [code, setCode] = useState("");
-    const { open, close, text, email } = props;
+  const dispatch = useDispatch();
+  // 유효 코드
+  const [code, setCode] = useState("");
+  const { open, close, text, email } = props;
 
-    // 입력한 코드 code에 넣어주기
-    const onCode = (e) => {
-        setCode(e.target.value)
+  // 입력한 코드 code에 넣어주기
+  const onCode = (e) => {
+    setCode(e.target.value);
+  };
+
+  // 이메일 인증 코드 보내기
+  const onCheckEmailCode = () => {
+    dispatch(invalidEmailCheck({ email: email, code: code }));
+    console.log("emailData", email);
+  };
+
+  window.addEventListener("mousedown", (e) => {
+    if (e.target.className === "openModal modal") {
+      e.stopPropagation();
+      close();
     }
-    
-    // 이메일 인증 코드 보내기
-    const onCheckEmailCode = () => {
-        dispatch(invalidEmailCheck({ email: email, code: code }))
-    }
-    return (
-        <div className={open ? "openModal modal" : "modal"}>
-            {open ? (
-                <section>
-                    <header>
-                        {text}
-                        <button className="open" onClick={close}>
-                            &times;
-                        </button>
-                    </header>
-                    <main>
-                        <input type="text" onChange={onCode} />
-                    </main>
-                    <footer>
-                        <button onClick={onCheckEmailCode}>
-                            인증하기
-                        </button>
-                    </footer>
-                </section>
-            ) : null}
+  });
+
+  return (
+    <div className={open ? "openModal modal" : "modal"}>
+      {open ? (
+        <div>
+          <div>
+            {text}
+            <button className="close" onClick={close}>
+              &times;
+            </button>
+          </div>
+          <div>
+            <input type="text" onChange={onCode} />
+          </div>
+          <div>
+            <button onClick={onCheckEmailCode}>인증하기</button>
+          </div>
         </div>
-    );
+      ) : null}
+    </div>
+  );
 };
 
 export default InvalidCodeModal;
