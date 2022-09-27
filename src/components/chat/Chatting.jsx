@@ -2,21 +2,39 @@ import React, { useState } from "react";
 import ChatBox from "./ChatBox";
 import socket from "../../res/socket";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteMemory, getChatMemory } from "../../redux/modules/chatSlice";
+import { useParams } from "react-router-dom";
 
 const Chatting = ({ id }) => {
+  const dispatch = useDispatch();
+  const members = useSelector((state) => state.kakaoMap.members) || [null];
+  const address = useParams();
+
   const [showChat, setShowChat] = useState(false);
+
+  const nickname = localStorage.getItem("nickname");
+  const room = "roomIdIs" + id;
+
+  const enterRoom = () => {
+    setShowChat(!showChat);
+    if (members?.includes(nickname)) {
+      socket.emit("join_room", room);
+      dispatch(getChatMemory(id));
+    } else if (address.id && members?.includes(nickname)) {
+      socket.emit("join_room", address.id);
+      dispatch(getChatMemory(address.id));
+    }
+    if (address.id !== id) {
+      dispatch(deleteMemory());
+    }
+  };
 
   return (
     <BicBox Bsize={showChat}>
       <HeadText>
         <ChatHaed>Chatting Room</ChatHaed>
-        <HideBtn
-          onClick={() => {
-            setShowChat(!showChat);
-          }}
-        >
-          ㅡ
-        </HideBtn>
+        <HideBtn onClick={enterRoom}>ㅡ</HideBtn>
       </HeadText>
       {showChat ? <ChatBox socket={socket} id={id} /> : null}
     </BicBox>

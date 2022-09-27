@@ -47,7 +47,6 @@ export const ChatSlice = createSlice({
         chatName.map((value, idx) => {
           forChatArr[idx].author = value;
         });
-        console.log(forChatArr);
         state.chatMemory = forChatArr;
       }
     },
