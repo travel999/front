@@ -16,6 +16,7 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
 
   const [sendValue, setSendValue] = useState("");
   const [conData, setConData] = useState({});
+  const [colorChange, setColorChange] = useState(true);
 
   const nickname = localStorage.getItem("nickname");
   const liveText = $(`#${id}${day}${index}`).text();
@@ -52,7 +53,7 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
     });
 
     socket.on("SaveGet_data", (data) => {
-      // console.log(data);
+      setColorChange(false);
     });
   }, [socket]);
 
@@ -87,6 +88,7 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
         // 다른사람들에게도 토스트가 간다.
         sendOtherPeople();
         inputRef.current.value = " ";
+        setColorChange(false);
       }
     } else {
       toast.success(`권한이 없습니다.`, {
@@ -131,7 +133,11 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
         onKeyDown={(e) => onDeleteLastText(e.keyCode)}
         required
       />
-      <Btn color="#fffff" backgroundColor="#ffc51c" onClick={onSaveCard}>
+      <Btn
+        color="#fffff"
+        backgroundColor={colorChange ? "lightgray" : "#ffc51c"}
+        onClick={onSaveCard}
+      >
         일정 저장
       </Btn>
       <ToastContainer />
