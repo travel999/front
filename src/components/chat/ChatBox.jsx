@@ -1,37 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { deleteMemory, getChatMemory } from "../../redux/modules/chatSlice";
+import { useSelector } from "react-redux";
 import styles from "./Chatting.module.css";
 import styled from "styled-components";
 import ScrollToBottom from "react-scroll-to-bottom";
 
 const ChatBox = ({ socket, id }) => {
-  const dispatch = useDispatch();
   const members = useSelector((state) => state.kakaoMap.members) || [null];
   const chatData = useSelector((state) => state.chat.chatMemory);
-  const address = useParams();
   const currentMessageRef = useRef("");
 
   const [messageList, setMessageList] = useState([]);
 
   const nickname = localStorage.getItem("nickname");
   const room = "roomIdIs" + id;
-
-  useEffect(() => {
-    if (members?.includes(nickname)) {
-      if (room && members?.includes(nickname)) {
-        socket.emit("join_room", room);
-        dispatch(getChatMemory(id));
-      } else if (address.id && members?.includes(nickname)) {
-        socket.emit("join_room", address.id);
-        dispatch(getChatMemory(address.id));
-      }
-    }
-    if (address.id !== id) {
-      dispatch(deleteMemory());
-    }
-  }, [id, members, address.id]);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {

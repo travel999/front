@@ -45,29 +45,35 @@ const DetailScheduleCard = ({ data, postId, key }) => {
       }
     }
     // socket 일정 저장 받음
-    socket.on("receive_dayDone", (person) => {
-      setCount((pre) => (pre += 1));
-      console.log(count);
-      if (count == 1) {
-        toast.success(`${person}님이 저장하었습니다.`, {
-          position: "top-right",
-          autoClose: 500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+    socket.on("receive_dayDone", (value) => {
+      let count = 0;
+      count += value.num;
+      console.log(value.num);
+      if (count === 1) {
+        forToast(value.nickname);
       }
       setColorChange(false);
     });
   }, [result]);
 
+  console.log(count);
+
+  const forToast = (person) => {
+    toast.success(`${person}님이 저장하었습니다.`, {
+      position: "top-right",
+      autoClose: 500,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   useEffect(() => {
     // socket 입장
     socket.emit("join_dayDone", dayRoom);
   }, []);
-
 
   //일정의 컨텐츠 저장
   const onSaveAllSchedule = () => {
@@ -95,7 +101,7 @@ const DetailScheduleCard = ({ data, postId, key }) => {
     }
 
     // socket 일정 저장 보냄
-    socket.emit("send_dayDone", dayRoom, nickname);
+    socket.emit("send_dayDone", dayRoom, { nickname, num: 1 });
   };
 
   return (
