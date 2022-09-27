@@ -232,12 +232,11 @@ const Profile = () => {
         </div>
         <div className={styles.profile}>
           <label htmlFor="newImage">
-            {{ profileImg } ? (
-              <img src={profileImg} alt="" />
-            ) : preImg[0] ? (
-              <img src={preImg} alt="" />
-            ) : (
+            {profileImg === "" ? (
               <img src={profile} alt="" />
+            ) : (
+              <img src={profileImg} alt="" />
+
             )}
           </label>
           {/* 여기 기본이미지 안보인다.. 하 */}
