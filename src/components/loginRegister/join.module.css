@@ -214,16 +214,3 @@
     font-size: 18px;
     line-height: 40px;
 }
-
-/* 카카오 소셜로그인 로딩화면 */
-.loading {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    margin-top: 300px;
-    background-color: #F2F7FF;
-    position: "fixed";
-    transform: "translate(-50%, -50%)";
-    background-color: "F2F7FF";
-
-}
