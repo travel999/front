@@ -11,6 +11,7 @@ import S3upload from "react-aws-s3";
 import styles from "./Profile.module.css";
 import profileLogo from "../../res/img/profileLogo.png";
 import backgroundbox from "../../res/img/backgroundBox.png";
+import profile from "../../res/img/profile.png";
 import { ToastContainer, toast } from "react-toastify";
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
@@ -252,21 +253,20 @@ const Profile = () => {
 
               <img src={profile} alt="" />
             )} */}
-
           </label>
           {/* 여기 기본이미지 안보인다.. 하 */}
           <h4>프로필 이미지</h4>
         </div>
         {/* <form onChange={onSubmitHandler}> */}
-          <input
-            ref={imgVal}
-            className={styles.inputHidden}
-            onChange={onLoadImg}
-            type="file"
-            accept="image/*"
-            name="newImage"
-            id="newImage"
-          />
+        <input
+          ref={imgVal}
+          className={styles.inputHidden}
+          onChange={onLoadImg}
+          type="file"
+          accept="image/*"
+          name="newImage"
+          id="newImage"
+        />
         {/* </form> */}
       </div>
       <button onClick={onEditProfile} className={styles.button}>
