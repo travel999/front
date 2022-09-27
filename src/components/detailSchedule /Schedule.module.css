@@ -3,7 +3,6 @@
   width: 100%;
   /* height: 90vh; */
   display: flex;
-  position: fixed;
 }
 .wrapLeft {
   width: 17.5%;
@@ -123,13 +122,6 @@
   height: 70px;
   width: 100%;
 }
-/* .worksWrap button:last-of-type {
-  position: fixed;
-  bottom: 2%;
-  left: 0.5%;
-  z-index: 4;
-  width: 16.5%;
-} */
 .daySave button {
   position: fixed;
   bottom: 2%;
@@ -140,31 +132,29 @@
 /* ScheduleMap */
 .mapWrap {
   width: 100%;
-  display: inline-block;
-  background-color: #ffff;
 }
-.mapWrap button::before {
-  content: "장소선택";
-  margin: 0 0.2rem;
-}
-.mapWrap button {
+.searchTitle {
+  position: fixed;
+  top: 7.9%;
+  left: 18%;
   z-index: 999;
-  font-size: 15px;
-  line-height: 2rem;
-  color: #000000;
+  font-weight: bold;
 }
-.mapWrap button:hover {
+.searchTitle:hover {
   cursor: pointer;
   color: #4386ff;
 }
 .searchBtn {
   position: fixed;
-  top: 7.9%;
-  left: 20%;
+  top: 8%;
+  left: 22.5%;
   z-index: 3;
 }
+.searchBtn:hover {
+  cursor: pointer;
+  color: #4386ff;
+}
 .mapBox {
-  margin-top: -1.1rem;
   width: 100%;
   height: 92.5vh;
 }
@@ -206,18 +196,33 @@
     height: 100%;
   }
   .createWrap input[type="date"] {
-    width: 95%;
+    width: 93%;
   }
   .createWrap input[type="text"] {
-    width: 95%;
+    width: 93%;
   }
   .createWrap button {
-    width: 95%;
+    width: 97%;
     margin: 1rem 0;
   }
-  /* .mapWrap .mapDiv {
-    width: 80%;
-    margin: auto 0;
+  .daySave button {
+    position: absolute;
+    bottom: auto;
+    left: 24%;
+    width: 50%;
+  }
+  .searchTitle {
+    position: absolute;
+    top: auto;
+    left: 5%;
+  }
+  .searchBtn {
+    position: absolute;
+    top: auto;
+    left: 115%;
+  }
+  /* .mapBox {
+    width: 98%;
   } */
 }
 

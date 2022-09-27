@@ -220,7 +220,7 @@ const Join = () => {
           <div className={styles.profile}>
             <label htmlFor="userImage">
               {!preImg[0] ? (
-                <img src={profile} alt=""></img>
+                <img src={profile} alt="" />
               ) : (
                 <img src={preImg} alt="" />
               )}

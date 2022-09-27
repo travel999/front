@@ -19,7 +19,7 @@ export const saveDayData = createAsyncThunk(
         if (res.data) {
           toast("1일차가 저장되었습니다.", {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 300,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -35,7 +35,7 @@ export const saveDayData = createAsyncThunk(
         if (res.data) {
           toast("2일차가 저장되었습니다.", {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 300,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -51,7 +51,7 @@ export const saveDayData = createAsyncThunk(
         if (res.data) {
           toast("3일차가 저장되었습니다.", {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 300,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -67,7 +67,7 @@ export const saveDayData = createAsyncThunk(
         if (res.data) {
           toast("4일차가 저장되었습니다.", {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 300,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -83,7 +83,7 @@ export const saveDayData = createAsyncThunk(
         if (res.data) {
           toast("5일차가 저장되었습니다.", {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 300,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -99,7 +99,7 @@ export const saveDayData = createAsyncThunk(
         if (res.data) {
           toast("6일차가 저장되었습니다.", {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 300,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -115,7 +115,7 @@ export const saveDayData = createAsyncThunk(
         if (res.data) {
           toast("7일차가 저장되었습니다.", {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 300,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,

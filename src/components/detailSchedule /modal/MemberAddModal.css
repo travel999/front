@@ -16,6 +16,7 @@
 .modal > section {
   width: 90%;
   max-width: 450px;
+  height: 27%;
   margin: 0 auto;
   border-radius: 0.3rem;
   background-color: #fff;
@@ -26,7 +27,7 @@
 .modal > section > header {
   position: relative;
   padding: 16px 64px 16px 16px;
-  background-color: #f1f1f1;
+  background-color: #ffc51c;
   font-weight: 700;
 }
 .modal > section > header button {
@@ -45,7 +46,15 @@
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
 }
-.modal > section > main > input {
+.modal > section > main > input[name="inputText"] {
+  width: 95%;
+  height: 36px;
+  border: 1px solid #4386ff;
+  border-radius: 20px;
+  padding: 0.3rem;
+}
+.modal > section > main > div {
+  text-align: center;
 }
 .modal > section > footer {
   padding: 12px 16px;
@@ -53,8 +62,8 @@
 }
 .modal > section > footer button {
   padding: 6px 12px;
-  color: #fff;
-  background-color: #6c757d;
+  color: #333;
+  background-color: #ffc51c;
   border-radius: 5px;
   font-size: 13px;
 }

@@ -38,8 +38,8 @@ const MemberAddModal = (props) => {
             </button>
           </header>
           <main>
-            <input type="text" name="nickName" onChange={onGetNickName} />
-            <span>{message}</span>
+            <input type="text" name="inputText" onChange={onGetNickName} />
+            <div>{message}</div>
           </main>
           <footer>
             <button className="addMember" onClick={onAddMember}>

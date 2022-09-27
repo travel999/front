@@ -105,6 +105,10 @@ const ModalBack = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   align-items: center;
   animation: modal-bg-show 0.3s;
+  @media only screen and (max-width: 430px) {
+    position: absolute;
+    top: auto;
+  }
 `;
 
 const ModalBox = styled.div`
@@ -244,6 +248,10 @@ const TwoBox = styled.div`
   right: 0%;
   top: 7.7%;
   z-index: 4;
+  @media only screen and (max-width: 430px) {
+    position: absolute;
+    top: auto;
+  }
 `;
 
 const Pbtn = styled.div`

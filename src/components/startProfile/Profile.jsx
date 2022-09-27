@@ -233,13 +233,20 @@ const Profile = () => {
         </div>
         <div className={styles.profile}>
           <label htmlFor="newImage">
-            {{ profileImg } ? (
+            {console.log(profileImg)}
+            {profileImg === "" ? (
+              <img src={profile} alt="" />
+            ) : (
               <img src={profileImg} alt="" />
-            ) : preImg[0] ? (
-              <img src={preImg} alt="" />
+            )}
+
+            {/* {{ profileImg } === "" ? (
+              <img src={profileImg} alt="" />
+            ) : preImg[0] !== undefined ? (
+              <img src={preImg[0]} alt="" />
             ) : (
               <img src={profile} alt="" />
-            )}
+            )} */}
           </label>
           {/* 여기 기본이미지 안보인다.. 하 */}
           <h4>프로필 이미지</h4>

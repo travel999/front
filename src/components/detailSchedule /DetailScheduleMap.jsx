@@ -157,17 +157,19 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
 
   return (
     <div className={styles.mapWrap}>
-      <Btn
+      <div
+        className={styles.searchTitle}
         onClick={() => {
           Setmenu((prev) => !prev);
           Setvisible((prev) => !prev);
         }}
       >
+        장소선택
         <FontAwesomeIcon
           icon={faMagnifyingGlass}
           className={styles.searchBtn}
         />
-      </Btn>
+      </div>
 
       <PublicDeleteBtn postId={id} />
       <DetailMapSearchNav

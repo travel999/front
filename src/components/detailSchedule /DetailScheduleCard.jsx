@@ -53,7 +53,7 @@ const DetailScheduleCard = ({ data, postId, key }) => {
   useEffect(() => {
     socket.on("receive_dayDone", (person) => {
       toast.success(`${person}님이 저장하었습니다.`, {
-        position: "top-center",
+        position: "top-right",
         autoClose: 1500,
         hideProgressBar: true,
         closeOnClick: true,

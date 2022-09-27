@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { invalidEmailCheck } from "../../../redux/modules/JoinSlice";
-import "../../detailSchedule /modal/MemberAddModal.css"
+import "../../detailSchedule /modal/MemberAddModal.css";
 
 const InvalidCodeModal = (props) => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const InvalidCodeModal = (props) => {
             </button>
           </header>
           <main>
-            <input type="text" onChange={onCode} />
+            <input type="text" name="inputText" onChange={onCode} />
           </main>
           <footer>
             <button onClick={onCheckEmailCode}>인증하기</button>
