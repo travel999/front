@@ -68,6 +68,7 @@ const DetailScheduleCard = ({ data, postId, key }) => {
     socket.emit("join_dayDone", dayRoom);
   }, []);
 
+
   //일정의 컨텐츠 저장
   const onSaveAllSchedule = () => {
     if (members?.includes(nickname)) {

@@ -89,7 +89,7 @@ const SearchDiv = styled.div`
   transition: width 400ms ease-in-out;
   background-color: #ffffff;
   position: absolute;
-  top: 5%;
+  top: 11%;
   margin-left: 0%;
   font-size: 15px;
   z-index: 99;
