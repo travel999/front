@@ -14,9 +14,7 @@ export const addJoin = createAsyncThunk(
   "signUpSlice/addJoin",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload.data.get("img"));
-      const response = await instance.post("user/test", payload.data);
-      console.log(response);
+      const response = await instance.post("user/signup", payload);
       if (response) {
         toast.success(
           "회원가입을 축하드립니다!",
