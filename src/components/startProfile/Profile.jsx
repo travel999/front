@@ -253,21 +253,20 @@ const Profile = () => {
 
               <img src={profile} alt="" />
             )} */}
-
           </label>
           {/* 여기 기본이미지 안보인다.. 하 */}
           <h4>프로필 이미지</h4>
         </div>
         {/* <form onChange={onSubmitHandler}> */}
-          <input
-            ref={imgVal}
-            className={styles.inputHidden}
-            onChange={onLoadImg}
-            type="file"
-            accept="image/*"
-            name="newImage"
-            id="newImage"
-          />
+        <input
+          ref={imgVal}
+          className={styles.inputHidden}
+          onChange={onLoadImg}
+          type="file"
+          accept="image/*"
+          name="newImage"
+          id="newImage"
+        />
         {/* </form> */}
       </div>
       <button onClick={onEditProfile} className={styles.button}>

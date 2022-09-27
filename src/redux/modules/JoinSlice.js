@@ -34,7 +34,7 @@ export const addJoin = createAsyncThunk(
       }
       return response.data;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       if (error.response.status === 415) {
         toast.error("이메일을 인증해주세요.", {
           position: "top-center",
@@ -120,24 +120,22 @@ export const invalidEmail = createAsyncThunk(
           progress: undefined,
         });
       }
-      return thunkAPI.fulfillWithValue(response.data)
-    }
-    catch (error) {
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
       if (error) {
-        
       }
-      return thunkAPI.rejectWithValue(error)
+      return thunkAPI.rejectWithValue(error);
     }
   }
-)
+);
 
-// 유효 이메일 인증 
+// 유효 이메일 인증
 export const invalidEmailCheck = createAsyncThunk(
   "signUpSilce/invalidEmailCheck",
   async (payload, thunkAPI) => {
     try {
       const response = await instance.post("user/checkCode", payload);
-      console.log(response)
+      console.log(response);
       if (response) {
         toast.info("이메일이 인증되었습니다!", {
           position: "top-center",
@@ -149,10 +147,9 @@ export const invalidEmailCheck = createAsyncThunk(
           progress: undefined,
         });
       }
-      return thunkAPI.fulfillWithValue(response.data)
-    }
-    catch (error) {
-      console.log("error")
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      console.log("error");
       if (error) {
         toast.warn("이메일 인증에 실패했습니다!", {
           position: "top-center",
@@ -164,10 +161,10 @@ export const invalidEmailCheck = createAsyncThunk(
           progress: undefined,
         });
       }
-      return thunkAPI.rejectWithValue(error)
+      return thunkAPI.rejectWithValue(error);
     }
   }
-)
+);
 
 // 리듀서
 export const JoinSlice = createSlice({
@@ -216,8 +213,7 @@ export const JoinSlice = createSlice({
     },
     [invalidEmailCheck.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.result = action.payload
-      
+      state.result = action.payload;
     },
     [invalidEmailCheck.rejected]: (state, action) => {
       state.isLoading = false;

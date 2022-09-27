@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  saveSchedule,
-  modifySchedule,
-} from "../../redux/modules/ScheduleSlice";
+import { saveSchedule } from "../../redux/modules/ScheduleSlice";
 import ScheduleList from "./SchduleList";
-import AdviceModal from "../detailSchedule /modal/AdviceModal";
+import AdviceModal from "../detailSchedule/modal/AdviceModal";
 import Btn from "../elements/Btn";
 import styles from "./Schedule.module.css";
 import "react-toastify/dist/ReactToastify.css";
