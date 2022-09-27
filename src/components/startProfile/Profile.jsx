@@ -8,8 +8,7 @@ import {
 } from "../../redux/modules/ProfileSlice";
 import DeleteModal from "./modal/DeleteModal";
 import S3upload from "react-aws-s3";
-
-import styles from "./Profile.module.css";
+import styles from "../module.css/Profile.module.css";
 import profileLogo from "../../res/img/profileLogo.png";
 import backgroundbox from "../../res/img/backgroundBox.png";
 import profile from "../../res/img/profile.png";
@@ -237,6 +236,7 @@ const Profile = () => {
               <img src={profile} alt="" />
             ) : (
               <img src={profileImg} alt="" />
+
             )}
           </label>
           {/* 여기 기본이미지 안보인다.. 하 */}
