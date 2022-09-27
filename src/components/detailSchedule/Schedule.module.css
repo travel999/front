@@ -158,22 +158,10 @@
   position: fixed;
   top: 7.9%;
   left: 18%;
-}
-/* .mapWrap button::before {
-  content: "장소선택";
-  margin: 0 0.2rem;
-} */
-.mapWrap button {
-  z-index: 999;
-  font-weight: bold;
+  z-index: 4;
 }
 
 .searchTitle:hover {
-  cursor: pointer;
-  color: #4386ff;
-}
-
-.mapWrap button:hover {
   cursor: pointer;
   color: #4386ff;
 }
@@ -203,13 +191,17 @@
 }
 
 /* ScheduleInput */
+.inputWrap p {
+  margin: 2rem 0 0 0;
+}
+
 .inputWrap input {
   border: 1px solid #4386ff;
   border-radius: 20px;
   padding: 0.3rem;
-  margin: 0.5rem 0;
+  margin: 2rem 0 0 0;
   height: 36px;
-  width: 20%;
+  width: 80%;
 }
 
 .inputWrap button {
