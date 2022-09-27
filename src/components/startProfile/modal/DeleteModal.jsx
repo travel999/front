@@ -18,7 +18,7 @@ const DeleteModal = (props) => {
   };
 
   window.addEventListener("mousedown", (e) => {
-    if (e.target.className === "openModal modal") {
+    if (open && e.target.className === "openModal modal") {
       e.stopPropagation();
       close();
     }
@@ -28,9 +28,9 @@ const DeleteModal = (props) => {
     // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? "openModal modal" : "modal"}>
       {open ? (
-        <div>
-          <div>{text}</div>
-          <div>
+        <section>
+          <header>{text}</header>
+          <footer>
             <button
               onClick={onDeleteProfile}
               className={styles.onDeleteProfile}
@@ -40,8 +40,8 @@ const DeleteModal = (props) => {
             <button onClick={close} className="close">
               아니오
             </button>
-          </div>
-        </div>
+          </footer>
+        </section>
       ) : null}
     </div>
   );

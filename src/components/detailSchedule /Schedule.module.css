@@ -4,19 +4,23 @@
   /* height: 90vh; */
   display: flex;
 }
+
 .wrapLeft {
   width: 17.5%;
   height: 92.5vh;
   background-color: #f2f7ff;
 }
+
 .wrapCenter {
   width: 82.5%;
   height: 92vh;
   background-color: #e5eefc;
 }
+
 .wrapRight {
   width: 17.5%;
 }
+
 .wrap img {
   width: 20%;
   object-fit: cover;
@@ -33,6 +37,7 @@
   box-sizing: border-box;
   border-bottom: 1px solid #f2f7ff;
 }
+
 .createWrap input[type="date"] {
   width: 141px;
   height: 36px;
@@ -41,6 +46,7 @@
   margin: 0.3rem;
   text-align: center;
 }
+
 .createWrap input[type="text"] {
   width: 192px;
   height: 36px;
@@ -49,57 +55,69 @@
   margin: 0.3rem;
   text-align: center;
 }
+
 .createWrap button {
   border-radius: 17px;
 }
+
 .adviceBtn {
   color: #b4b4b4;
   font-size: 1.6em;
   margin-bottom: -5px;
   cursor: pointer;
 }
+
 /* SchduleList */
 .forScroll {
   height: 50vh;
   overflow-y: scroll;
 }
+
 @media only screen and (min-height: 900px) {
   .forScroll {
     height: 70vh;
     overflow-y: scroll;
   }
 }
+
 .dayWrap ul {
   display: flex;
   justify-content: space-around;
   margin: 0.3rem 0;
 }
-.dayWrap ul > li {
+
+.dayWrap ul>li {
   list-style: none;
 }
+
 .dayWrap .active {
   color: black;
   text-decoration: underline;
 }
+
 .dayWrap .noActive {
   color: gray;
 }
 
-.dayWrap ul > li:hover {
+.dayWrap ul>li:hover {
   font-size: 20px;
 }
+
 /* SchduleCard */
 .worksWrap {
   margin: 1rem;
 }
+
 .worksWrap h2 {
   text-align: center;
   font-size: 18px;
   font-weight: bold;
 }
+
 .workDay {
   color: #4386ff;
 }
+
 .work {
   background-color: #fff;
   border: 1px solid #4386ff;
@@ -107,6 +125,7 @@
   border-radius: 10px;
   margin: 0 0 10px 0;
 }
+
 .workIndex {
   text-align: left;
   font-size: 20px;
@@ -122,6 +141,7 @@
   height: 70px;
   width: 100%;
 }
+
 .daySave button {
   position: fixed;
   bottom: 2%;
@@ -129,6 +149,7 @@
   z-index: 4;
   width: 16.5%;
 }
+
 /* ScheduleMap */
 .mapWrap {
   width: 100%;
@@ -137,33 +158,50 @@
   position: fixed;
   top: 7.9%;
   left: 18%;
+
+/* .mapWrap button::before {
+  content: "장소선택";
+  margin: 0 0.2rem;
+} */
+.mapWrap button {
   z-index: 999;
   font-weight: bold;
 }
+
 .searchTitle:hover {
+ cursor: pointer;
+  color: #4386ff;
+}
+
+.mapWrap button:hover {
   cursor: pointer;
   color: #4386ff;
 }
+
 .searchBtn {
   position: fixed;
   top: 8%;
   left: 22.5%;
   z-index: 3;
 }
+
 .searchBtn:hover {
   cursor: pointer;
   color: #4386ff;
 }
+
 .mapBox {
   width: 100%;
   height: 92.5vh;
 }
+
 /* ScheduleCard */
 .worksWrap button {
   padding: 0.5rem;
   border-radius: 19px;
   text-align: center;
 }
+
 /* ScheduleInput */
 .inputWrap input {
   border: 1px solid #4386ff;
@@ -172,6 +210,7 @@
   height: 50px;
   width: 100%;
 }
+
 .inputWrap button {
   text-align: center;
   padding: 0.3rem;
@@ -187,24 +226,30 @@
   .wrap {
     display: block;
   }
+
   .wrapLeft {
     width: 100%;
     background-color: #ffff;
   }
+
   .wrapCenter {
     width: 100%;
     height: 100%;
   }
+
   .createWrap input[type="date"] {
     width: 93%;
   }
+
   .createWrap input[type="text"] {
     width: 93%;
   }
+
   .createWrap button {
     width: 97%;
     margin: 1rem 0;
   }
+
   .daySave button {
     position: absolute;
     bottom: auto;
@@ -221,9 +266,7 @@
     top: auto;
     left: 115%;
   }
-  /* .mapBox {
-    width: 98%;
-  } */
+
 }
 
 ::-webkit-scrollbar {

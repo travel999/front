@@ -8,11 +8,9 @@ import {
 } from "../../redux/modules/ProfileSlice";
 import DeleteModal from "./modal/DeleteModal";
 import S3upload from "react-aws-s3";
-
 import styles from "./Profile.module.css";
 import profileLogo from "../../res/img/profileLogo.png";
 import backgroundbox from "../../res/img/backgroundBox.png";
-import profile from "../../res/img/profile.png";
 import { ToastContainer, toast } from "react-toastify";
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
@@ -24,7 +22,7 @@ const Profile = () => {
   const imgVal = useRef(null);
 
   const initialState = {
-    newImage: "",
+    // newImage: "",
     newPassword: "",
     confirm: "",
   };
@@ -83,11 +81,13 @@ const Profile = () => {
 
   // 프로필 이미지 변경
   useEffect(() => {
-    if (newImage) {
-      setEdit({ ...edit, newImage });
-      dispatch(putImage(edit));
-    }
-  }, [newImage]);
+    // if (img) {
+    //   const formdata = new FormData();
+    //   formdata.append("img", img);
+    //   setEdit({ ...edit, newImage });
+    //   dispatch(putImage(formdata));
+    // }
+  }, [image]);
 
   // 닉네임 수정 불가 마우스오버 이벤트
   const onEditNickName = () => {
@@ -138,24 +138,28 @@ const Profile = () => {
     //선택한 이미지 파일의 url
     const imageUrl = URL.createObjectURL(imaData);
     setPreImg(imageUrl);
+    // 이미지 파일 폼데이터로 바꿔서 변경
+    const formdata = new FormData();
+    formdata.append("img", img);
+    dispatch(putImage(formdata));
   };
 
   //S3 서버에 이미지 업로드
-  const onSubmitHandler = async (e) => {
-    e.preventDefault();
+  // const onSubmitHandler = async (e) => {
+  //   e.preventDefault();
 
-    let file = imgVal.current.files[0];
-    let newFileName = imgVal.current.files[0].name;
+  //   let file = imgVal.current.files[0];
+  //   let newFileName = imgVal.current.files[0].name;
 
-    const s3Client = new S3upload(config);
-    s3Client.uploadFile(file, newFileName).then(async (data) => {
-      if (data.status === 204) {
-        let newImage = data.location;
-        setNewImage(newImage);
-        setEdit({ ...edit, newImage });
-      }
-    });
-  };
+  //   const s3Client = new S3upload(config);
+  //   s3Client.uploadFile(file, newFileName).then(async (data) => {
+  //     if (data.status === 204) {
+  //       let newImage = data.location;
+  //       setNewImage(newImage);
+  //       setEdit({ ...edit, newImage });
+  //     }
+  //   });
+  // };
 
   // 비밀번호 수정
   const onEditProfile = (e) => {
@@ -245,13 +249,15 @@ const Profile = () => {
             ) : preImg[0] !== undefined ? (
               <img src={preImg[0]} alt="" />
             ) : (
+
               <img src={profile} alt="" />
             )} */}
+
           </label>
           {/* 여기 기본이미지 안보인다.. 하 */}
           <h4>프로필 이미지</h4>
         </div>
-        <form onChange={onSubmitHandler}>
+        {/* <form onChange={onSubmitHandler}> */}
           <input
             ref={imgVal}
             className={styles.inputHidden}
@@ -261,7 +267,7 @@ const Profile = () => {
             name="newImage"
             id="newImage"
           />
-        </form>
+        {/* </form> */}
       </div>
       <button onClick={onEditProfile} className={styles.button}>
         저장
