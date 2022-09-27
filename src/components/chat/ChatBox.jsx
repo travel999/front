@@ -31,7 +31,7 @@ const ChatBox = ({ socket, id }) => {
     if (address.id !== id) {
       dispatch(deleteMemory());
     }
-  }, [id, members, address]);
+  }, [id, members, address.id]);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {

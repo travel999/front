@@ -18,7 +18,7 @@ const PublicModal = ({ pModal, setPModal, openPublic, id }) => {
   const clickOutside = () => {
     window.addEventListener("mousedown", (e) => {
       e.stopPropagation();
-      if (e.target.id === "out") {
+      if (pModal && e.target.id === "out") {
         close();
       }
     });
@@ -68,7 +68,7 @@ const DeleteModal = ({ dModal, setDModal, id }) => {
   const clickOutside = () => {
     window.addEventListener("mousedown", (e) => {
       e.stopPropagation();
-      if (e.target.id === "out") {
+      if (dModal && e.target.id === "out") {
         close();
       }
     });
