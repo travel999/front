@@ -16,7 +16,9 @@ const ProfileBox = () => {
   return (
     <div style={{ zIndex: "2" }}>
       <div className={`${styles.profile}`}>
-        {frofileImg === undefined || frofileImg === "" ? (
+        {frofileImg === undefined ||
+        frofileImg === "" ||
+        frofileImg === null ? (
           <img
             src={duckprofile}
             alt="profileImg"

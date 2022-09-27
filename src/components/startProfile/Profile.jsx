@@ -9,7 +9,7 @@ import {
 import DeleteModal from "./modal/DeleteModal";
 import S3upload from "react-aws-s3";
 
-import styles from "./profile.module.css";
+import styles from "./Profile.module.css";
 import profileLogo from "../../res/img/profileLogo.png";
 import backgroundbox from "../../res/img/backgroundBox.png";
 import profile from "../../res/img/profile.png";

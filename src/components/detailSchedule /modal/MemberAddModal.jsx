@@ -21,7 +21,7 @@ const MemberAddModal = (props) => {
   };
 
   window.addEventListener("mousedown", (e) => {
-    if (e.target.className === "openModal modal") {
+    if (open && e.target.className === "openModal modal") {
       close();
     }
   });

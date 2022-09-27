@@ -16,6 +16,8 @@ const DetailScheduleCard = ({ data, postId, key }) => {
   const members = useSelector((state) => state.kakaoMap.members);
 
   const [result, setResult] = useState([]);
+  const [colorChange, setColorChange] = useState(true);
+  const [count, setCount] = useState(0);
 
   const nickname = localStorage.getItem("nickname");
   const dayRoom = `dayDone${postId}`; //소켓
@@ -42,27 +44,29 @@ const DetailScheduleCard = ({ data, postId, key }) => {
         dispatch(saveDayData(result));
       }
     }
+    // socket 일정 저장 받음
+    socket.on("receive_dayDone", (person) => {
+      setCount((pre) => (pre += 1));
+      console.log(count);
+      if (count == 1) {
+        toast.success(`${person}님이 저장하었습니다.`, {
+          position: "top-right",
+          autoClose: 500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+      setColorChange(false);
+    });
   }, [result]);
 
-  //소켓 통신용
   useEffect(() => {
+    // socket 입장
     socket.emit("join_dayDone", dayRoom);
   }, []);
-
-  // 받은 마커 표시해주는 부분
-  useEffect(() => {
-    socket.on("receive_dayDone", (person) => {
-      toast.success(`${person}님이 저장하었습니다.`, {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    });
-  }, [socket]);
 
   //일정의 컨텐츠 저장
   const onSaveAllSchedule = () => {
@@ -76,6 +80,7 @@ const DetailScheduleCard = ({ data, postId, key }) => {
         { pin: filterPinData, con: filterContentData },
         { postId },
       ]);
+      setColorChange(false);
     } else {
       toast.success("권한이 없습니다.", {
         position: "top-center",
@@ -88,12 +93,7 @@ const DetailScheduleCard = ({ data, postId, key }) => {
       });
     }
 
-    // socket
-    sendMarker();
-  };
-
-  //소켓에 마커보내기
-  const sendMarker = () => {
+    // socket 일정 저장 보냄
     socket.emit("send_dayDone", dayRoom, nickname);
   };
 
@@ -130,9 +130,10 @@ const DetailScheduleCard = ({ data, postId, key }) => {
         })}
       <div className={styles.daySave}>
         <Btn
+          class="saveBtn"
           color="#fffff"
           width="100%"
-          backgroundColor="#ffc51c"
+          backgroundColor={colorChange ? "lightgray" : "#ffc51c"}
           onClick={onSaveAllSchedule}
         >
           {data.day}일차 전체 일정 저장
@@ -143,4 +144,4 @@ const DetailScheduleCard = ({ data, postId, key }) => {
   );
 };
 
-export default memo(DetailScheduleCard);
+export default DetailScheduleCard;
