@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 const initialState = {
   email: "",
   nickname: "",
-  userImage: "",
   password: "",
   confirm: "",
 };
@@ -15,7 +14,9 @@ export const addJoin = createAsyncThunk(
   "signUpSlice/addJoin",
   async (payload, thunkAPI) => {
     try {
+      console.log("try")
       const response = await instance.post("user/signup", payload);
+      console.log(response)
       if (response) {
         toast.success(
           "회원가입을 축하드립니다!",
