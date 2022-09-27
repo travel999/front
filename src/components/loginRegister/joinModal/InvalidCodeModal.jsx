@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { invalidEmailCheck } from "../../../redux/modules/JoinSlice";
-import "../../detailSchedule /modal/MemberAddModal.css";
+import "../../detailSchedule/modal/MemberAddModal.css";
 
 const InvalidCodeModal = (props) => {
   const dispatch = useDispatch();

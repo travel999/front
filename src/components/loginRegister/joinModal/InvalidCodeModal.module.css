@@ -9,11 +9,11 @@
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-/* .modal button {
+.modal button {
     outline: none;
     cursor: pointer;
     border: 0;
-} */
+}
 
 .modal>section {
     width: 90%;
@@ -34,7 +34,7 @@
     font-weight: 700;
 }
 
-/* .modal>section>header button {
+.modal>section>header button {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -44,38 +44,38 @@
     text-align: center;
     color: #999;
     background-color: transparent;
-} */
+}
 
-/* .modal>section>main {
+.modal>section>main {
     padding: 16px;
     border-bottom: 1px solid #dee2e6;
     border-top: 1px solid #dee2e6;
-} */
+}
 
-/* .modal>section>main>input[name="inputText"] {
+.modal>section>main>input[name="inputText"] {
     width: 95%;
     height: 36px;
     border: 1px solid #4386ff;
     border-radius: 20px;
     padding: 0.3rem;
-} */
+}
 
-/* .modal>section>main>div {
+.modal>section>main>div {
     text-align: center;
-} */
+}
 
-/* .modal>section>footer {
+.modal>section>footer {
     padding: 12px 16px;
     text-align: right;
-} */
+}
 
-/* .modal>section>footer button {
+.modal>section>footer button {
     padding: 6px 12px;
     color: #333;
     background-color: #ffc51c;
     border-radius: 5px;
     font-size: 13px;
-} */
+}
 
 .modal.openModal {
     display: flex;

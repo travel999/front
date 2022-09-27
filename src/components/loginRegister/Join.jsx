@@ -9,7 +9,6 @@ import {
 } from "../../redux/modules/JoinSlice";
 import InvalidCodeModal from "./joinModal/InvalidCodeModal";
 import S3upload from "react-aws-s3";
-
 import styles from "./Join.module.css";
 import profile from "../../res/img/profile.png";
 import joinLogo from "../../res/img/joinLogo.png";
@@ -28,6 +27,7 @@ const Join = () => {
   const initialState = {
     email: "",
     nickname: "",
+    userImage: "",
     password: "",
     confirm: "",
   };
@@ -140,39 +140,38 @@ const Join = () => {
   };
 
   //이미지 미리보기
-  const onLoadImg = (e) => {
+  const onLoadImg = (event) => {
     //현재 이미지 파일
-    const imgData = e.target.files[0];
-    setImg(imgData);
+    const imaData = event.target.files[0];
+    setImg(imaData);
     //선택한 이미지 파일의 url
-    const imageUrl = URL.createObjectURL(imgData);
+    const imageUrl = URL.createObjectURL(imaData);
     setPreImg(imageUrl);
-    console.log(preImg)
   };
-  // const onSubmitHandler = async (e) => {
-  //   e.preventDefault();
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
 
-  //   //이미지 처리
-  //   const file = imgVal.current.files[0];
-  //   const newFileName = imgVal.current.files[0].name;
+    //이미지 처리
+    const file = imgVal.current.files[0];
+    const newFileName = imgVal.current.files[0].name;
 
-  //   const config = {
-  //     accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-  //     secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
-  //     bucketName: process.env.REACT_APP_BUCKET_NAME,
-  //     region: process.env.REACT_APP_REGION,
-  //   };
-  //   //aws 서버에 등록
-  //   const s3Client = new S3upload(config);
-  //   s3Client.uploadFile(file, newFileName).then(async (data) => {
-  //     if (data.status === 204) {
-  //       let userImage = data.location;
-  //       setUserImage(userImage);
-  //       console.log(userImage);
-  //       setSignUp({ ...signUp, userImage });
-  //     }
-  //   });
-  // };
+    const config = {
+      accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+      bucketName: process.env.REACT_APP_BUCKET_NAME,
+      region: process.env.REACT_APP_REGION,
+    };
+    //aws 서버에 등록
+    const s3Client = new S3upload(config);
+    s3Client.uploadFile(file, newFileName).then(async (data) => {
+      if (data.status === 204) {
+        let userImage = data.location;
+        setUserImage(userImage);
+        console.log(userImage);
+        setSignUp({ ...signUp, userImage });
+      }
+    });
+  };
   // 모달창 이메일 빈칸 아니고, 중복확인 됐을 때만 열림
   const openModal = () => {
     if (checkEmail === true) {
@@ -190,31 +189,20 @@ const Join = () => {
 
   // 버튼 클릭시 빈칸 확인
   const onJoin = (e) => {
-    e.preventDefault();
-    console.log(emailData, nicknNameData, passData, confirm, img)
-    const formdata = new FormData();
-    formdata.append("email", emailData);
-    formdata.append("nickname", nicknNameData);
-    formdata.append("password", passData);
-    formdata.append("confirm", confirm);
-    formdata.append("img", img);
-    for (let value of formdata.values()) {
-      console.log(value);
+    if (
+      emailData === "" ||
+      nicknNameData === "" ||
+      userImage === "" ||
+      passData === "" ||
+      confirm === ""
+    ) {
+    } else {
+      dispatch(addJoin({ navigate, signUp }));
     }
-    // if (
-    //   emailData === "" ||
-    //   nicknNameData === "" ||
-    //   passData === "" ||
-    //   confirm === ""
-    // ) {
-    // } else {
-    //   dispatch(addJoin({ navigate, formdata }));
-    // }
-    dispatch(addJoin({ navigate, formdata }));
+    dispatch(addJoin({ navigate, signUp }));
   };
 
   return (
-    <form encType="multipart/form-data" >
     <div className={styles.background}>
       <div className={styles.inputWrap}>
         <img
@@ -231,14 +219,14 @@ const Join = () => {
           <div className={styles.profile}>
             <label htmlFor="userImage">
               {!preImg[0] ? (
-                <img src={profile} alt="" />
+                <img src={profile} alt=""></img>
               ) : (
                 <img src={preImg} alt="" />
               )}
             </label>
             <h4>프로필 이미지</h4>
           </div>
-          {/* <form onChange={onSubmitHandler}> */}
+          <form onChange={onSubmitHandler}>
             <input
               ref={imgVal}
               className={styles.inputHidden}
@@ -249,7 +237,7 @@ const Join = () => {
               name="userImage"
               id="userImage"
             />
-          {/* </form> */}
+          </form>
         </div>
         <input
           className={styles.inputNickname}
@@ -327,7 +315,6 @@ const Join = () => {
         <ToastContainer />
       </div>
     </div>
-    </form>
   );
 };
 

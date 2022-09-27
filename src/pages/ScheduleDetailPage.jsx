@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/common/Layout";
-import DetailSchedule from "../components/detailSchedule /DetailSchedule";
+import DetailSchedule from "../components/detailSchedule/DetailSchedule";
 
 const ScheduleDetailPage = () => {
   return (

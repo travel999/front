@@ -137,6 +137,7 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
         color="#fffff"
         backgroundColor={colorChange ? "lightgray" : "#ffc51c"}
         onClick={onSaveCard}
+        width="20%"
       >
         일정 저장
       </Btn>
