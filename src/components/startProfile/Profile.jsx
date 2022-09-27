@@ -10,6 +10,7 @@ import DeleteModal from "./modal/DeleteModal";
 import S3upload from "react-aws-s3";
 import styles from "./Profile.module.css";
 import profileLogo from "../../res/img/profileLogo.png";
+import profile from "../../res/img/profile.png";
 import backgroundbox from "../../res/img/backgroundBox.png";
 import { ToastContainer, toast } from "react-toastify";
 
