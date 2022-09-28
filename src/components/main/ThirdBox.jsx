@@ -70,7 +70,7 @@ const ThirdBox = ({
                           onGoDetailPage(value._id);
                         }}
                       >
-                        {value.title}
+                        {value?.title}
                       </div>
                       {value.isLiked ? (
                         <div
@@ -121,7 +121,7 @@ const ThirdBox = ({
                             alt="duckfoot"
                           />
                           <div className={styles.travelplace}>
-                            {value.day1.pin[0].title}
+                            {value.day1.pin[0]?.title}
                           </div>
                         </div>
                       ) : null}
@@ -133,7 +133,7 @@ const ThirdBox = ({
                             alt="duckfoot"
                           />
                           <div className={styles.travelplace}>
-                            {value.day2.pin[0].title}
+                            {value.day2.pin[0]?.title}
                           </div>
                         </div>
                       ) : null}
@@ -145,7 +145,7 @@ const ThirdBox = ({
                             alt="duckfoot"
                           />
                           <div className={styles.travelplace}>
-                            {value.day3.pin[0].title}
+                            {value.day3.pin[0]?.title}
                           </div>
                         </div>
                       ) : null}
@@ -173,7 +173,7 @@ const ThirdBox = ({
                           onGoDetailPage(value._id);
                         }}
                       >
-                        {value.title}
+                        {value?.title}
                       </div>
                       {value.isLiked ? (
                         <div
@@ -224,7 +224,7 @@ const ThirdBox = ({
                             alt="duckfoot"
                           />
                           <div className={styles.travelplace}>
-                            {value.day1.pin[0].title}
+                            {value.day1.pin[0]?.title}
                           </div>
                         </div>
                       ) : null}
@@ -236,7 +236,7 @@ const ThirdBox = ({
                             alt="duckfoot"
                           />
                           <div className={styles.travelplace}>
-                            {value.day2.pin[0].title}
+                            {value.day2.pin[0]?.title}
                           </div>
                         </div>
                       ) : null}
@@ -248,7 +248,7 @@ const ThirdBox = ({
                             alt="duckfoot"
                           />
                           <div className={styles.travelplace}>
-                            {value.day3.pin[0].title}
+                            {value.day3.pin[0]?.title}
                           </div>
                         </div>
                       ) : null}

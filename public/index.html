@@ -21,6 +21,21 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
     <title>OORIGACHI</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-5EGFP2Q9GR"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-5EGFP2Q9GR");
+    </script>
   </head>
   <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
   <body>
