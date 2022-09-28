@@ -15,7 +15,7 @@ body * {
   position: relative;
   object-fit: cover;
   overflow: hidden;
-  width: 101rem;
+  /* width: 101rem; */
   scrollbar-color: rgba(255, 255, 255, 0);
 }
 

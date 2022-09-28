@@ -24,8 +24,8 @@
   position: relative;
   justify-content: center;
   background: #f2f7ff;
-  /* width: 1200px; */
-  width: 101rem;
+  width: 1200px;
+  /* width: 101rem; */
   height: 955px;
   margin: auto;
 }
@@ -104,7 +104,7 @@
 /* profile Img */
 .profile h4 {
   position: absolute;
-  left: 27.5%;
+  left: 21.5%;
   top: 52%;
   font-weight: 600;
 }
@@ -117,7 +117,7 @@
   height: 177px;
   width: 177px;
   cursor: pointer;
-  left: 25%;
+  left: 18%;
   top: 30%;
   background: #ffffff;
 }
@@ -130,20 +130,20 @@
 }
 
 .button {
-    position: absolute;
-    padding: 0;
-    margin: auto;
-    width: 400px;
-    height: 54px;
-    top: 70%;
-    left: 50%;
-    font-size: 16px;
-    line-height: 40px;
-    background: #FFC51C;
-    border: 0;
-    border-radius: 999px;
-    cursor: pointer;
-    color: black;
+  position: absolute;
+  padding: 0;
+  margin: auto;
+  width: 400px;
+  height: 54px;
+  top: 70%;
+  left: 50%;
+  font-size: 16px;
+  line-height: 40px;
+  background: #ffc51c;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: black;
 }
 
 .button2 {

@@ -6,8 +6,7 @@
 }
 
 .wrapLeft {
-  /* width: 17.5%; */
-  width: 29.5%;
+  width: 17.5%;
   height: 92.5vh;
   background-color: #f2f7ff;
 }
@@ -76,7 +75,7 @@
 
 @media only screen and (min-height: 900px) {
   .forScroll {
-    height: 54vh;
+    height: 63vh;
     overflow-y: scroll;
   }
 }
