@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getDayPlaceData } from "../../redux/modules/MapSlice";
 import styled from "styled-components";
-import styles from "./Schedule.module.css";
+import styles from "../module.css/Schedule.module.css";
 
 const MapSearchNav = ({
   visible,

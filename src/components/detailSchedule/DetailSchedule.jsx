@@ -1,12 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 import DetailScheduleCreate from "./DetailScheduleCreate";
 import DetailScheduleCard from "./DetailScheduleCard";
 import DetailScheduleMap from "./DetailScheduleMap";
+import MobileDetailScheduleMap from "./MobileDetailScheduleMap";
 import Chatting from "../chat/Chatting";
 import { getSchedule } from "../../redux/modules/MapSlice";
-import styles from "./Schedule.module.css";
+import styles from "../module.css/DetailSchedule.module.css";
 
 const DetailSchedule = () => {
   const createData = useSelector((state) => state.schedule);
@@ -15,6 +17,7 @@ const DetailSchedule = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
+  const MobileSize = useMediaQuery({ maxWidth: 430 });
 
   const [key, setKey] = useState(0);
 
@@ -36,11 +39,19 @@ const DetailSchedule = () => {
         <DetailScheduleCard data={mapData} postId={id} key={key} />
       </div>
       <div className={styles.wrapCenter}>
-        <DetailScheduleMap
-          nowDay={mapData.day}
-          data={mapData}
-          setKey={setKey}
-        />
+        {MobileSize ? (
+          <MobileDetailScheduleMap
+            nowDay={mapData.day}
+            data={mapData}
+            setKey={setKey}
+          />
+        ) : (
+          <DetailScheduleMap
+            nowDay={mapData.day}
+            data={mapData}
+            setKey={setKey}
+          />
+        )}
       </div>
       <Chatting id={id} members={members} />
     </div>

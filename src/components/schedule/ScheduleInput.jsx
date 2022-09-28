@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getConData } from "../../redux/modules/MapSlice";
 import socket from "../../res/socket";
 import Btn from "../elements/Btn";
-import styles from "./Schedule.module.css";
+import styles from "../module.css/Schedule.module.css";
 
 const ScheduleInput = ({ room, day, index }) => {
   const dispatch = useDispatch();

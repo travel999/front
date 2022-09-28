@@ -12,7 +12,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 const { kakao } = window;
 
 //placeX : lat , placeY : lng >> 기억하기
-const DetailScheduleMap = ({ nowDay, data, setKey }) => {
+const MobileDetailScheduleMap = ({ nowDay, data, setKey }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const existPins = useSelector((state) => state.kakaoMap.pin);
@@ -54,6 +54,8 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
         level: 3,
       };
       const kakaoMap = new kakao.maps.Map(container, options);
+      kakaoMap.setDraggable(false); //드래그 막기
+      kakaoMap.setZoomable(false); //줌 막기
       //처음 들어오는 저장된 마커 찍기
       newData.forEach((el) => {
         // 마커를 생성합니다
@@ -184,4 +186,4 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
   );
 };
 
-export default DetailScheduleMap;
+export default MobileDetailScheduleMap;

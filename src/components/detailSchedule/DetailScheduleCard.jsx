@@ -1,11 +1,11 @@
-import React, { useState, useEffect, memo, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { saveDayData } from "../../redux/modules/ResultSlice";
 import DetailScheduleInput from "./DetailScheduleInput";
 import socket from "../../res/socket";
 import Btn from "../elements/Btn";
-import styles from "./Schedule.module.css";
+import styles from "../module.css/DetailSchedule.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 

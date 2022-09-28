@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getDayPlaceData } from "../../redux/modules/MapSlice";
 import styled from "styled-components";
-import styles from "./Schedule.module.css";
+import styles from "../module.css/DetailSchedule.module.css";
 
 const DetailMapSearchNav = ({
   visible,
@@ -37,7 +37,7 @@ const DetailMapSearchNav = ({
             id="keyword"
             size="15"
             autoComplete="off"
-            onKeyUp={onSearchPlaces}
+            onKeyDown={onSearchPlaces}
             className={styles.title}
             placeholder="장소 선택"
             required

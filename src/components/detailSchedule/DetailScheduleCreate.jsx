@@ -5,7 +5,7 @@ import DetailSchduleList from "./DetailSchduleList";
 import { modifySchedule } from "../../redux/modules/ScheduleSlice";
 import AdviceModal from "./modal/AdviceModal";
 import Btn from "../elements/Btn";
-import styles from "./Schedule.module.css";
+import styles from "../module.css/DetailSchedule.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 

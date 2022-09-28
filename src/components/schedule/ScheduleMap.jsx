@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MapSearchNav from "./MapSearchNav";
 import Btn from "../elements/Btn";
-import styles from "./Schedule.module.css";
+import styles from "../module.css/Schedule.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 

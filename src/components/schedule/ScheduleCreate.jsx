@@ -5,7 +5,7 @@ import { saveSchedule } from "../../redux/modules/ScheduleSlice";
 import ScheduleList from "./SchduleList";
 import AdviceModal from "../detailSchedule/modal/AdviceModal";
 import Btn from "../elements/Btn";
-import styles from "./Schedule.module.css";
+import styles from "../module.css/Schedule.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
