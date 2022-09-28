@@ -1,11 +1,12 @@
 input:-webkit-autofill {
-  box-shadow: 0 0 0 1000px #FFFFFF inset;
+  box-shadow: 0 0 0 1000px #ffffff inset;
 }
 
 .wrap {
-  background-color: #F2F7FF;
+  background-color: #f2f7ff;
   overflow: hidden;
   position: relative;
+  width: 101rem;
 }
 
 .titleWrap {
@@ -30,7 +31,6 @@ input:-webkit-autofill {
   position: absolute;
   top: 53%;
   display: flex;
-
 }
 
 .inputBox1 {
@@ -52,20 +52,19 @@ input:-webkit-autofill {
 }
 
 .input {
-  background: #FFFFFF;
-  border: 1px solid #E2E2E2;
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
   width: 300px;
   height: 54px;
   font-size: 15px;
   border-radius: 999px;
   outline: none;
   padding-left: 10px;
-
 }
 
 .yellowInput {
-  background: #FFFFFF;
-  border: 1px solid #FFC51C;
+  background: #ffffff;
+  border: 1px solid #ffc51c;
   width: 300px;
   height: 54px;
   font-size: 15px;
@@ -81,7 +80,7 @@ input:-webkit-autofill {
   margin-right: 400px;
   position: absolute;
   top: 75%;
-  background: #FFC51C;
+  background: #ffc51c;
   border: 0;
   border-radius: 999px;
   cursor: pointer;

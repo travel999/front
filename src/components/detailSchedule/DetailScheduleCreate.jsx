@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import DetailSchduleList from "./DetailSchduleList";
 import { modifySchedule } from "../../redux/modules/ScheduleSlice";
-import AdviceModal from "./modal/AdviceModal";
 import Btn from "../elements/Btn";
 import styles from "../module.css/DetailSchedule.module.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,7 +13,6 @@ const DetailScheduleCreate = ({ data, setKey }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const members = useSelector((state) => state.kakaoMap.members);
-  const createData = useSelector((state) => state.schedule);
 
   const [title, setTitle] = useState(data.title);
   const [startDate, setSartDate] = useState(data.date[0]);
