@@ -244,7 +244,7 @@ const Join = () => {
           id="nickname"
           name="nickname"
           maxLength="10"
-          placeholder="오리가치"
+          placeholder="우리가치"
           autoFocus
         />
         <input
