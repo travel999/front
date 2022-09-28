@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteUser } from "../../../redux/modules/ProfileSlice";
-import styles from "./modal.module.css";
+import  "../../detailSchedule/modal/MemberAddModal.css"
 
 const DeleteModal = (props) => {
   const dispatch = useDispatch();
@@ -28,20 +28,20 @@ const DeleteModal = (props) => {
     // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? "openModal modal" : "modal"}>
       {open ? (
-        <div>
-          <div>{text}</div>
-          <div>
+        <article>
+          <header>{text}</header>
+          <footer>
             <button
               onClick={onDeleteProfile}
-              className={styles.onDeleteProfile}
+              className="yes"
             >
               예
             </button>
-            <button onClick={close} className="close">
+            <button onClick={close}>
               아니오
             </button>
-          </div>
-        </div>
+          </footer>
+        </article>
       ) : null}
     </div>
   );

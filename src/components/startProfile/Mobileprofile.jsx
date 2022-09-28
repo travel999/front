@@ -8,7 +8,7 @@ import {
 } from "../../redux/modules/ProfileSlice";
 import DeleteModal from "./modal/DeleteModal";
 import S3upload from "react-aws-s3";
-import styles from "../loginRegister/Mobile.module.css";
+import styles from "../module.css/Mobile.module.css";
 import close from "../../res/img/close.png"
 import profile from "../../res/img/profile.png";
 import { ToastContainer, toast } from "react-toastify";
@@ -188,12 +188,11 @@ const MobileProfile = () => {
             <div className={styles.profile}>
                 <p>프로필 이미지</p>
                 <label htmlFor="newImage">
-                    {{ profileImg } ? (
-                        <img src={profileImg} alt="" />
-                    ) : preImg[0] ? (
-                        <img src={preImg} alt="" />
-                    ) : (
+                    {profileImg === "" ? (
                         <img src={profile} alt="" />
+                    ) : (
+                        <img src={profileImg} alt="" />
+
                     )}
                 </label>
                 <form onChange={onSubmitHandler}>

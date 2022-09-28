@@ -239,7 +239,6 @@ const Profile = () => {
 
             )}
           </label>
-          {/* 여기 기본이미지 안보인다.. 하 */}
           <h4>프로필 이미지</h4>
         </div>
         <form onChange={onSubmitHandler}>
@@ -253,20 +252,20 @@ const Profile = () => {
             id="newImage"
           />
         </form>
+        <button onClick={onEditProfile} className={styles.button}>
+          저장
+        </button>
+        <ToastContainer />
+        <button onClick={openModal} className={styles.button2}>
+          회원 탈퇴
+        </button>
+        <DeleteModal
+          open={modalOpen}
+          close={closeModal}
+          edit={edit}
+          text={"정말로 탈퇴하시겠어요?🥲"}
+        />
       </div>
-      <button onClick={onEditProfile} className={styles.button}>
-        저장
-      </button>
-      <ToastContainer />
-      <button onClick={openModal} className={styles.button2}>
-        회원 탈퇴
-      </button>
-      <DeleteModal
-        open={modalOpen}
-        close={closeModal}
-        edit={edit}
-        text={"정말로 탈퇴하시겠어요?🥲"}
-      />
     </div>
   );
 };

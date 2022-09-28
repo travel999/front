@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { addJoin, doubleCheckEmail, doubleCheckNickName, invalidEmail } from "../../redux/modules/JoinSlice";
 import InvalidCodeModal from "./joinModal/InvalidCodeModal";
 import S3upload from "react-aws-s3";
-import styles from "./Mobile.module.css";
+import styles from "../module.css/Mobile.module.css";
 import profile from "../../res/img/profile.png"
 import prev from "../../res/img/prev.png";
 import { ToastContainer } from "react-toastify";
