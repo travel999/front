@@ -122,8 +122,8 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
 
   // 키워드 검색을 요청하는 함수입니다
   const onSearchPlaces = (e) => {
+    setInputVal(e.target.value);
     if (e.key === "Enter") {
-      setInputVal(e.target.value);
       const keyWord = inputVal.trim();
       if (keyWord.length === 0) {
         return;

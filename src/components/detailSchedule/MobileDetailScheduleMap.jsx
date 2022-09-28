@@ -15,6 +15,7 @@ const { kakao } = window;
 const MobileDetailScheduleMap = ({ nowDay, data, setKey }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
+
   const existPins = useSelector((state) => state.kakaoMap.pin);
 
   //state 초기화 값
