@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { kakaoLogin } from "../../redux/modules/KakaoSlice";
 import styles from "../module.css/Mobile.module.css";
 import { useMediaQuery } from "react-responsive";
-import FadeLoader from "react-spinners/FadeLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import mobileDuckLogo from "../../res/img/mobileDuckLogo.png"
 
 // 카카오 로그인시 인가코드를 받고 백엔드에 넘겨주는 과정을 위해 필요한 로딩 페이지
@@ -26,21 +26,27 @@ const Loading = () => {
       {MobileSize ? (
         <div className={styles.background} >
           <img src={mobileDuckLogo} alt="" className={styles.logoImage} />
-          <p className={styles.loadingText}>
-          •••&#32;로그인 중입니다🐣&#32;  ••• 
-          </p>
-        </div >
-      ) : (
-        <div className={styles.background}>
           <div className={styles.loading}>
-            <FadeLoader
-              color="#4386FF"
-              height={15}
-              width={5}
-              radius={2}
-              margin={2}
+            <BeatLoader
+              color="#ffc51c"
+              cssOverride={{}}
+              margin={20}
+              size={25}
+              speedMultiplier={1}
             />
           </div>
+        </div >
+      ) : (
+        <div className={styles.loadingGround}>
+          <p className={styles.loadingPage}>로그인 중입니다🐣 <br /><br />
+            잠깐만 기다려주세요!</p>
+          <BeatLoader
+            color="#ffc51c"
+            cssOverride={{}}
+            margin={20}
+            size={25}
+            speedMultiplier={1}
+          />
         </div>)}
     </div>
   );

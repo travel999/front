@@ -52,6 +52,7 @@ body * {
   width: 240px;
   height: 54px;
   background: #ffc51c;
+  color: black;
   border-radius: 999px;
   font-size: 18px;
   line-height: 40px;
@@ -67,6 +68,7 @@ body * {
   width: 240px;
   height: 54px;
   background: #ffc51c;
+  color: black;
   box-shadow: 0px 2px 8px rgba(255, 197, 28, 0.5);
   border-radius: 999px;
   cursor: pointer;
@@ -84,6 +86,7 @@ body * {
   width: 240px;
   height: 54px;
   background-color: rgba(255, 255, 255, 0);
+  color: black;
   border-radius: 999px;
   cursor: pointer;
   font-size: 18px;
@@ -105,6 +108,7 @@ body * {
   left: 65%;
   top: 73%;
   background-color: rgba(255, 255, 255, 0);
+  color: black;
   border: 0;
   border-radius: 999px;
   cursor: pointer;

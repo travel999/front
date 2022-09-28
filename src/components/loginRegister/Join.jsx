@@ -67,7 +67,6 @@ const Join = () => {
     if (checkEmail) {
       dispatch(doubleCheckEmail({ email: emailData, setEmailMsg }));
       dispatch(invalidEmail({ email: emailData }));
-      console.log(emailData);
     }
   }, [emailData]);
 
@@ -167,7 +166,6 @@ const Join = () => {
       if (data.status === 204) {
         let userImage = data.location;
         setUserImage(userImage);
-        console.log(userImage);
         setSignUp({ ...signUp, userImage });
       }
     });

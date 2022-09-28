@@ -481,16 +481,22 @@
 
 /* -------------------------카카오 소셜로그인 로딩화면 CSS------------------------- */
 .loading {
-    /* position: absolute; */
-    display: flex;
-    justify-content: center;
-    margin-top: 300px;
-    /* position: fixed; */
-    /* transform: translate(-50%, -50%); */
-}
-.loadingText {
     position: absolute;
     top: 50%;
-    left: 23%;
-    color: #A3A3A3;
+    left: 24%;
+}
+
+/* web */
+.loadingGround {
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.loadingPage {
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
+    color: #939393;
 }
