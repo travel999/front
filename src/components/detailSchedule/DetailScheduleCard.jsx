@@ -21,7 +21,7 @@ const DetailScheduleCard = ({ data, postId, key }) => {
   const nickname = localStorage.getItem("nickname");
   const dayRoom = `dayDone${postId}`; //소켓
 
-  //저장 버튼 눌렀을때만 dispatch 동작하기
+  //저장 버튼 눌렀을때만 dispatch 동작하기.
   useEffect(() => {
     //마지막 일정 일때, 메인페이지로 돌아가게 처리
     if (result.length !== 0) {
