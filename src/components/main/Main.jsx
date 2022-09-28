@@ -6,7 +6,7 @@ import FirstBox from "./FirstBox";
 import SecondBox from "./SecondBox";
 import ThirdBox from "./ThirdBox";
 import ProfileBox from "./ProfileBox";
-import styles from "./Main.module.css";
+import styles from "../module.css/Main.module.css";
 import minitravelduck from "../../res/img/travelduck-1.png";
 import bottomcloud from "../../res/img/cloud1.png";
 import topcloud from "../../res/img/cloud.png";

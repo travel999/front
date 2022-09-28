@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toLike } from "../../redux/modules/MainSlice";
 import SearchBar from "./SearchBar";
 import { randomPic } from "../../res/randomPicture";
-import styles from "./Main.module.css";
+import styles from "../module.css/Main.module.css";
 import duckfoot from "../../res/img/duck/duckfoot-4.png";
 import duckfootDark from "../../res/img/duck/duckfoot-3.png";
 import duckfootDark2 from "../../res/img/duck/duckfoot-2.png";

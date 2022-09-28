@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toLike } from "../../redux/modules/MainSlice";
 import SecondMiniBox from "./SecondMiniBox";
-import styles from "./Main.module.css";
+import styles from "../module.css/Main.module.css";
 import duckfoot from "../../res/img/duck/duckfoot-4.png";
 import { randomSpic2 } from "../../res/randomPicture";
 

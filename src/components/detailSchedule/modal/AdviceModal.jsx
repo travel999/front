@@ -10,14 +10,14 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 const AdviceModal = ({ advModal, close }) => {
   // modal 닫기
   window.addEventListener("mousedown", (e) => {
-    if (advModal && e.target.className === "openModal modal") {
+    if (advModal && e.target.className === "advopenModal advmodal") {
       e.stopPropagation();
       close();
     }
   });
 
   return (
-    <div className={advModal ? "openModal modal" : "modal"}>
+    <div className={advModal ? "advopenModal advmodal" : "advmodal"}>
       {advModal ? (
         <section>
           <header>

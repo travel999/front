@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import styles from "./Chatting.module.css";
+import styles from "../module.css/Chatting.module.css";
 import styled from "styled-components";
 import ScrollToBottom from "react-scroll-to-bottom";
 
