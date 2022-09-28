@@ -17,7 +17,6 @@ const DetailScheduleCard = ({ data, postId, key }) => {
 
   const [result, setResult] = useState([]);
   const [colorChange, setColorChange] = useState(true);
-  const [count, setCount] = useState(0);
 
   const nickname = localStorage.getItem("nickname");
   const dayRoom = `dayDone${postId}`; //소켓
@@ -45,18 +44,12 @@ const DetailScheduleCard = ({ data, postId, key }) => {
       }
     }
     // socket 일정 저장 받음
-    socket.on("receive_dayDone", (value) => {
-      let count = 0;
-      count += value.num;
-      console.log(value.num);
-      if (count === 1) {
-        forToast(value.nickname);
-      }
+    socket.on("receive_dayDone", (person) => {
+      console.log("sss");
+      forToast(person);
       setColorChange(false);
     });
   }, [result]);
-
-  console.log(count);
 
   const forToast = (person) => {
     toast.success(`${person}님이 저장하었습니다.`, {
@@ -99,9 +92,8 @@ const DetailScheduleCard = ({ data, postId, key }) => {
         progress: undefined,
       });
     }
-
     // socket 일정 저장 보냄
-    socket.emit("send_dayDone", dayRoom, { nickname, num: 1 });
+    socket.emit("send_dayDone", dayRoom, nickname);
   };
 
   return (
