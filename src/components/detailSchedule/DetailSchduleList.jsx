@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMapData } from "../../redux/modules/MapSlice";
 import MemberAddModal from "./modal/MemberAddModal";
 import Btn from "../elements/Btn";
-import styles from "./Schedule.module.css";
+import styles from "../module.css/DetailSchedule.module.css";
 import { toast } from "react-toastify";
 
 const DetailScheduleList = ({ fixDay, id, defalutDay, setKey }) => {

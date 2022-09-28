@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getConData } from "../../redux/modules/MapSlice";
 import socket from "../../res/socket";
 import Btn from "../elements/Btn";
-import styles from "./Schedule.module.css";
+import styles from "../module.css/DetailSchedule.module.css";
 import { toast, ToastContainer } from "react-toastify";
 import $ from "jquery";
 
@@ -124,24 +124,25 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
   return (
     <div className={styles.inputWrap}>
       <p id={`${id}${day}${index}`}></p>
-      <input
-        ref={inputRef}
-        key={index}
-        name={`${id}${day}${index}input`}
-        placeholder="일정 입력"
-        onChange={(e) => setSendValue(e.target.value)}
-        onKeyDown={(e) => onDeleteLastText(e.keyCode)}
-        required
-      />
-      <Btn
-        color="#fffff"
-        backgroundColor={colorChange ? "lightgray" : "#ffc51c"}
-        onClick={onSaveCard}
-        width="20%"
-      >
-        일정 저장
-      </Btn>
-      <ToastContainer />
+      <div className={styles.inputContent}>
+        <input
+          ref={inputRef}
+          key={index}
+          name={`${id}${day}${index}input`}
+          placeholder="일정 입력"
+          onChange={(e) => setSendValue(e.target.value)}
+          onKeyDown={(e) => onDeleteLastText(e.keyCode)}
+          required
+        />
+        <Btn
+          color="#fffff"
+          backgroundColor={colorChange ? "lightgray" : "#ffc51c"}
+          onClick={onSaveCard}
+        >
+          내용 저장
+        </Btn>
+        <ToastContainer />
+      </div>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { saveDayData } from "../../redux/modules/ResultSlice";
 import ScheduleInput from "./ScheduleInput";
 import Btn from "../elements/Btn";
-import styles from "./Schedule.module.css";
+import styles from "../module.css/Schedule.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 

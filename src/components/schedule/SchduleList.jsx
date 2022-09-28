@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getMapData } from "../../redux/modules/MapSlice";
 import MemberAddModal from "./modal/MemberAddModal";
 import Btn from "../elements/Btn";
-import styles from "./Schedule.module.css";
+import styles from "../module.css/Schedule.module.css";
 
 const ScheduleList = ({ fixDay, id }) => {
   const dispatch = useDispatch();

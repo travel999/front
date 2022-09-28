@@ -5,7 +5,7 @@ import ScheduleCreate from "./ScheduleCreate";
 import ScheduleCard from "./ScheduleCard";
 import ScheduleMap from "./ScheduleMap";
 import Chatting from "../chat/Chatting";
-import styels from "./Schedule.module.css";
+import styles from "../module.css/Schedule.module.css";
 import NoDateDuckImg from "../../res/img/duck/noDateDuck.png";
 
 const Schedule = () => {
@@ -23,8 +23,8 @@ const Schedule = () => {
   }, []);
 
   return (
-    <div className={styels.wrap}>
-      <div className={styels.wrapLeft}>
+    <div className={styles.wrap}>
+      <div className={styles.wrapLeft}>
         {}
         <ScheduleCreate />
         {mapData.pin.length !== 0 ? (
@@ -32,13 +32,13 @@ const Schedule = () => {
         ) : null}
       </div>
       {mapData.day !== "" ? (
-        <div className={styels.wrapCenter}>
+        <div className={styles.wrapCenter}>
           <ScheduleMap nowDay={mapData.day} />
         </div>
       ) : (
-        <div className={styels.wrapCenter}>
+        <div className={styles.wrapCenter}>
           <img src={NoDateDuckImg} alt="등록일정 없음 이미지" />
-          <div className={styels.noDate}>여행갈 날짜를 먼저 지정해주세요!</div>
+          <div className={styles.noDate}>여행갈 날짜를 먼저 지정해주세요!</div>
         </div>
       )}
 
