@@ -44,6 +44,7 @@ const Start = () => {
             <img src={cloud1} alt="cloud1" className={styles.cloud1} />
           </div>
         </div>
+      </div>
     </div>
   );
 };
