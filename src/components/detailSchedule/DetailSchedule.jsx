@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
@@ -7,6 +7,7 @@ import DetailScheduleCard from "./DetailScheduleCard";
 import DetailScheduleMap from "./DetailScheduleMap";
 import MobileDetailScheduleMap from "./MobileDetailScheduleMap";
 import Chatting from "../chat/Chatting";
+import Btn from "../elements/Btn";
 import { getSchedule } from "../../redux/modules/MapSlice";
 import styles from "../module.css/DetailSchedule.module.css";
 
@@ -18,6 +19,7 @@ const DetailSchedule = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const MobileSize = useMediaQuery({ maxWidth: 430 });
+  const topRef = useRef(null);
 
   const [key, setKey] = useState(0);
 
@@ -32,8 +34,13 @@ const DetailSchedule = () => {
     }
   }, []);
 
+  //버튼 클릭스 최상단으로 이동(map탈출용)
+  const onHomeClick = () => {
+    topRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className={styles.wrap}>
+    <div className={styles.wrap} ref={topRef}>
       <div className={styles.wrapLeft}>
         <DetailScheduleCreate data={mapData} setKey={setKey} />
         <DetailScheduleCard data={mapData} postId={id} key={key} />
@@ -54,6 +61,9 @@ const DetailSchedule = () => {
         )}
       </div>
       <Chatting id={id} members={members} />
+      <button className={styles.topBtn} onClick={onHomeClick}>
+        Top
+      </button>
     </div>
   );
 };

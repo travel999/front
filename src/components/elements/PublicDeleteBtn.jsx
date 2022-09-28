@@ -252,6 +252,7 @@ const TwoBox = styled.div`
   @media only screen and (max-width: 430px) {
     position: absolute;
     top: auto;
+    width: 39%;
   }
 `;
 
