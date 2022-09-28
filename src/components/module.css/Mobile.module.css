@@ -124,8 +124,11 @@
     .profile img {
         object-fit: cover;
         position: absolute;
+        border: 1px solid #E2E2E2;
+        border-radius: 50%;
         width: 100px;
         height: 100px;
+        cursor: pointer;
         top: 15.5%;
         left: 4%;
     }
@@ -476,15 +479,12 @@
     }
 }
 
-/* 카카오 소셜로그인 로딩화면 */
+/* -------------------------카카오 소셜로그인 로딩화면 CSS------------------------- */
 .loading {
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     justify-content: center;
     margin-top: 300px;
-    background-color: #F2F7FF;
-    position: "fixed";
-    transform: "translate(-50%, -50%)";
-    background-color: "F2F7FF";
-
+    /* position: fixed; */
+    /* transform: translate(-50%, -50%); */
 }

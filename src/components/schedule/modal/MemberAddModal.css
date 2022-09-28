@@ -64,6 +64,72 @@
   /* 팝업이 열릴때 스르륵 열리는 효과 */
   animation: modal-bg-show 0.3s;
 }
+
+/* delete modal css */
+.modal>article {
+  width: 90%;
+  max-width: 450px;
+  height: 20%;
+  margin: 0 auto;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  /* 팝업이 열릴때 스르륵 열리는 효과 */
+  animation: modal-show 0.3s;
+  overflow: hidden;
+}
+
+.modal>article>header {
+  position: relative;
+  padding: 16px 64px 16px 16px;
+  background-color: #ffc51c;
+  font-weight: 700;
+}
+
+.modal>article>main {
+  padding: 16px;
+  border-bottom: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e6;
+}
+
+.modal>article>main>input[name="inputText"] {
+  width: 95%;
+  height: 36px;
+  border: 1px solid #4386ff;
+  border-radius: 20px;
+  padding: 0.3rem;
+}
+
+.modal>article>main>footer {
+  text-align: center;
+}
+
+.modal>article>footer {
+  padding: 12px 16px;
+  text-align: right;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal > article > footer button {
+  width: 150px;
+  height: 40px;
+  margin-top: 50px ;
+  background-color: #ffc51c;
+  color: black;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.modal > article > footer button:hover {
+  width: 150px;
+  height: 40px;
+  margin-top: 50px ;
+  background-color: #fff;
+  border: 2px solid #ffc51c;
+  color: black;
+  border-radius: 12px;
+  font-size: 15px;
+}
 @keyframes modal-show {
   from {
     opacity: 0;

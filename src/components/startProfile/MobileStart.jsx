@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { KAKAO_AUTH_URL } from "../loginRegister/KakaoLogIn";
-import styles from "../loginRegister/Mobile.module.css";
+import styles from "../module.css/Mobile.module.css";
 import mobileDuckLogo from "../../res/img/mobileDuckLogo.png"
 
 const MobileStart = () => {
