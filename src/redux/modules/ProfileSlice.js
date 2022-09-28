@@ -26,9 +26,7 @@ export const putImage = createAsyncThunk(
   "profileSlice/putImage",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload)
       const response = await instance.put("user/me/image", payload);
-      console.log(response)
       const image = response.data.updateUser.userImage;
       localStorage.setItem("image", image);
       if (response) {
@@ -90,8 +88,6 @@ export const deleteUser = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await instance.delete("user/me/delete", payload);
-      console.log(payload)
-      console.log(response)
       if (response) {
         localStorage.removeItem("jwtToken");
         toast.success(

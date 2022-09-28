@@ -17,7 +17,6 @@ const InvalidCodeModal = (props) => {
   // 이메일 인증 코드 보내기
   const onCheckEmailCode = () => {
     dispatch(invalidEmailCheck({ email: email, code: code }));
-    console.log("emailData", email);
   };
 
   window.addEventListener("mousedown", (e) => {

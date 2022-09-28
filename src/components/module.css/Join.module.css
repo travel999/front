@@ -108,17 +108,17 @@
 
 .email {
     position: absolute;
-    top: 41%;
+    top: 41.5%;
 }
 
 .password {
     position: absolute;
-    top: 52%;
+    top: 52.4%;
 }
 
 .confirm {
     position: absolute;
-    top: 63%;
+    top: 63.2%;
 }
 
 /* profile img */
@@ -162,6 +162,7 @@
     border-radius: 999px;
     font-size: 15px;
     line-height: 40px;
+    color: black;
 }
 
 .notCertifyButton:hover {
@@ -213,4 +214,5 @@
     cursor: pointer;
     font-size: 18px;
     line-height: 40px;
+    color: black;
 }
