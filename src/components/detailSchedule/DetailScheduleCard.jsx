@@ -46,7 +46,7 @@ const DetailScheduleCard = ({ data, postId, key }) => {
     // socket 일정 저장 받음
     socket.on("receive_dayDone", (person) => {
       console.log("sss");
-      forToast(person);
+      // forToast(person);
       setColorChange(false);
     });
   }, [result]);
