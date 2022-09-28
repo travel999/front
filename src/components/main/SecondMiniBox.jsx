@@ -1,6 +1,6 @@
 import React from "react";
 import Calendar from "../calendar/Calendar";
-import styles from "./Main.module.css";
+import styles from "../module.css/Main.module.css";
 
 const SecondMiniBox = () => {
   return (

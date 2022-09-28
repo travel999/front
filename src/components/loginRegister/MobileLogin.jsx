@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addLogin } from "../../redux/modules/LogInSlice";
-import styles from "./Mobile.module.css";
+import styles from "../module.css/Mobile.module.css";
 import mobileDuckLogo from "../../res/img/mobileDuckLogo.png"
 import prev from "../../res/img/prev.png";
 import { ToastContainer, toast } from "react-toastify";

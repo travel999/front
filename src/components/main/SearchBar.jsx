@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { firstSearch, refreshSearch } from "../../redux/modules/MainSlice";
-import styles from "./Main.module.css";
+import styles from "../module.css/Main.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,

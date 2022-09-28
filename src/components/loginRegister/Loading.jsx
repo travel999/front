@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { kakaoLogin } from "../../redux/modules/KakaoSlice";
-import styles from "./Mobile.module.css";
+import styles from "../module.css/Mobile.module.css";
 import { useMediaQuery } from "react-responsive";
 import FadeLoader from "react-spinners/FadeLoader";
 import mobileDuckLogo from "../../res/img/mobileDuckLogo.png"

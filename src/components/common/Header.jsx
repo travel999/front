@@ -33,10 +33,10 @@ const Header = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      },
-      setTimeout(() => {
-        navigate("/");
-      }, 1000)
+      }, navigate("/")
+      // setTimeout(() => {
+        
+      // }, 1000)
     );
   };
 

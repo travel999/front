@@ -7,6 +7,10 @@
   border-bottom: 1px solid #ffc51c;
 }
 
+.toBic {
+  padding: 11px 0px 0px 0px;
+}
+
 /* .message {
   background-color: rgb(255, 255, 255);
   width: max-content;

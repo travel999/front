@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Main.module.css";
+import styles from "../module.css/Main.module.css";
 
 const QuestionBtn = () => {
   const onQuestion = () => {
