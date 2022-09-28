@@ -42,7 +42,7 @@ const Schedule = () => {
         </div>
       )}
 
-      <Chatting id={postId} />
+      {/* <Chatting id={postId} /> */}
     </div>
   );
 };

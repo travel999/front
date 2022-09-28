@@ -11,12 +11,12 @@ body * {
 }
 
 .startBox {
-  background-color: #F2F7FF;
+  background-color: #f2f7ff;
   position: relative;
   object-fit: cover;
   overflow: hidden;
+  width: 101rem;
   scrollbar-color: rgba(255, 255, 255, 0);
-
 }
 
 .imgBox {
