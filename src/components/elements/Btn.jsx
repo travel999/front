@@ -11,6 +11,7 @@ const Btn = (props) => {
       value={props.value}
       width={props.width}
       height={props.height}
+      id={props.id}
     >
       {props.children}
     </StyledGlobalButton>
