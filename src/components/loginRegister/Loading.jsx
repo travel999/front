@@ -26,6 +26,9 @@ const Loading = () => {
       {MobileSize ? (
         <div className={styles.background} >
           <img src={mobileDuckLogo} alt="" className={styles.logoImage} />
+          <p className={styles.loadingText}>
+          •••&#32;로그인 중입니다🐣&#32;  ••• 
+          </p>
         </div >
       ) : (
         <div className={styles.background}>

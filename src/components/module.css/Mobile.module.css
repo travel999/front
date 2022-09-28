@@ -488,3 +488,9 @@
     /* position: fixed; */
     /* transform: translate(-50%, -50%); */
 }
+.loadingText {
+    position: absolute;
+    top: 50%;
+    left: 23%;
+    color: #A3A3A3;
+}
