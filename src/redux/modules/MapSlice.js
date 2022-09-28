@@ -77,7 +77,6 @@ export const MapSlice = createSlice({
       state.pin = action.payload;
     },
     getConData(state, action) {
-      console.log("action", action.payload);
       if (state.content.length == 0) {
         state.content = [...state.content, action.payload];
       } else {
@@ -92,7 +91,6 @@ export const MapSlice = createSlice({
 
         // 씌워주기
         state.content = newArr;
-        console.log(newArr);
       }
     },
   },

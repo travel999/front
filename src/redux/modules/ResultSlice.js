@@ -17,7 +17,7 @@ export const saveDayData = createAsyncThunk(
           day1: payload[1],
         });
         if (res.data) {
-          toast("1일차가 저장되었습니다.", {
+          toast.success("1일차가 저장되었습니다.", {
             position: "top-center",
             autoClose: 300,
             hideProgressBar: true,
@@ -33,7 +33,7 @@ export const saveDayData = createAsyncThunk(
           day2: payload[1],
         });
         if (res.data) {
-          toast("2일차가 저장되었습니다.", {
+          toast.success("2일차가 저장되었습니다.", {
             position: "top-center",
             autoClose: 300,
             hideProgressBar: true,
@@ -49,7 +49,7 @@ export const saveDayData = createAsyncThunk(
           day3: payload[1],
         });
         if (res.data) {
-          toast("3일차가 저장되었습니다.", {
+          toast.success("3일차가 저장되었습니다.", {
             position: "top-center",
             autoClose: 300,
             hideProgressBar: true,
@@ -65,7 +65,7 @@ export const saveDayData = createAsyncThunk(
           day4: payload[1],
         });
         if (res.data) {
-          toast("4일차가 저장되었습니다.", {
+          toast.success("4일차가 저장되었습니다.", {
             position: "top-center",
             autoClose: 300,
             hideProgressBar: true,
@@ -81,7 +81,7 @@ export const saveDayData = createAsyncThunk(
           day5: payload[1],
         });
         if (res.data) {
-          toast("5일차가 저장되었습니다.", {
+          toast.success("5일차가 저장되었습니다.", {
             position: "top-center",
             autoClose: 300,
             hideProgressBar: true,
@@ -97,7 +97,7 @@ export const saveDayData = createAsyncThunk(
           day6: payload[1],
         });
         if (res.data) {
-          toast("6일차가 저장되었습니다.", {
+          toast.success("6일차가 저장되었습니다.", {
             position: "top-center",
             autoClose: 300,
             hideProgressBar: true,
@@ -113,7 +113,7 @@ export const saveDayData = createAsyncThunk(
           day7: payload[1],
         });
         if (res.data) {
-          toast("7일차가 저장되었습니다.", {
+          toast.success("7일차가 저장되었습니다.", {
             position: "top-center",
             autoClose: 300,
             hideProgressBar: true,

@@ -53,7 +53,8 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
     });
 
     socket.on("SaveGet_data", (data) => {
-      setColorChange(false);
+      // setColorChange(false);
+      $(`#${data.btnId}`).css("background-color", "#ffc51c");
     });
   }, [socket]);
 
@@ -78,28 +79,34 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
   };
 
   // 카드 일정 저장
-  const onSaveCard = () => {
-    if (members?.includes(nickname)) {
-      if (inputRef.current.value == "") {
-        alert("일정을 넣어주세요.");
+  const onSaveCard = (e) => {
+    if (e.target.id === `${id}${day}${index}daySaveBtn`) {
+      if (members?.includes(nickname)) {
+        if (inputRef.current.value == "") {
+          alert("일정을 넣어주세요.");
+        } else {
+          // 콘데이터 전송.
+          dispatch(getConData(conData));
+          // 다른사람들에게도 토스트가 간다.
+          sendOtherPeople();
+          inputRef.current.value = " ";
+          // setColorChange(false);
+          $(`#${id}${day}${index}daySaveBtn`).css(
+            "background-color",
+            "#ffc51c"
+          );
+        }
       } else {
-        // 콘데이터 전송.
-        dispatch(getConData(conData));
-        // 다른사람들에게도 토스트가 간다.
-        sendOtherPeople();
-        inputRef.current.value = " ";
-        setColorChange(false);
+        toast.success(`권한이 없습니다.`, {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
-    } else {
-      toast.success(`권한이 없습니다.`, {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
     }
   };
 
@@ -107,6 +114,7 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
     const data = {
       room: `${id}${day}${index}save`,
       author: nickname,
+      btnId: `${id}${day}${index}daySaveBtn`,
     };
 
     socket.emit("SaveDone_data", data);
@@ -135,8 +143,9 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
           required
         />
         <Btn
+          id={`${id}${day}${index}daySaveBtn`}
           color="#fffff"
-          backgroundColor={colorChange ? "lightgray" : "#ffc51c"}
+          backgroundColor="lightgray"
           onClick={onSaveCard}
         >
           내용 저장
