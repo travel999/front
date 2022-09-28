@@ -12,21 +12,37 @@ const Chatting = ({ id }) => {
   const address = useParams();
 
   const [showChat, setShowChat] = useState(false);
+  const [firstEnter, setFirstEnter] = useState(true);
 
   const nickname = localStorage.getItem("nickname");
   const room = "roomIdIs" + id;
 
   const enterRoom = () => {
     setShowChat(!showChat);
-    if (members?.includes(nickname)) {
-      socket.emit("join_room", room);
+    if (firstEnter) {
+      if (members?.includes(nickname)) {
+        enter();
+      } else if (address.id && members?.includes(nickname)) {
+        enter();
+      }
+    }
+    if (address.id && members?.includes(nickname)) {
       dispatch(getChatMemory(id));
-    } else if (address.id && members?.includes(nickname)) {
-      socket.emit("join_room", address.id);
-      dispatch(getChatMemory(address.id));
     }
     if (address.id !== id) {
       dispatch(deleteMemory());
+    }
+  };
+
+  const enter = () => {
+    socket.emit("join_room", room);
+    setFirstEnter(false);
+  };
+
+  const exitRoom = () => {
+    setShowChat(false);
+    if (socket.connected) {
+      socket.emit("exit_room", room);
     }
   };
 
@@ -71,9 +87,8 @@ const ChatHaed = styled.div`
 
 const HideBtn = styled.div`
   cursor: pointer;
-  font-weight: 600;
-  margin-top: 10px;
-  margin-right: 4px;
+  font-weight: 700;
+  margin-top: 12px;
+  margin-right: 2%;
 `;
-
 export default Chatting;

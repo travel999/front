@@ -229,10 +229,14 @@
   z-index: 5;
 }
 
+@media screen and (min-height: 900px) {
+  .bicbox2 {
+    height: 56vh;
+  }
+}
+
 .smallbox {
-  /* background-color: rgb(247, 255, 183); */
   width: 280px;
-  /* height: 27vh; */
   margin-left: 10px;
   border-radius: 20px;
   box-shadow: 1px 2px 6px rgba(56, 78, 118, 0.2);
@@ -326,7 +330,7 @@
 .searchinputbox {
   margin-left: 15px;
   width: 110px;
-  padding: 5px;
+  padding: 5.5px;
   border-bottom: 1px solid #b6c5e3;
   border-left: 1px solid #b6c5e3;
   border-right: 0px solid white;
@@ -424,6 +428,13 @@
   overflow-y: scroll;
   height: 40vh;
 }
+
+@media screen and (min-height: 900px) {
+  .searchboxscroll {
+    height: 47vh;
+  }
+}
+
 .searchboxscroll::-webkit-scrollbar {
   /* background-color: rgb(246, 246, 246); */
   border-radius: 200px;
@@ -569,8 +580,11 @@
 
   .searchinputbox {
     height: 15.5px;
-    border-radius: 0px;
+    padding: 5px 5px 4.5px 5px;
     margin: 0px auto 0px auto;
+    border-radius: 0px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
   }
 
   .onlyscroll {
@@ -649,18 +663,6 @@
     padding: 20px 10px 10px 20px;
   }
 
-  .searchinputbox {
-    margin-left: 15px;
-    width: 110px;
-    padding: 5px;
-    border-bottom: 1px solid #b6c5e3;
-    border-left: 1px solid #b6c5e3;
-    border-right: 0px solid white;
-    border-top: 1px solid #b6c5e3;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
-
   .searchbtn {
     padding: 5px;
     background-color: white;
@@ -684,6 +686,17 @@
   }
 }
 
+@media screen and (min-height: 900px) {
+  .smallbox {
+    width: 280px;
+    margin-left: 10px;
+    border-radius: 20px;
+    box-shadow: 1px 2px 6px rgba(56, 78, 118, 0.2);
+    border: 1px solid #c4cfe6;
+    z-index: 5;
+  }
+}
+
 @media screen and (min-height: 900px) and (max-width: 430px) {
   .miniduck {
     z-index: 4;
@@ -701,5 +714,11 @@
     width: 270px;
     padding: 60px 139px 0px 0px;
     background-color: #f2f7ff;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .searchinputbox {
+    width: 60%;
   }
 }

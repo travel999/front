@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCards } from "../../redux/modules/MainSlice";
-import styles from "./Liked.module.css";
+import styles from "../module.css/Liked.module.css";
 import duckfoot from "../../res/img/duck/duckfoot-1.png";
-import sunGlassesDuck from "../../res/img/duck/sunglassesDuck.png";
 
 const Liked = () => {
   const dispatch = useDispatch();

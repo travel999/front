@@ -1,9 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Main.module.css";
+import { useMediaQuery } from "react-responsive";
+import styles from "../module.css/Main.module.css";
 
 const PostBtn = () => {
   const navigate = useNavigate();
+
+  const MobileSize = useMediaQuery({ maxWidth: 380 });
 
   return (
     <div
@@ -12,9 +15,15 @@ const PostBtn = () => {
       }}
       className={styles.postbtn}
     >
-      <div className={styles.posttext}>
-        여행 일정 추가하기 <span className={styles.plusfont}>+</span>
-      </div>
+      {MobileSize ? (
+        <div className={styles.posttext}>
+          여행 일정 추가 <span className={styles.plusfont}>+</span>
+        </div>
+      ) : (
+        <div className={styles.posttext}>
+          여행 일정 추가하기 <span className={styles.plusfont}>+</span>
+        </div>
+      )}
     </div>
   );
 };

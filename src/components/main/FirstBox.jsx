@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { randomSpic } from "../../res/randomPicture";
-import styles from "./Main.module.css";
+import styles from "../module.css/Main.module.css";
 
 const FirstBox = () => {
   const navigate = useNavigate();

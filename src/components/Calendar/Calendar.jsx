@@ -257,15 +257,14 @@ const Calendar = () => {
 
 const Container = styled.div`
   width: 280px;
-  /* height: 207px; */
   height: 27vh;
-  /* background-color: rgb(247, 255, 183);
-  border: 1px solid rgb(247, 255, 183); */
   background-color: white;
-
   border-radius: 20px;
   overflow: auto;
   margin-left: 0px;
+  @media screen and (min-height: 900px) {
+    height: 21vh;
+  }
 `;
 
 const Title = styled.div`

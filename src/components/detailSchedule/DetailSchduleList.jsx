@@ -5,6 +5,9 @@ import MemberAddModal from "./modal/MemberAddModal";
 import Btn from "../elements/Btn";
 import styles from "./Schedule.module.css";
 import { toast } from "react-toastify";
+import AdviceModal from "./modal/AdviceModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 
 const DetailScheduleList = ({ fixDay, id, defalutDay, setKey }) => {
   const dispatch = useDispatch();
@@ -12,6 +15,7 @@ const DetailScheduleList = ({ fixDay, id, defalutDay, setKey }) => {
 
   const [index, setIndex] = useState(defalutDay);
   const [modalOpen, setModalOpen] = useState(false);
+  const [advModal, setAdvModal] = useState(false);
 
   const nickname = localStorage.getItem("nickname");
 
@@ -43,6 +47,10 @@ const DetailScheduleList = ({ fixDay, id, defalutDay, setKey }) => {
   //모달 닫기
   const closeModal = () => {
     setModalOpen(false);
+  };
+
+  const closeAdvModal = () => {
+    setAdvModal(false);
   };
 
   //일정보여주기
@@ -78,15 +86,26 @@ const DetailScheduleList = ({ fixDay, id, defalutDay, setKey }) => {
   return (
     <div className={styles.dayWrap2}>
       <div className={styles.invite}>
-        <Btn
-          color="#ffff"
-          backgroundColor="#9AB9FF"
-          width="300px"
-          height="36px"
-          onClick={openModal}
-        >
-          일행 초대하기
-        </Btn>
+        <div>
+          <Btn
+            color="#ffff"
+            backgroundColor="#9AB9FF"
+            width="75%"
+            height="36px"
+            onClick={openModal}
+          >
+            일행 초대하기
+          </Btn>{" "}
+          <FontAwesomeIcon
+            icon={faCircleQuestion}
+            onClick={() => {
+              setAdvModal(true);
+            }}
+            className={styles.adviceBtn}
+            style={{ marginLeft: "5%" }}
+          />
+          <AdviceModal advModal={advModal} close={closeAdvModal} />
+        </div>
         <MemberAddModal
           open={modalOpen}
           close={closeModal}

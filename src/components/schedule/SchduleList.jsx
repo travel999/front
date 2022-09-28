@@ -4,12 +4,16 @@ import { getMapData } from "../../redux/modules/MapSlice";
 import MemberAddModal from "./modal/MemberAddModal";
 import Btn from "../elements/Btn";
 import styles from "./Schedule.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
+import AdviceModal from "../detailSchedule/modal/AdviceModal";
 
 const ScheduleList = ({ fixDay, id }) => {
   const dispatch = useDispatch();
 
   const [index, setIndex] = useState();
   const [modalOpen, setModalOpen] = useState(false);
+  const [advModal, setAdvModal] = useState(false);
 
   //모달 열기
   const onOpenModal = () => {
@@ -18,6 +22,9 @@ const ScheduleList = ({ fixDay, id }) => {
   //모달닫기
   const closeModal = () => {
     setModalOpen(false);
+  };
+  const closeAdvModal = () => {
+    setAdvModal(false);
   };
   //일정보여주기
   const showSchedule = () => {
@@ -52,15 +59,25 @@ const ScheduleList = ({ fixDay, id }) => {
   return (
     <div className={styles.dayWrap2}>
       <div className={styles.invite}>
-        <Btn
-          color="#ffff"
-          backgroundColor="#9AB9FF"
-          width="300px"
-          height="36px"
-          onClick={onOpenModal}
-        >
-          일행 초대하기
-        </Btn>
+        <div>
+          <Btn
+            color="#ffff"
+            backgroundColor="#9AB9FF"
+            width="300px"
+            height="36px"
+            onClick={onOpenModal}
+          >
+            일행 초대하기
+          </Btn>
+          <FontAwesomeIcon
+            icon={faCircleQuestion}
+            onClick={() => {
+              setAdvModal(true);
+            }}
+            className={styles.adviceBtn}
+          />
+          <AdviceModal advModal={advModal} close={closeAdvModal} />
+        </div>
         <MemberAddModal
           open={modalOpen}
           close={closeModal}

@@ -8,8 +8,6 @@ import Btn from "../elements/Btn";
 import styles from "./Schedule.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 
 const DetailScheduleCreate = ({ data, setKey }) => {
   const dispatch = useDispatch();
@@ -23,7 +21,6 @@ const DetailScheduleCreate = ({ data, setKey }) => {
   const [endDate, setEndDate] = useState(data.date[1]);
   const [scheduleSave, setScheduleSave] = useState({});
   const [fixDay, setFixDay] = useState();
-  const [advModal, setAdvModal] = useState(false);
 
   const nickname = localStorage.getItem("nickname");
 
@@ -112,10 +109,6 @@ const DetailScheduleCreate = ({ data, setKey }) => {
     }
   };
 
-  const closeAdvModal = () => {
-    setAdvModal(false);
-  };
-
   return (
     <div className={styles.createWrap}>
       <input
@@ -147,14 +140,6 @@ const DetailScheduleCreate = ({ data, setKey }) => {
       >
         일정 수정
       </Btn>
-      <FontAwesomeIcon
-        icon={faCircleQuestion}
-        onClick={() => {
-          setAdvModal(true);
-        }}
-        className={styles.adviceBtn}
-      />
-      <AdviceModal advModal={advModal} close={closeAdvModal} />
       <DetailSchduleList
         fixDay={fixDay}
         id={id}
