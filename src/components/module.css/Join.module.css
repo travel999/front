@@ -24,8 +24,8 @@
   position: relative;
   justify-content: center;
   background: #f2f7ff;
-  /* width: 1200px; */
-  width: 101rem;
+  width: 1200px;
+  /* width: 101rem; */
   height: 955px;
   margin: auto;
 }
@@ -108,24 +108,24 @@
 }
 
 .email {
-    position: absolute;
-    top: 41.5%;
+  position: absolute;
+  top: 41.5%;
 }
 
 .password {
-    position: absolute;
-    top: 52.4%;
+  position: absolute;
+  top: 52.4%;
 }
 
 .confirm {
-    position: absolute;
-    top: 63.2%;
+  position: absolute;
+  top: 63.2%;
 }
 
 /* profile img */
 .profile h4 {
   position: absolute;
-  left: 28%;
+  left: 21%;
   top: 52%;
   font-weight: 600;
 }
@@ -136,7 +136,7 @@
   height: 177px;
   width: 177px;
   cursor: pointer;
-  left: 26%;
+  left: 18%;
   top: 30%;
   background: #ffffff;
 }
@@ -153,7 +153,7 @@
   position: absolute;
   padding: 0;
   top: 41.8%;
-  left: 69%;
+  left: 75%;
   width: 96px;
   height: 55px;
   margin: auto;

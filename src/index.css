@@ -113,7 +113,6 @@ section {
 body {
   margin: 0;
   height: 100%;
-  position: fixed;
   font-family: "NanumSquareRound";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
