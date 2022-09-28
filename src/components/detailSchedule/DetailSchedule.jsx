@@ -61,9 +61,11 @@ const DetailSchedule = () => {
         )}
       </div>
       <Chatting id={id} members={members} />
-      <button className={styles.topBtn} onClick={onHomeClick}>
-        Top
-      </button>
+      {MobileSize ? (
+        <button className={styles.topBtn} onClick={onHomeClick}>
+          Top
+        </button>
+      ) : null}
     </div>
   );
 };
