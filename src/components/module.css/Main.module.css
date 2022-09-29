@@ -605,8 +605,8 @@
   }
 
   .thirdBicBox {
-    height: 25vh;
-    max-height: 25vh;
+    height: 27vh;
+    max-height: 27vh;
   }
 
   .onlyscroll {
@@ -635,7 +635,7 @@
   /* picture */
 
   .miniduck {
-    z-index: 6;
+    z-index: 3;
     bottom: -13%;
     left: 100px;
     padding: 10px 265px 0px 45px;
@@ -644,7 +644,7 @@
   }
 
   .bottomcloud {
-    z-index: 4;
+    z-index: 2;
     bottom: -13%;
     width: 250px;
     padding: 30px 159px 0px 0px;

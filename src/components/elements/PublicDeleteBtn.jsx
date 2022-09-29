@@ -104,22 +104,25 @@ const ModalBack = styled.div`
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.6);
   align-items: center;
-  animation: modal-bg-show 0.3s;
+  animation: modal-bg-show 0.1s;
   @media only screen and (max-width: 430px) {
-    position: absolute;
-    top: auto;
+    /* position: absolute; */
   }
 `;
 
 const ModalBox = styled.div`
   width: 90%;
   max-width: 300px;
-  height: 13%;
+  height: 15%;
   margin: 0 auto;
   border-radius: 0.3rem;
   background-color: #fff;
-  animation: modal-show 0.3s;
+  animation: modal-show 0.1s;
   overflow: hidden;
+  @media only screen and (max-width: 430px) {
+    height: 16%;
+    overflow: hidden;
+  }
 `;
 
 const HeaderBox = styled.header`
@@ -137,6 +140,7 @@ const ExitBtn = styled.button`
   font-size: 21px;
   font-weight: 700;
   text-align: center;
+  margin-top: 2%;
   color: #999;
   background-color: transparent;
   border: 0px;
@@ -248,11 +252,10 @@ const TwoBox = styled.div`
   right: 0%;
   top: 7.7%;
   z-index: 4;
-  width: 13%;
   @media only screen and (max-width: 430px) {
     position: absolute;
     top: auto;
-    width: 39%;
+    float: right;
   }
 `;
 
@@ -267,6 +270,10 @@ const Pbtn = styled.div`
   margin-top: 3px;
   padding: 3px 5px;
   border-radius: 6px;
+  text-align: center;
+  @media only screen and (max-width: 430px) {
+    width: auto;
+  }
 `;
 
 const Dbtn = styled.div`
@@ -279,6 +286,10 @@ const Dbtn = styled.div`
   margin-top: 3px;
   padding: 3px 5px;
   border-radius: 6px;
+  @media only screen and (max-width: 430px) {
+    text-align: center;
+    width: auto;
+  }
 `;
 
 export default PublicDeleteBtn;
