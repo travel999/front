@@ -67,8 +67,18 @@ const DetailScheduleCreate = ({ data, setKey }) => {
   //일정수정하기
   const onModifySchdule = () => {
     if (members.includes(nickname)) {
-      if (startDate === "" && endDate === "" && fixDay === undefined) {
+      if (startDate === "" || endDate === "" || fixDay === undefined) {
         toast.error("여행날짜가 비어있어 일정을 수정할 수 없습니다.", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else if (title === "") {
+        toast.error("여행 이름이 비어있어 일정을 생성할 수 없습니다!", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: true,
@@ -79,11 +89,12 @@ const DetailScheduleCreate = ({ data, setKey }) => {
         });
       } else {
         //payload생성
+        console.log(title)
         setScheduleSave({
           title: title,
           date: [startDate, endDate],
         });
-        toast.success("일정제목 과 일자가 수정되었습니다.", {
+        toast.success("일정이 수정되었습니다.", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: true,
@@ -92,7 +103,7 @@ const DetailScheduleCreate = ({ data, setKey }) => {
           draggable: true,
           progress: undefined,
         });
-        window.location.reload(`/schedulDetail/${id}`);
+        navigate(`/schedulDetail/${id}`); //window.location.reload
       }
     } else {
       toast.success("권한이 없습니다.", {
