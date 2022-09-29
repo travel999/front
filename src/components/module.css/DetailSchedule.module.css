@@ -55,6 +55,7 @@
   border: 1px solid #c4cfe6;
   margin: 0.3rem;
   text-align: center;
+  margin-left: 9%;
 }
 
 .createWrap button {
@@ -66,33 +67,13 @@
   font-size: 1.6em;
   margin-bottom: -5px;
   cursor: pointer;
-}
-
-/* SchduleList */
-.forScroll {
-  height: 48vh;
-  overflow-y: scroll;
-  box-shadow: 1px 2px 6px rgba(56, 78, 118, 0.2);
-  border-radius: 15px;
-}
-
-@media only screen and (max-width: 430px) {
-  .forScroll {
-    height: 55vh;
-  }
-}
-
-@media only screen and (min-height: 900px) {
-  .forScroll {
-    height: 63vh;
-    overflow-y: scroll;
-  }
+  margin-left: 5%;
 }
 
 .dayWrap ul {
   display: flex;
   justify-content: space-around;
-  margin: 0.3rem 0;
+  margin: 0.5rem 0 -0.3rem 0;
   cursor: pointer;
 }
 
@@ -117,6 +98,50 @@
 /* SchduleCard */
 .worksWrap {
   margin: 1rem;
+  height: 48vh;
+  overflow-y: scroll;
+  box-shadow: 1px 2px 6px rgba(56, 78, 118, 0.2);
+  border-radius: 15px;
+}
+
+@media only screen and (max-width: 430px) {
+  .worksWrap {
+    height: 55vh;
+  }
+}
+
+@media only screen and (min-height: 900px) {
+  .worksWrap {
+    height: 63vh;
+    overflow-y: scroll;
+  }
+}
+
+.noWorksWrap {
+  margin: 1rem;
+  height: 63vh;
+  overflow-y: scroll;
+  box-shadow: 1px 2px 6px rgba(56, 78, 118, 0.2);
+  border-radius: 15px;
+}
+
+@media only screen and (max-width: 430px) {
+  .noWorksWrap {
+    height: 80vh;
+  }
+}
+
+@media only screen and (min-height: 900px) {
+  .noWorksWrap {
+    height: 63vh;
+    overflow-y: scroll;
+  }
+}
+
+.noWorksWrap h2 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .worksWrap h2 {
@@ -191,6 +216,12 @@
 /* ScheduleMap */
 .mapWrap {
   /* width: 163%; */
+}
+
+.noWorksWrap button {
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .searchTitle {
@@ -298,6 +329,7 @@
   }
 
   .createWrap input[type="text"] {
+    margin-left: 1%;
     width: 93%;
   }
 

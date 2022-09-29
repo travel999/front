@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import AdviceModal from "../detailSchedule/modal/AdviceModal";
 
-
 const ScheduleList = ({ fixDay, id }) => {
   const dispatch = useDispatch();
 
@@ -64,7 +63,7 @@ const ScheduleList = ({ fixDay, id }) => {
           <Btn
             color="#ffff"
             backgroundColor="#9AB9FF"
-            width="300px"
+            width="80%"
             height="36px"
             onClick={onOpenModal}
           >
