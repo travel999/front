@@ -33,9 +33,10 @@ const Header = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      }, navigate("/")
+      },
+      navigate("/")
       // setTimeout(() => {
-        
+
       // }, 1000)
     );
   };
@@ -99,13 +100,6 @@ const Header = () => {
             HOME
           </HomBtn>
           <Topcontent>
-            <ContentBtn
-              onClick={() => {
-                OntoHome();
-              }}
-            >
-              MAIN
-            </ContentBtn>
             <ContentBtn
               onClick={() => {
                 navigate("/write");

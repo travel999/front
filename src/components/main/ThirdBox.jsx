@@ -69,6 +69,7 @@ const ThirdBox = ({
                         onClick={() => {
                           onGoDetailPage(value._id);
                         }}
+                        style={{ width: "100px" }}
                       >
                         {value?.title}
                       </div>

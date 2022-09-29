@@ -152,7 +152,7 @@
 
 .worksWrap button {
   padding: 0.5rem;
-  border-radius: 19px;
+  border-radius: 10px;
   text-align: center;
 }
 /* ScheduleMap */
@@ -189,27 +189,40 @@
 /* ScheduleInput */
 .inputWrap p {
   margin: 2rem 0 0 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  height: 48px;
 }
 .inputWrap .inputContent {
   width: 100%;
+  margin: auto;
+  border: 1px solid #4386ff;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
 }
 
 .inputWrap input {
-  border: 1px solid #4386ff;
-  border-radius: 20px;
+  border: 1px solid transparent;
+  border-radius: 10px;
   padding: 0.3rem;
-  margin: 2rem 0.2rem 0 0;
-  height: 36px;
-  width: 57%;
+  margin: 0.3em auto 0 auto;
+  height: 20px;
+  width: 90%;
+}
+
+.inputWrap input:focus {
+  outline: none;
 }
 
 .inputWrap button {
   text-align: center;
-  width: 35%;
-  height: 49px;
-  padding: 0.3rem;
-  border-radius: 2rem;
-  vertical-align: middle;
+  width: 50%;
+  height: 30px;
+  padding: 0.1rem;
+  margin-right: 0.2rem;
+  font-size: 0.9em;
 }
 
 /* 모바일 반응형 430 x 844 : 아이폰 pro 도 접근할 수 있도록 처리함*/

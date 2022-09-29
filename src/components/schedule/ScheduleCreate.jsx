@@ -162,6 +162,7 @@ const ScheduleCreate = () => {
         value={title}
         onChange={onSetData}
         placeholder="일정의 제목을 입력해주세요"
+        maxLength="15"
       />
       {createData.title !== "" ? (
         <Btn
