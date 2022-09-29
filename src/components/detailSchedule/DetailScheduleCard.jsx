@@ -127,15 +127,17 @@ const DetailScheduleCard = ({ data, postId, key }) => {
           );
         })}
       <div className={styles.daySave}>
-        <Btn
-          class="saveBtn"
-          color="#fffff"
-          width="100%"
-          backgroundColor={colorChange ? "lightgray" : "#ffc51c"}
-          onClick={onSaveAllSchedule}
-        >
-          {data.day}일차 전체 일정 저장
-        </Btn>
+        {members?.includes(nickname) ? (
+          <Btn
+            class="saveBtn"
+            color="#fffff"
+            width="100%"
+            backgroundColor={colorChange ? "lightgray" : "#ffc51c"}
+            onClick={onSaveAllSchedule}
+          >
+            {data.day}일차 전체 일정 저장
+          </Btn>
+        ) : null}
       </div>
       <ToastContainer />
     </div>
