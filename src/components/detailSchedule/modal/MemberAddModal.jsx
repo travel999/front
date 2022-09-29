@@ -38,7 +38,12 @@ const MemberAddModal = (props) => {
             </button>
           </header>
           <main>
-            <input type="text" name="inputText" onChange={onGetNickName} />
+            <input
+              type="text"
+              name="inputText"
+              onChange={onGetNickName}
+              placeholder="초대할 회원 닉네임을 입력해주세요 :)"
+            />
             <div>{message}</div>
           </main>
           <footer>
