@@ -276,7 +276,7 @@ const Join = () => {
           type="password"
           name="password"
           id="password"
-          placeholder="6자 이상 12자 이하로 입력해주세요."
+          placeholder="특수문자 제외 6자 이상 12자 이하로 입력해주세요."
           minLength="6"
           maxLength="12"
           autoComplete="new-password"

@@ -53,6 +53,13 @@ const Profile = () => {
     bucketName: process.env.REACT_APP_BUCKET_NAME,
     region: process.env.REACT_APP_REGION,
   };
+  const tokenValue = localStorage.getItem("jwtToken");
+  // 토큰없으면 로그인 페이지로
+  useEffect(() => {
+    if (!tokenValue) {
+      navigate("/");
+    }
+  }, []);
 
   // 토큰 없거나 카카오 소셜 회원일 경우 마이페이지 이용 불가능
   useEffect(() => {

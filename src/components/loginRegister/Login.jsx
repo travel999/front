@@ -43,7 +43,9 @@ const Login = () => {
   };
 
   const onLogin = (event) => {
-    // event.preventDefault();
+      // 소셜로그인 후 로그아웃 하지 않고 일반 로그인 시도했을 때 provider 지워주기
+      localStorage.removeItem("provider");
+
     if (login.email.trim() === "" || login.password.trim() === "") {
       return toast.warn("모든 항목을 입력해주세요!", {
         position: "top-center",

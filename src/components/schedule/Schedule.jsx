@@ -14,7 +14,7 @@ const Schedule = () => {
   const mapData = useSelector((state) => state.kakaoMap);
   const postId = useSelector((state) => state.schedule.postId);
 
-  const tokenValue = localStorage.getItem("jwtToken"); // 토크없으면 로그인 페이지로
+  const tokenValue = localStorage.getItem("jwtToken"); // 토큰없으면 로그인 페이지로
 
   useEffect(() => {
     if (!tokenValue) {

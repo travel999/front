@@ -134,6 +134,7 @@ export const invalidEmailCheck = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await instance.post("user/checkCode", payload);
+      console.log(response)
       if (response) {
         toast.info("이메일이 인증되었습니다!", {
           position: "top-center",

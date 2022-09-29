@@ -24,11 +24,10 @@ const Main = () => {
   const [prevent, setPrevent] = useState(true); //특정 환경에서 옵저버 핸들러가 2~3번까지 중복으로 실행되는 경우 방지
   const [beforeSearched, setBeforeSearched] = useState(null);
 
-  const loginToken = localStorage.getItem("jwtToken");
+  const tokenValue = localStorage.getItem("jwtToken"); // 토큰없으면 로그인 페이지로
 
-  // 토크없으면 로그인 페이지로
   useEffect(() => {
-    if (loginToken === "") {
+    if (!tokenValue) {
       navigate("/");
     }
   }, []);
