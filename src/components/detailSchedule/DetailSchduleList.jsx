@@ -86,14 +86,15 @@ const DetailScheduleList = ({ fixDay, id, defalutDay, setKey }) => {
   return (
     <div className={styles.dayWrap2}>
       <div className={styles.invite}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
           {members?.includes(nickname) ? (
-            <div>
+            <div style={{ marginTop: "7px" }}>
               <Btn
                 color="#ffff"
                 backgroundColor="#9AB9FF"
-                width="75%"
+                width="65%"
                 height="36px"
+                marginLeft="8%"
                 onClick={openModal}
               >
                 일행 초대하기
@@ -104,7 +105,10 @@ const DetailScheduleList = ({ fixDay, id, defalutDay, setKey }) => {
                 onClick={() => {
                   setAdvModal(true);
                 }}
-                style={{ marginRight: "3%", marginTop: "2.5%" }}
+                style={{
+                  marginRight: "3%",
+                  marginTop: "2.5%",
+                }}
               />
             </div>
           ) : null}
