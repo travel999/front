@@ -135,9 +135,11 @@ const DetailScheduleCard = ({ data, postId, key }) => {
                 <div className={styles.workIndex}>
                   {index + 1}.{item.title}
                 </div>
-                <div>
-                  <button onClick={() => onDeleteCard(index)}>X</button>
-                </div>
+                {members?.includes(nickname) ? (
+                  <div>
+                    <button onClick={() => onDeleteCard(index)}>X</button>
+                  </div>
+                ) : null}
               </div>
               <DetailScheduleInput
                 room={room}
