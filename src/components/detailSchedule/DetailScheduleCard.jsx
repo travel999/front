@@ -17,6 +17,7 @@ const DetailScheduleCard = ({ data, postId, key }) => {
 
   const [result, setResult] = useState([]);
   const [colorChange, setColorChange] = useState(true);
+  const [changeData, setChageData] = useState(data.pin);
 
   const nickname = localStorage.getItem("nickname");
   const dayRoom = `dayDone${postId}`; //소켓
@@ -50,6 +51,16 @@ const DetailScheduleCard = ({ data, postId, key }) => {
     });
   }, [result]);
 
+  //삭제대비 data state
+  useEffect(() => {
+    setChageData(data.pin);
+  }, [data]);
+
+  useEffect(() => {
+    // socket 입장
+    socket.emit("join_dayDone", dayRoom);
+  }, []);
+
   const forToast = (person) => {
     toast.success(`${person}님이 저장하었습니다.`, {
       position: "top-right",
@@ -62,15 +73,10 @@ const DetailScheduleCard = ({ data, postId, key }) => {
     });
   };
 
-  useEffect(() => {
-    // socket 입장
-    socket.emit("join_dayDone", dayRoom);
-  }, []);
-
   //일정의 컨텐츠 저장
   const onSaveAllSchedule = () => {
     if (members?.includes(nickname)) {
-      let filterPinData = data.pin.filter((item) => item.day === data.day);
+      let filterPinData = changeData.filter((item) => item.day === data.day);
       let filterContentData = data.content.filter(
         (item) => item.day === data.day
       );
@@ -95,12 +101,18 @@ const DetailScheduleCard = ({ data, postId, key }) => {
     socket.emit("send_dayDone", dayRoom, nickname);
   };
 
+  //등록된 일정 삭제하기
+  const onDeleteCard = (num) => {
+    const dataArr = changeData.filter((item, index) => index !== num);
+    setChageData(dataArr);
+  };
+
   return (
     <div className={`${styles.worksWrap} ${styles.forScroll}`}>
       <h2>
         우리들의 "<span className={styles.workDay}>{data.day}일차</span>" 일정
       </h2>
-      {data.pin
+      {changeData
         .filter((item) => item.day === data.day)
         .map((item, index) => {
           return (
@@ -109,8 +121,13 @@ const DetailScheduleCard = ({ data, postId, key }) => {
               className={styles.work}
               key={index}
             >
-              <div className={styles.workIndex}>
-                {index + 1}.{item.title}
+              <div className={styles.workInline}>
+                <div className={styles.workIndex}>
+                  {index + 1}.{item.title}
+                </div>
+                <div>
+                  <button onClick={() => onDeleteCard(index)}>X</button>
+                </div>
               </div>
               <DetailScheduleInput
                 room={room}
