@@ -16,6 +16,9 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const existPins = useSelector((state) => state.kakaoMap.pin);
+  const members = useSelector((state) => state.kakaoMap.members);
+
+  const nickname = localStorage.getItem("nickname");
 
   //state 초기화 값
   const searchInit = {
@@ -154,19 +157,21 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
 
   return (
     <div className={styles.mapWrap}>
-      <div
-        className={styles.searchTitle}
-        onClick={() => {
-          Setmenu((prev) => !prev);
-          Setvisible((prev) => !prev);
-        }}
-      >
-        장소선택
-        <FontAwesomeIcon
-          icon={faMagnifyingGlass}
-          className={styles.searchBtn}
-        />
-      </div>
+      {members?.includes(nickname) ? (
+        <div
+          className={styles.searchTitle}
+          onClick={() => {
+            Setmenu((prev) => !prev);
+            Setvisible((prev) => !prev);
+          }}
+        >
+          장소선택
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className={styles.searchBtn}
+          />
+        </div>
+      ) : null}
 
       <PublicDeleteBtn postId={id} />
       <DetailMapSearchNav

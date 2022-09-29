@@ -73,6 +73,7 @@ const BicBox = styled.div`
   @media only screen and (max-width: 430px) {
     position: absolute;
     bottom: auto;
+    width: 96vw;
   }
 `;
 
