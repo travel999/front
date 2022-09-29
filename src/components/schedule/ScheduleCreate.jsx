@@ -69,8 +69,8 @@ const ScheduleCreate = () => {
 
   //일정생성하기
   const onSaveSchdule = () => {
-    if (startDate === "" && endDate === "" && fixDay === undefined) {
-      toast.error("여행날짜가 비어있어 일정을 생성할 수 없습니다.!", {
+    if (startDate === "" || endDate === "" || fixDay === undefined) {
+      toast.error("여행날짜가 비어있어 일정을 생성할 수 없습니다!", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: true,
@@ -89,13 +89,23 @@ const ScheduleCreate = () => {
         draggable: true,
         progress: undefined,
       });
+    } else if (title === "") {
+      toast.error("여행 이름이 비어있어 일정을 생성할 수 없습니다!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       //payload생성
       setScheduleSave({
         title: title,
         date: [startDate, endDate],
       });
-      toast.success("일행 일정이 생성되었습니다.", {
+      toast.success("여행 일정이 생성되었습니다.", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: true,
@@ -108,8 +118,18 @@ const ScheduleCreate = () => {
   };
   //일정수정하기
   const onModifySchdule = () => {
-    if (startDate === "" && endDate === "" && fixDay === undefined) {
+    if (startDate === "" || endDate === "" || fixDay === undefined) {
       toast.error("여행날짜가 비어있어 일정을 수정할 수 없습니다.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else if (title === "") {
+      toast.error("여행 이름이 비어있어 일정을 생성할 수 없습니다!", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: true,

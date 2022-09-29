@@ -18,7 +18,7 @@ const Schedule = () => {
   useEffect(() => {
     if (!tokenValue) {
       navigate("/");
-    }
+    } 
   }, []);
 
   return (
