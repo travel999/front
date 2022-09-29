@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import ScheduleCreate from "./ScheduleCreate";
 import ScheduleCard from "./ScheduleCard";
 import ScheduleMap from "./ScheduleMap";
-import Chatting from "../chat/Chatting";
 import styles from "../module.css/Schedule.module.css";
 import NoDateDuckImg from "../../res/img/duck/noDateDuck.png";
 
@@ -41,8 +40,6 @@ const Schedule = () => {
           <div className={styles.noDate}>여행갈 날짜를 먼저 지정해주세요!</div>
         </div>
       )}
-
-      {/* <Chatting id={postId} /> */}
     </div>
   );
 };

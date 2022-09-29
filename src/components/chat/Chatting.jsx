@@ -5,6 +5,9 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteMemory, getChatMemory } from "../../redux/modules/chatSlice";
 import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpRightAndDownLeftFromCenter } from "@fortawesome/free-solid-svg-icons";
+import { faDownLeftAndUpRightToCenter } from "@fortawesome/free-solid-svg-icons";
 
 const Chatting = ({ id }) => {
   const dispatch = useDispatch();
@@ -39,18 +42,17 @@ const Chatting = ({ id }) => {
     setFirstEnter(false);
   };
 
-  const exitRoom = () => {
-    setShowChat(false);
-    if (socket.connected) {
-      socket.emit("exit_room", room);
-    }
-  };
-
   return (
     <BicBox Bsize={showChat}>
       <HeadText>
         <ChatHaed>Chatting Room</ChatHaed>
-        <HideBtn onClick={enterRoom}>ㅡ</HideBtn>
+        <HideBtn onClick={enterRoom}>
+          {showChat ? (
+            <FontAwesomeIcon icon={faDownLeftAndUpRightToCenter} />
+          ) : (
+            <FontAwesomeIcon icon={faUpRightAndDownLeftFromCenter} />
+          )}
+        </HideBtn>
       </HeadText>
       {showChat ? <ChatBox socket={socket} id={id} /> : null}
     </BicBox>

@@ -132,26 +132,30 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
   return (
     <div className={styles.inputWrap}>
       <p id={`${id}${day}${index}`}></p>
-      <div className={styles.inputContent}>
-        <input
-          ref={inputRef}
-          key={index}
-          name={`${id}${day}${index}input`}
-          placeholder="일정 입력"
-          onChange={(e) => setSendValue(e.target.value)}
-          onKeyDown={(e) => onDeleteLastText(e.keyCode)}
-          required
-        />
-        <Btn
-          id={`${id}${day}${index}daySaveBtn`}
-          color="#fffff"
-          backgroundColor="lightgray"
-          onClick={onSaveCard}
-        >
-          내용 저장
-        </Btn>
-        <ToastContainer />
-      </div>
+      {members?.includes(nickname) ? (
+        <div className={styles.inputContent}>
+          <input
+            ref={inputRef}
+            key={index}
+            name={`${id}${day}${index}input`}
+            placeholder="일정 입력"
+            onChange={(e) => setSendValue(e.target.value)}
+            onKeyDown={(e) => onDeleteLastText(e.keyCode)}
+            required
+            className={styles.inputBox}
+            maxLength="60"
+          />
+          <Btn
+            id={`${id}${day}${index}daySaveBtn`}
+            color="#fffff"
+            backgroundColor="lightgray"
+            onClick={onSaveCard}
+          >
+            내용 저장
+          </Btn>
+        </div>
+      ) : null}
+      <ToastContainer />
     </div>
   );
 };
