@@ -71,10 +71,9 @@ export const putPassword = createAsyncThunk(
             progress: undefined,
           },
           setTimeout(() => {
-            window.location.replace("/login");
+            window.location.replace("/main");
           }, 1000)
         );
-        // await window.location.replace("/login")
       }
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
@@ -89,7 +88,10 @@ export const deleteUser = createAsyncThunk(
     try {
       const response = await instance.delete("user/me/delete", payload);
       if (response) {
-        localStorage.removeItem("jwtToken");
+    localStorage.removeItem("provider");
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("nickname");
+    localStorage.removeItem("image");
         toast.success(
           "탈퇴가 완료되었습니다!",
           {
