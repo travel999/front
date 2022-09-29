@@ -113,7 +113,11 @@ const DetailScheduleCard = ({ data, postId, key }) => {
   };
 
   return (
-    <div className={`${styles.worksWrap} ${styles.forScroll}`}>
+    <div
+      className={
+        members?.includes(nickname) ? styles.worksWrap : styles.noWorksWrap
+      }
+    >
       <h2>
         우리들의 "<span className={styles.workDay}>{data.day}일차</span>" 일정
       </h2>

@@ -89,7 +89,7 @@ const DetailScheduleCreate = ({ data, setKey }) => {
         });
       } else {
         //payload생성
-        console.log(title)
+        console.log(title);
         setScheduleSave({
           title: title,
           date: [startDate, endDate],
@@ -146,6 +146,8 @@ const DetailScheduleCreate = ({ data, setKey }) => {
           color="#fff"
           backgroundColor="#ffc51c"
           height="36px"
+          width="80%"
+          marginLeft="8%"
           onClick={onModifySchdule}
         >
           일정 수정
