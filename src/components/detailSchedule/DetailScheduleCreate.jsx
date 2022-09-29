@@ -130,14 +130,16 @@ const DetailScheduleCreate = ({ data, setKey }) => {
         onChange={onSetData}
         placeholder="일정의 제목을 입력해주세요"
       />
-      <Btn
-        color="#fff"
-        backgroundColor="#ffc51c"
-        height="36px"
-        onClick={onModifySchdule}
-      >
-        일정 수정
-      </Btn>
+      {members.includes(nickname) ? (
+        <Btn
+          color="#fff"
+          backgroundColor="#ffc51c"
+          height="36px"
+          onClick={onModifySchdule}
+        >
+          일정 수정
+        </Btn>
+      ) : null}
       <DetailSchduleList
         fixDay={fixDay}
         id={id}

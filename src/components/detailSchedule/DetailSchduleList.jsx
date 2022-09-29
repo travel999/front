@@ -86,24 +86,28 @@ const DetailScheduleList = ({ fixDay, id, defalutDay, setKey }) => {
   return (
     <div className={styles.dayWrap2}>
       <div className={styles.invite}>
-        <div>
-          <Btn
-            color="#ffff"
-            backgroundColor="#9AB9FF"
-            width="75%"
-            height="36px"
-            onClick={openModal}
-          >
-            일행 초대하기
-          </Btn>{" "}
-          <FontAwesomeIcon
-            icon={faCircleQuestion}
-            onClick={() => {
-              setAdvModal(true);
-            }}
-            className={styles.adviceBtn}
-            style={{ marginLeft: "5%" }}
-          />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          {members?.includes(nickname) ? (
+            <div>
+              <Btn
+                color="#ffff"
+                backgroundColor="#9AB9FF"
+                width="75%"
+                height="36px"
+                onClick={openModal}
+              >
+                일행 초대하기
+              </Btn>
+              <FontAwesomeIcon
+                className={styles.adviceBtn}
+                icon={faCircleQuestion}
+                onClick={() => {
+                  setAdvModal(true);
+                }}
+                style={{ marginRight: "3%", marginTop: "2.5%" }}
+              />
+            </div>
+          ) : null}
           <AdviceModal advModal={advModal} close={closeAdvModal} />
         </div>
         <MemberAddModal

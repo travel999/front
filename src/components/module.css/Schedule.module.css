@@ -62,6 +62,8 @@
   font-size: 1.6em;
   margin-bottom: -5px;
   cursor: pointer;
+  margin-left: 10%;
+  float: right;
 }
 /* SchduleList */
 .dayWrap ul {
