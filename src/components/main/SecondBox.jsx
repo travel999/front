@@ -25,7 +25,7 @@ const SecondBox = () => {
       <div className={`${styles.bicbox2}`}>
         <div className={styles.toptext}>좋아요한 일정</div>
         <div className={styles.searchboxscroll}>
-          {likePosts?.length &&
+          {likePosts?.length > 0 &&
             likePosts?.map((value, idx) => {
               return (
                 <div className={styles.card} key={"SB" + value._id}>

@@ -93,6 +93,19 @@ export const MapSlice = createSlice({
         state.content = newArr;
       }
     },
+    deleteData(state, action) {
+      // console.log(current(state.pin), action.payload.day);
+      const dataArr = state.pin.filter((item, index) => {
+        return index !== action.payload.idx;
+      });
+      state.pin = dataArr;
+    },
+    deleteDataForSocket(state, action) {
+      const dataArr = action.payload.pins.filter(
+        (item, index) => index !== action.payload.idx
+      );
+      state.pin = dataArr;
+    },
   },
   extraReducers: {
     [getSchedule.pending]: (state) => {
@@ -113,5 +126,11 @@ export const MapSlice = createSlice({
   },
 });
 
-export const { getMapData, getDayPlaceData, getConData } = MapSlice.actions;
+export const {
+  getMapData,
+  getDayPlaceData,
+  getConData,
+  deleteData,
+  deleteDataForSocket,
+} = MapSlice.actions;
 export default MapSlice.reducer;

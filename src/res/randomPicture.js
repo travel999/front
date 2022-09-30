@@ -12,7 +12,6 @@ import eleven from "./img/LsizeBackG/back11.jpg";
 import twelve from "./img/LsizeBackG/back12.jpg";
 import thirteen from "./img/LsizeBackG/back13.jpg";
 import fourteen from "./img/LsizeBackG/back14.jpg";
-import fifteen from "./img/LsizeBackG/back15.jpg";
 
 import Sone from "./img/SsizeBackG/smallBack01.jpg";
 import Stwo from "./img/SsizeBackG/smallBack02.jpg";
@@ -38,7 +37,6 @@ const bic = [
   twelve,
   thirteen,
   fourteen,
-  fifteen,
 ];
 const Small = [Sone, Stwo, Sthree, Sfour, Sfive, Ssix, Sseven, Seight];
 

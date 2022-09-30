@@ -61,27 +61,6 @@ const Profile = () => {
     }
   }, []);
 
-  // 토큰 없거나 카카오 소셜 회원일 경우 마이페이지 이용 불가능
-  useEffect(() => {
-    if (provider !== null) {
-      toast.warn(
-        "소셜로그인 회원은 프로필을 사용할 수 없어요!",
-        {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        },
-        setTimeout(() => {
-          navigate("/main");
-        }, 2000)
-      );
-    }
-  }, []);
-
   // 닉네임 불러오기
   useEffect(() => {
     dispatch(getUser());
@@ -89,11 +68,19 @@ const Profile = () => {
 
   // 프로필 이미지 변경
   useEffect(() => {
-    if (newImage) {
-      setEdit({ ...edit, newImage });
-      dispatch(putImage(edit));
+    // if (newImage) {
+    //   setEdit({ ...edit, newImage });
+    //   dispatch(putImage(edit));
+    // }
+    // 이미지 파일 폼데이터로 변경
+    // console.log(img)
+    if (img) {
+      const formdata = new FormData();
+      formdata.append("img", img);
+      dispatch(putImage(formdata));
     }
-  }, [newImage]);
+
+  }, [img]);
 
   // 닉네임 수정 불가 마우스오버 이벤트
   const onEditNickName = () => {
@@ -147,21 +134,21 @@ const Profile = () => {
   };
 
   //S3 서버에 이미지 업로드
-  const onSubmitHandler = async (e) => {
-    e.preventDefault();
+  // const onSubmitHandler = async (e) => {
+  //   e.preventDefault();
 
-    let file = imgVal.current.files[0];
-    let newFileName = imgVal.current.files[0].name;
+  //   let file = imgVal.current.files[0];
+  //   let newFileName = imgVal.current.files[0].name;
 
-    const s3Client = new S3upload(config);
-    s3Client.uploadFile(file, newFileName).then(async (data) => {
-      if (data.status === 204) {
-        let newImage = data.location;
-        setNewImage(newImage);
-        setEdit({ ...edit, newImage });
-      }
-    });
-  };
+  //   const s3Client = new S3upload(config);
+  //   s3Client.uploadFile(file, newFileName).then(async (data) => {
+  //     if (data.status === 204) {
+  //       let newImage = data.location;
+  //       setNewImage(newImage);
+  //       setEdit({ ...edit, newImage });
+  //     }
+  //   });
+  // };
 
   // 비밀번호 수정
   const onEditProfile = (e) => {
@@ -248,7 +235,7 @@ const Profile = () => {
           </label>
           <h4>프로필 이미지</h4>
         </div>
-        <form onChange={onSubmitHandler}>
+        <form encType="multipart/form-data">
           <input
             ref={imgVal}
             className={styles.inputHidden}
