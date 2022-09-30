@@ -160,7 +160,15 @@
   padding: 1rem;
   border-radius: 10px;
   margin: 1rem 0 1rem 0;
+  cursor: pointer;
+  transition: border 0.3s;
 }
+
+.work:hover {
+  border: 2px solid #ffc51c;
+  transition: border 0.3s;
+}
+
 .workInline {
   display: flex;
   justify-content: space-between;
@@ -240,7 +248,7 @@
 .searchBtn {
   position: fixed;
   top: 8.79%;
-  left: 24%;
+  left: 22.5%;
   z-index: 3;
   cursor: pointer;
 }

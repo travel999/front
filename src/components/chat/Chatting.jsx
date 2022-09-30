@@ -3,7 +3,7 @@ import ChatBox from "./ChatBox";
 import socket from "../../res/socket";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteMemory, getChatMemory } from "../../redux/modules/chatSlice";
+import { deleteMemory, getChatMemory } from "../../redux/modules/ChatSlice";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightAndDownLeftFromCenter } from "@fortawesome/free-solid-svg-icons";

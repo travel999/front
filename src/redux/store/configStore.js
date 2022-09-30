@@ -9,7 +9,7 @@ import InviteSlice from "../modules/InviteSlice";
 import MapSlice from "../modules/MapSlice";
 import MoveMapSlice from "../modules/MoveMapSlice";
 import ResultSlice from "../modules/ResultSlice";
-import ChatSlice from "../modules/chatSlice";
+import ChatSlice from "../modules/ChatSlice";
 
 const store = configureStore({
   reducer: {

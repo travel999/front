@@ -11,7 +11,7 @@ export const MoveMapSlice = createSlice({
   initialState,
   reducers: {
     moveOneCardPin(state, action) {
-      state.pin = action.payload;
+      state.movePin = [{ lat: action.payload.lat, lng: action.payload.lng }];
     },
   },
   extraReducers: {},
