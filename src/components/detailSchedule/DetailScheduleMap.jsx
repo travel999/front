@@ -35,13 +35,23 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
   const [visible, Setvisible] = useState(false);
 
   const room = `formark${id}`;
-  const sendMarker = (name, x, y) => {
-    socket.emit("send_marker", name, x, y, nowDay, existPins, room);
-  };
 
-  //일정 정보 가져오기
   useEffect(() => {
+    //일정 정보 가져오기
     dispatch(getSchedule(id));
+    //상세보기에서 데이터가 하나도 없을때
+    if (data.pin.length === 0) {
+      const container = document.getElementById("map");
+      const options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3,
+      };
+      const kakaoMap = new kakao.maps.Map(container, options);
+      kakaoMap.setDraggable(false); //드래그 막기
+      kakaoMap.setZoomable(false); //줌 막기
+      setMap(kakaoMap);
+    }
+    console.log("의존성 없음 한번만");
   }, []);
 
   //처음 지도 와 좌표 데이터 핀 같이 찍기
@@ -71,22 +81,13 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
         setMap(kakaoMap);
       });
     }
-  }, [data]);
 
-  //상세보기에서 데이터가 하나도 없을때
-  useEffect(() => {
-    if (data.pin.length === 0) {
-      const container = document.getElementById("map");
-      const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3,
-      };
-      const kakaoMap = new kakao.maps.Map(container, options);
-      kakaoMap.setDraggable(false); //드래그 막기
-      kakaoMap.setZoomable(false); //줌 막기
-      setMap(kakaoMap);
-    }
-  }, []);
+    socket.emit("join_marker", room);
+
+    socket.on("receive_marker", async (name, x, y, nowDay, pins) => {
+      await forsocketMakeMarker(name, x, y, nowDay, pins);
+    });
+  }, [data]);
 
   //신규 추가된 장소 마커 찍기
   useEffect(() => {
@@ -97,20 +98,8 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
         title: item.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
       });
     });
+    console.log("여기실행22222");
   }, [pin]);
-
-  // socket useEffectㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-  useEffect(() => {
-    socket.emit("join_marker", room);
-  }, []);
-
-  useEffect(() => {
-    socket.on("receive_marker", (name, x, y, nowDay, pins) => {
-      console.log(name, x, y, nowDay, pins);
-      forsocketMakeMarker(name, x, y, nowDay, pins);
-    });
-  }, [socket]);
-  // -------------------------------------------------
 
   //마커 생성을 위한 배열 만들기
   const onMakeMarker = (placeName, placeX, palceY) => {
@@ -121,6 +110,10 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
     const moveLatLon = new kakao.maps.LatLng(palceY, placeX);
     //마커 위치로 지도 화면 포커싱
     map.panTo(moveLatLon);
+  };
+
+  const sendMarker = (name, x, y) => {
+    socket.emit("send_marker", name, x, y, nowDay, existPins, room);
   };
 
   // 키워드 검색을 요청하는 함수입니다

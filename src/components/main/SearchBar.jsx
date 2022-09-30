@@ -48,6 +48,7 @@ const SearchBar = ({
         <input
           className={styles.searchinputbox}
           ref={inputRef}
+          maxLength="18"
           onKeyPress={(e) => {
             if (e.key === "Enter") onTosearch(inputRef.current.value);
           }}

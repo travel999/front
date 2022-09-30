@@ -231,7 +231,7 @@ const PublicDeleteBtn = (props) => {
               onDelete();
             }}
           >
-            삭제
+            일정삭제
           </Dbtn>
         </TwoBox>
       ) : null}

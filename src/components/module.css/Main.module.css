@@ -328,16 +328,24 @@
   padding: 20px 10px 10px 20px;
 }
 
+.threeSearch:focus {
+  border: 1px solid black;
+}
+
 .searchinputbox {
   margin-left: 15px;
   width: 110px;
-  padding: 5.5px;
+  padding: 2.8% 2.4% 2.4% 2.4%;
   border-bottom: 1px solid #b6c5e3;
   border-left: 1px solid #b6c5e3;
   border-right: 0px solid white;
   border-top: 1px solid #b6c5e3;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+}
+
+.searchinputbox:focus-within {
+  outline: none;
 }
 
 .searchbtn {
@@ -581,7 +589,7 @@
 
   .searchinputbox {
     height: 15.5px;
-    padding: 5px 5px 4.5px 5px;
+    padding: 5px 5px 5px 5px;
     margin: 0px auto 0px auto;
     border-radius: 0px;
     border-top-left-radius: 10px;

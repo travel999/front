@@ -120,27 +120,29 @@ const DetailScheduleCreate = ({ data, setKey }) => {
 
   return (
     <div className={styles.createWrap}>
-      <input
-        type="date"
-        id="startDay"
-        name="startDay"
-        value={startDate || " "}
-        onChange={onSetData}
-      />
-      <input
-        type="date"
-        id="endDay"
-        name="endDay"
-        value={endDate || " "}
-        onChange={onSetData}
-      />
-      <input
-        type="text"
-        name="title"
-        value={title || " "}
-        onChange={onSetData}
-        placeholder="일정의 제목을 입력해주세요"
-      />
+      <div className={styles.threeWrap}>
+        <input
+          type="date"
+          id="startDay"
+          name="startDay"
+          value={startDate || " "}
+          onChange={onSetData}
+        />
+        <input
+          type="date"
+          id="endDay"
+          name="endDay"
+          value={endDate || " "}
+          onChange={onSetData}
+        />
+        <input
+          type="text"
+          name="title"
+          value={title || " "}
+          onChange={onSetData}
+          placeholder="일정의 제목을 입력해주세요"
+        />
+      </div>
       {members.includes(nickname) ? (
         <Btn
           color="#fff"

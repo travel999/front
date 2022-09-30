@@ -33,23 +33,24 @@
 
 /* SchduleCreate */
 .createWrap {
-  margin: 1rem 0;
+  margin: 0.4rem 0;
   width: 100%;
   box-sizing: border-box;
   border-bottom: 1px solid #f2f7ff;
 }
 
 .createWrap input[type="date"] {
-  width: 141px;
+  width: 76%;
   height: 36px;
   border-radius: 17px;
   border: 1px solid #c4cfe6;
-  margin: 0.3rem;
+  margin: 0.1rem 0.2rem 0.2rem 0.2rem;
   text-align: center;
+  margin-left: 9%;
 }
 
 .createWrap input[type="text"] {
-  width: 192px;
+  width: 76%;
   height: 36px;
   border-radius: 17px;
   border: 1px solid #c4cfe6;
@@ -60,6 +61,11 @@
 
 .createWrap button {
   border-radius: 17px;
+}
+
+.threeWrap {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .adviceBtn {
@@ -100,42 +106,14 @@
   margin: 1rem;
   height: 48vh;
   overflow-y: scroll;
-  box-shadow: 1px 2px 6px rgba(56, 78, 118, 0.2);
   border-radius: 15px;
-}
-
-@media only screen and (max-width: 430px) {
-  .worksWrap {
-    height: 55vh;
-  }
-}
-
-@media only screen and (min-height: 900px) {
-  .worksWrap {
-    height: 63vh;
-    overflow-y: scroll;
-  }
 }
 
 .noWorksWrap {
   margin: 1rem;
   height: 63vh;
   overflow-y: scroll;
-  box-shadow: 1px 2px 6px rgba(56, 78, 118, 0.2);
   border-radius: 15px;
-}
-
-@media only screen and (max-width: 430px) {
-  .noWorksWrap {
-    height: 80vh;
-  }
-}
-
-@media only screen and (min-height: 900px) {
-  .noWorksWrap {
-    height: 63vh;
-    overflow-y: scroll;
-  }
 }
 
 .noWorksWrap h2 {
@@ -177,12 +155,6 @@
 }
 .workInline button:hover {
   color: #ff6e6e;
-}
-
-@media only screen and (max-width: 430px) {
-  .work {
-    margin: 1rem;
-  }
 }
 
 .workIndex {
@@ -252,7 +224,7 @@
 
 /* ScheduleInput */
 .inputWrap p {
-  margin: 2rem 0 0 0;
+  margin: 3px;
   overflow-wrap: break-word;
   word-break: break-word;
   height: 48px;
@@ -318,34 +290,36 @@
     height: 3rem;
     background: #ffc51c;
     position: relative;
-    top: -5rem;
-    left: 20rem;
+    top: -4.5rem;
+    left: 22rem;
     z-index: 999;
     animation: smoothMove 0.5s;
   }
 
   .createWrap input[type="date"] {
-    width: 93%;
+    margin-top: 0.1%;
+    width: 88%;
   }
 
   .createWrap input[type="text"] {
-    margin-left: 1%;
-    width: 93%;
+    margin-left: 3%;
+    width: 88%;
   }
 
   .createWrap button {
     width: 93%;
-    margin: 1rem 0;
+    margin: 0.5rem 0 0rem 0;
     margin-left: 3%;
   }
 
   .invite button {
     width: 81%;
     margin-left: 3%;
+    margin-top: 0rem;
   }
 
   .daySave button {
-    position: absolute;
+    position: relative;
     bottom: 48%;
     left: 24%;
     width: 52%;
@@ -359,6 +333,38 @@
     position: absolute;
     top: auto;
     left: 76%;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .worksWrap {
+    height: 58vh;
+  }
+}
+
+@media only screen and (min-height: 900px) {
+  .worksWrap {
+    height: 59vh;
+    overflow-y: scroll;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .noWorksWrap {
+    height: 80vh;
+  }
+}
+
+@media only screen and (min-height: 900px) {
+  .noWorksWrap {
+    height: 63vh;
+    overflow-y: scroll;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .work {
+    margin: 1rem;
   }
 }
 
