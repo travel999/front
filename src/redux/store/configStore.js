@@ -7,6 +7,7 @@ import ProfileSlice from "../modules/ProfileSlice";
 import ScheduleSlice from "../modules/ScheduleSlice";
 import InviteSlice from "../modules/InviteSlice";
 import MapSlice from "../modules/MapSlice";
+import MoveMapSlice from "../modules/MoveMapSlice";
 import ResultSlice from "../modules/ResultSlice";
 import ChatSlice from "../modules/chatSlice";
 
@@ -20,6 +21,7 @@ const store = configureStore({
     schedule: ScheduleSlice,
     invite: InviteSlice,
     kakaoMap: MapSlice,
+    moveMap: MoveMapSlice,
     result: ResultSlice,
     chat: ChatSlice,
   },
