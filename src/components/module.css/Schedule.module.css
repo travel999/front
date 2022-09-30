@@ -38,21 +38,27 @@
   box-sizing: border-box;
   border-bottom: 1px solid #f2f7ff;
 }
+.threeWrap {
+  display: flex;
+  flex-wrap: wrap;
+}
 .createWrap input[type="date"] {
-  width: 141px;
+  width: 76%;
   height: 36px;
   border-radius: 17px;
   border: 1px solid #c4cfe6;
-  margin: 0.3rem;
+  margin: 0.1rem 0.2rem 0.2rem 0.2rem;
   text-align: center;
+  margin-left: 9%;
 }
 .createWrap input[type="text"] {
-  width: 192px;
+  width: 76%;
   height: 36px;
   border-radius: 17px;
   border: 1px solid #c4cfe6;
   margin: 0.3rem;
   text-align: center;
+  margin-left: 9%;
 }
 .createWrap button {
   border-radius: 17px;
@@ -62,8 +68,8 @@
   font-size: 1.6em;
   margin-bottom: -5px;
   cursor: pointer;
-  margin-left: 10%;
   float: right;
+  margin: 3% 13% 3% 2%;
 }
 /* SchduleList */
 .dayWrap ul {
@@ -166,12 +172,19 @@
     height: 100%;
   }
   .createWrap input[type="date"] {
-    width: 95%;
+    width: 88%;
+    margin-left: 4%;
+    margin-top: 0.1%;
   }
   .createWrap input[type="text"] {
-    width: 95%;
+    width: 88%;
+    margin-left: 4%;
   }
   .createWrap button {
-    width: 95%;
+    width: 83%;
+    margin-left: 4%;
+  }
+  .adviceBtn {
+    margin: 1.5% 2.5%;
   }
 }
