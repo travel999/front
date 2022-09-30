@@ -44,9 +44,9 @@ export const putImage = createAsyncThunk(
             draggable: true,
             progress: undefined,
           },
-          setTimeout(() => {
-            window.location.replace("/main");
-          }, 1000)
+          // setTimeout(() => {
+          //   window.location.replace("/main");
+          // }, 1000)
         );
       }
       return thunkAPI.fulfillWithValue(response.data);
