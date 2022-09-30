@@ -27,14 +27,10 @@ export const putImage = createAsyncThunk(
   "profileSlice/putImage",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload)
       const response = await instance.put("user/me/image", payload);
-      console.log(response)
-      const image = response.data.updateUser.userImage;
-      localStorage.setItem("image", image);
       if (response) {
         toast.success(
-          "이미지가 변경되었습니다!",
+          "프로필이 변경되었습니다!",
           {
             position: "top-center",
             autoClose: 5000,
@@ -43,7 +39,7 @@ export const putImage = createAsyncThunk(
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-          },
+          }
           // setTimeout(() => {
           //   window.location.replace("/main");
           // }, 1000)
@@ -91,10 +87,10 @@ export const deleteUser = createAsyncThunk(
     try {
       const response = await instance.delete("user/me/delete", payload);
       if (response) {
-    localStorage.removeItem("provider");
-    localStorage.removeItem("jwtToken");
-    localStorage.removeItem("nickname");
-    localStorage.removeItem("image");
+        localStorage.removeItem("provider");
+        localStorage.removeItem("jwtToken");
+        localStorage.removeItem("nickname");
+        localStorage.removeItem("image");
         toast.success(
           "탈퇴가 완료되었습니다!",
           {
