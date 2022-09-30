@@ -25,33 +25,6 @@ const Calendar = () => {
   const startSchedule = travelDay?.start?.split("-");
   const endSchedule = travelDay?.end?.split("-");
 
-  // const [travelDate, setTravelDate] = useState(0);
-
-  // useEffect(() => {
-  //   if (endSchedule[2] - startSchedule[2] > 0) {
-  //     setTravelDate(Number(endSchedule[2]) - Number(startSchedule[2]));
-  //   } else if (startSchedule[1] !== endSchedule[1]) {
-  //     setTravelDate(
-  //       Number(dateTotalCount) -
-  //         Number(startSchedule[2]) +
-  //         Number(endSchedule[2]) -
-  //         1
-  //     );
-  //   }
-  // }, [clickcount]);
-
-  // console.log(Number(travelDate) + "박" + Number(travelDate + 1) + "일");
-
-  // useEffect(() => {
-  //   if (Number(travelDay.start) < Number(travelDay.end)) {
-  //     console.log(Number(travelDay.start), Number(travelDay.end));
-  //     console.log(Number(travelDay.end) - Number(travelDay.start));
-  //   } else if (Number(travelDay.end) < Number(travelDay.start)) {
-  //     console.log(Number(travelDay.start), Number(travelDay.end));
-  //     console.log(Number(travelDay.start) - Number(travelDay.end));
-  //   }
-  // }, [travelDay, clickcount]);
-
   //이전 달 보기 보튼
   const prevMonth = useCallback(() => {
     if (selectedMonth === 1) {

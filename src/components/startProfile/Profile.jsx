@@ -34,15 +34,15 @@ const Profile = () => {
   // 비밀번호
   const [pwMsg, setPwMsg] = useState("");
   const [confirmMsg, setConfirmMsg] = useState("");
-  // 비밀번호 정규식
-  const pwRule = /^[a-zA-Z0-9]{6,12}$/;
   // 프로필 이미지처리
   const [img, setImg] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-
+  //변수
   const nickname = user.nickname;
   const profileImg = user.userImage;
   const tokenValue = localStorage.getItem("jwtToken");
+  // 비밀번호 정규식
+  const pwRule = /^[a-zA-Z0-9]{6,12}$/;
 
   // 토큰없으면 로그인 페이지로
   useEffect(() => {
@@ -102,7 +102,6 @@ const Profile = () => {
   //프로필 이미지 수정
   const onLoadImg = (event) => {
     const imaData = event.target.files[0];
-
     const formdata = new FormData();
     formdata.append("img", imaData);
     dispatch(putImage(formdata));
