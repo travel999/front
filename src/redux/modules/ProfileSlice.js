@@ -21,12 +21,15 @@ export const getUser = createAsyncThunk(
     }
   }
 );
+
 // 유저 이미지 변경
 export const putImage = createAsyncThunk(
   "profileSlice/putImage",
   async (payload, thunkAPI) => {
     try {
+      console.log(payload)
       const response = await instance.put("user/me/image", payload);
+      console.log(response)
       const image = response.data.updateUser.userImage;
       localStorage.setItem("image", image);
       if (response) {
@@ -42,7 +45,7 @@ export const putImage = createAsyncThunk(
             progress: undefined,
           },
           setTimeout(() => {
-            window.location.replace("/profile");
+            window.location.replace("/main");
           }, 1000)
         );
       }

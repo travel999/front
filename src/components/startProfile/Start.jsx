@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { KAKAO_AUTH_URL } from "../loginRegister/KakaoLogIn";
+import { KAKAO_AUTH_URL } from "../signup/KakaoLogIn";
 import styles from "../module.css/Start.module.css";
 import Background from "../../res/img/background.png";
 import cloud from "../../res/img/cloud.png";
