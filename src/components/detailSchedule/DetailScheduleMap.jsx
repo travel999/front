@@ -53,7 +53,6 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
       kakaoMap.setZoomable(false); //줌 막기
       setMap(kakaoMap);
     }
-    console.log("의존성 없음 한번만");
   }, []);
 
   //처음 지도 와 좌표 데이터 핀 같이 찍기

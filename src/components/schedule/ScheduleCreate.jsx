@@ -181,22 +181,24 @@ const ScheduleCreate = () => {
 
   return (
     <div className={styles.createWrap}>
-      <input
-        type="date"
-        id="startDay"
-        name="startDay"
-        value={startDate}
-        min={getToday()}
-        onChange={onSetData}
-      />
-      <input
-        type="date"
-        id="endDay"
-        name="endDay"
-        value={endDate}
-        min={getToday()}
-        onChange={onSetData}
-      />
+      <div className={styles.threeWrap}>
+        <input
+          type="date"
+          id="startDay"
+          name="startDay"
+          value={startDate}
+          min={getToday()}
+          onChange={onSetData}
+        />
+        <input
+          type="date"
+          id="endDay"
+          name="endDay"
+          value={endDate}
+          min={getToday()}
+          onChange={onSetData}
+        />
+      </div>
       <input
         type="text"
         name="title"
@@ -206,19 +208,23 @@ const ScheduleCreate = () => {
         maxLength="15"
       />
       {createData.title !== "" ? (
-        <Btn
-          color="#fff"
-          backgroundColor="#ffc51c"
-          height="36px"
-          onClick={onModifySchdule}
-        >
-          일정 수정
-        </Btn>
+        <div>
+          <Btn
+            color="#fff"
+            backgroundColor="#ffc51c"
+            height="36px"
+            onClick={onModifySchdule}
+          >
+            일정 수정
+          </Btn>
+        </div>
       ) : (
         <Btn
           color="#fff"
           backgroundColor="#ffc51c"
           height="36px"
+          width="57%"
+          marginLeft="8%"
           onClick={onSaveSchdule}
         >
           일정 생성
