@@ -1,0 +1,23 @@
+.scrollBottom {
+  height: 40vh;
+  margin: 2vh 1vw;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* border: 1px solid #ffc51c; */
+  border-bottom: 1px solid #ffc51c;
+}
+
+.toBic {
+  padding: 11px 0px 0px 0px;
+}
+
+/* .message {
+  background-color: rgb(255, 255, 255);
+  width: max-content;
+  max-width: 180px;
+  padding: 1% 4%;
+  border-radius: 5px;
+  margin: 7px;
+  border: 1px solid #ffc51c;
+  border-radius: 15px;
+} */

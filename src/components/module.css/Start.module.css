@@ -1,0 +1,134 @@
+body * {
+  font-family: "NanumSquareRound";
+}
+
+.startBox {
+  -ms-overflow-style: none;
+}
+
+.startBox::-webkit-scrollbar {
+  display: hidden;
+}
+
+.startBox {
+  background-color: #f2f7ff;
+  position: relative;
+  object-fit: cover;
+  overflow: hidden;
+  /* width: 101rem; */
+  scrollbar-color: rgba(255, 255, 255, 0);
+}
+
+.imgBox {
+  position: relative;
+  width: 1200px;
+  height: 100%;
+  margin: auto;
+}
+
+.title {
+  margin: 140px auto;
+  margin-left: 100px;
+  width: 1000px;
+  height: 728px;
+}
+
+.description {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  line-height: 40px;
+}
+
+.login {
+  padding: auto;
+  position: absolute;
+  left: 28%;
+  top: 63%;
+  border: 0;
+  outline: 0;
+  width: 240px;
+  height: 54px;
+  background: #ffc51c;
+  color: black;
+  border-radius: 999px;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.login:hover {
+  padding: auto;
+  position: absolute;
+  left: 28%;
+  top: 63%;
+  border: 0;
+  outline: 0;
+  width: 240px;
+  height: 54px;
+  background: #ffc51c;
+  color: black;
+  box-shadow: 0px 2px 8px rgba(255, 197, 28, 0.5);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.socialLogin {
+  padding: auto;
+  position: absolute;
+  left: 52%;
+  top: 63%;
+  border: 2px solid #ffc51c;
+  outline: 0;
+  width: 240px;
+  height: 54px;
+  background-color: rgba(255, 255, 255, 0);
+  color: black;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.joinText {
+  padding: auto;
+  position: absolute;
+  top: 73%;
+  margin-left: 352px;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.join {
+  padding: auto;
+  position: absolute;
+  left: 65%;
+  top: 73%;
+  background-color: rgba(255, 255, 255, 0);
+  color: black;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.imgBox1 {
+  position: relative;
+}
+
+.cloud {
+  position: absolute;
+  left: 92%;
+  top: 8%;
+}
+
+.cloud1 {
+  position: absolute;
+  right: 90.5%;
+  top: 86.5%;
+}

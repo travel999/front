@@ -11,6 +11,7 @@ const Btn = (props) => {
       value={props.value}
       width={props.width}
       height={props.height}
+      id={props.id}
     >
       {props.children}
     </StyledGlobalButton>
@@ -24,10 +25,8 @@ const StyledGlobalButton = styled.button`
   color: ${(props) => props.color || "#333"};
   background-color: ${(props) => props.backgroundColor || "transparent"};
   font-size: 1.2rem;
-  font-family: "Roboto", sans-serif;
   font-weight: 500;
   cursor: pointer;
-
   margin-left: ${(props) => props.marginLeft};
 `;
 

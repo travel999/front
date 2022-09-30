@@ -1,16 +1,21 @@
 import axios from "axios";
-import { getCookie } from "./cookie";
 
 const instance = axios.create({
-  baseURL: "/",
-  headers: { token: getCookie("jwtToken") },
+  baseURL: process.env.REACT_APP_SURVER,
   withCredentials: true,
 });
 
-// if (getCookie("jwtToken") === undefined) {
-//   instance.defaults.headers.common["token"] = 500;
-// } else {
-//   instance.defaults.headers.common["token"] = getCookie("jwtToken");
-// }
+instance.interceptors.request.use(
+  function (config) {
+    config.headers["Authorization"] = `Bearer ${localStorage.getItem(
+      "jwtToken"
+    )}`;
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
 
 export default instance;
+//  baseURL: process.env.REACT_APP_SURVER,

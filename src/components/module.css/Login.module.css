@@ -1,0 +1,106 @@
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px #ffffff inset;
+}
+
+.wrap {
+  background-color: #f2f7ff;
+  overflow: hidden;
+  position: relative;
+  /* width: 101rem; */
+}
+
+.titleWrap {
+  width: 1200px;
+  height: 100%;
+  margin: auto;
+}
+
+.title {
+  margin: 140px auto;
+  margin-left: 100px;
+  width: 1000px;
+  height: 728px;
+  /* cursor: pointer; */
+}
+
+.inputBox {
+  width: 400px;
+  height: 54px;
+  margin-left: 400px;
+  margin-right: 400px;
+  position: absolute;
+  top: 53%;
+  display: flex;
+}
+
+.inputBox1 {
+  width: 400px;
+  height: 54px;
+  margin-left: 400px;
+  margin-right: 400px;
+  position: absolute;
+  top: 63%;
+  display: flex;
+}
+
+.inputName {
+  padding-right: 20px;
+  width: 80px;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 600;
+}
+
+.input {
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+  width: 300px;
+  height: 54px;
+  font-size: 15px;
+  border-radius: 999px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.yellowInput {
+  background: #ffffff;
+  border: 1px solid #ffc51c;
+  width: 300px;
+  height: 54px;
+  font-size: 15px;
+  border-radius: 999px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.button {
+  width: 400px;
+  height: 54px;
+  margin-left: 400px;
+  margin-right: 400px;
+  position: absolute;
+  top: 75%;
+  background: #ffc51c;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 40px;
+  color: black;
+}
+
+.imgBox1 {
+  position: relative;
+}
+
+.cloud {
+  position: absolute;
+  left: 76%;
+  top: 8%;
+}
+
+.cloud1 {
+  position: absolute;
+  right: 75.5%;
+  top: 86.5%;
+}

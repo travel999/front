@@ -1,0 +1,217 @@
+.background {
+    background-color: #f2f7ff;
+    height: 100%;
+    margin: auto;
+    position: relative;
+}
+
+.joinLogo {
+    position: absolute;
+    width: 465px;
+    height: 112.37px;
+    margin: 70px auto auto auto;
+    cursor: pointer;
+}
+
+.backgroundImg {
+    position: relative;
+    margin: 200px auto auto auto;
+}
+
+/* input style */
+.inputWrap {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    background: #f2f7ff;
+    width: 1200px;
+    /* width: 101rem; */
+    height: 955px;
+    margin: auto;
+}
+
+.inputWrap>input {
+    position: absolute;
+    left: 50%;
+    width: 376px;
+    height: 54px;
+    font-size: 15px;
+    border-radius: 999px;
+    outline: none;
+    background: #ffffff;
+    border: 1px solid #e2e2e2;
+    padding-left: 2%;
+}
+
+.inputNickname {
+    position: absolute;
+    top: 30%;
+}
+
+.inputEmail {
+    position: absolute;
+    top: 41.5%;
+    width: 265px !important;
+}
+
+.inputPassword {
+    position: absolute;
+    top: 52.5%;
+}
+
+.inputConfirm {
+    position: absolute;
+    top: 63.5%;
+}
+
+/* 유효성 메세지 style */
+.message>div {
+    position: absolute;
+    font-size: 15px;
+    left: 52%;
+}
+
+.nickNameMsg {
+    position: absolute;
+    top: 37.5%;
+}
+
+.emailMsg {
+    position: absolute;
+    top: 48.5%;
+}
+
+.pwMsg {
+    position: absolute;
+    top: 59.5%;
+}
+
+.confirmMsg {
+    position: absolute;
+    top: 70.5%;
+}
+
+/* inputName style */
+.nameWrap>div {
+    position: absolute;
+    left: 40%;
+    width: 130px;
+    font-size: 16px;
+    line-height: 63px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.nickname {
+    position: absolute;
+    top: 30%;
+}
+
+.email {
+    position: absolute;
+    top: 41.5%;
+}
+
+.password {
+    position: absolute;
+    top: 52.4%;
+}
+
+.confirm {
+    position: absolute;
+    top: 63.2%;
+}
+
+/* profile img */
+.profile h4 {
+    position: absolute;
+    left: 21%;
+    top: 52%;
+    font-weight: 600;
+}
+
+.profile img {
+    position: absolute;
+    border-radius: 50%;
+    height: 177px;
+    width: 177px;
+    cursor: pointer;
+    left: 18%;
+    top: 30%;
+    background: #ffffff;
+}
+
+.inputHidden {
+    position: absolute;
+    display: none;
+    font-size: 16px;
+    line-height: 40px;
+}
+
+/* email 인증 버튼 */
+.notCertifyButton {
+    position: absolute;
+    padding: 0;
+    top: 41.8%;
+    left: 75.7%;
+    width: 96px;
+    height: 55px;
+    margin: auto;
+    background: #ffc51c;
+    border: 0;
+    border-radius: 999px;
+    font-size: 15px;
+    line-height: 40px;
+    color: black;
+}
+
+.notCertifyButton:hover {
+    position: absolute;
+    padding: 0;
+    top: 41.8%;
+    left: 75.7%;
+    width: 96px;
+    height: 55px;
+    margin: auto;
+    background: #ffffff;
+    border: 1px solid #ffc51c;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 40px;
+}
+
+.certifyButton {
+    position: absolute;
+    padding: 0;
+    top: 41.8%;
+    left: 75.7%;
+    width: 96px;
+    height: 55px;
+    margin: auto;
+    background: #4386ff;
+    border: 0;
+    border-radius: 999px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 40px;
+    pointer-events: none;
+}
+
+/* 회원가입 버튼 */
+.button {
+    position: absolute;
+    padding: 0;
+    margin: auto;
+    width: 400px;
+    height: 54px;
+    top: 80%;
+    left: 50%;
+    background: #ffc51c;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 40px;
+}
