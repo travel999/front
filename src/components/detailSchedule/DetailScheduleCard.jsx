@@ -119,8 +119,8 @@ const DetailScheduleCard = ({ data, postId, key }) => {
   };
 
   //카드 클릭시 해당 좌표로 지도 이동
-  const onMovePin = () => {
-    dispatch(moveOneCardPin);
+  const onMovePin = (lat, lng) => {
+    dispatch(moveOneCardPin({ lat: lat, lng: lng }));
   };
 
   return (

@@ -8,9 +8,7 @@ const JoinPage = () => {
   const MobileSize = useMediaQuery({ maxWidth: 430 });
 
   return (
-    <NoHeaderLayout>
-      { MobileSize ? <MobileJoin /> : <Join /> }
-    </NoHeaderLayout>
+    <NoHeaderLayout>{MobileSize ? <MobileJoin /> : <Join />}</NoHeaderLayout>
   );
 };
 

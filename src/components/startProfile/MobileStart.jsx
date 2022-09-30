@@ -17,7 +17,7 @@ const MobileStart = () => {
             id="Frame"
             className={styles.logoImage}
           />
-          <p className={styles.mobileDescription}>오리 같이 세우는 여행 일정</p>
+          <p className={styles.mobileDescription}>우리같이 세우는 여행 일정</p>
           <button
             className={styles.mobileLogin}
             onClick={() => {

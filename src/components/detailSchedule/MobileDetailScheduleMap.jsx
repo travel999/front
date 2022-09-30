@@ -8,6 +8,7 @@ import socket from "../../res/socket";
 import styles from "../module.css/DetailSchedule.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 const { kakao } = window;
 
@@ -121,6 +122,15 @@ const MobileDetailScheduleMap = ({ nowDay, data, setKey }) => {
     const moveLatLon = new kakao.maps.LatLng(palceY, placeX);
     //마커 위치로 지도 화면 포커싱
     map.panTo(moveLatLon);
+    toast.success(`여행 장소를 지정했습니다.`, {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   // 키워드 검색을 요청하는 함수입니다

@@ -80,7 +80,7 @@ const ScheduleCreate = () => {
         progress: undefined,
       });
     } else if (fixDay > 8) {
-      toast.error("최대 여행일정은 7일까지만 가능합니다.", {
+      toast.error("최대 여행일정은 7일까지만 가능합니다!", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: true,
@@ -91,6 +91,16 @@ const ScheduleCreate = () => {
       });
     } else if (title === "") {
       toast.error("여행 이름이 비어있어 일정을 생성할 수 없습니다!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else if (startDate > endDate) {
+      toast.error("시작일자는 종료일자보다 늦을 수 없습니다!", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: true,
@@ -156,6 +166,15 @@ const ScheduleCreate = () => {
     }
   };
 
+  // 날짜 지정시 오늘 부터 가능하도록
+  const getToday = () => {
+    const toDay = new Date();
+    let year = toDay.getFullYear();
+    let month = ("0" + (1 + toDay.getMonth())).slice(-2);
+    let day = ("0" + toDay.getDate()).slice(-2);
+    return year + "-" + month + "-" + day;
+  };
+
   const closeAdvModal = () => {
     setAdvModal(false);
   };
@@ -167,6 +186,7 @@ const ScheduleCreate = () => {
         id="startDay"
         name="startDay"
         value={startDate}
+        min={getToday()}
         onChange={onSetData}
       />
       <input
@@ -174,6 +194,7 @@ const ScheduleCreate = () => {
         id="endDay"
         name="endDay"
         value={endDate}
+        min={getToday()}
         onChange={onSetData}
       />
       <input

@@ -15,7 +15,7 @@
   border: 0;
 }
 
-.modal>section {
+.modal > section {
   width: 90%;
   max-width: 450px;
   /* height: 27%; */
@@ -27,14 +27,14 @@
   overflow: hidden;
 }
 
-.modal>section>header {
+.modal > section > header {
   position: relative;
   padding: 16px 64px 16px 16px;
   background-color: #ffc51c;
   font-weight: 700;
 }
 
-.modal>section>header button {
+.modal > section > header button {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -46,31 +46,31 @@
   background-color: transparent;
 }
 
-.modal>section>main {
+.modal > section > main {
   padding: 16px;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
 }
 
-.modal>section>main>input[name="inputText"] {
-  width: 95%;
+.modal > section > main > input[name="inputText"] {
+  width: 79%;
   height: 36px;
   border: 1px solid #dee2e6;
   border-radius: 20px;
   padding: 0.3rem;
 }
 
-.modal>section>main>div {
+.modal > section > main > div {
   /* text-align: center; */
 }
 
 /* DeleteModal CSS */
-.modal>section>footer {
+.modal > section > footer {
   padding: 12px 16px;
   text-align: right;
 }
 
-.modal>section>footer button {
+.modal > section > footer button {
   padding: 6px 12px;
   color: #333;
   background-color: #ffc51c;

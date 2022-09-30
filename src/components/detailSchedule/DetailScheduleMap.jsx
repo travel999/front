@@ -8,6 +8,7 @@ import socket from "../../res/socket";
 import styles from "../module.css/DetailSchedule.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 const { kakao } = window;
 
@@ -17,6 +18,7 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
   const { id } = useParams();
   const existPins = useSelector((state) => state.kakaoMap.pin);
   const members = useSelector((state) => state.kakaoMap.members);
+  const movePins = useSelector((state) => state.moveMap.movePin);
 
   const nickname = localStorage.getItem("nickname");
 
@@ -89,6 +91,19 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
     });
   }, [data]);
 
+  //상세보기에서 데이터가 하나도 없을때
+  useEffect(() => {
+    if (data.pin.length === 0) {
+      const container = document.getElementById("map");
+      const options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3,
+      };
+      const kakaoMap = new kakao.maps.Map(container, options);
+      setMap(kakaoMap);
+    }
+  }, []);
+
   //신규 추가된 장소 마커 찍기
   useEffect(() => {
     pin.map((item) => {
@@ -98,8 +113,19 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
         title: item.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
       });
     });
-    console.log("여기실행22222");
   }, [pin]);
+
+  useEffect(() => {
+    if (movePins.length !== 0) {
+      moveMapByPin(movePins);
+    }
+  }, [movePins]);
+
+  const moveMapByPin = (movePins) => {
+    const moveLatLon = new kakao.maps.LatLng(movePins[0].lat, movePins[0].lng);
+    //마커 위치로 지도 화면 포커싱
+    map.panTo(moveLatLon);
+  };
 
   //마커 생성을 위한 배열 만들기
   const onMakeMarker = (placeName, placeX, palceY) => {
@@ -110,6 +136,15 @@ const DetailScheduleMap = ({ nowDay, data, setKey }) => {
     const moveLatLon = new kakao.maps.LatLng(palceY, placeX);
     //마커 위치로 지도 화면 포커싱
     map.panTo(moveLatLon);
+    toast.success(`여행 장소를 지정했습니다.`, {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   const sendMarker = (name, x, y) => {

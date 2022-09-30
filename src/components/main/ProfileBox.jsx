@@ -42,7 +42,7 @@ const ProfileBox = () => {
         )}
         <div className={styles.profiltext}>
           <div className={styles.profilefont}>여행 일정</div>
-          <div className={styles.profilefont}>찜한 일정</div>
+          <div className={styles.profilefont}>좋아요한 일정</div>
         </div>
         <div className={styles.profiltext}>
           <div className={styles.profileNum}>{mypostNum ? mypostNum : 0}</div>
