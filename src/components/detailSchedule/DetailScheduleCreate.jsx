@@ -87,9 +87,32 @@ const DetailScheduleCreate = ({ data, setKey }) => {
           draggable: true,
           progress: undefined,
         });
+      } else if (startDate > endDate) {
+        toast.error("시작일자는 종료일자보다 늦을 수 없습니다!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else if (
+        startDate === startDate &&
+        endDate === endDate &&
+        title === title
+      ) {
+        toast.error("수정된 정보가 없습니다.", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } else {
         //payload생성
-        console.log(title);
         setScheduleSave({
           title: title,
           date: [startDate, endDate],
@@ -118,6 +141,15 @@ const DetailScheduleCreate = ({ data, setKey }) => {
     }
   };
 
+  // 날짜 지정시 오늘 부터 가능하도록
+  const getToday = () => {
+    const toDay = new Date();
+    let year = toDay.getFullYear();
+    let month = ("0" + (1 + toDay.getMonth())).slice(-2);
+    let day = ("0" + toDay.getDate()).slice(-2);
+    return year + "-" + month + "-" + day;
+  };
+
   return (
     <div className={styles.createWrap}>
       <div className={styles.threeWrap}>
@@ -126,6 +158,7 @@ const DetailScheduleCreate = ({ data, setKey }) => {
           id="startDay"
           name="startDay"
           value={startDate || " "}
+          min={getToday()}
           onChange={onSetData}
         />
         <input
@@ -133,6 +166,7 @@ const DetailScheduleCreate = ({ data, setKey }) => {
           id="endDay"
           name="endDay"
           value={endDate || " "}
+          min={getToday()}
           onChange={onSetData}
         />
         <input

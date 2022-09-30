@@ -23,7 +23,7 @@ const SecondBox = () => {
   return (
     <div style={{ zIndex: "5" }}>
       <div className={`${styles.bicbox2}`}>
-        <div className={styles.toptext}>찜한 일정</div>
+        <div className={styles.toptext}>좋아요한 일정</div>
         <div className={styles.searchboxscroll}>
           {likePosts?.length > 0 &&
             likePosts?.map((value, idx) => {

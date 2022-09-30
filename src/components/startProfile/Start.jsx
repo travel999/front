@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { KAKAO_AUTH_URL } from "../loginRegister/KakaoLogIn";
+import { KAKAO_AUTH_URL } from "../signup/KakaoLogIn";
 import styles from "../module.css/Start.module.css";
 import Background from "../../res/img/background.png";
 import cloud from "../../res/img/cloud.png";
@@ -13,7 +13,12 @@ const Start = () => {
     <div>
       <div className={styles.startBox}>
         <div className={styles.imgBox}>
-          <img src={Background} alt="title" id="Frame" className={styles.title} />
+          <img
+            src={Background}
+            alt="title"
+            id="Frame"
+            className={styles.title}
+          />
           <label htmlFor="Frame">
             <div className={styles.description}>
               &nbsp;&nbsp;&nbsp;같이 의견을 공유하고 여행 플랜을 확인하며 <br />
@@ -45,7 +50,6 @@ const Start = () => {
         </div>
       </div>
     </div>
-
   );
 };
 

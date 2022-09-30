@@ -8,15 +8,17 @@
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.6);
 }
+
 .modal button {
   outline: none;
   cursor: pointer;
   border: 0;
 }
+
 .modal > section {
   width: 90%;
   max-width: 450px;
-  height: 27%;
+  /* height: 27%; */
   margin: 0 auto;
   border-radius: 0.3rem;
   background-color: #fff;
@@ -24,12 +26,14 @@
   animation: modal-show 0.3s;
   overflow: hidden;
 }
+
 .modal > section > header {
   position: relative;
   padding: 16px 64px 16px 16px;
   background-color: #ffc51c;
   font-weight: 700;
 }
+
 .modal > section > header button {
   position: absolute;
   top: 15px;
@@ -41,25 +45,31 @@
   color: #999;
   background-color: transparent;
 }
+
 .modal > section > main {
   padding: 16px;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
 }
+
 .modal > section > main > input[name="inputText"] {
-  width: 95%;
+  width: 79%;
   height: 36px;
   border: 1px solid #dee2e6;
   border-radius: 20px;
   padding: 0.3rem;
 }
+
 .modal > section > main > div {
   /* text-align: center; */
 }
+
+/* DeleteModal CSS */
 .modal > section > footer {
   padding: 12px 16px;
   text-align: right;
 }
+
 .modal > section > footer button {
   padding: 6px 12px;
   color: #333;
@@ -67,26 +77,44 @@
   border-radius: 5px;
   font-size: 13px;
 }
+
 .modal.openModal {
   display: flex;
   align-items: center;
   /* 팝업이 열릴때 스르륵 열리는 효과 */
   animation: modal-bg-show 0.3s;
 }
+
+/* DescriptModal CSS */
+.scheduleDesc {
+  line-height: 30px;
+  font-size: 15px;
+  color: #333;
+  margin: 15px auto 10px 10px;
+  overflow: auto;
+}
+
+.scheduleDesc b {
+  font-weight: 700;
+}
+
 @keyframes modal-show {
   from {
     opacity: 0;
     margin-top: -50px;
   }
+
   to {
     opacity: 1;
     margin-top: 0;
   }
 }
+
 @keyframes modal-bg-show {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }

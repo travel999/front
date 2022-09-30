@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
-import { deleteMemory } from "../../redux/modules/chatSlice";
+import { deleteMemory } from "../../redux/modules/ChatSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +15,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const tokenValue = localStorage.getItem("jwtToken");
-
+  const provider = localStorage.getItem("provider");
   const MobileSize = useMediaQuery({ maxWidth: 430 });
 
   const removeToken = async () => {
@@ -35,9 +35,6 @@ const Header = () => {
         progress: undefined,
       },
       navigate("/")
-      // setTimeout(() => {
-
-      // }, 1000)
     );
   };
 
@@ -114,13 +111,11 @@ const Header = () => {
             >
               LIKE
             </ContentBtn>
-            <ContentBtn
-              onClick={() => {
-                navigate("/profile");
-              }}
-            >
-              PROFILE
-            </ContentBtn>
+            {provider !== null ?
+              <></> :
+              <ContentBtn onClick={() => { navigate("/profile"); }}>
+                PROFILE
+              </ContentBtn>}
           </Topcontent>
           <div>
             {

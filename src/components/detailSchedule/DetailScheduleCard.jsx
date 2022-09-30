@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { saveDayData } from "../../redux/modules/ResultSlice";
+import { moveOneCardPin } from "../../redux/modules/MoveMapSlice";
 import DetailScheduleInput from "./DetailScheduleInput";
 import socket from "../../res/socket";
 import Btn from "../elements/Btn";
@@ -117,6 +118,11 @@ const DetailScheduleCard = ({ data, postId, key }) => {
     socket.emit("send_dayDone", dayRoom, nickname);
   };
 
+  //카드 클릭시 해당 좌표로 지도 이동
+  const onMovePin = (lat, lng) => {
+    dispatch(moveOneCardPin({ lat: lat, lng: lng }));
+  };
+
   return (
     <div
       className={
@@ -133,6 +139,7 @@ const DetailScheduleCard = ({ data, postId, key }) => {
             <div
               id={`${item.day}-${index + 1}`}
               className={styles.work}
+              onClick={() => onMovePin(item.lat, item.lng)}
               key={index}
             >
               <div className={styles.workInline}>
