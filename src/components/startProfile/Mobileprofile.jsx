@@ -7,7 +7,6 @@ import {
     putPassword,
 } from "../../redux/modules/ProfileSlice";
 import DeleteModal from "./modal/DeleteModal";
-import S3upload from "react-aws-s3";
 import styles from "../module.css/Mobile.module.css";
 import close from "../../res/img/close.png"
 import profile from "../../res/img/profile.png";
@@ -39,53 +38,23 @@ const MobileProfile = () => {
     const pwRule = /^[a-zA-Z0-9]{6,12}$/;
     // 이미지 미리보기
     const [img, setImg] = useState([]);
-    const [preImg, setPreImg] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
-    // 
     const nickname = user.nickname;
     const profileImg = user.userImage;
-    const image = localStorage.getItem("image");
-    const provider = localStorage.getItem("provider");
-    const config = {
-        accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
-        bucketName: process.env.REACT_APP_BUCKET_NAME,
-        region: process.env.REACT_APP_REGION,
-    };
+    const tokenValue = localStorage.getItem("jwtToken");
 
-    // 토큰 없거나 카카오 소셜 회원일 경우 마이페이지 이용 불가능
+    // 토큰없으면 로그인 페이지로
     useEffect(() => {
-        if (provider !== null) {
-            toast.warn(
-                "소셜로그인 회원은 프로필을 사용할 수 없어요!",
-                {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                },
-                setTimeout(() => {
-                    navigate("/main");
-                }, 2000)
-            );
+        if (!tokenValue) {
+            navigate("/");
         }
     }, []);
 
     // 닉네임 불러오기
     useEffect(() => {
         dispatch(getUser());
+        setImg(profileImg);
     }, []);
-
-    // 프로필 이미지 변경
-    useEffect(() => {
-        if (newImage) {
-            setEdit({ ...edit, newImage });
-            dispatch(putImage(edit));
-        }
-    }, [newImage]);
 
     // 닉네임 수정 불가 마우스오버 이벤트
     const onEditNickName = () => {
@@ -129,30 +98,16 @@ const MobileProfile = () => {
         }
         setEdit({ ...edit, [name]: value });
     };
-    // 선택한 이미지 미리보기
+    // 프로필 이미지 수정 
     const onLoadImg = (event) => {
         const imaData = event.target.files[0];
-        setImg(imaData);
-        //선택한 이미지 파일의 url
+
+        const formdata = new FormData();
+        formdata.append("img", imaData);
+        dispatch(putImage(formdata));
+
         const imageUrl = URL.createObjectURL(imaData);
-        setPreImg(imageUrl);
-    };
-
-    //S3 서버에 이미지 업로드
-    const onSubmitHandler = async (e) => {
-        e.preventDefault();
-
-        let file = imgVal.current.files[0];
-        let newFileName = imgVal.current.files[0].name;
-
-        const s3Client = new S3upload(config);
-        s3Client.uploadFile(file, newFileName).then(async (data) => {
-            if (data.status === 204) {
-                let newImage = data.location;
-                setNewImage(newImage);
-                setEdit({ ...edit, newImage });
-            }
-        });
+        setImg(imageUrl);
     };
 
     // 비밀번호 수정
@@ -188,14 +143,14 @@ const MobileProfile = () => {
             <div className={styles.profile}>
                 <p>프로필 이미지</p>
                 <label htmlFor="newImage">
-                    {profileImg === "" ? (
+                    {img === "" ? (
                         <img src={profile} alt="" />
                     ) : (
-                        <img src={profileImg} alt="" />
+                        <img src={img} alt="" />
 
                     )}
                 </label>
-                <form onChange={onSubmitHandler}>
+                <form encType="multipart/form-data">
                     <input
                         ref={imgVal}
                         className={styles.inputHidden}

@@ -306,8 +306,9 @@
 
   .createWrap input[type="date"] {
     margin-top: 0.1%;
+    margin-left: 3%;
     width: 88%;
-  }
+    }
 
   .createWrap input[type="text"] {
     margin-left: 3%;

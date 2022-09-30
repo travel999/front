@@ -7,7 +7,6 @@ import {
   putPassword,
 } from "../../redux/modules/ProfileSlice";
 import DeleteModal from "./modal/DeleteModal";
-import S3upload from "react-aws-s3";
 import styles from "../module.css/Profile.module.css";
 import profileLogo from "../../res/img/profileLogo.png";
 import backgroundbox from "../../res/img/backgroundBox.png";
@@ -32,28 +31,19 @@ const Profile = () => {
   const [edit, setEdit] = useState(initialState);
   const [passWord, setPassWord] = useState("");
   const [confirm, setConfirm] = useState("");
-  const [newImage, setNewImage] = useState("");
   // 비밀번호
   const [pwMsg, setPwMsg] = useState("");
   const [confirmMsg, setConfirmMsg] = useState("");
   // 비밀번호 정규식
   const pwRule = /^[a-zA-Z0-9]{6,12}$/;
-  // 이미지 미리보기
-  const [img, setImg] = useState([]);
-  const [preImg, setPreImg] = useState([]);
+  // 프로필 이미지처리
+  const [img, setImg] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  //
+
   const nickname = user.nickname;
   const profileImg = user.userImage;
-  const image = localStorage.getItem("image");
-  const provider = localStorage.getItem("provider");
-  const config = {
-    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
-    bucketName: process.env.REACT_APP_BUCKET_NAME,
-    region: process.env.REACT_APP_REGION,
-  };
   const tokenValue = localStorage.getItem("jwtToken");
+
   // 토큰없으면 로그인 페이지로
   useEffect(() => {
     if (!tokenValue) {
@@ -61,26 +51,11 @@ const Profile = () => {
     }
   }, []);
 
-  // 닉네임 불러오기
+  // 이미지,닉네임 불러오기
   useEffect(() => {
     dispatch(getUser());
+    setImg(profileImg);
   }, []);
-
-  // 프로필 이미지 변경
-  useEffect(() => {
-    // if (newImage) {
-    //   setEdit({ ...edit, newImage });
-    //   dispatch(putImage(edit));
-    // }
-    // 이미지 파일 폼데이터로 변경
-    // console.log(img)
-    if (img) {
-      const formdata = new FormData();
-      formdata.append("img", img);
-      dispatch(putImage(formdata));
-    }
-
-  }, [img]);
 
   // 닉네임 수정 불가 마우스오버 이벤트
   const onEditNickName = () => {
@@ -124,31 +99,17 @@ const Profile = () => {
     }
     setEdit({ ...edit, [name]: value });
   };
-  // 선택한 이미지 미리보기
+  //프로필 이미지 수정
   const onLoadImg = (event) => {
     const imaData = event.target.files[0];
-    setImg(imaData);
-    //선택한 이미지 파일의 url
+
+    const formdata = new FormData();
+    formdata.append("img", imaData);
+    dispatch(putImage(formdata));
+
     const imageUrl = URL.createObjectURL(imaData);
-    setPreImg(imageUrl);
+    setImg(imageUrl);
   };
-
-  //S3 서버에 이미지 업로드
-  // const onSubmitHandler = async (e) => {
-  //   e.preventDefault();
-
-  //   let file = imgVal.current.files[0];
-  //   let newFileName = imgVal.current.files[0].name;
-
-  //   const s3Client = new S3upload(config);
-  //   s3Client.uploadFile(file, newFileName).then(async (data) => {
-  //     if (data.status === 204) {
-  //       let newImage = data.location;
-  //       setNewImage(newImage);
-  //       setEdit({ ...edit, newImage });
-  //     }
-  //   });
-  // };
 
   // 비밀번호 수정
   const onEditProfile = (e) => {
@@ -226,11 +187,10 @@ const Profile = () => {
         </div>
         <div className={styles.profile}>
           <label htmlFor="newImage">
-            {profileImg === "" ? (
-              <img src={profile} alt="" />
+            {img === "" ? (
+              <img src={profile} alt="프로필 없음 이미지" />
             ) : (
-              <img src={profileImg} alt="" />
-
+              <img src={img} alt="프로필 이미지" />
             )}
           </label>
           <h4>프로필 이미지</h4>
