@@ -1,6 +1,6 @@
 import React from "react";
 import NoHeaderLayout from "../components/common/NoHeaderLayout";
-import Loading from "../components/loginRegister/Loading"
+import Loading from "../components/signup/Loading"
 
 const LoadingPage = () => {
     return (

@@ -15,7 +15,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const tokenValue = localStorage.getItem("jwtToken");
-
+  const provider = localStorage.getItem("provider");
   const MobileSize = useMediaQuery({ maxWidth: 430 });
 
   const removeToken = async () => {
@@ -35,9 +35,6 @@ const Header = () => {
         progress: undefined,
       },
       navigate("/")
-      // setTimeout(() => {
-
-      // }, 1000)
     );
   };
 
@@ -114,13 +111,11 @@ const Header = () => {
             >
               LIKE
             </ContentBtn>
-            <ContentBtn
-              onClick={() => {
-                navigate("/profile");
-              }}
-            >
-              PROFILE
-            </ContentBtn>
+            {provider !== null ?
+              <></> :
+              <ContentBtn onClick={() => { navigate("/profile"); }}>
+                PROFILE
+              </ContentBtn>}
           </Topcontent>
           <div>
             {
