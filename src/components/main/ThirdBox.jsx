@@ -261,10 +261,10 @@ const ThirdBox = ({
         {load ? (
           <FontAwesomeIcon icon={faSpinner} className={styles.spinner} />
         ) : (
-          <div className={styles.notexist}>자료가 존재하지 않습니다.</div>
+          <div className={styles.notexist}>마지막 일정입니다</div>
         )}
         <div className={styles.bottom} ref={obsRef}>
-          바닥
+          .
         </div>
       </div>
     </div>

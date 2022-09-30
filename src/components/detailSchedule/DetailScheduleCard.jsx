@@ -8,6 +8,9 @@ import Btn from "../elements/Btn";
 import styles from "../module.css/DetailSchedule.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { deleteData, deleteDataForSocket } from "../../redux/modules/MapSlice";
 
 const DetailScheduleCard = ({ data, postId, key }) => {
   const dispatch = useDispatch();
@@ -44,12 +47,18 @@ const DetailScheduleCard = ({ data, postId, key }) => {
         dispatch(saveDayData(result));
       }
     }
+  }, [result]);
+
+  useEffect(() => {
     // socket 일정 저장 받음
     socket.on("receive_dayDone", (person) => {
       // forToast(person);
       setColorChange(false);
     });
-  }, [result]);
+    socket.on("receive_delete", (idx, pins) => {
+      dispatch(deleteDataForSocket({ idx, pins }));
+    });
+  }, [socket]);
 
   //삭제대비 data state
   useEffect(() => {
@@ -71,6 +80,13 @@ const DetailScheduleCard = ({ data, postId, key }) => {
       draggable: true,
       progress: undefined,
     });
+  };
+
+  //등록된 일정 삭제하기
+  const onDeleteSchedule = (idx, day) => {
+    dispatch(deleteData({ idx, day }));
+    // socket
+    socket.emit("delete_card", dayRoom, idx, data.pin);
   };
 
   //일정의 컨텐츠 저장
@@ -101,12 +117,6 @@ const DetailScheduleCard = ({ data, postId, key }) => {
     socket.emit("send_dayDone", dayRoom, nickname);
   };
 
-  //등록된 일정 삭제하기
-  const onDeleteCard = (num) => {
-    const dataArr = changeData.filter((item, index) => index !== num);
-    setChageData(dataArr);
-  };
-
   return (
     <div
       className={
@@ -131,7 +141,9 @@ const DetailScheduleCard = ({ data, postId, key }) => {
                 </div>
                 {members?.includes(nickname) ? (
                   <div>
-                    <button onClick={() => onDeleteCard(index)}>X</button>
+                    <button onClick={() => onDeleteSchedule(index, item.day)}>
+                      <FontAwesomeIcon icon={faXmark} />
+                    </button>
                   </div>
                 ) : null}
               </div>
