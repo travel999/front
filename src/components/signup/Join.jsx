@@ -147,29 +147,6 @@ const Join = () => {
     const imageUrl = URL.createObjectURL(imaData);
     setPreImg(imageUrl);
   };
-  // const onSubmitHandler = async (e) => {
-  //   e.preventDefault();
-
-  //   //이미지 처리
-  //   const file = imgVal.current.files[0];
-  //   const newFileName = imgVal.current.files[0].name;
-
-  //   const config = {
-  //     accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-  //     secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
-  //     bucketName: process.env.REACT_APP_BUCKET_NAME,
-  //     region: process.env.REACT_APP_REGION,
-  //   };
-  //   //aws 서버에 등록
-  //   const s3Client = new S3upload(config);
-  //   s3Client.uploadFile(file, newFileName).then(async (data) => {
-  //     if (data.status === 204) {
-  //       let userImage = data.location;
-  //       setUserImage(userImage);
-  //       setSignUp({ ...signUp, userImage });
-  //     }
-  //   });
-  // };
   // 모달창 이메일 빈칸 아니고, 중복확인 됐을 때만 열림
   const openModal = () => {
     if (checkEmail === true) {
@@ -187,14 +164,14 @@ const Join = () => {
 
   // 버튼 클릭시 빈칸 확인
   const onJoin = (e) => {
-    // if (
-    //   emailData === "" ||
-    //   nicknNameData === "" ||
-    //   userImage === "" ||
-    //   passData === "" ||
-    //   confirm === ""
-    // ) {
-    // } else {
+    if (
+      emailData === "" ||
+      nicknNameData === "" ||
+      userImage === "" ||
+      passData === "" ||
+      confirm === ""
+    ) {
+    } else {
       e.preventDefault();
       const formdata = new FormData();
       formdata.append("email", emailData);
@@ -203,7 +180,7 @@ const Join = () => {
       formdata.append("confirm", confirm);
       formdata.append("img", img);
       dispatch(addJoin({ navigate, formdata }));
-    // }
+    }
   };
 
   return (

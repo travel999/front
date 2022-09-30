@@ -7,7 +7,6 @@ import {
   putPassword,
 } from "../../redux/modules/ProfileSlice";
 import DeleteModal from "./modal/DeleteModal";
-import S3upload from "react-aws-s3";
 import styles from "../module.css/Profile.module.css";
 import profileLogo from "../../res/img/profileLogo.png";
 import backgroundbox from "../../res/img/backgroundBox.png";
@@ -38,7 +37,6 @@ const Profile = () => {
   // 프로필 이미지처리
   const [img, setImg] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-
   //변수
   const nickname = user.nickname;
   const profileImg = user.userImage;
@@ -104,7 +102,6 @@ const Profile = () => {
   //프로필 이미지 수정
   const onLoadImg = (event) => {
     const imaData = event.target.files[0];
-
     const formdata = new FormData();
     formdata.append("img", imaData);
     dispatch(putImage(formdata));
@@ -112,23 +109,6 @@ const Profile = () => {
     const imageUrl = URL.createObjectURL(imaData);
     setImg(imageUrl);
   };
-
-  //S3 서버에 이미지 업로드
-  // const onSubmitHandler = async (e) => {
-  //   e.preventDefault();
-
-  //   let file = imgVal.current.files[0];
-  //   let newFileName = imgVal.current.files[0].name;
-
-  //   const s3Client = new S3upload(config);
-  //   s3Client.uploadFile(file, newFileName).then(async (data) => {
-  //     if (data.status === 204) {
-  //       let newImage = data.location;
-  //       setNewImage(newImage);
-  //       setEdit({ ...edit, newImage });
-  //     }
-  //   });
-  // };
 
   // 비밀번호 수정
   const onEditProfile = (e) => {
