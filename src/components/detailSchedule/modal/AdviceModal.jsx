@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./AdviceModal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fa1 } from "@fortawesome/free-solid-svg-icons";

@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import { deleteMemory } from "../../redux/modules/ChatSlice";
 import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
-import { deleteMemory } from "../../redux/modules/ChatSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
@@ -111,11 +111,15 @@ const Header = () => {
             >
               LIKE
             </ContentBtn>
-            {provider !== null ?
-              <></> :
-              <ContentBtn onClick={() => { navigate("/profile"); }}>
+            {provider !== null ? null : (
+              <ContentBtn
+                onClick={() => {
+                  navigate("/profile");
+                }}
+              >
                 PROFILE
-              </ContentBtn>}
+              </ContentBtn>
+            )}
           </Topcontent>
           <div>
             {
@@ -187,6 +191,7 @@ const Topcontent = styled.div`
   margin: 0px 0vw 0px 35vw;
   z-index: 5;
   font-weight: 500;
+  justify-content: space-between;
   div {
     margin-left: 40px;
     margin-top: 3px;
