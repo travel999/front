@@ -1,0 +1,65 @@
+/* -------------------------------------------------- */
+/* DescriptModal CSS */
+.modal > section.scheduleDecsWrap {
+  width: 100%;
+  max-width: 850px;
+  height: 60%;
+  margin: 0 auto;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  /* 팝업이 열릴때 스르륵 열리는 효과 */
+  animation: modal-show 0.3s;
+  overflow: scroll;
+}
+.modal > section > .scheduleDesc {
+  line-height: 30px;
+  font-size: 15px;
+  color: #333;
+  overflow: auto;
+}
+
+.modal > section > .scheduleDesc div {
+  margin: 1rem auto;
+}
+
+.modal > section > .scheduleDesc div span {
+  display: inline-block;
+  width: 90%;
+  margin: auto 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-align: left;
+}
+
+.modal > section > .scheduleDesc img {
+  top: 0;
+  width: 90%;
+  height: 100%;
+  margin: 0.5rem auto;
+}
+
+.scheduleDesc b {
+  font-weight: 700;
+}
+
+@keyframes modal-show {
+  from {
+    opacity: 0;
+    margin-top: -50px;
+  }
+
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+
+@keyframes modal-bg-show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

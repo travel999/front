@@ -101,13 +101,12 @@ const MobileProfile = () => {
     // 프로필 이미지 수정 
     const onLoadImg = (event) => {
         const imaData = event.target.files[0];
-
+        const imageUrl = URL.createObjectURL(imaData);
+        setImg(imageUrl);
+        
         const formdata = new FormData();
         formdata.append("img", imaData);
         dispatch(putImage(formdata));
-
-        const imageUrl = URL.createObjectURL(imaData);
-        setImg(imageUrl);
     };
 
     // 비밀번호 수정
@@ -136,11 +135,11 @@ const MobileProfile = () => {
     };
     return (
         <div className={styles.background}>
-            <div className={styles.title1}>
+            {/* <div className={styles.title1}>
                 <h4>프로필 수정</h4>
                 <img src={close} alt="" className={styles.close} onClick={() => { navigate("/main") }} />
-            </div>
-            <div className={styles.profile}>
+            </div> */}
+            <div className={styles.profile_1}>
                 <p>프로필 이미지</p>
                 <label htmlFor="newImage">
                     {img === "" ? (
@@ -166,7 +165,7 @@ const MobileProfile = () => {
                 value={nickname || ""}
                 type="text"
                 onMouseDown={onEditNickName}
-                className={styles.inputNickname}
+                className={styles.inputNickname_1}
                 readOnly
             />
             <input
@@ -194,10 +193,10 @@ const MobileProfile = () => {
             <div className={styles.pwMsg_1}>{pwMsg}</div>
             <div className={styles.confirmMsg_1}>{confirmMsg}</div>
             {/* inputName 모음 */}
-            <div className={styles.nickname}>닉네임</div>
+            <div className={styles.nickname_1}>닉네임</div>
             <div className={styles.password_1}>비밀번호 변경</div>
             <div className={styles.confirm_1}>비밀번호 확인</div>
-            <button onClick={onEditProfile} className={styles.button}>
+            <button onClick={onEditProfile} className={styles.button_1}>
                 저장
             </button>
             <ToastContainer />
