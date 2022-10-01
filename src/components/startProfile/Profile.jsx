@@ -39,7 +39,7 @@ const Profile = () => {
   const [modalOpen, setModalOpen] = useState(false);
   //변수
   const nickname = user.nickname;
-  const profileImg = user.userImage;
+  const profileImg = localStorage.getItem("image")
   const tokenValue = localStorage.getItem("jwtToken");
   // 비밀번호 정규식
   const pwRule = /^[a-zA-Z0-9]{6,12}$/;
@@ -102,12 +102,12 @@ const Profile = () => {
   //프로필 이미지 수정
   const onLoadImg = (event) => {
     const imaData = event.target.files[0];
+    const imageUrl = URL.createObjectURL(imaData);
+    setImg(imageUrl);
+
     const formdata = new FormData();
     formdata.append("img", imaData);
     dispatch(putImage(formdata));
-
-    const imageUrl = URL.createObjectURL(imaData);
-    setImg(imageUrl);
   };
 
   // 비밀번호 수정

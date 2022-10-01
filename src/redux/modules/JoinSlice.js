@@ -14,9 +14,7 @@ export const addJoin = createAsyncThunk(
   "signUpSlice/addJoin",
   async (payload, thunkAPI) => {
     try {
-      console.log("try")
       const response = await instance.post("user/signup", payload.formdata);
-      console.log(response)
       if (response) {
         toast.success(
           "회원가입을 축하드립니다!",
@@ -137,7 +135,7 @@ export const invalidEmailCheck = createAsyncThunk(
     try {
       const response = await instance.post("user/checkCode", payload);
       console.log(response)
-      if (response) {
+      if (response.data.result === true) {
         toast.info("이메일이 인증되었습니다!", {
           position: "top-center",
           autoClose: 3000,
@@ -150,7 +148,7 @@ export const invalidEmailCheck = createAsyncThunk(
       }
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
-      if (error) {
+      if (error.response.data.result === false) {
         toast.warn("이메일 인증에 실패했습니다!", {
           position: "top-center",
           autoClose: 3000,
@@ -214,6 +212,8 @@ export const JoinSlice = createSlice({
     [invalidEmailCheck.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.result = action.payload;
+      console.log(action.payload)
+      state.isTrue = action.payload.result // 결과 true
     },
     [invalidEmailCheck.rejected]: (state, action) => {
       state.isLoading = false;
