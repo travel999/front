@@ -8,7 +8,6 @@ import {
   invalidEmail,
 } from "../../redux/modules/JoinSlice";
 import InvalidCodeModal from "./joinModal/InvalidCodeModal";
-import S3upload from "react-aws-s3";
 import styles from "../module.css/Join.module.css";
 import profile from "../../res/img/profile.png";
 import joinLogo from "../../res/img/joinLogo.png";
@@ -153,7 +152,7 @@ const Join = () => {
       setModalOpen(true);
     } else if (setClickButton(true)) {
       openModal();
-    } else {
+    } else  {
       return null;
     }
   };
@@ -164,23 +163,14 @@ const Join = () => {
 
   // 버튼 클릭시 빈칸 확인
   const onJoin = (e) => {
-    if (
-      emailData === "" ||
-      nicknNameData === "" ||
-      userImage === "" ||
-      passData === "" ||
-      confirm === ""
-    ) {
-    } else {
-      e.preventDefault();
-      const formdata = new FormData();
-      formdata.append("email", emailData);
-      formdata.append("nickname", nicknNameData);
-      formdata.append("password", passData);
-      formdata.append("confirm", confirm);
-      formdata.append("img", img);
-      dispatch(addJoin({ navigate, formdata }));
-    }
+    e.preventDefault();
+    const formdata = new FormData();
+    formdata.append("email", emailData);
+    formdata.append("nickname", nicknNameData);
+    formdata.append("password", passData);
+    formdata.append("confirm", confirm);
+    formdata.append("img", img);
+    dispatch(addJoin({ navigate, formdata }));
   };
 
   return (

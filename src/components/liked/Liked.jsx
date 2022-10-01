@@ -10,14 +10,12 @@ const Liked = () => {
   const navigate = useNavigate();
   const likecard = useSelector((state) => state.main.MyPostCards.data2);
   const tokenValue = localStorage.getItem("jwtToken");
+
   // 토큰없으면 로그인 페이지로
   useEffect(() => {
     if (!tokenValue) {
       navigate("/");
     }
-  }, []);
-  
-  useEffect(() => {
     dispatch(getCards());
   }, []);
 

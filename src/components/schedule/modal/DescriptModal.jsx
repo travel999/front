@@ -30,6 +30,7 @@ const DescriptModal = (props) => {
   //   dots: true,
   // };
 
+
   return (
     <div className={open ? "openModal modal" : "modal"}>
       {open ? (
@@ -97,6 +98,7 @@ const DescriptModal = (props) => {
       ) : null}
     </div>
   );
+
 };
 
 export default DescriptModal;

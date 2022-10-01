@@ -15,7 +15,7 @@ export const getUser = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await instance.get("user/me", payload);
-      console.log(response);
+
       return thunkAPI.fulfillWithValue(response.data.data.userInfo);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -29,7 +29,8 @@ export const putImage = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await instance.put("user/me/image", payload);
-      const image = response.data.updateUser.userImage;
+
+      const image = response.data.updateUser.userImage
       localStorage.setItem("image", image);
       if (response) {
         toast.success(
@@ -42,9 +43,10 @@ export const putImage = createAsyncThunk(
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-          },
+
+          }, 
           setTimeout(() => {
-            window.location.replace("/profile");
+            window.location.replace("/main");
           }, 1000)
         );
       }

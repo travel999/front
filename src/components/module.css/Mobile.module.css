@@ -389,26 +389,32 @@
 
 /* -------------------------프로필 CSS------------------------- */
 @media only screen and (max-width: 430px) {
-    .title1 {
-        position: relative;
-        top: 5%;
-    }
-
-    .title1 img {
+    .profile_1 p {
         position: absolute;
-        left: 90%;
-        object-fit: cover;
-    }
-
-    h4 {
-        position: absolute;
-        left: 41%;
-        width: 133px;
-        height: 28px;
-        font-weight: 400;
+        width: 92px;
+        height: 40px;
+        top: 3%;
+        left: 4%;
+        font-weight: 500;
         font-size: 16px;
+        line-height: 40px;
     }
 
+    .profile_1 img {
+        object-fit: cover;
+        position: absolute;
+        border: 1px solid #E2E2E2;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        top: 8.5%;
+        left: 4%;
+    }
+
+    .profile_1 input {
+        display: none;
+    }
     input {
         left: 3%;
         padding-left: 4.5%;
@@ -419,16 +425,22 @@
         background: #FFFFFF;
     }
 
+    .inputNickname_1 {
+        position: absolute;
+        top: 26%;
+    }
+
     .inputPassword_1 {
         position: absolute;
-        top: 48%;
+        top: 42%;
     }
 
     .inputConfirm_1 {
         position: absolute;
-        top: 63%;
+        top: 57.5%;
     }
 
+    .nickname_1,
     .password_1,
     .confirm_1 {
         position: absolute;
@@ -437,13 +449,14 @@
         font-size: 16px;
         line-height: 40px;
     }
-
-    .password_1 {
-        top: 43.5%;
+    .nickname_1 {
+        top: 21.5%;
     }
-
+    .password_1 {
+        top: 37.5%;
+    }
     .confirm_1 {
-        top: 58.5%;
+        top: 53%;
     }
 
     .pwMsg_1,
@@ -455,17 +468,34 @@
     }
 
     .pwMsg_1 {
-        top: 54.5%;
+        top: 48.5%;
     }
 
     .confirmMsg_1 {
-        top: 69.5%;
+        top: 64%;
+    }
+
+    .button_1 {
+        position: absolute;
+        padding: 0;
+        top: 85%;
+        left: 3%;
+        width: 364px;
+        height: 54px;
+        background: #FFC51C;
+        border: 0;
+        border-radius: 999px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 40px;
+        color: black;
+        text-decoration: none;
     }
 
     .deleteButton {
         position: absolute;
         padding: 0;
-        top: 84%;
+        top: 77%;
         left: 3%;
         width: 365px;
         height: 54px;

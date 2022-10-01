@@ -38,7 +38,6 @@ export const toOpenPublic = createAsyncThunk(
   "main/open",
   async (request, thunkAPI) => {
     try {
-      console.log(request.id, request.value);
       const res = await instance.patch(`post/public/${request.id}`, {
         openPublic: !request.value,
       });
@@ -123,9 +122,9 @@ export const mainSlice = createSlice({
     },
 
     [searchText.fulfilled]: (state, action) => {
-      // console.log("검색한게 여전히 똑같거나 처음이야");
+      // 검색한게 여전히 똑같거나 처음일 때
       if (action.payload?.data?.message === "검색 결과가 존재하지 않습니다.") {
-        // console.log("더이상 데이터가 존재하지 않습니다.");
+        // 더이상 데이터가 존재하지 않습니다.
       } else {
         state.searched = true;
         const mydata = [];
@@ -149,7 +148,6 @@ export const mainSlice = createSlice({
     },
     [searchText.rejected]: (state, action) => {
       state.error = true;
-      console.log("더이상 자료가 없습니다.");
     },
 
     [firstSearch.fulfilled]: (state, action) => {
@@ -158,7 +156,6 @@ export const mainSlice = createSlice({
     },
     [firstSearch.rejected]: (state, action) => {
       state.error = true;
-      console.log(action.payload);
     },
 
     [toOpenPublic.fulfilled]: (state, action) => {
@@ -166,7 +163,6 @@ export const mainSlice = createSlice({
     },
     [toOpenPublic.rejected]: (state, action) => {
       state.error = true;
-      console.log(action.payload);
     },
 
     [DeletePost.fulfilled]: (state, action) => {
@@ -174,7 +170,6 @@ export const mainSlice = createSlice({
     },
     [DeletePost.rejected]: (state, action) => {
       state.error = true;
-      console.log(action.payload);
     },
 
     [toLike.fulfilled]: (state, action) => {
