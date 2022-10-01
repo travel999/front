@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import PostBtn from "./PostBtn";
+import QuestionBtn from "./QuestionBtn";
 import styles from "../module.css/Main.module.css";
 import duckprofile from "../../res/img/duck/duckprofile.png";
-import QuestionBtn from "./QuestionBtn";
 
 const ProfileBox = () => {
   const postnumber = useSelector((state) => state.main.MyPostCards);
