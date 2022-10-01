@@ -9,13 +9,13 @@
     position: absolute;
     width: 465px;
     height: 112.37px;
-    margin: 70px auto auto auto;
+    margin: 33px auto auto auto;
     cursor: pointer;
 }
 
 .backgroundImg {
     position: relative;
-    margin: 200px auto auto auto;
+    margin: 160px auto auto auto;
 }
 
 /* input 모음 */
@@ -45,17 +45,17 @@
 
 .inputNickname {
     position: absolute;
-    top: 30%;
+    top: 25%;
 }
 
 .inputPassword {
     position: absolute;
-    top: 42%;
+    top: 37%;
 }
 
 .inputConfirm {
     position: absolute;
-    top: 54%;
+    top: 49%;
 }
 
 /* 유효성 메세지 */
@@ -67,12 +67,12 @@
 
 .pwMsg {
     position: absolute;
-    top: 49%;
+    top: 44%;
 }
 
 .confirmMsg {
     position: absolute;
-    top: 61%;
+    top: 56%;
 }
 
 /* inputName */
@@ -88,24 +88,24 @@
 
 .nickname {
     position: absolute;
-    top: 30%;
+    top: 25%;
 }
 
 .password {
     position: absolute;
-    top: 41.5%;
+    top: 36.5%;
 }
 
 .confirm {
     position: absolute;
-    top: 53.5%;
+    top: 48.5%;
 }
 
 /* profile Img */
 .profile h4 {
     position: absolute;
     left: 21.5%;
-    top: 52%;
+    top: 47%;
     font-weight: 600;
 }
 
@@ -118,7 +118,7 @@
     width: 177px;
     cursor: pointer;
     left: 18%;
-    top: 30%;
+    top: 25%;
     background: #ffffff;
 }
 
