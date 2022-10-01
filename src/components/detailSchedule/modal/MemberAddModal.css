@@ -85,19 +85,6 @@
   animation: modal-bg-show 0.3s;
 }
 
-/* DescriptModal CSS */
-.scheduleDesc {
-  line-height: 30px;
-  font-size: 15px;
-  color: #333;
-  margin: 15px auto 10px 10px;
-  overflow: auto;
-}
-
-.scheduleDesc b {
-  font-weight: 700;
-}
-
 @keyframes modal-show {
   from {
     opacity: 0;
