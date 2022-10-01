@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getMapData } from "../../redux/modules/MapSlice";
 import MemberAddModal from "./modal/MemberAddModal";
+import AdviceModal from "../detailSchedule/modal/AdviceModal";
 import Btn from "../elements/Btn";
 import styles from "../module.css/Schedule.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
-import AdviceModal from "../detailSchedule/modal/AdviceModal";
 
 const ScheduleList = ({ fixDay, id }) => {
   const dispatch = useDispatch();
