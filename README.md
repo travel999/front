@@ -34,7 +34,7 @@
 |카카오맵 마커 표기 및 일정카드 생성|
 |실시간 공유 및 채팅|
 |---|
-|![-37mrmcgvpe7e5c83](https://user-images.githubusercontent.com/54390853/192814908-08199206-f4cc-41cf-b175-ae4faa05211e.gif)|
+|![ 편집](https://user-images.githubusercontent.com/54390853/193409603-1d24e08a-e668-4c49-b1eb-78e3329adb33.gif)|
 |다른 사람이 작성한 여행일정 공유|
 
 
