@@ -32,10 +32,12 @@
 
 ## 🔎 주요 기능
 |카카오맵 마커 표기 및 일정카드 생성|
-|실시간 공유 및 채팅|
 |---|
-|![ 편집](https://user-images.githubusercontent.com/54390853/193409603-1d24e08a-e668-4c49-b1eb-78e3329adb33.gif)|
+![ 마커](https://user-images.githubusercontent.com/54390853/193458236-983776ab-c4a9-40db-a022-3c968a457bed.gif)
+|실시간 공유 및 채팅|
+|![채팅](https://user-images.githubusercontent.com/54390853/193409603-1d24e08a-e668-4c49-b1eb-78e3329adb33.gif)|
 |다른 사람이 작성한 여행일정 공유|
+|![공개](https://user-images.githubusercontent.com/54390853/193458867-8bfa0633-813b-4741-bc42-76e3b0d456f7.gif)|
 
 
 
