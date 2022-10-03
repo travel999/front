@@ -269,6 +269,11 @@
   font-size: 0.9em;
 }
 
+.react-confirm-alert-button-group > button:first-child {
+  background-color: #ffc51c;
+  color: #333;
+}
+
 /* 모바일 반응형 430 x 844 : 아이폰 pro 도 접근할 수 있도록 처리함*/
 @media only screen and (max-width: 430px) {
   .wrap {
@@ -308,7 +313,7 @@
     margin-top: 0.1%;
     margin-left: 3%;
     width: 88%;
-    }
+  }
 
   .createWrap input[type="text"] {
     margin-left: 3%;

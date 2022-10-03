@@ -71,14 +71,16 @@ const Header = () => {
             />
           </div>
           <div>
-            {provider !== null ?
-              <></> :
+            {provider !== null ? (
+              <></>
+            ) : (
               <FontAwesomeIcon
                 icon={faUser}
                 onClick={() => {
                   navigate("/profile");
                 }}
-              />}
+              />
+            )}
           </div>
           <div>
             <FontAwesomeIcon
