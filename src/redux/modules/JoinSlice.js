@@ -134,7 +134,6 @@ export const invalidEmailCheck = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await instance.post("user/checkCode", payload);
-      console.log(response)
       if (response.data.result === true) {
         toast.info("이메일이 인증되었습니다!", {
           position: "top-center",
@@ -212,7 +211,6 @@ export const JoinSlice = createSlice({
     [invalidEmailCheck.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.result = action.payload;
-      console.log(action.payload)
       state.isTrue = action.payload.result // 결과 true
     },
     [invalidEmailCheck.rejected]: (state, action) => {

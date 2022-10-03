@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
-// import "./DescriptModal.moduels.css";
+import "./DescriptModal.moduels.css";
 import gide1 from "../../../res/img/userGide/gide1.png";
 import gide2 from "../../../res/img/userGide/gide2.png";
 import gide3 from "../../../res/img/userGide/gide3.png";

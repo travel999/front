@@ -1,6 +1,6 @@
 import io from "socket.io-client";
 
-export default io.connect(process.env.REACT_APP_SURVER, {
+export default io.connect(process.env.REACT_SOCKET_SERVER, {
   path: "/socket.io",
   transports: ["websocket"],
 });
