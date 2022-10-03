@@ -33,11 +33,11 @@ const ProfileBox = () => {
         )}
         {getnickname ? (
           <div className={styles.profilename}>
-            <b style={{ fontWeight: "600" }}>{getnickname}</b>의 여행
+            <b style={{ fontWeight: "700" }}>{getnickname}</b>의 여행
           </div>
         ) : (
           <div className={styles.profilename}>
-            <b style={{ fontWeight: "600" }}>우리가치</b>의 여행
+            <b style={{ fontWeight: "700" }}>우리가치</b>의 여행
           </div>
         )}
         <div className={styles.profiltext}>

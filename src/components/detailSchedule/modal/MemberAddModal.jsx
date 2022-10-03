@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { saveNickName } from "../../../redux/modules/InviteSlice";
 import "./MemberAddModal.css";
+import { toast } from "react-toastify";
 
 const MemberAddModal = (props) => {
   const dispatch = useDispatch();
 
   const [nickName, setNickName] = useState("");
   const [message, setMessage] = useState("");
+  const nickNameRef = useRef(null);
+
+  const getNickname = localStorage.getItem("nickname");
 
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
   const { open, close, header, postId } = props;
@@ -16,8 +20,16 @@ const MemberAddModal = (props) => {
     setNickName(e.target.value);
   };
   const onAddMember = () => {
-    dispatch(saveNickName({ nickname2: nickName, postId: postId, setMessage }));
-    setNickName("");
+    if (nickNameRef.current.value === "") {
+      setMessage("닉네임을 넣어주세요.");
+    } else if (nickNameRef.current.value === getNickname) {
+      setMessage("본인 이외의 닉네임을 넣어주세요.");
+    } else {
+      dispatch(
+        saveNickName({ nickname2: nickName, postId: postId, setMessage })
+      );
+      setNickName("");
+    }
   };
 
   window.addEventListener("mousedown", (e) => {
@@ -39,6 +51,7 @@ const MemberAddModal = (props) => {
           </header>
           <main>
             <input
+              ref={nickNameRef}
               type="text"
               name="inputText"
               onChange={onGetNickName}

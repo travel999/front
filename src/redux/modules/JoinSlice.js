@@ -211,7 +211,6 @@ export const JoinSlice = createSlice({
     [invalidEmailCheck.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.result = action.payload;
-      console.log(action.payload);
       state.isTrue = action.payload.result; // 결과 true
     },
     [invalidEmailCheck.rejected]: (state, action) => {
