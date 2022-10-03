@@ -107,7 +107,6 @@ const MobileDetailScheduleMap = ({ nowDay, data, setKey }) => {
 
   useEffect(() => {
     socket.on("receive_marker", (name, x, y, nowDay, pins) => {
-      console.log(name, x, y, nowDay, pins);
       forsocketMakeMarker(name, x, y, nowDay, pins);
     });
   }, [socket]);
