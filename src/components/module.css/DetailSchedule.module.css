@@ -218,9 +218,9 @@
 }
 
 .searchBtn {
-  position: fixed;
+  position: relative;
   top: 8.79%;
-  left: 22.5%;
+  left: 13%;
   z-index: 3;
   cursor: pointer;
 }
@@ -249,9 +249,8 @@
 
 .inputWrap input {
   border: 1px solid transparent;
-  border-radius: 10px;
-  padding: 0.3rem;
-  margin: 0.3em auto 0 auto;
+  border-radius: 0px;
+  margin: 0.3em auto 0 0.1em;
   height: 20px;
   width: 90%;
 }
@@ -262,11 +261,12 @@
 
 .inputWrap button {
   text-align: center;
-  width: 50%;
-  height: 30px;
-  padding: 0.1rem;
+  width: 27%;
+  height: 85%;
+  border-radius: 8px;
   margin-right: 0.2rem;
   font-size: 0.9em;
+  padding: 1.5px;
 }
 
 /* 모바일 반응형 430 x 844 : 아이폰 pro 도 접근할 수 있도록 처리함*/
@@ -308,7 +308,7 @@
     margin-top: 0.1%;
     margin-left: 3%;
     width: 88%;
-    }
+  }
 
   .createWrap input[type="text"] {
     margin-left: 3%;

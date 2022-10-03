@@ -118,9 +118,9 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
     };
 
     socket.emit("SaveDone_data", data);
-    toast.success(`${data.author} 님이 저장하였습니다.`, {
-      position: "top-right",
-      autoClose: 1500,
+    toast.success(`일정 내용이 저장되었습니다.`, {
+      position: "top-center",
+      autoClose: 500,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
@@ -151,7 +151,9 @@ const DetailScheduleInput = ({ day, index, dayMemo, key }) => {
             backgroundColor="lightgray"
             onClick={onSaveCard}
           >
-            내용 저장
+            내용
+            <br />
+            저장
           </Btn>
         </div>
       ) : null}

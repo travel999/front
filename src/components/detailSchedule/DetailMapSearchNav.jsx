@@ -43,7 +43,7 @@ const DetailMapSearchNav = ({
 
   return (
     <MapSearchDiv>
-      <SearchDiv visible={visible} menu={menu}>
+      <SearchDiv visible={visible} menu={menu} className="bicSearchBox">
         <div className="searchArea">
           <span>검색</span>
           <input
