@@ -13,10 +13,12 @@ export const kakaoLogin = createAsyncThunk(
   "KakaoSlice/kakaoLogin",
   async (code, thunkAPI) => {
     try {
+      console.log(code)
       const response = await instance.get(
         `kakao/callback?code=${code.code}`,
         code.code
       );
+      console.log(response)
       const provider = response.data.user.provider;
       const token = response.data.user.token; // accessToken
       const nickname = response.data.user.userInfo.nickname; // 닉네임

@@ -106,7 +106,7 @@
 .profilefont {
   margin: 5px auto;
   font-size: 1.1em;
-  font-weight: 400;
+  font-weight: 500;
   color: rgba(0, 0, 0, 0.936);
 }
 
@@ -133,7 +133,7 @@
 .posttext {
   margin-bottom: 0.5vh;
   font-size: 1.1em;
-  font-weight: 600;
+  font-weight: 800;
   align-items: center;
   justify-content: center;
   width: 98%;
@@ -145,6 +145,7 @@
 
 .plusfont {
   font-size: 1.3em;
+  font-weight: 700;
 }
 
 /* 첫번째 박스부분 */
@@ -165,7 +166,7 @@
   margin-top: 0.5vh;
   padding: 20px 20px 3vh 20px;
   height: 20px;
-  font-weight: 500;
+  font-weight: 800;
   font-size: 1.1em;
 
   border-top-left-radius: 20px;
