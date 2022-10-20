@@ -39,7 +39,7 @@
 |다른 사람이 작성한 여행일정 공유|
 |![공개](https://user-images.githubusercontent.com/54390853/193458867-8bfa0633-813b-4741-bc42-76e3b0d456f7.gif)|
 
-![스크린샷 2022-10-20 오후 6 59 05](https://user-images.githubusercontent.com/97071355/196918774-b9e7d922-6efd-49bd-a45f-b39fe6b020ed.png)
+![스크린샷 2022-10-20 오후 6 59](https://user-images.githubusercontent.com/97071355/196919155-5bbe76d1-2210-4c3f-9350-07681e781138.png)
 ![스크린샷 2022-10-20 오후 6 55 14](https://user-images.githubusercontent.com/97071355/196918805-2582dc43-c2b5-4aca-a7d0-d4bd43ee366c.png)
 ![스크린샷 2022-10-20 오후 6 55 57](https://user-images.githubusercontent.com/97071355/196918839-5b6c94a9-8a87-475a-a791-3d7450a76e87.png)
 ![스크린샷 2022-10-20 오후 6 57 31](https://user-images.githubusercontent.com/97071355/196918845-8fcf66ad-a9ab-4f21-a303-74e9d7ca40bf.png)
