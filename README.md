@@ -40,6 +40,7 @@
 |![공개](https://user-images.githubusercontent.com/54390853/193458867-8bfa0633-813b-4741-bc42-76e3b0d456f7.gif)|
 
 Media Query를 사용한 모바일
+<br/>
 ![스크린샷 2022-10-20 오후 6 59](https://user-images.githubusercontent.com/97071355/196919361-283c49b9-faf3-4f92-a53a-9972390dd68f.png)
 ![스크린샷 2022-10-20 오후 6 55](https://user-images.githubusercontent.com/97071355/196919556-a4a84246-3ecf-4da3-9fa2-d014cc0a6fa5.png)
 ![스크린샷 2022-10-20 오후 6 55](https://user-images.githubusercontent.com/97071355/196920091-46d85e5c-aad3-4279-a2bb-d18963b25590.png)
