@@ -41,8 +41,6 @@
 
 ![스크린샷 2022-10-20 오후 6 59](https://user-images.githubusercontent.com/97071355/196919361-283c49b9-faf3-4f92-a53a-9972390dd68f.png)
 ![스크린샷 2022-10-20 오후 6 55](https://user-images.githubusercontent.com/97071355/196919556-a4a84246-3ecf-4da3-9fa2-d014cc0a6fa5.png)
-![스크린샷 2022-10-20 오후 6 55  (1)](https://user-images.githubusercontent.com/97071355/196919649-aff75b44-dd99-42a8-9714-165405aaaef4.png)
-![스크린샷 2022-10-20 오후 6 57](https://user-images.githubusercontent.com/97071355/196919804-eac8133c-4f00-4b03-8eca-8f3f10a16e37.png)
 
 
 
